@@ -7,17 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		776274FA1CC71EBB001B5793 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776274F91CC71EBB001B5793 /* AppDelegate.swift */; };
-		776274FC1CC71EBB001B5793 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 776274FB1CC71EBB001B5793 /* ViewController.swift */; };
+		775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */; };
+		775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775114911CC75C3A00BC6FB4 /* AppDelegate.swift */; };
+		7751149B1CC75C7D00BC6FB4 /* BBS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7751149A1CC75C7D00BC6FB4 /* BBS.storyboard */; };
+		7751149D1CC75C9300BC6FB4 /* Evaluation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7751149C1CC75C9300BC6FB4 /* Evaluation.storyboard */; };
+		7751149F1CC75C9D00BC6FB4 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7751149E1CC75C9D00BC6FB4 /* News.storyboard */; };
+		775114A11CC75CA900BC6FB4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 775114A01CC75CA900BC6FB4 /* Profile.storyboard */; };
 		776274FF1CC71EBB001B5793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776274FD1CC71EBB001B5793 /* Main.storyboard */; };
 		776275011CC71EBB001B5793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776275001CC71EBB001B5793 /* Assets.xcassets */; };
 		776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776275021CC71EBB001B5793 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		775114911CC75C3A00BC6FB4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7751149A1CC75C7D00BC6FB4 /* BBS.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BBS.storyboard; sourceTree = "<group>"; };
+		7751149C1CC75C9300BC6FB4 /* Evaluation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Evaluation.storyboard; sourceTree = "<group>"; };
+		7751149E1CC75C9D00BC6FB4 /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
+		775114A01CC75CA900BC6FB4 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		776274F61CC71EBB001B5793 /* 盗梦极客VR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "盗梦极客VR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		776274F91CC71EBB001B5793 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		776274FB1CC71EBB001B5793 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		776274FE1CC71EBB001B5793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		776275001CC71EBB001B5793 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		776275031CC71EBB001B5793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -35,6 +43,108 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7751148A1CC75C3A00BC6FB4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7751148D1CC75C3A00BC6FB4 /* Common(公共) */,
+				775114941CC75C3A00BC6FB4 /* News( 资讯) */,
+				775114921CC75C3A00BC6FB4 /* Evaluation(评测) */,
+				7751148B1CC75C3A00BC6FB4 /* BBS(论坛) */,
+				775114961CC75C3A00BC6FB4 /* Profile(我) */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		7751148B1CC75C3A00BC6FB4 /* BBS(论坛) */ = {
+			isa = PBXGroup;
+			children = (
+				7751148C1CC75C3A00BC6FB4 /* Controller */,
+				7751149A1CC75C7D00BC6FB4 /* BBS.storyboard */,
+			);
+			path = "BBS(论坛)";
+			sourceTree = "<group>";
+		};
+		7751148C1CC75C3A00BC6FB4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7751148D1CC75C3A00BC6FB4 /* Common(公共) */ = {
+			isa = PBXGroup;
+			children = (
+				776274FD1CC71EBB001B5793 /* Main.storyboard */,
+				7751148E1CC75C3A00BC6FB4 /* Controller */,
+				775114901CC75C3A00BC6FB4 /* Ohter */,
+			);
+			path = "Common(公共)";
+			sourceTree = "<group>";
+		};
+		7751148E1CC75C3A00BC6FB4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		775114901CC75C3A00BC6FB4 /* Ohter */ = {
+			isa = PBXGroup;
+			children = (
+				775114911CC75C3A00BC6FB4 /* AppDelegate.swift */,
+			);
+			path = Ohter;
+			sourceTree = "<group>";
+		};
+		775114921CC75C3A00BC6FB4 /* Evaluation(评测) */ = {
+			isa = PBXGroup;
+			children = (
+				775114931CC75C3A00BC6FB4 /* Controller */,
+				7751149C1CC75C9300BC6FB4 /* Evaluation.storyboard */,
+			);
+			path = "Evaluation(评测)";
+			sourceTree = "<group>";
+		};
+		775114931CC75C3A00BC6FB4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		775114941CC75C3A00BC6FB4 /* News( 资讯) */ = {
+			isa = PBXGroup;
+			children = (
+				775114951CC75C3A00BC6FB4 /* Controller */,
+				7751149E1CC75C9D00BC6FB4 /* News.storyboard */,
+			);
+			path = "News( 资讯)";
+			sourceTree = "<group>";
+		};
+		775114951CC75C3A00BC6FB4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		775114961CC75C3A00BC6FB4 /* Profile(我) */ = {
+			isa = PBXGroup;
+			children = (
+				775114971CC75C3A00BC6FB4 /* Controller */,
+				775114A01CC75CA900BC6FB4 /* Profile.storyboard */,
+			);
+			path = "Profile(我)";
+			sourceTree = "<group>";
+		};
+		775114971CC75C3A00BC6FB4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		776274ED1CC71EBB001B5793 = {
 			isa = PBXGroup;
 			children = (
@@ -54,9 +164,7 @@
 		776274F81CC71EBB001B5793 /* 盗梦极客VR */ = {
 			isa = PBXGroup;
 			children = (
-				776274F91CC71EBB001B5793 /* AppDelegate.swift */,
-				776274FB1CC71EBB001B5793 /* ViewController.swift */,
-				776274FD1CC71EBB001B5793 /* Main.storyboard */,
+				7751148A1CC75C3A00BC6FB4 /* Classes */,
 				776275001CC71EBB001B5793 /* Assets.xcassets */,
 				776275021CC71EBB001B5793 /* LaunchScreen.storyboard */,
 				776275051CC71EBB001B5793 /* Info.plist */,
@@ -123,8 +231,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7751149D1CC75C9300BC6FB4 /* Evaluation.storyboard in Resources */,
+				7751149F1CC75C9D00BC6FB4 /* News.storyboard in Resources */,
+				7751149B1CC75C7D00BC6FB4 /* BBS.storyboard in Resources */,
 				776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */,
 				776275011CC71EBB001B5793 /* Assets.xcassets in Resources */,
+				775114A11CC75CA900BC6FB4 /* Profile.storyboard in Resources */,
 				776274FF1CC71EBB001B5793 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,8 +248,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				776274FC1CC71EBB001B5793 /* ViewController.swift in Sources */,
-				776274FA1CC71EBB001B5793 /* AppDelegate.swift in Sources */,
+				775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */,
+				775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +262,7 @@
 				776274FE1CC71EBB001B5793 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		776275021CC71EBB001B5793 /* LaunchScreen.storyboard */ = {
@@ -251,6 +364,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "盗梦极客VR/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lyedu.cn.----VR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -262,6 +376,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "盗梦极客VR/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lyedu.cn.----VR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -287,6 +402,7 @@
 				7762750A1CC71EBB001B5793 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
