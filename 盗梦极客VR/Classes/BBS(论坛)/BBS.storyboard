@@ -5,40 +5,40 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="J4z-cr-2eT">
-            <objects>
-                <navigationController storyboardIdentifier="NavigationController" id="BBb-yO-aqX" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WAb-Sc-NFL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="dSf-MN-YHV" kind="relationship" relationship="rootViewController" id="aAy-Ed-Jdj"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xC7-5h-gzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-318" y="433"/>
-        </scene>
         <!--论坛-->
-        <scene sceneID="cVS-FV-Xqv">
+        <scene sceneID="wYh-N5-mni">
             <objects>
-                <viewController id="dSf-MN-YHV" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BBS" id="YgE-eH-EFE" customClass="BBSController" customModule="盗梦极客VR" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Bmm-Xm-idf"/>
-                        <viewControllerLayoutGuide type="bottom" id="v5n-YU-XES"/>
+                        <viewControllerLayoutGuide type="top" id="s5a-HO-iXe"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Bt-0x-xZh"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pgX-BZ-Tzw">
+                    <view key="view" contentMode="scaleToFill" id="bFg-xc-AI0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f1B-Sq-kiI">
+                                <rect key="frame" x="0.0" y="20" width="600" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="a7M-k5-RkC"/>
+                                </constraints>
+                            </progressView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="f1B-Sq-kiI" firstAttribute="leading" secondItem="bFg-xc-AI0" secondAttribute="leading" id="Db6-Ug-npe"/>
+                            <constraint firstItem="f1B-Sq-kiI" firstAttribute="top" secondItem="s5a-HO-iXe" secondAttribute="bottom" id="GEr-WC-wzb"/>
+                            <constraint firstAttribute="trailing" secondItem="f1B-Sq-kiI" secondAttribute="trailing" id="RLD-aD-dTI"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="论坛" id="Rwo-lK-0aR"/>
+                    <navigationItem key="navigationItem" title="论坛" id="WhU-cT-jeb"/>
+                    <connections>
+                        <outlet property="progressView" destination="f1B-Sq-kiI" id="2YW-i8-DO5"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="paq-1A-SfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lcm-yg-8Xg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="376" y="433"/>
+            <point key="canvasLocation" x="-294" y="513"/>
         </scene>
     </scenes>
 </document>

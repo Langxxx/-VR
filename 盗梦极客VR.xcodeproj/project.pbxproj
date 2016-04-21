@@ -7,29 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00B3E151668AB05078D689E4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3D58D6A7EE1074ECD4E855 /* Pods.framework */; };
 		775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */; };
 		775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775114911CC75C3A00BC6FB4 /* AppDelegate.swift */; };
 		7751149B1CC75C7D00BC6FB4 /* BBS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7751149A1CC75C7D00BC6FB4 /* BBS.storyboard */; };
 		7751149D1CC75C9300BC6FB4 /* Evaluation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7751149C1CC75C9300BC6FB4 /* Evaluation.storyboard */; };
 		7751149F1CC75C9D00BC6FB4 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7751149E1CC75C9D00BC6FB4 /* News.storyboard */; };
 		775114A11CC75CA900BC6FB4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 775114A01CC75CA900BC6FB4 /* Profile.storyboard */; };
+		775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775114A21CC766BA00BC6FB4 /* BBSController.swift */; };
 		776274FF1CC71EBB001B5793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776274FD1CC71EBB001B5793 /* Main.storyboard */; };
 		776275011CC71EBB001B5793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776275001CC71EBB001B5793 /* Assets.xcassets */; };
 		776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776275021CC71EBB001B5793 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D3D58D6A7EE1074ECD4E855 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EA4F884C41B4CD891BBEFC2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		775114911CC75C3A00BC6FB4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7751149A1CC75C7D00BC6FB4 /* BBS.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BBS.storyboard; sourceTree = "<group>"; };
 		7751149C1CC75C9300BC6FB4 /* Evaluation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Evaluation.storyboard; sourceTree = "<group>"; };
 		7751149E1CC75C9D00BC6FB4 /* News.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		775114A01CC75CA900BC6FB4 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		775114A21CC766BA00BC6FB4 /* BBSController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSController.swift; sourceTree = "<group>"; };
+		775114A41CC7C3DF00BC6FB4 /* 盗梦极客VR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "盗梦极客VR-Bridging-Header.h"; sourceTree = "<group>"; };
 		776274F61CC71EBB001B5793 /* 盗梦极客VR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "盗梦极客VR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		776274FE1CC71EBB001B5793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		776275001CC71EBB001B5793 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		776275031CC71EBB001B5793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		776275051CC71EBB001B5793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F70860C4EE6301743A84DC91 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,12 +44,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00B3E151668AB05078D689E4 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		500F18F1A4A196E9DA65025B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4D3D58D6A7EE1074ECD4E855 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7751148A1CC75C3A00BC6FB4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +83,7 @@
 		7751148C1CC75C3A00BC6FB4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				775114A21CC766BA00BC6FB4 /* BBSController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -77,6 +94,7 @@
 				776274FD1CC71EBB001B5793 /* Main.storyboard */,
 				7751148E1CC75C3A00BC6FB4 /* Controller */,
 				775114901CC75C3A00BC6FB4 /* Ohter */,
+				775114A71CC7C75C00BC6FB4 /* Extension */,
 			);
 			path = "Common(公共)";
 			sourceTree = "<group>";
@@ -93,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				775114911CC75C3A00BC6FB4 /* AppDelegate.swift */,
+				775114A41CC7C3DF00BC6FB4 /* 盗梦极客VR-Bridging-Header.h */,
 			);
 			path = Ohter;
 			sourceTree = "<group>";
@@ -145,11 +164,20 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		775114A71CC7C75C00BC6FB4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		776274ED1CC71EBB001B5793 = {
 			isa = PBXGroup;
 			children = (
 				776274F81CC71EBB001B5793 /* 盗梦极客VR */,
 				776274F71CC71EBB001B5793 /* Products */,
+				E476746F3128D659BDE7B22A /* Pods */,
+				500F18F1A4A196E9DA65025B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,6 +200,15 @@
 			path = "盗梦极客VR";
 			sourceTree = "<group>";
 		};
+		E476746F3128D659BDE7B22A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5EA4F884C41B4CD891BBEFC2 /* Pods.debug.xcconfig */,
+				F70860C4EE6301743A84DC91 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -179,9 +216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 776275081CC71EBB001B5793 /* Build configuration list for PBXNativeTarget "盗梦极客VR" */;
 			buildPhases = (
+				8B8F16FBE0A187299B2BFDFA /* Check Pods Manifest.lock */,
 				776274F21CC71EBB001B5793 /* Sources */,
 				776274F31CC71EBB001B5793 /* Frameworks */,
 				776274F41CC71EBB001B5793 /* Resources */,
+				051E3562374C5EB87FAF2C47 /* Embed Pods Frameworks */,
+				204EF3CDD68B5D37B5F3FF36 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -243,12 +283,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		051E3562374C5EB87FAF2C47 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		204EF3CDD68B5D37B5F3FF36 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B8F16FBE0A187299B2BFDFA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		776274F21CC71EBB001B5793 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */,
+				775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */,
 				775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,25 +450,32 @@
 		};
 		776275091CC71EBB001B5793 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EA4F884C41B4CD891BBEFC2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "盗梦极客VR/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lyedu.cn.----VR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "盗梦极客VR/Classes/Common(公共)/Ohter/盗梦极客VR-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		7762750A1CC71EBB001B5793 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F70860C4EE6301743A84DC91 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "盗梦极客VR/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "lyedu.cn.----VR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "盗梦极客VR/Classes/Common(公共)/Ohter/盗梦极客VR-Bridging-Header.h";
 			};
 			name = Release;
 		};

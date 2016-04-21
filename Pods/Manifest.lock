@@ -1,0 +1,22 @@
+PODS:
+  - SnapKit (0.17.0)
+  - SVProgressHUD (2.0.3)
+
+DEPENDENCIES:
+  - SnapKit (~> 0.17.0)
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+
+EXTERNAL SOURCES:
+  SVProgressHUD:
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+CHECKOUT OPTIONS:
+  SVProgressHUD:
+    :commit: c406f0ac1929b21ab444608eb4ab27035bb57a21
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+SPEC CHECKSUMS:
+  SnapKit: 49fd7b1b3ff58ab4064004036b8afcfddbd3a4bd
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+
+COCOAPODS: 0.39.0

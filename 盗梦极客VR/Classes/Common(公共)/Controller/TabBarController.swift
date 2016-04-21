@@ -25,7 +25,7 @@ extension TabBarController {
     func setupRootNavController() {
         addRootNavController("News", title: "资讯", iconName: "")
         addRootNavController("Evaluation", title: "评测", iconName: "")
-        addRootNavController("BBS", title: "论坛", iconName: "")
+        addRootNavController("BBS",identifier: "BBS", title: "论坛", iconName: "")
         addRootNavController("Profile", title: "我", iconName: "")
     }
     
