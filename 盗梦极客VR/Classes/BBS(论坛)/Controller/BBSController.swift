@@ -76,9 +76,9 @@ extension BBSController: WKNavigationDelegate {
                 decisionHandler(.Cancel)
                 return
         }
-
+        print(requstURL)
         if targetFrame.mainFrame
-            && !requstURL.absoluteString.hasPrefix(baseURL) {
+            && !isExpectedURL(requstURL.absoluteString) {
             decisionHandler(.Cancel)
             UIApplication.sharedApplication().openURL(requstURL)
         }else {

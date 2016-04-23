@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00B3E151668AB05078D689E4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3D58D6A7EE1074ECD4E855 /* Pods.framework */; };
+		774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774F5EBA1CCB12090087413F /* BBSURLConfig.swift */; };
 		775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */; };
 		775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775114911CC75C3A00BC6FB4 /* AppDelegate.swift */; };
 		7751149B1CC75C7D00BC6FB4 /* BBS.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7751149A1CC75C7D00BC6FB4 /* BBS.storyboard */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		4D3D58D6A7EE1074ECD4E855 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA4F884C41B4CD891BBEFC2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		774F5EBA1CCB12090087413F /* BBSURLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSURLConfig.swift; sourceTree = "<group>"; };
 		7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		775114911CC75C3A00BC6FB4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7751149A1CC75C7D00BC6FB4 /* BBS.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BBS.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		774F5EB91CCB11C40087413F /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				774F5EBA1CCB12090087413F /* BBSURLConfig.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		7751148A1CC75C3A00BC6FB4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 		7751148B1CC75C3A00BC6FB4 /* BBS(论坛) */ = {
 			isa = PBXGroup;
 			children = (
+				774F5EB91CCB11C40087413F /* Other */,
 				7751148C1CC75C3A00BC6FB4 /* Controller */,
 				7751149A1CC75C7D00BC6FB4 /* BBS.storyboard */,
 			);
@@ -337,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */,
+				774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */,
 				775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */,
 				775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */,
 			);
