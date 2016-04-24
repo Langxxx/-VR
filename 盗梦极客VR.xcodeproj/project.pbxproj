@@ -16,6 +16,8 @@
 		7751149F1CC75C9D00BC6FB4 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7751149E1CC75C9D00BC6FB4 /* News.storyboard */; };
 		775114A11CC75CA900BC6FB4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 775114A01CC75CA900BC6FB4 /* Profile.storyboard */; };
 		775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775114A21CC766BA00BC6FB4 /* BBSController.swift */; };
+		7761A1A81CCC7439004A6EBA /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761A1A71CCC7439004A6EBA /* NewsController.swift */; };
+		7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */; };
 		776274FF1CC71EBB001B5793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776274FD1CC71EBB001B5793 /* Main.storyboard */; };
 		776275011CC71EBB001B5793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776275001CC71EBB001B5793 /* Assets.xcassets */; };
 		776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776275021CC71EBB001B5793 /* LaunchScreen.storyboard */; };
@@ -33,6 +35,8 @@
 		775114A01CC75CA900BC6FB4 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		775114A21CC766BA00BC6FB4 /* BBSController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSController.swift; sourceTree = "<group>"; };
 		775114A41CC7C3DF00BC6FB4 /* 盗梦极客VR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "盗梦极客VR-Bridging-Header.h"; sourceTree = "<group>"; };
+		7761A1A71CCC7439004A6EBA /* NewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
+		7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelScrollView.swift; sourceTree = "<group>"; };
 		776274F61CC71EBB001B5793 /* 盗梦极客VR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "盗梦极客VR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		776274FE1CC71EBB001B5793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		776275001CC71EBB001B5793 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,17 +150,12 @@
 		775114941CC75C3A00BC6FB4 /* News( 资讯) */ = {
 			isa = PBXGroup;
 			children = (
-				775114951CC75C3A00BC6FB4 /* Controller */,
+				7761A1A61CCC741D004A6EBA /* Controller */,
+				7761A1921CCC687A004A6EBA /* Model */,
+				7761A1931CCC687A004A6EBA /* View */,
 				7751149E1CC75C9D00BC6FB4 /* News.storyboard */,
 			);
 			path = "News( 资讯)";
-			sourceTree = "<group>";
-		};
-		775114951CC75C3A00BC6FB4 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		775114961CC75C3A00BC6FB4 /* Profile(我) */ = {
@@ -180,6 +179,29 @@
 			children = (
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		7761A1921CCC687A004A6EBA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7761A1931CCC687A004A6EBA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7761A1A61CCC741D004A6EBA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7761A1A71CCC7439004A6EBA /* NewsController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		776274ED1CC71EBB001B5793 = {
@@ -350,6 +372,8 @@
 				775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */,
 				774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */,
 				775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */,
+				7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */,
+				7761A1A81CCC7439004A6EBA /* NewsController.swift in Sources */,
 				775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
