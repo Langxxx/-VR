@@ -23,12 +23,20 @@
                                     <constraint firstAttribute="height" constant="2" id="a7M-k5-RkC"/>
                                 </constraints>
                             </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击屏幕重新加载" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGE-Ja-dzA">
+                                <rect key="frame" x="232" y="290" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lGE-Ja-dzA" firstAttribute="centerX" secondItem="bFg-xc-AI0" secondAttribute="centerX" id="3Ro-Ve-Yyx"/>
                             <constraint firstItem="f1B-Sq-kiI" firstAttribute="leading" secondItem="bFg-xc-AI0" secondAttribute="leading" id="Db6-Ug-npe"/>
                             <constraint firstItem="f1B-Sq-kiI" firstAttribute="top" secondItem="s5a-HO-iXe" secondAttribute="bottom" id="GEr-WC-wzb"/>
                             <constraint firstAttribute="trailing" secondItem="f1B-Sq-kiI" secondAttribute="trailing" id="RLD-aD-dTI"/>
+                            <constraint firstItem="lGE-Ja-dzA" firstAttribute="centerY" secondItem="bFg-xc-AI0" secondAttribute="centerY" id="jl0-8n-wV2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="论坛" id="WhU-cT-jeb"/>

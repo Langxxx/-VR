@@ -19,6 +19,10 @@ class BBSController: UIViewController {
     
     let baseURL = "http://bbs.dmgeek.com"
     
+    var request: NSURLRequest {
+        return NSURLRequest(URL: NSURL(string: baseURL)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +35,14 @@ class BBSController: UIViewController {
             progressView.progress = Float(webView.estimatedProgress)
         }
     }
-
+    
+    /**
+     只有webView加载失败，此方法才能被调用，
+     点击视图重新加载
+     */
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        webView.loadRequest(request)
+    }
 }
 
 extension BBSController {
@@ -41,12 +52,12 @@ extension BBSController {
         let configuretion = WKWebViewConfiguration()
 
         let webView = WKWebView(frame: CGRectZero, configuration: configuretion)
+        webView.hidden = true
         view.addSubview(webView)
-        view.sendSubviewToBack(webView)
         self.webView = webView
         
         webView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(20)
+            make.top.equalTo(self.progressView)
             make.bottom.equalTo(self.view).offset(-44)
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -56,8 +67,6 @@ extension BBSController {
 
         // 监听加载进度
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
-        
-        let request = NSURLRequest(URL: NSURL(string: baseURL)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
         webView.loadRequest(request)
     }
 }
@@ -94,6 +103,7 @@ extension BBSController: WKNavigationDelegate {
         progressView.hidden = false
         progressView.progress = 0
         SVProgressHUD.showWithStatus("正在加载...")
+        SVProgressHUD.setDefaultMaskType(.Clear)
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
@@ -101,6 +111,7 @@ extension BBSController: WKNavigationDelegate {
         
         SVProgressHUD.dismiss()
         progressView.hidden = true
+        webView.hidden = false
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
