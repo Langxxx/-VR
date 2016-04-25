@@ -23,6 +23,8 @@
 		776274FF1CC71EBB001B5793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776274FD1CC71EBB001B5793 /* Main.storyboard */; };
 		776275011CC71EBB001B5793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776275001CC71EBB001B5793 /* Assets.xcassets */; };
 		776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776275021CC71EBB001B5793 /* LaunchScreen.storyboard */; };
+		77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BA12581CCD9FBA002C18AC /* ContainerView.swift */; };
+		77C75D751CCDEE4000D1A396 /* ContainerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75D741CCDEE4000D1A396 /* ContainerViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		776275001CC71EBB001B5793 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		776275031CC71EBB001B5793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		776275051CC71EBB001B5793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77BA12581CCD9FBA002C18AC /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		77C75D741CCDEE4000D1A396 /* ContainerViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewDataSource.swift; sourceTree = "<group>"; };
 		F70860C4EE6301743A84DC91 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +158,7 @@
 		775114941CC75C3A00BC6FB4 /* News( 资讯) */ = {
 			isa = PBXGroup;
 			children = (
+				77C75D731CCDEDED00D1A396 /* Other */,
 				7761A1A61CCC741D004A6EBA /* Controller */,
 				7761A1921CCC687A004A6EBA /* Model */,
 				7761A1931CCC687A004A6EBA /* View */,
@@ -197,6 +202,7 @@
 			children = (
 				7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */,
 				7761A1B11CCCFF43004A6EBA /* ChannelLabel.swift */,
+				77BA12581CCD9FBA002C18AC /* ContainerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -237,6 +243,14 @@
 				776275051CC71EBB001B5793 /* Info.plist */,
 			);
 			path = "盗梦极客VR";
+			sourceTree = "<group>";
+		};
+		77C75D731CCDEDED00D1A396 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				77C75D741CCDEE4000D1A396 /* ContainerViewDataSource.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		E476746F3128D659BDE7B22A /* Pods */ = {
@@ -376,7 +390,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */,
+				77C75D751CCDEE4000D1A396 /* ContainerViewDataSource.swift in Sources */,
 				774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */,
+				77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */,
 				775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */,
 				7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */,
 				7761A1B01CCCF95B004A6EBA /* NewsListController.swift in Sources */,

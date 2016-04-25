@@ -11,30 +11,20 @@ import UIKit
 class ContainerController: UIViewController {
     
     @IBOutlet weak var channelScrollView: ChannelScrollView!
-    @IBOutlet weak var containerView: UICollectionView!
+    @IBOutlet weak var containerView: ContainerView!
     
     var currentChannelIndex: Int = 0
+    
+    var collectionViewCellProvider: ContainerViewDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         channelScrollView.myDelegate = self
-        setupContainerView()
-        setupChildViewControllers()
-    }
-
-    func setupContainerView() {
         
-        containerView.delegate = self
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .Horizontal
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        containerView.collectionViewLayout = layout
-        containerView.pagingEnabled = true
-        containerView.showsVerticalScrollIndicator = false
-        containerView.showsHorizontalScrollIndicator = false
-        containerView.dataSource = self
+        setupChildViewControllers()
+        setupContainerView()
+        
     }
     
     func setupChildViewControllers() {
@@ -44,24 +34,27 @@ class ContainerController: UIViewController {
             addChildViewController(vc)
         }
     }
-}
-
-extension UICollectionViewFlowLayout {
-    override public func prepareLayout() {
-        super.prepareLayout()
-        guard let collectionView = collectionView else {
-            return
+    
+    func setupContainerView() {
+        
+        collectionViewCellProvider = ContainerViewDataSource(items: channelScrollView.channles, cellIdentifier: "Cell") { cell, item, indexPath in
+            // 移除之前的子控件
+            cell.contentView.subviews.forEach { $0.removeFromSuperview() }
+            let vc = self.childViewControllers[indexPath.row] as! NewsListController
+            vc.view.frame = CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.height)
+            vc.cellTest = item as! String
+            cell.contentView.addSubview(vc.view)
         }
-//        minimumInteritemSpacing = 0
-//        minimumLineSpacing = 0
-        collectionView.contentInset = UIEdgeInsetsZero
-        collectionView.contentOffset = CGPointZero
-        itemSize = collectionView.bounds.size
+        
+        containerView.dataSource = collectionViewCellProvider
+        containerView.delegate = self
     }
 }
 
+
+
+// MARK: - UICollectionViewDelegate 代理
 extension ContainerController: UICollectionViewDelegate {
-    
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let currentIndex = scrollView.contentOffset.x / scrollView.bounds.width
         let leftIndex = Int(currentIndex)
@@ -87,23 +80,7 @@ extension ContainerController: UICollectionViewDelegate {
 
 }
 
-extension ContainerController: UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return childViewControllers.count
-    }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView .dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath)
-        
-        let vc = childViewControllers[indexPath.row] as! NewsListController
-        vc.view.frame = CGRect(x: 0, y: 0, width: containerView.bounds.width, height: containerView.bounds.height)
-        vc.cellTest = channelScrollView.channles[indexPath.row]
-        cell.contentView.addSubview(vc.view)
-        
-        cell.backgroundColor = UIColor.grayColor()
-        return cell
-    }
-}
-
+// MARK: - ChannelScrollViewDelegate 代理
 extension ContainerController: ChannelScrollViewDelegate {
     
     func channelScrollView(channelScrollView: ChannelScrollView, didClikChannelLabel channelLabel: UILabel) {
