@@ -5,12 +5,14 @@ PODS:
   - SDWebImage/Core (3.7.5)
   - SnapKit (0.17.0)
   - SVProgressHUD (2.0.3)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`)
   - SDWebImage (from `https://github.com/rs/SDWebImage.git`)
   - SnapKit (~> 0.17.0)
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -19,6 +21,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/rs/SDWebImage.git
   SVProgressHUD:
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Alamofire:
@@ -30,11 +34,15 @@ CHECKOUT OPTIONS:
   SVProgressHUD:
     :commit: c406f0ac1929b21ab444608eb4ab27035bb57a21
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+  SwiftyJSON:
+    :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SnapKit: 49fd7b1b3ff58ab4064004036b8afcfddbd3a4bd
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0
