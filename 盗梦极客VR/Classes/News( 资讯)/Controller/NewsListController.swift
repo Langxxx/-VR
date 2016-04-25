@@ -11,7 +11,7 @@ import UIKit
 class NewsListController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    var cellTest = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -33,7 +33,7 @@ extension NewsListController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("test", forIndexPath: indexPath)
-        cell.textLabel?.text = "testtesttesttesttesttesttest"
+        cell.textLabel?.text = cellTest
         return cell
     }
 }

@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol ChannelScrollViewDelegate: UIScrollViewDelegate {
-    func channelScrollView(channelScrollView: ChannelScrollView, didClikChannelLabel: UILabel)
+protocol ChannelScrollViewDelegate: class {
+    func channelScrollView(channelScrollView: ChannelScrollView, didClikChannelLabel channelLabel: UILabel)
 }
 
 class ChannelScrollView: UIScrollView {
@@ -18,13 +18,20 @@ class ChannelScrollView: UIScrollView {
 
     let labelMargin: CGFloat = 25
     
-    var labelArray: [UILabel] = []
+    var labelArray: [ChannelLabel] = []
 
-    weak var myDelegate: ChannelScrollViewDelegate? {
+    var currentChannelIndex: Int = 0 {
         didSet {
-            delegate = myDelegate
+            let newChannelLabel = labelArray[currentChannelIndex]
+            let oldChannelLabel = labelArray[oldValue]
+            oldChannelLabel.scale = 0
+            newChannelLabel.scale = 1
+            
+            moveCurrentChannelLabelToCenter(newChannelLabel)
         }
     }
+    
+    weak var myDelegate: ChannelScrollViewDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +41,22 @@ class ChannelScrollView: UIScrollView {
 }
 
 extension ChannelScrollView {
+    
+    /**
+     让当前列表标签显示在ChannelScrollView的中央
+    
+     */
+    func moveCurrentChannelLabelToCenter(currentLabel: UILabel) {
+        var offsetX = currentLabel.center.x - bounds.width * 0.5
+        let maxOffset = contentSize.width - bounds.width
+        if offsetX > 0{
+            offsetX = offsetX > maxOffset ? maxOffset : offsetX
+        }else {
+            offsetX = 0
+        }
+        let offset = CGPoint(x: offsetX, y: 0)
+        setContentOffset(offset, animated: true)
+    }
     
     func setupChannelLabel() {
         func getLabelX() -> CGFloat {
@@ -45,7 +68,7 @@ extension ChannelScrollView {
 
         for (idx, title) in channles.enumerate() {
             // 初始化
-            let label = UILabel()
+            let label = ChannelLabel()
             label.text = title
             label.textColor = UIColor.blackColor()
             label.font = UIFont.systemFontOfSize(17)
@@ -61,8 +84,12 @@ extension ChannelScrollView {
             labelArray.append(label)
             self.addSubview(label)
         }
+        currentChannelIndex = 0
         contentSize = CGSize(width: getLabelX(), height: 0)
     }
+}
+
+extension ChannelScrollView {
     
     /**
      频道label的点击手势回调方法，
@@ -70,7 +97,7 @@ extension ChannelScrollView {
      */
     func channelLabelClick(recognizer: UITapGestureRecognizer) {
         let label = recognizer.view as! UILabel
+        currentChannelIndex = label.tag
         myDelegate?.channelScrollView(self, didClikChannelLabel: label)
     }
-
 }

@@ -19,6 +19,7 @@
 		7761A1A81CCC7439004A6EBA /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761A1A71CCC7439004A6EBA /* ContainerController.swift */; };
 		7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */; };
 		7761A1B01CCCF95B004A6EBA /* NewsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761A1AF1CCCF95B004A6EBA /* NewsListController.swift */; };
+		7761A1B21CCCFF43004A6EBA /* ChannelLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761A1B11CCCFF43004A6EBA /* ChannelLabel.swift */; };
 		776274FF1CC71EBB001B5793 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776274FD1CC71EBB001B5793 /* Main.storyboard */; };
 		776275011CC71EBB001B5793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776275001CC71EBB001B5793 /* Assets.xcassets */; };
 		776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776275021CC71EBB001B5793 /* LaunchScreen.storyboard */; };
@@ -39,6 +40,7 @@
 		7761A1A71CCC7439004A6EBA /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelScrollView.swift; sourceTree = "<group>"; };
 		7761A1AF1CCCF95B004A6EBA /* NewsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListController.swift; sourceTree = "<group>"; };
+		7761A1B11CCCFF43004A6EBA /* ChannelLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelLabel.swift; sourceTree = "<group>"; };
 		776274F61CC71EBB001B5793 /* 盗梦极客VR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "盗梦极客VR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		776274FE1CC71EBB001B5793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		776275001CC71EBB001B5793 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */,
+				7761A1B11CCCFF43004A6EBA /* ChannelLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */,
 				7761A1B01CCCF95B004A6EBA /* NewsListController.swift in Sources */,
 				7761A1A81CCC7439004A6EBA /* ContainerController.swift in Sources */,
+				7761A1B21CCCFF43004A6EBA /* ChannelLabel.swift in Sources */,
 				775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
