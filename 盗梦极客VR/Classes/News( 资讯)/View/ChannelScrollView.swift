@@ -14,7 +14,11 @@ protocol ChannelScrollViewDelegate: class {
 
 class ChannelScrollView: UIScrollView {
     
-    let channles = ["资讯","评测","设备","视频", "活动","评测","设备","视频", "活动"]
+    var channles: [String]! {
+        didSet {
+            setupChannelLabel()
+        }
+    }
 
     let labelMargin: CGFloat = 25
     
@@ -35,7 +39,6 @@ class ChannelScrollView: UIScrollView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupChannelLabel()
     }
 
 }

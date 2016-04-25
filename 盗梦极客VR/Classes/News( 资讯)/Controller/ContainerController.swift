@@ -13,18 +13,24 @@ class ContainerController: UIViewController {
     @IBOutlet weak var channelScrollView: ChannelScrollView!
     @IBOutlet weak var containerView: ContainerView!
     
-    var currentChannelIndex: Int = 0
-    
     var collectionViewCellProvider: ContainerViewDataSource!
+    
+    var channelModelArray: [ChannelModel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        channelScrollView.myDelegate = self
-        
+        setupChannelScrollView()
         setupChildViewControllers()
         setupContainerView()
         
+    }
+    
+    func setupChannelScrollView() {
+        
+        channelScrollView.myDelegate = self
+        channelModelArray = ChannelModel.getChannelModels()
+        channelScrollView.channles = channelModelArray.map { $0.title }
     }
     
     func setupChildViewControllers() {
@@ -40,9 +46,11 @@ class ContainerController: UIViewController {
         collectionViewCellProvider = ContainerViewDataSource(items: channelScrollView.channles, cellIdentifier: "Cell") { cell, item, indexPath in
             // 移除之前的子控件
             cell.contentView.subviews.forEach { $0.removeFromSuperview() }
+            
             let vc = self.childViewControllers[indexPath.row] as! NewsListController
             vc.view.frame = CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.height)
-            vc.cellTest = item as! String
+            vc.type = self.channelModelArray[indexPath.row].URL
+                
             cell.contentView.addSubview(vc.view)
         }
         

@@ -97,7 +97,7 @@ class CustomField : NSObject, NSCoding{
 	 */
 	func toDictionary() -> NSDictionary
 	{
-		var dictionary = NSMutableDictionary()
+		let dictionary = NSMutableDictionary()
 		if discourseCommentsCount != nil{
 			dictionary["discourse_comments_count"] = discourseCommentsCount
 		}

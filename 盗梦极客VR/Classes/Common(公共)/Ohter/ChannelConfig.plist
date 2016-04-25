@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>资讯</string>
+		<key>URL</key>
+		<string>http://dmgeek.com/DG_api/get_recent_posts/</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>评测</string>
+		<key>URL</key>
+		<string>http://dmgeek.com/DG_api/get_recent_posts/?post_type=review</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>设备</string>
+		<key>URL</key>
+		<string>http://dmgeek.com/DG_api/get_recent_posts/?post_type=device</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>视频</string>
+		<key>URL</key>
+		<string>http://dmgeek.com/DG_api/get_recent_posts/?post_type=video</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>活动</string>
+		<key>URL</key>
+		<string>http://dmgeek.com/DG_api/get_recent_posts/</string>
+	</dict>
+</array>
+</plist>

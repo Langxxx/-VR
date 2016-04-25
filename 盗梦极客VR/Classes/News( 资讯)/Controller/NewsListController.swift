@@ -11,18 +11,21 @@ import UIKit
 class NewsListController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var cellTest = ""
+    
+    var type: String = ""
+    
+    var parameters: [String: AnyObject] {
+        return [
+            "post_type": type
+        ]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
 }
 
@@ -33,7 +36,7 @@ extension NewsListController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("test", forIndexPath: indexPath)
-        cell.textLabel?.text = cellTest
+        cell.textLabel?.text = type
         return cell
     }
 }

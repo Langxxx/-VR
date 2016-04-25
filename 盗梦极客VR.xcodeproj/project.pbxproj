@@ -29,6 +29,8 @@
 		77C75D911CCE0B0900D1A396 /* CustomField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75D8C1CCE0B0900D1A396 /* CustomField.swift */; };
 		77C75D921CCE0B0900D1A396 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75D8D1CCE0B0900D1A396 /* NewsModel.swift */; };
 		77C75D941CCE0B0900D1A396 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75D8F1CCE0B0900D1A396 /* Tag.swift */; };
+		77C75DA21CCE3DB500D1A396 /* ChannelConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */; };
+		77C75DA51CCE3EF000D1A396 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		77C75D8C1CCE0B0900D1A396 /* CustomField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomField.swift; sourceTree = "<group>"; };
 		77C75D8D1CCE0B0900D1A396 /* NewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		77C75D8F1CCE0B0900D1A396 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChannelConfig.plist; sourceTree = "<group>"; };
+		77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		F70860C4EE6301743A84DC91 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +130,8 @@
 				7751148E1CC75C3A00BC6FB4 /* Controller */,
 				775114901CC75C3A00BC6FB4 /* Ohter */,
 				775114A71CC7C75C00BC6FB4 /* Extension */,
+				77C75D971CCE175E00D1A396 /* Service */,
+				77C75D981CCE183C00D1A396 /* Model */,
 			);
 			path = "Common(公共)";
 			sourceTree = "<group>";
@@ -143,6 +149,7 @@
 			children = (
 				775114911CC75C3A00BC6FB4 /* AppDelegate.swift */,
 				775114A41CC7C3DF00BC6FB4 /* 盗梦极客VR-Bridging-Header.h */,
+				77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */,
 			);
 			path = Ohter;
 			sourceTree = "<group>";
@@ -261,6 +268,21 @@
 				77C75D8C1CCE0B0900D1A396 /* CustomField.swift */,
 				77C75D8D1CCE0B0900D1A396 /* NewsModel.swift */,
 				77C75D8F1CCE0B0900D1A396 /* Tag.swift */,
+				77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		77C75D971CCE175E00D1A396 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		77C75D981CCE183C00D1A396 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -340,6 +362,7 @@
 				7751149F1CC75C9D00BC6FB4 /* News.storyboard in Resources */,
 				7751149B1CC75C7D00BC6FB4 /* BBS.storyboard in Resources */,
 				776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */,
+				77C75DA21CCE3DB500D1A396 /* ChannelConfig.plist in Resources */,
 				776275011CC71EBB001B5793 /* Assets.xcassets in Resources */,
 				775114A11CC75CA900BC6FB4 /* Profile.storyboard in Resources */,
 				776274FF1CC71EBB001B5793 /* Main.storyboard in Resources */,
@@ -407,6 +430,7 @@
 				77C75D911CCE0B0900D1A396 /* CustomField.swift in Sources */,
 				77C75D921CCE0B0900D1A396 /* NewsModel.swift in Sources */,
 				77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */,
+				77C75DA51CCE3EF000D1A396 /* ChannelModel.swift in Sources */,
 				775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */,
 				7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */,
 				7761A1B01CCCF95B004A6EBA /* NewsListController.swift in Sources */,
