@@ -8,7 +8,7 @@
 import Foundation
 import SwiftyJSON
 
-class Post : NSObject, NSCoding{
+class NewsModel : NSObject, NSCoding{
 
     	/// 新闻类别
 	var categories : [Category]!
