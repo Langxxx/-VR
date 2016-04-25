@@ -1,21 +1,39 @@
 PODS:
+  - Alamofire (3.3.1)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SnapKit (0.17.0)
   - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`)
+  - SDWebImage (from `https://github.com/rs/SDWebImage.git`)
   - SnapKit (~> 0.17.0)
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
 
 EXTERNAL SOURCES:
+  Alamofire:
+    :git: https://github.com/Alamofire/Alamofire.git
+  SDWebImage:
+    :git: https://github.com/rs/SDWebImage.git
   SVProgressHUD:
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 4edf17756fdde9f6d834f1715f234ef1b5022c23
+    :git: https://github.com/Alamofire/Alamofire.git
+  SDWebImage:
+    :commit: 0979d5b5f7d072d63300a1223c5ff55c532d6492
+    :git: https://github.com/rs/SDWebImage.git
   SVProgressHUD:
     :commit: c406f0ac1929b21ab444608eb4ab27035bb57a21
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SnapKit: 49fd7b1b3ff58ab4064004036b8afcfddbd3a4bd
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
