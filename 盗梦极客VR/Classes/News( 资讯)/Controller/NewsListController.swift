@@ -12,35 +12,51 @@ import SVProgressHUD
 class NewsListController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var reloadLabel: UILabel!
     
     var URL: String = ""
     
     var newsModelArray: [NewsModel]? {
         didSet {
+            tableView.hidden = false
             tableView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        loadNetworkData()
+    }
+
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        loadNetworkData()
+    }
+}
+
+extension NewsListController {
+    func setupTableView() {
         tableView.dataSource = self
-        
+        tableView.hidden = true
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
-        
+    }
+    func loadNetworkData() {
+        self.reloadLabel.hidden = true
+        SVProgressHUD.showMessage("正在玩命加载")
         fetchJsonFromNet(URL)
             .map { jsonToModelArray( $0["posts"], initial: NewsModel.init) }
             .operation { result in
                 switch result {
                 case .Success(let v):
+                    SVProgressHUD.dismiss()
                     self.newsModelArray = v
                 case .Failure(_):
-                    SVProgressHUD.showErrorWithStatus("网络异常，请稍后尝试")
+                    SVProgressHUD.showError("网络异常，请稍后尝试")
+                    self.reloadLabel.hidden = false
                 }
-            }
+        }
     }
-
-    
 }
 
 extension NewsListController: UITableViewDataSource {

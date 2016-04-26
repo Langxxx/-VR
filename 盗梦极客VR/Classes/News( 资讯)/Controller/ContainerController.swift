@@ -97,11 +97,8 @@ extension ContainerController: UICollectionViewDelegate {
 extension ContainerController: ChannelScrollViewDelegate {
     
     func channelScrollView(channelScrollView: ChannelScrollView, didClikChannelLabel channelLabel: UILabel) {
-         print("didClikChannelLabel")
         let indexpath = NSIndexPath(forRow: channelLabel.tag, inSection: 0)
         containerView.scrollToItemAtIndexPath(indexpath, atScrollPosition: .None, animated: false)
-        let vc = self.childViewControllers[indexpath.row] as! NewsListController
-        print(vc.view.frame)
     }
 
 }

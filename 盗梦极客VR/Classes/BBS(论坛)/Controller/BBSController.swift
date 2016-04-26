@@ -102,8 +102,7 @@ extension BBSController: WKNavigationDelegate {
         
         progressView.hidden = false
         progressView.progress = 0
-        SVProgressHUD.showWithStatus("正在加载...")
-        SVProgressHUD.setDefaultMaskType(.Clear)
+        SVProgressHUD.showMessage("正在加载...")
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
@@ -116,7 +115,7 @@ extension BBSController: WKNavigationDelegate {
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
         print("加载失败")
-        SVProgressHUD.showErrorWithStatus("网络拥堵，请稍后尝试！")
+        SVProgressHUD.showError("网络拥堵，请稍后尝试！")
         progressView.hidden = true
     }
     
