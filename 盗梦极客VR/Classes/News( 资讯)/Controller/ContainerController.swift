@@ -49,8 +49,14 @@ class ContainerController: UIViewController {
             cell.contentView.subviews.forEach { $0.removeFromSuperview() }
             
             let vc = self.childViewControllers[indexPath.row] as! NewsListController
-            vc.view.frame = CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.height)
             cell.contentView.addSubview(vc.view)
+
+            vc.view.snp_remakeConstraints { (make) in
+                make.top.equalTo(cell.contentView)
+                make.bottom.equalTo(cell.contentView)
+                make.right.equalTo(cell.contentView)
+                make.left.equalTo(cell.contentView)
+            }
         }
         
         containerView.dataSource = collectionViewCellProvider
@@ -94,7 +100,8 @@ extension ContainerController: ChannelScrollViewDelegate {
          print("didClikChannelLabel")
         let indexpath = NSIndexPath(forRow: channelLabel.tag, inSection: 0)
         containerView.scrollToItemAtIndexPath(indexpath, atScrollPosition: .None, animated: false)
+        let vc = self.childViewControllers[indexpath.row] as! NewsListController
+        print(vc.view.frame)
     }
 
 }
-

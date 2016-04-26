@@ -17,13 +17,16 @@ class NewsListController: UIViewController {
     
     var newsModelArray: [NewsModel]? {
         didSet {
-            print(newsModelArray)
+            tableView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         
         fetchJsonFromNet(URL)
             .map { jsonToModelArray( $0["posts"], initial: NewsModel.init) }
@@ -42,12 +45,13 @@ class NewsListController: UIViewController {
 
 extension NewsListController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return newsModelArray?.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("test", forIndexPath: indexPath)
-        cell.textLabel?.text = URL
+        let cell = tableView.dequeueReusableCellWithIdentifier("NewsCell", forIndexPath: indexPath) as! NewsCell
+        let model = newsModelArray![indexPath.row]
+        cell.configure(NewsCellViewModel(model: model))
         return cell
     }
 }

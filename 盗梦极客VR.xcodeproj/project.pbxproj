@@ -31,9 +31,12 @@
 		77C75D941CCE0B0900D1A396 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75D8F1CCE0B0900D1A396 /* Tag.swift */; };
 		77C75DA21CCE3DB500D1A396 /* ChannelConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */; };
 		77C75DA51CCE3EF000D1A396 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */; };
-		77C75DA71CCE51BA00D1A396 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA61CCE51BA00D1A396 /* Result.swift */; };
 		77C75DAA1CCE51D400D1A396 /* AsynOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA81CCE51D400D1A396 /* AsynOperation.swift */; };
 		77C75DAB1CCE51D400D1A396 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA91CCE51D400D1A396 /* JSONHandler.swift */; };
+		77DC85271CCEFDA40020AF6B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85261CCEFDA40020AF6B /* NewsCell.swift */; };
+		77DC85291CCF02E60020AF6B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85281CCF02E60020AF6B /* Result.swift */; };
+		77DC85361CCF05720020AF6B /* ViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85351CCF05720020AF6B /* ViewPresentable.swift */; };
+		77DC853A1CCF0CA70020AF6B /* NewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85391CCF0CA70020AF6B /* NewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,9 +68,12 @@
 		77C75D8F1CCE0B0900D1A396 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChannelConfig.plist; sourceTree = "<group>"; };
 		77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
-		77C75DA61CCE51BA00D1A396 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		77C75DA81CCE51D400D1A396 /* AsynOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynOperation.swift; sourceTree = "<group>"; };
 		77C75DA91CCE51D400D1A396 /* JSONHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
+		77DC85261CCEFDA40020AF6B /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		77DC85281CCF02E60020AF6B /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		77DC85351CCF05720020AF6B /* ViewPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPresentable.swift; sourceTree = "<group>"; };
+		77DC85391CCF0CA70020AF6B /* NewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCellViewModel.swift; sourceTree = "<group>"; };
 		F70860C4EE6301743A84DC91 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,9 +141,8 @@
 				776274FD1CC71EBB001B5793 /* Main.storyboard */,
 				7751148E1CC75C3A00BC6FB4 /* Controller */,
 				775114901CC75C3A00BC6FB4 /* Ohter */,
-				775114A71CC7C75C00BC6FB4 /* Extension */,
 				77C75D971CCE175E00D1A396 /* Service */,
-				77C75D981CCE183C00D1A396 /* Model */,
+				77DC852F1CCF03C30020AF6B /* Util */,
 			);
 			path = "Common(公共)";
 			sourceTree = "<group>";
@@ -204,19 +209,13 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		775114A71CC7C75C00BC6FB4 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		7761A1931CCC687A004A6EBA /* View */ = {
 			isa = PBXGroup;
 			children = (
 				7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */,
 				7761A1B11CCCFF43004A6EBA /* ChannelLabel.swift */,
 				77BA12581CCD9FBA002C18AC /* ContainerView.swift */,
+				77DC85261CCEFDA40020AF6B /* NewsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -263,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				77C75D741CCDEE4000D1A396 /* ContainerViewDataSource.swift */,
+				77DC85391CCF0CA70020AF6B /* NewCellViewModel.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -282,18 +282,19 @@
 		77C75D971CCE175E00D1A396 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				77DC85281CCF02E60020AF6B /* Result.swift */,
 				77C75DA81CCE51D400D1A396 /* AsynOperation.swift */,
 				77C75DA91CCE51D400D1A396 /* JSONHandler.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
 		};
-		77C75D981CCE183C00D1A396 /* Model */ = {
+		77DC852F1CCF03C30020AF6B /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				77C75DA61CCE51BA00D1A396 /* Result.swift */,
+				77DC85351CCF05720020AF6B /* ViewPresentable.swift */,
 			);
-			path = Model;
+			path = Util;
 			sourceTree = "<group>";
 		};
 		E476746F3128D659BDE7B22A /* Pods */ = {
@@ -434,16 +435,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */,
+				77DC85361CCF05720020AF6B /* ViewPresentable.swift in Sources */,
 				77C75D751CCDEE4000D1A396 /* ContainerViewDataSource.swift in Sources */,
 				774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */,
 				77C75D911CCE0B0900D1A396 /* CustomField.swift in Sources */,
+				77DC853A1CCF0CA70020AF6B /* NewCellViewModel.swift in Sources */,
 				77C75DAB1CCE51D400D1A396 /* JSONHandler.swift in Sources */,
 				77C75D921CCE0B0900D1A396 /* NewsModel.swift in Sources */,
+				77DC85291CCF02E60020AF6B /* Result.swift in Sources */,
 				77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */,
-				77C75DA71CCE51BA00D1A396 /* Result.swift in Sources */,
 				77C75DA51CCE3EF000D1A396 /* ChannelModel.swift in Sources */,
 				775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */,
 				7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */,
+				77DC85271CCEFDA40020AF6B /* NewsCell.swift in Sources */,
 				7761A1B01CCCF95B004A6EBA /* NewsListController.swift in Sources */,
 				77C75DAA1CCE51D400D1A396 /* AsynOperation.swift in Sources */,
 				7761A1A81CCC7439004A6EBA /* ContainerController.swift in Sources */,
