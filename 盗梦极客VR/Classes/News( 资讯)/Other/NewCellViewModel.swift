@@ -23,7 +23,7 @@ struct NewsCellViewModel: NewsCellPresentable {
     var replyCountText: String
     
     init(model: NewsModel) {
-        URL = model.listThuUrl
+        URL = model.listThuUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         titleText = model.title
         excerptText = model.excerpt
         timeText = model.date.componentsSeparatedByString(" ").first!
