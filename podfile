@@ -7,3 +7,4 @@ pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git
 pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git'
 pod 'SDWebImage', :git => 'https://github.com/rs/SDWebImage.git'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+pod 'MJRefresh', :git => 'https://github.com/CoderMJLee/MJRefresh.git'

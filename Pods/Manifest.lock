@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.3.1)
+  - MJRefresh (3.1.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -9,6 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`)
+  - MJRefresh (from `https://github.com/CoderMJLee/MJRefresh.git`)
   - SDWebImage (from `https://github.com/rs/SDWebImage.git`)
   - SnapKit (~> 0.17.0)
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
@@ -17,6 +19,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   Alamofire:
     :git: https://github.com/Alamofire/Alamofire.git
+  MJRefresh:
+    :git: https://github.com/CoderMJLee/MJRefresh.git
   SDWebImage:
     :git: https://github.com/rs/SDWebImage.git
   SVProgressHUD:
@@ -28,6 +32,9 @@ CHECKOUT OPTIONS:
   Alamofire:
     :commit: 4edf17756fdde9f6d834f1715f234ef1b5022c23
     :git: https://github.com/Alamofire/Alamofire.git
+  MJRefresh:
+    :commit: 79d7caf60399fe84a43e6d79f6f90d1d8b0d6013
+    :git: https://github.com/CoderMJLee/MJRefresh.git
   SDWebImage:
     :commit: 0979d5b5f7d072d63300a1223c5ff55c532d6492
     :git: https://github.com/rs/SDWebImage.git
@@ -40,6 +47,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SnapKit: 49fd7b1b3ff58ab4064004036b8afcfddbd3a4bd
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
