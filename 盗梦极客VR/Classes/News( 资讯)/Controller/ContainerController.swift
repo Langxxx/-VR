@@ -35,8 +35,9 @@ class ContainerController: UIViewController {
     
     func setupChildViewControllers() {
         let sb = UIStoryboard(name: "News", bundle: nil)
-        for _ in 0..<channelScrollView.channles.count {
-            let vc = sb.instantiateViewControllerWithIdentifier("NewsListController")
+        for i in 0..<channelScrollView.channles.count {
+            let vc = sb.instantiateViewControllerWithIdentifier("NewsListController") as! NewsListController
+            vc.URL = self.channelModelArray[i].URL
             addChildViewController(vc)
         }
     }
@@ -49,8 +50,6 @@ class ContainerController: UIViewController {
             
             let vc = self.childViewControllers[indexPath.row] as! NewsListController
             vc.view.frame = CGRect(x: 0, y: 0, width: self.containerView.bounds.width, height: self.containerView.bounds.height)
-            vc.type = self.channelModelArray[indexPath.row].URL
-                
             cell.contentView.addSubview(vc.view)
         }
         

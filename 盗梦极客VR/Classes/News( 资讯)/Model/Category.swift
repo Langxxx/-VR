@@ -21,7 +21,7 @@ class Category : NSObject, NSCoding{
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
 	 */
-	init(fromJson json: JSON!){
+	required init(fromJson json: JSON!){
 		if json == nil{
 			return
 		}

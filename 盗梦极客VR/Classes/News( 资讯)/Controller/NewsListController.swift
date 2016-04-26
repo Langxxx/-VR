@@ -7,26 +7,37 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class NewsListController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var type: String = ""
+    var URL: String = ""
     
-    var parameters: [String: AnyObject] {
-        return [
-            "post_type": type
-        ]
+    var newsModelArray: [NewsModel]? {
+        didSet {
+            print(newsModelArray)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        // Do any additional setup after loading the view.
+        
+        fetchJsonFromNet(URL)
+            .map { jsonToModelArray( $0["posts"], initial: NewsModel.init) }
+            .operation { result in
+                switch result {
+                case .Success(let v):
+                    self.newsModelArray = v
+                case .Failure(_):
+                    SVProgressHUD.showErrorWithStatus("网络异常，请稍后尝试")
+                }
+            }
     }
 
-
+    
 }
 
 extension NewsListController: UITableViewDataSource {
@@ -36,7 +47,7 @@ extension NewsListController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("test", forIndexPath: indexPath)
-        cell.textLabel?.text = type
+        cell.textLabel?.text = URL
         return cell
     }
 }

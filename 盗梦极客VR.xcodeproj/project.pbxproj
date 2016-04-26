@@ -31,6 +31,9 @@
 		77C75D941CCE0B0900D1A396 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75D8F1CCE0B0900D1A396 /* Tag.swift */; };
 		77C75DA21CCE3DB500D1A396 /* ChannelConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */; };
 		77C75DA51CCE3EF000D1A396 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */; };
+		77C75DA71CCE51BA00D1A396 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA61CCE51BA00D1A396 /* Result.swift */; };
+		77C75DAA1CCE51D400D1A396 /* AsynOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA81CCE51D400D1A396 /* AsynOperation.swift */; };
+		77C75DAB1CCE51D400D1A396 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA91CCE51D400D1A396 /* JSONHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		77C75D8F1CCE0B0900D1A396 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChannelConfig.plist; sourceTree = "<group>"; };
 		77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
+		77C75DA61CCE51BA00D1A396 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		77C75DA81CCE51D400D1A396 /* AsynOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynOperation.swift; sourceTree = "<group>"; };
+		77C75DA91CCE51D400D1A396 /* JSONHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
 		F70860C4EE6301743A84DC91 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -276,6 +282,8 @@
 		77C75D971CCE175E00D1A396 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				77C75DA81CCE51D400D1A396 /* AsynOperation.swift */,
+				77C75DA91CCE51D400D1A396 /* JSONHandler.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -283,6 +291,7 @@
 		77C75D981CCE183C00D1A396 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				77C75DA61CCE51BA00D1A396 /* Result.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -428,12 +437,15 @@
 				77C75D751CCDEE4000D1A396 /* ContainerViewDataSource.swift in Sources */,
 				774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */,
 				77C75D911CCE0B0900D1A396 /* CustomField.swift in Sources */,
+				77C75DAB1CCE51D400D1A396 /* JSONHandler.swift in Sources */,
 				77C75D921CCE0B0900D1A396 /* NewsModel.swift in Sources */,
 				77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */,
+				77C75DA71CCE51BA00D1A396 /* Result.swift in Sources */,
 				77C75DA51CCE3EF000D1A396 /* ChannelModel.swift in Sources */,
 				775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */,
 				7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */,
 				7761A1B01CCCF95B004A6EBA /* NewsListController.swift in Sources */,
+				77C75DAA1CCE51D400D1A396 /* AsynOperation.swift in Sources */,
 				7761A1A81CCC7439004A6EBA /* ContainerController.swift in Sources */,
 				7761A1B21CCCFF43004A6EBA /* ChannelLabel.swift in Sources */,
 				77C75D941CCE0B0900D1A396 /* Tag.swift in Sources */,
