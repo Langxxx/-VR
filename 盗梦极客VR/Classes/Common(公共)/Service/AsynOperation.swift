@@ -18,10 +18,15 @@ struct AsynOperation<T> {
 }
 
 extension AsynOperation {
-    func map<U>(f: T -> U) -> AsynOperation<U> {
+    func map<U>(f: T throws -> U) rethrows -> AsynOperation<U> {
         return AsynOperation<U> { completion in
             self.operation { result in
-                completion(result.map(f))
+                do {
+                    completion( try result.map(f))
+                }catch let e {
+                    completion(.Failure(e))
+                }
+
             }
         }
     }
