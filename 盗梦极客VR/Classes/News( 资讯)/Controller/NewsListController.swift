@@ -39,11 +39,17 @@ class NewsListController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         loadNetworkData()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
 
 extension NewsListController {
     func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.hidden = true
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
@@ -83,5 +89,19 @@ extension NewsListController: UITableViewDataSource {
         let model = newsModelArray[indexPath.row]
         cell.configure(NewsCellViewModel(model: model))
         return cell
+    }
+}
+
+extension NewsListController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let selectedCellModel = newsModelArray[indexPath.row]
+        let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("NewsDetailController") as! NewsDetailController
+        vc.newsModel = selectedCellModel
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+        if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
+            interactivePopGestureRecognizer.delegate = nil
+        }
     }
 }

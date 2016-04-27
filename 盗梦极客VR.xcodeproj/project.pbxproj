@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00B3E151668AB05078D689E4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3D58D6A7EE1074ECD4E855 /* Pods.framework */; };
+		77185C0B1CD063D700525789 /* Details.css in Resources */ = {isa = PBXBuildFile; fileRef = 77185C0A1CD063D700525789 /* Details.css */; };
 		774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774F5EBA1CCB12090087413F /* BBSURLConfig.swift */; };
 		775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */; };
 		775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775114911CC75C3A00BC6FB4 /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		4D3D58D6A7EE1074ECD4E855 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA4F884C41B4CD891BBEFC2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		77185C0A1CD063D700525789 /* Details.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Details.css; sourceTree = "<group>"; };
 		774F5EBA1CCB12090087413F /* BBSURLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSURLConfig.swift; sourceTree = "<group>"; };
 		7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		775114911CC75C3A00BC6FB4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,7 +72,7 @@
 		77C75D8C1CCE0B0900D1A396 /* CustomField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomField.swift; sourceTree = "<group>"; };
 		77C75D8D1CCE0B0900D1A396 /* NewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		77C75D8F1CCE0B0900D1A396 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
-		77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChannelConfig.plist; sourceTree = "<group>"; };
+		77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ChannelConfig.plist; path = ../Ohter/ChannelConfig.plist; sourceTree = "<group>"; };
 		77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		77C75DA81CCE51D400D1A396 /* AsynOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynOperation.swift; sourceTree = "<group>"; };
 		77C75DA91CCE51D400D1A396 /* JSONHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
@@ -99,6 +101,15 @@
 				4D3D58D6A7EE1074ECD4E855 /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		77185C091CD063CD00525789 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */,
+				77185C0A1CD063D700525789 /* Details.css */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		774F5EB91CCB11C40087413F /* Other */ = {
@@ -143,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				776274FD1CC71EBB001B5793 /* Main.storyboard */,
+				77185C091CD063CD00525789 /* Resources */,
 				7751148E1CC75C3A00BC6FB4 /* Controller */,
 				775114901CC75C3A00BC6FB4 /* Ohter */,
 				77C75D971CCE175E00D1A396 /* Service */,
@@ -164,7 +176,6 @@
 			children = (
 				775114911CC75C3A00BC6FB4 /* AppDelegate.swift */,
 				775114A41CC7C3DF00BC6FB4 /* 盗梦极客VR-Bridging-Header.h */,
-				77C75DA11CCE3DB500D1A396 /* ChannelConfig.plist */,
 			);
 			path = Ohter;
 			sourceTree = "<group>";
@@ -374,6 +385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77185C0B1CD063D700525789 /* Details.css in Resources */,
 				7751149D1CC75C9300BC6FB4 /* Evaluation.storyboard in Resources */,
 				7751149F1CC75C9D00BC6FB4 /* News.storyboard in Resources */,
 				7751149B1CC75C7D00BC6FB4 /* BBS.storyboard in Resources */,
