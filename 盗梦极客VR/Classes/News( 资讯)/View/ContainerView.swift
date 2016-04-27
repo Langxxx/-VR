@@ -35,7 +35,6 @@ extension UICollectionViewFlowLayout {
             return
         }
         collectionView.contentInset = UIEdgeInsetsZero
-        collectionView.contentOffset = CGPointZero
         itemSize = collectionView.bounds.size
     }
 }
