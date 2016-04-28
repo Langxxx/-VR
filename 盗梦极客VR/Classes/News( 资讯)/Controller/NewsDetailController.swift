@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SVProgressHUD
+import MBProgressHUD
 
 class NewsDetailController: UIViewController {
-
-        /// 这里不使用WKWebView是因为Loadhtml方法加载出来的，样式会很奇怪
+    
+    /// 这里不使用WKWebView是因为Loadhtml方法加载出来的，样式会很奇怪
     @IBOutlet weak var webView: UIWebView!
     
     var newsModel: NewsModel!
@@ -19,8 +21,9 @@ class NewsDetailController: UIViewController {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
         loadNewsDetail()
+        webView.delegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -36,9 +39,25 @@ class NewsDetailController: UIViewController {
     }
 }
 
+extension NewsDetailController: UIWebViewDelegate {
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+//        SVProgressHUD.showError("网络异常，请稍后尝试！")
+        MBProgressHUD.showError("网络异常，请稍后尝试！")
+    }
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        let urlStr = request.URL!.absoluteString
+        if urlStr == "about:blank" || urlStr.hasPrefix("http://player.youku.com/") {
+            return true
+        }
+        // TODO: 以后用内部跳转
+        UIApplication.sharedApplication().openURL(request.URL!)
+        return false
+    }
+}
+
 extension NewsDetailController {
     func loadNewsDetail() {
-    
+        
         let css = NSBundle.mainBundle().URLForResource("Details.css", withExtension: nil)!
         
         var html = "<html>"
@@ -71,5 +90,5 @@ extension NewsDetailController {
         
         return body
     }
-
+    
 }

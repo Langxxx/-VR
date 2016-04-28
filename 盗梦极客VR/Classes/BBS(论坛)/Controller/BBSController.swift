@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 import SnapKit
-import SVProgressHUD
+import MBProgressHUD
 
 class BBSController: UIViewController {
     
@@ -19,10 +19,10 @@ class BBSController: UIViewController {
     
     let baseURL = "http://bbs.dmgeek.com"
     
+    @IBOutlet weak var reloadLabel: UILabel!
     var request: NSURLRequest {
         return NSURLRequest(URL: NSURL(string: baseURL)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,6 +67,7 @@ extension BBSController {
 
         // 监听加载进度
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        
         webView.loadRequest(request)
     }
 }
@@ -89,6 +90,7 @@ extension BBSController: WKNavigationDelegate {
         if targetFrame.mainFrame
             && !isExpectedURL(requstURL.absoluteString) {
             decisionHandler(.Cancel)
+            // TODO: 以后用内部跳转
             UIApplication.sharedApplication().openURL(requstURL)
         }else {
             decisionHandler(.Allow)
@@ -99,23 +101,26 @@ extension BBSController: WKNavigationDelegate {
     
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         print("正在加载...")
-        
+        reloadLabel.hidden = true
         progressView.hidden = false
         progressView.progress = 0
-        SVProgressHUD.showMessage("正在加载...")
+        MBProgressHUD.showMessage("正在加载...", toView: view)
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         print("加载成功...")
-        
-        SVProgressHUD.dismiss()
+        MBProgressHUD.hideHUD(view)
+        MBProgressHUD.showSuccess("wewe")
         progressView.hidden = true
         webView.hidden = false
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
         print("加载失败")
-        SVProgressHUD.showError("网络拥堵，请稍后尝试！")
+//        SVProgressHUD.showError("网络拥堵，请稍后尝试！")
+        MBProgressHUD.hideHUD(view)
+        MBProgressHUD.showError("网络拥堵，请稍后尝试！")
+        reloadLabel.hidden = false
         progressView.hidden = true
     }
     

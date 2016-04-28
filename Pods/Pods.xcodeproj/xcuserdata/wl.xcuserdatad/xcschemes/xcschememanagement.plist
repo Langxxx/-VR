@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -20,11 +25,6 @@
 			<false/>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,12 +42,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>10B39CDBE063F4A5AA0A155CBC6F6C26</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6847254D016329D4A531D34ED2B6DF81</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77AE73C808076557776B03A502245920</key>
+		<key>76A972858395FF8D9A7C6D0EB94421F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,22 +62,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79FFAA50C0B426200EA7B5783C24793D</key>
+		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9E8B7B39101FD0E6D1F7ABB27024BD26</key>
+		<key>EBA6C15F9DBBC5A687A701CA8CE96F3A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0314910E1DBE69FA4D602A01A52857B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D2F7B851B1076EF29BF93B7D409564E7</key>
+		<key>FBFCA0D93CBDF487A0D91DCDBE822C7A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

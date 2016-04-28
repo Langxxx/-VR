@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SVProgressHUD
+import MBProgressHUD
 import MJRefresh
 
 class NewsListController: UIViewController {
@@ -60,7 +60,7 @@ extension NewsListController {
         
         if newsModelArray.count == 0 {
             self.reloadLabel.hidden = true
-            SVProgressHUD.showMessage("正在玩命加载")
+            MBProgressHUD.showMessage("正在玩命加载", toView: view)
         }
 
         fetchJsonFromNet(URL, parameters)
@@ -69,10 +69,11 @@ extension NewsListController {
                 self.tableView.mj_footer.endRefreshing()
                 switch result {
                 case .Success(let v):
-                    SVProgressHUD.dismiss()
+                    MBProgressHUD.hideHUD(self.view)
                     self.newsModelArray += v
                 case .Failure(_):
-                    SVProgressHUD.showError("网络异常，请稍后尝试")
+                    MBProgressHUD.hideHUD(self.view)
+                    MBProgressHUD.showError("网络异常，请稍后尝试")
                     self.reloadLabel.hidden = false
                 }
         }

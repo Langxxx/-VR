@@ -1,30 +1,30 @@
 PODS:
   - Alamofire (3.3.1)
+  - MBProgressHUD (0.9.2)
   - MJRefresh (3.1.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
   - SnapKit (0.17.0)
-  - SVProgressHUD (2.0.3)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`)
+  - MBProgressHUD (from `https://github.com/matej/MBProgressHUD.git`)
   - MJRefresh (from `https://github.com/CoderMJLee/MJRefresh.git`)
   - SDWebImage (from `https://github.com/rs/SDWebImage.git`)
   - SnapKit (~> 0.17.0)
-  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
   Alamofire:
     :git: https://github.com/Alamofire/Alamofire.git
+  MBProgressHUD:
+    :git: https://github.com/matej/MBProgressHUD.git
   MJRefresh:
     :git: https://github.com/CoderMJLee/MJRefresh.git
   SDWebImage:
     :git: https://github.com/rs/SDWebImage.git
-  SVProgressHUD:
-    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
@@ -32,25 +32,25 @@ CHECKOUT OPTIONS:
   Alamofire:
     :commit: 4edf17756fdde9f6d834f1715f234ef1b5022c23
     :git: https://github.com/Alamofire/Alamofire.git
+  MBProgressHUD:
+    :commit: 5c3b93fe4ff9542e08e6b3a98d945805131eb55c
+    :git: https://github.com/matej/MBProgressHUD.git
   MJRefresh:
     :commit: 79d7caf60399fe84a43e6d79f6f90d1d8b0d6013
     :git: https://github.com/CoderMJLee/MJRefresh.git
   SDWebImage:
     :commit: 0979d5b5f7d072d63300a1223c5ff55c532d6492
     :git: https://github.com/rs/SDWebImage.git
-  SVProgressHUD:
-    :commit: c406f0ac1929b21ab444608eb4ab27035bb57a21
-    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
   SwiftyJSON:
     :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  MBProgressHUD: c10206b47acf9e1659bd80a366cc935e35745b9b
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SnapKit: 49fd7b1b3ff58ab4064004036b8afcfddbd3a4bd
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0
