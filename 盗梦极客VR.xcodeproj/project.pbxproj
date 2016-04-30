@@ -661,7 +661,7 @@
 					"\"TwitterKit\"",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "lyedu.cn.----VR";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dmgeek.siteapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "盗梦极客VR/Classes/Common(公共)/Ohter/盗梦极客VR-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -745,7 +745,7 @@
 					"\"TwitterKit\"",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "lyedu.cn.----VR";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dmgeek.siteapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "盗梦极客VR/Classes/Common(公共)/Ohter/盗梦极客VR-Bridging-Header.h";
 			};

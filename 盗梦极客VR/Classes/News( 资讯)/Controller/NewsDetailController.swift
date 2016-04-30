@@ -44,9 +44,9 @@ class NewsDetailController: UIViewController {
         UMSocialData.defaultData().extConfig.qqData.shareText = newsModel.excerpt
         UMSocialData.defaultData().extConfig.qzoneData.title = newsModel.title
         UMSocialData.defaultData().extConfig.qzoneData.url = newsModel.url
-        UMSocialData.defaultData().extConfig.qzoneData.title = newsModel.title
+        UMSocialData.defaultData().extConfig.qzoneData.shareText = newsModel.excerpt
         UMSocialData.defaultData().extConfig.sinaData.shareText = "VR资讯: 《" + newsModel.title + "》" + newsModel.url + " (分享自@盗梦极客_虚拟现实专题网)"
-        // TODO: 微博分享内容需要重新写一下
+
         UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: image, shareToSnsNames: shareArray, delegate: nil)
     }
     
@@ -58,7 +58,7 @@ extension NewsDetailController: UIWebViewDelegate {
     }
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         let urlStr = request.URL!.absoluteString
-        if urlStr == "about:blank" || urlStr.hasPrefix("http://player.youku.com/") {
+        if urlStr == "about:blank" || urlStr.hasPrefix("http://player.youku.com/") || urlStr.hasPrefix("http://v.qq.com/iframe/player.html") {
             return true
         }
         // TODO: 以后用内部跳转

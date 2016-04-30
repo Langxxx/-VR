@@ -110,14 +110,12 @@ extension BBSController: WKNavigationDelegate {
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         print("加载成功...")
         MBProgressHUD.hideHUD(view)
-        MBProgressHUD.showSuccess("wewe")
         progressView.hidden = true
         webView.hidden = false
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
         print("加载失败")
-//        SVProgressHUD.showError("网络拥堵，请稍后尝试！")
         MBProgressHUD.hideHUD(view)
         MBProgressHUD.showError("网络拥堵，请稍后尝试！")
         reloadLabel.hidden = false
