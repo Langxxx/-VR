@@ -7,6 +7,7 @@ PODS:
   - SDWebImage/Core (3.7.5)
   - SnapKit (0.17.0)
   - SwiftyJSON (2.3.2)
+  - UMengSocial (5.0)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`)
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - SDWebImage (from `https://github.com/rs/SDWebImage.git`)
   - SnapKit (~> 0.17.0)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - UMengSocial (~> 5.0)
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -52,5 +54,6 @@ SPEC CHECKSUMS:
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SnapKit: 49fd7b1b3ff58ab4064004036b8afcfddbd3a4bd
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  UMengSocial: 48b67179c492a8cf7803fbb0438b8f55432e2fc1
 
 COCOAPODS: 0.39.0

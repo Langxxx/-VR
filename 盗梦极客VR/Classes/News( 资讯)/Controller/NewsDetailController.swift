@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 import MBProgressHUD
 
 class NewsDetailController: UIViewController {
@@ -37,11 +36,24 @@ class NewsDetailController: UIViewController {
         navigationController?.popViewControllerAnimated(true)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    @IBAction func shareButtonClik() {
+        let shareArray = [UMShareToSina, UMShareToQQ, UMShareToQzone]
+        let image = UIImage(named: "dmgeek_100")
+        UMSocialData.defaultData().extConfig.qqData.title = newsModel.title
+        UMSocialData.defaultData().extConfig.qqData.url = newsModel.url
+        UMSocialData.defaultData().extConfig.qqData.shareText = newsModel.excerpt
+        UMSocialData.defaultData().extConfig.qzoneData.title = newsModel.title
+        UMSocialData.defaultData().extConfig.qzoneData.url = newsModel.url
+        UMSocialData.defaultData().extConfig.qzoneData.title = newsModel.title
+        UMSocialData.defaultData().extConfig.sinaData.shareText = "VR资讯: 《" + newsModel.title + "》" + newsModel.url + " (分享自@盗梦极客_虚拟现实专题网)"
+        // TODO: 微博分享内容需要重新写一下
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: image, shareToSnsNames: shareArray, delegate: nil)
+    }
+    
 }
 
 extension NewsDetailController: UIWebViewDelegate {
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-//        SVProgressHUD.showError("网络异常，请稍后尝试！")
         MBProgressHUD.showError("网络异常，请稍后尝试！")
     }
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
