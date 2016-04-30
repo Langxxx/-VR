@@ -5,3 +5,4 @@
 #import "UMSocial.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "UMSocialQQHandler.h"
+ #import "UMSocialWechatHandler.h"

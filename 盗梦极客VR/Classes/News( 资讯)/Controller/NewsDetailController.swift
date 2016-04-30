@@ -37,7 +37,7 @@ class NewsDetailController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     @IBAction func shareButtonClik() {
-        let shareArray = [UMShareToSina, UMShareToQQ, UMShareToQzone]
+        let shareArray = [UMShareToSina, UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline, UMShareToEmail,UMShareToSms]
         let image = UIImage(named: "dmgeek_100")
         UMSocialData.defaultData().extConfig.qqData.title = newsModel.title
         UMSocialData.defaultData().extConfig.qqData.url = newsModel.url
@@ -46,7 +46,20 @@ class NewsDetailController: UIViewController {
         UMSocialData.defaultData().extConfig.qzoneData.url = newsModel.url
         UMSocialData.defaultData().extConfig.qzoneData.shareText = newsModel.excerpt
         UMSocialData.defaultData().extConfig.sinaData.shareText = "VR资讯: 《" + newsModel.title + "》" + newsModel.url + " (分享自@盗梦极客_虚拟现实专题网)"
-
+        
+        UMSocialData.defaultData().extConfig.wechatSessionData.url = newsModel.url
+        UMSocialData.defaultData().extConfig.wechatSessionData.title = newsModel.title
+        UMSocialData.defaultData().extConfig.wechatSessionData.shareText = newsModel.excerpt
+        
+        UMSocialData.defaultData().extConfig.wechatTimelineData.url = newsModel.url
+        UMSocialData.defaultData().extConfig.wechatTimelineData.title = newsModel.title
+        UMSocialData.defaultData().extConfig.wechatTimelineData.shareText = newsModel.excerpt
+        
+        UMSocialData.defaultData().extConfig.emailData.title = newsModel.title
+        UMSocialData.defaultData().extConfig.emailData.shareText = newsModel.excerpt
+        
+        UMSocialData.defaultData().extConfig.smsData.shareText = newsModel.title
+        
         UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: image, shareToSnsNames: shareArray, delegate: nil)
     }
     
