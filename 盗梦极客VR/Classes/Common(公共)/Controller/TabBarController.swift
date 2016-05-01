@@ -12,6 +12,7 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupStyle()
         setupRootNavController()
     }
 
@@ -23,10 +24,10 @@ extension TabBarController {
      添加导航控制器
      */
     func setupRootNavController() {
-        addRootNavController("News", title: "资讯", iconName: "")
-        addRootNavController("Evaluation", title: "评测", iconName: "")
-        addRootNavController("BBS",identifier: "BBS", title: "论坛", iconName: "")
-        addRootNavController("Profile", title: "我", iconName: "")
+        addRootNavController("News", title: "资讯", iconName: "tabbar_icon_news_normal", seletedIconName: "tabbar_icon_news_highlight")
+//        addRootNavController("Evaluation", title: "评测", iconName: "")
+        addRootNavController("BBS",identifier: "BBS", title: "论坛", iconName: "tabbar_icon_BBS_normal", seletedIconName: "tabbar_icon_BBS_highlight")
+        addRootNavController("Profile", title: "我", iconName: "tabbar_icon_profile_normal", seletedIconName: "tabbar_icon_profile_highlight")
     }
     
     /**
@@ -41,13 +42,33 @@ extension TabBarController {
     private func addRootNavController(storyboardName: String,
                                       identifier: String = "NavigationController",
                                       title: String,
-                                      iconName: String
+                                      iconName: String,
+                                      seletedIconName: String
         ) {
         let sb = UIStoryboard(name: storyboardName, bundle: nil)
         let vc = sb.instantiateViewControllerWithIdentifier(identifier)
         vc.tabBarItem.title = title
-        vc.tabBarItem.image = nil
-        vc.tabBarItem.selectedImage = nil
+        vc.tabBarItem.image = UIImage(named: iconName)
+        vc.tabBarItem.selectedImage = UIImage(named: seletedIconName)
         addChildViewController(vc)
+    }
+    
+    func setupStyle() {
+        let tabBarItem = UITabBarItem.appearance()
+        let selectedAttr = [
+            NSForegroundColorAttributeName : UIColor(red: 212 / 255.0, green: 25 / 255.0, blue: 38 / 255.0, alpha: 1.0)
+        ]
+        
+        tabBarItem.setTitleTextAttributes(selectedAttr, forState: .Selected)
+        
+        let navBar = UINavigationBar.appearance()
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.barTintColor = UIColor(red: 212 / 255.0, green: 25 / 255.0, blue: 38 / 255.0, alpha: 1.0)
+        navBar.translucent = false
+        
+        let attr = [
+            NSForegroundColorAttributeName : UIColor.whiteColor()
+        ]
+        navBar.titleTextAttributes = attr
     }
 }

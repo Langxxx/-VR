@@ -26,6 +26,7 @@
 		776275011CC71EBB001B5793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776275001CC71EBB001B5793 /* Assets.xcassets */; };
 		776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776275021CC71EBB001B5793 /* LaunchScreen.storyboard */; };
 		77737E461CCFABEB0071794E /* NewsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77737E451CCFABEB0071794E /* NewsDetailController.swift */; };
+		77A6D9B61CD4A958003BFAA5 /* ShareTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A6D9B51CD4A958003BFAA5 /* ShareTool.swift */; };
 		77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BA12581CCD9FBA002C18AC /* ContainerView.swift */; };
 		77C75D751CCDEE4000D1A396 /* ContainerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75D741CCDEE4000D1A396 /* ContainerViewDataSource.swift */; };
 		77C75D901CCE0B0900D1A396 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75D8B1CCE0B0900D1A396 /* Category.swift */; };
@@ -66,6 +67,7 @@
 		776275031CC71EBB001B5793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		776275051CC71EBB001B5793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77737E451CCFABEB0071794E /* NewsDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailController.swift; sourceTree = "<group>"; };
+		77A6D9B51CD4A958003BFAA5 /* ShareTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareTool.swift; sourceTree = "<group>"; };
 		77BA12581CCD9FBA002C18AC /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		77C75D741CCDEE4000D1A396 /* ContainerViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewDataSource.swift; sourceTree = "<group>"; };
 		77C75D8B1CCE0B0900D1A396 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 			children = (
 				77DC85351CCF05720020AF6B /* ViewPresentable.swift */,
 				77185C0E1CD0FC7300525789 /* MBProgressHUD+Extension.swift */,
+				77A6D9B51CD4A958003BFAA5 /* ShareTool.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				77C75DAA1CCE51D400D1A396 /* AsynOperation.swift in Sources */,
 				7761A1A81CCC7439004A6EBA /* ContainerController.swift in Sources */,
 				7761A1B21CCCFF43004A6EBA /* ChannelLabel.swift in Sources */,
+				77A6D9B61CD4A958003BFAA5 /* ShareTool.swift in Sources */,
 				77C75D941CCE0B0900D1A396 /* Tag.swift in Sources */,
 				775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */,
 				77C75D901CCE0B0900D1A396 /* Category.swift in Sources */,
