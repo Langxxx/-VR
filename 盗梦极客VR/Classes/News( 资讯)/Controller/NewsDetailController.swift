@@ -38,7 +38,7 @@ class NewsDetailController: UIViewController {
     }
     @IBAction func shareButtonClik() {
         
-        ShareTool.setAllShareConfig(newsModel)
+        ShareTool.setAllShareConfig(newsModel.title, shareText: newsModel.excerpt, url: newsModel.url)
         UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: ShareTool.shareImage, shareToSnsNames: ShareTool.shareArray, delegate: nil)
     }
     

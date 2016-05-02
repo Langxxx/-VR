@@ -139,6 +139,7 @@
 		7751148B1CC75C3A00BC6FB4 /* BBS(论坛) */ = {
 			isa = PBXGroup;
 			children = (
+				776BE3691CD73F3600E58C18 /* View */,
 				774F5EB91CCB11C40087413F /* Other */,
 				7751148C1CC75C3A00BC6FB4 /* Controller */,
 				7751149A1CC75C7D00BC6FB4 /* BBS.storyboard */,
@@ -277,6 +278,13 @@
 				776275051CC71EBB001B5793 /* Info.plist */,
 			);
 			path = "盗梦极客VR";
+			sourceTree = "<group>";
+		};
+		776BE3691CD73F3600E58C18 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		77C75D731CCDEDED00D1A396 /* Other */ = {

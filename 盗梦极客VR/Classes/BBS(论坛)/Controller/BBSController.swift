@@ -16,6 +16,7 @@ class BBSController: UIViewController {
     var webView: WKWebView!
     
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var floatShareButton: UIButton!
     
     let baseURL = "http://bbs.dmgeek.com"
     
@@ -25,9 +26,8 @@ class BBSController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        progressView.sizeToFit()
         setupWebView()
+        view.bringSubviewToFront(floatShareButton)
     }
 
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -46,6 +46,15 @@ class BBSController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    @IBAction func shareButtonClik() {
+        guard let title = webView.title?.componentsSeparatedByString(" - ").first else {
+            MBProgressHUD.showError("网页存在错误")
+            return
+        }
+        ShareTool.setAllShareConfig(title, shareText: "来自盗梦极客为您推荐的内容", url: webView.URL!.absoluteString)
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: ShareTool.shareImage, shareToSnsNames: ShareTool.shareArray, delegate: nil)
     }
 }
 
@@ -130,6 +139,7 @@ extension BBSController: WKNavigationDelegate {
         MBProgressHUD.hideHUD(view)
         progressView.hidden = true
         webView.hidden = false
+        floatShareButton.hidden = false
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {

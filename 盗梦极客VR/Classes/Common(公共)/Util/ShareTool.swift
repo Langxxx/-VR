@@ -26,27 +26,27 @@ struct ShareTool {
         UMSocialConfig.hiddenNotInstallPlatforms([UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline])
     }
     
-    static func setAllShareConfig(newsModel: NewsModel) {
-        UMSocialData.defaultData().extConfig.qqData.title = newsModel.title
-        UMSocialData.defaultData().extConfig.qqData.url = newsModel.url
-        UMSocialData.defaultData().extConfig.qqData.shareText = newsModel.excerpt
-        UMSocialData.defaultData().extConfig.qzoneData.title = newsModel.title
-        UMSocialData.defaultData().extConfig.qzoneData.url = newsModel.url
-        UMSocialData.defaultData().extConfig.qzoneData.shareText = newsModel.excerpt
-        UMSocialData.defaultData().extConfig.sinaData.shareText = "VR资讯: 《" + newsModel.title + "》" + newsModel.url + " (分享自@盗梦极客_虚拟现实专题网)"
+    static func setAllShareConfig(title: String = "", shareText: String = "", url: String = "") {
+        UMSocialData.defaultData().extConfig.qqData.title = title
+        UMSocialData.defaultData().extConfig.qqData.url = url
+        UMSocialData.defaultData().extConfig.qqData.shareText = shareText
+        UMSocialData.defaultData().extConfig.qzoneData.title = title
+        UMSocialData.defaultData().extConfig.qzoneData.url = url
+        UMSocialData.defaultData().extConfig.qzoneData.shareText = shareText
+        UMSocialData.defaultData().extConfig.sinaData.shareText = "VR资讯: 《" + title + "》" + url + " (分享自@盗梦极客_虚拟现实专题网)"
         
-        UMSocialData.defaultData().extConfig.wechatSessionData.url = newsModel.url
-        UMSocialData.defaultData().extConfig.wechatSessionData.title = newsModel.title
-        UMSocialData.defaultData().extConfig.wechatSessionData.shareText = newsModel.excerpt
+        UMSocialData.defaultData().extConfig.wechatSessionData.url = url
+        UMSocialData.defaultData().extConfig.wechatSessionData.title = title
+        UMSocialData.defaultData().extConfig.wechatSessionData.shareText = shareText
         
-        UMSocialData.defaultData().extConfig.wechatTimelineData.url = newsModel.url
-        UMSocialData.defaultData().extConfig.wechatTimelineData.title = newsModel.title
-        UMSocialData.defaultData().extConfig.wechatTimelineData.shareText = newsModel.excerpt
+        UMSocialData.defaultData().extConfig.wechatTimelineData.url = url
+        UMSocialData.defaultData().extConfig.wechatTimelineData.title = title
+        UMSocialData.defaultData().extConfig.wechatTimelineData.shareText = shareText
         
-        UMSocialData.defaultData().extConfig.emailData.title = newsModel.title
-        UMSocialData.defaultData().extConfig.emailData.shareText = newsModel.excerpt
+        UMSocialData.defaultData().extConfig.emailData.title = title
+        UMSocialData.defaultData().extConfig.emailData.shareText = shareText
         
-        UMSocialData.defaultData().extConfig.smsData.shareText = newsModel.title
+        UMSocialData.defaultData().extConfig.smsData.shareText = title
     }
     
 }
