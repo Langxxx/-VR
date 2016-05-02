@@ -27,6 +27,7 @@
 		776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776275021CC71EBB001B5793 /* LaunchScreen.storyboard */; };
 		77737E461CCFABEB0071794E /* NewsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77737E451CCFABEB0071794E /* NewsDetailController.swift */; };
 		77A6D9B61CD4A958003BFAA5 /* ShareTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A6D9B51CD4A958003BFAA5 /* ShareTool.swift */; };
+		77A6D9B81CD58E16003BFAA5 /* OtherLinkWebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A6D9B71CD58E16003BFAA5 /* OtherLinkWebController.swift */; };
 		77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BA12581CCD9FBA002C18AC /* ContainerView.swift */; };
 		77C75D751CCDEE4000D1A396 /* ContainerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75D741CCDEE4000D1A396 /* ContainerViewDataSource.swift */; };
 		77C75D901CCE0B0900D1A396 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75D8B1CCE0B0900D1A396 /* Category.swift */; };
@@ -68,6 +69,7 @@
 		776275051CC71EBB001B5793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77737E451CCFABEB0071794E /* NewsDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailController.swift; sourceTree = "<group>"; };
 		77A6D9B51CD4A958003BFAA5 /* ShareTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareTool.swift; sourceTree = "<group>"; };
+		77A6D9B71CD58E16003BFAA5 /* OtherLinkWebController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinkWebController.swift; sourceTree = "<group>"; };
 		77BA12581CCD9FBA002C18AC /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		77C75D741CCDEE4000D1A396 /* ContainerViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewDataSource.swift; sourceTree = "<group>"; };
 		77C75D8B1CCE0B0900D1A396 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */,
+				77A6D9B71CD58E16003BFAA5 /* OtherLinkWebController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */,
 				77737E461CCFABEB0071794E /* NewsDetailController.swift in Sources */,
 				77DC85361CCF05720020AF6B /* ViewPresentable.swift in Sources */,
+				77A6D9B81CD58E16003BFAA5 /* OtherLinkWebController.swift in Sources */,
 				77C75D751CCDEE4000D1A396 /* ContainerViewDataSource.swift in Sources */,
 				774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */,
 				77185C0F1CD0FC7300525789 /* MBProgressHUD+Extension.swift in Sources */,

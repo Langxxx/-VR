@@ -43,6 +43,10 @@ class BBSController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         webView.loadRequest(request)
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
 }
 
 extension BBSController {
@@ -70,8 +74,24 @@ extension BBSController {
         
         webView.loadRequest(request)
     }
+    
+    func prepareLoadRequst() {
+        reloadLabel.hidden = true
+        progressView.hidden = false
+        progressView.progress = 0
+        MBProgressHUD.showMessage("正在加载...", toView: view)
+    }
 }
 
+
+extension BBSController {
+    func jumpToOtherLinker(urlStr: String) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OtherLinkWebController") as! OtherLinkWebController
+        vc.URLStr = urlStr
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
 
 extension BBSController: WKNavigationDelegate {
 
@@ -81,18 +101,20 @@ extension BBSController: WKNavigationDelegate {
      */
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
 
+        print(navigationAction.request.URLString)
         guard let targetFrame = navigationAction.targetFrame,
             requstURL = navigationAction.request.URL else {
                 decisionHandler(.Cancel)
                 return
         }
-        print(requstURL)
         if targetFrame.mainFrame
             && !isExpectedURL(requstURL.absoluteString) {
             decisionHandler(.Cancel)
-            // TODO: 以后用内部跳转
-            UIApplication.sharedApplication().openURL(requstURL)
+            jumpToOtherLinker(requstURL.absoluteString)
         }else {
+            if targetFrame.mainFrame {
+                prepareLoadRequst()
+            }
             decisionHandler(.Allow)
         }
        
@@ -101,10 +123,6 @@ extension BBSController: WKNavigationDelegate {
     
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         print("正在加载...")
-        reloadLabel.hidden = true
-        progressView.hidden = false
-        progressView.progress = 0
-        MBProgressHUD.showMessage("正在加载...", toView: view)
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
@@ -115,11 +133,13 @@ extension BBSController: WKNavigationDelegate {
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
-        print("加载失败")
         MBProgressHUD.hideHUD(view)
-        MBProgressHUD.showError("网络拥堵，请稍后尝试！")
         reloadLabel.hidden = false
         progressView.hidden = true
+        // 102可能是程序中断(内部跳转)
+        if error.code != 102 {
+            MBProgressHUD.showError("网络拥堵，请稍后尝试！")
+        }
     }
     
 }

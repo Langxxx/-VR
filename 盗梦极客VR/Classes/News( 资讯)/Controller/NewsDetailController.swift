@@ -54,8 +54,15 @@ extension NewsDetailController: UIWebViewDelegate {
             return true
         }
         // TODO: 以后用内部跳转
-        UIApplication.sharedApplication().openURL(request.URL!)
+//        UIApplication.sharedApplication().openURL(request.URL!)
+        jumpToOtherLinker(request.URLString)
         return false
+    }
+    
+    func jumpToOtherLinker(urlStr: String) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OtherLinkWebController") as! OtherLinkWebController
+        vc.URLStr = urlStr
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
