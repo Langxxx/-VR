@@ -17,6 +17,7 @@ class BBSController: UIViewController {
     
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var floatShareButton: UIButton!
+    @IBOutlet weak var floatBackButton: UIButton!
     
     let baseURL = "http://bbs.dmgeek.com"
     
@@ -28,6 +29,7 @@ class BBSController: UIViewController {
         super.viewDidLoad()
         setupWebView()
         view.bringSubviewToFront(floatShareButton)
+        view.bringSubviewToFront(floatBackButton)
     }
 
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -47,7 +49,14 @@ class BBSController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
+
+
     
+    
+}
+
+// MARK: - 监听方法
+extension BBSController {
     @IBAction func shareButtonClik() {
         guard let title = webView.title?.componentsSeparatedByString(" - ").first else {
             MBProgressHUD.showError("网页存在错误")
@@ -55,6 +64,10 @@ class BBSController: UIViewController {
         }
         ShareTool.setAllShareConfig(title, shareText: "来自盗梦极客为您推荐的内容", url: webView.URL!.absoluteString)
         UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: ShareTool.shareImage, shareToSnsNames: ShareTool.shareArray, delegate: nil)
+    }
+    
+    @IBAction func backButtonClik() {
+        webView.goBack()
     }
 }
 
@@ -66,6 +79,8 @@ extension BBSController {
 
         let webView = WKWebView(frame: CGRectZero, configuration: configuretion)
         webView.hidden = true
+        //允许手势，后退前进等操作
+        webView.allowsBackForwardNavigationGestures = true
         view.addSubview(webView)
         self.webView = webView
         
@@ -80,20 +95,20 @@ extension BBSController {
 
         // 监听加载进度
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
+        //监听是否可以前进后退，修改btn.enable属性
+        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
         
         webView.loadRequest(request)
     }
     
     func prepareLoadRequst() {
+        print("prepareLoadRequst")
         reloadLabel.hidden = true
         progressView.hidden = false
         progressView.progress = 0
         MBProgressHUD.showMessage("正在加载...", toView: view)
     }
-}
-
-
-extension BBSController {
+    
     func jumpToOtherLinker(urlStr: String) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OtherLinkWebController") as! OtherLinkWebController
         vc.URLStr = urlStr
@@ -102,6 +117,7 @@ extension BBSController {
     }
 }
 
+// MARK: - WKNavigationDelegate
 extension BBSController: WKNavigationDelegate {
 
     /**
@@ -110,7 +126,7 @@ extension BBSController: WKNavigationDelegate {
      */
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
 
-        print(navigationAction.request.URLString)
+//        print(navigationAction.request.URLString)
         guard let targetFrame = navigationAction.targetFrame,
             requstURL = navigationAction.request.URL else {
                 decisionHandler(.Cancel)
@@ -140,6 +156,7 @@ extension BBSController: WKNavigationDelegate {
         progressView.hidden = true
         webView.hidden = false
         floatShareButton.hidden = false
+        floatBackButton.hidden = false
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {

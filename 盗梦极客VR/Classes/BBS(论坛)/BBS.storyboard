@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -47,14 +48,34 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTW-cb-byl">
-                                <rect key="frame" x="540" y="540" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="mTW-cb-byl" secondAttribute="height" multiplier="1:1" id="F45-t7-Q7p"/>
-                                    <constraint firstAttribute="height" constant="40" id="YBm-FM-gqM"/>
-                                </constraints>
-                                <state key="normal" image="flaot_share_Button"/>
+                                <rect key="frame" x="10" y="509" width="90" height="45"/>
+                                <color key="backgroundColor" red="0.29803921568627451" green="0.66666666666666663" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="分享"/>
                                 <connections>
                                     <action selector="shareButtonClik" destination="YgE-eH-EFE" eventType="touchUpInside" id="jyz-qo-0Yi"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ih1-Fi-f60">
+                                <rect key="frame" x="10" y="555" width="90" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="2MQ-dJ-tBO"/>
+                                    <constraint firstAttribute="width" secondItem="ih1-Fi-f60" secondAttribute="height" multiplier="2:1" id="KVt-80-PJ9"/>
+                                    <constraint firstAttribute="width" constant="40" id="Nqu-aA-dSm"/>
+                                    <constraint firstAttribute="width" secondItem="ih1-Fi-f60" secondAttribute="height" multiplier="2:1" id="daO-Ha-uOU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="后退" backgroundImage="blue"/>
+                                <state key="disabled" title="&lt; 后退" backgroundImage="gray"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2MQ-dJ-tBO"/>
+                                        <exclude reference="KVt-80-PJ9"/>
+                                        <exclude reference="Nqu-aA-dSm"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="backButtonClik" destination="YgE-eH-EFE" eventType="touchUpInside" id="opq-tK-Cwg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -63,14 +84,20 @@
                             <constraint firstItem="lGE-Ja-dzA" firstAttribute="centerX" secondItem="bFg-xc-AI0" secondAttribute="centerX" id="3Ro-Ve-Yyx"/>
                             <constraint firstItem="f1B-Sq-kiI" firstAttribute="leading" secondItem="bFg-xc-AI0" secondAttribute="leading" id="Db6-Ug-npe"/>
                             <constraint firstItem="f1B-Sq-kiI" firstAttribute="top" secondItem="s5a-HO-iXe" secondAttribute="bottom" id="GEr-WC-wzb"/>
+                            <constraint firstItem="ih1-Fi-f60" firstAttribute="height" secondItem="mTW-cb-byl" secondAttribute="height" id="HAl-LS-wwR"/>
+                            <constraint firstItem="ih1-Fi-f60" firstAttribute="width" secondItem="mTW-cb-byl" secondAttribute="width" id="KY2-vH-fUh"/>
+                            <constraint firstItem="2Bt-0x-xZh" firstAttribute="top" secondItem="ih1-Fi-f60" secondAttribute="bottom" id="PTn-nR-zzM"/>
                             <constraint firstAttribute="trailing" secondItem="f1B-Sq-kiI" secondAttribute="trailing" id="RLD-aD-dTI"/>
-                            <constraint firstItem="2Bt-0x-xZh" firstAttribute="top" secondItem="mTW-cb-byl" secondAttribute="bottom" constant="20" id="jOs-4Y-DSD"/>
+                            <constraint firstItem="ih1-Fi-f60" firstAttribute="leading" secondItem="mTW-cb-byl" secondAttribute="leading" id="Ygd-2A-PQ2"/>
+                            <constraint firstItem="ih1-Fi-f60" firstAttribute="top" secondItem="mTW-cb-byl" secondAttribute="bottom" constant="1" id="eIq-PX-eMD"/>
+                            <constraint firstItem="ih1-Fi-f60" firstAttribute="leading" secondItem="bFg-xc-AI0" secondAttribute="leading" constant="10" id="h2l-ON-ILU"/>
                             <constraint firstItem="lGE-Ja-dzA" firstAttribute="centerY" secondItem="bFg-xc-AI0" secondAttribute="centerY" id="jl0-8n-wV2"/>
-                            <constraint firstAttribute="trailing" secondItem="mTW-cb-byl" secondAttribute="trailing" constant="20" id="koS-7r-u2o"/>
+                            <constraint firstItem="ih1-Fi-f60" firstAttribute="width" secondItem="bFg-xc-AI0" secondAttribute="width" multiplier="0.15" id="wgv-ze-oay"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="论坛" id="WhU-cT-jeb"/>
                     <connections>
+                        <outlet property="floatBackButton" destination="ih1-Fi-f60" id="MYQ-eL-Yds"/>
                         <outlet property="floatShareButton" destination="mTW-cb-byl" id="MFD-eA-Iyr"/>
                         <outlet property="progressView" destination="f1B-Sq-kiI" id="2YW-i8-DO5"/>
                         <outlet property="reloadLabel" destination="lGE-Ja-dzA" id="cVa-Vy-sMz"/>
@@ -82,6 +109,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="flaot_share_Button" width="200" height="200"/>
+        <image name="blue" width="1" height="2"/>
+        <image name="gray" width="1" height="2"/>
     </resources>
 </document>

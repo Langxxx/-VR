@@ -23,15 +23,17 @@ extension MBProgressHUD {
     }
 
     static func showSuccess(text: String, toView: UIView = UIApplication.sharedApplication().keyWindow!) {
+        MBProgressHUD.hideHUD(toView)
         MBProgressHUD.show(text, icon: "success.png", view: toView)
     }
     
     static func showError(text: String, toView: UIView = UIApplication.sharedApplication().keyWindow!) {
+        MBProgressHUD.hideHUD(toView)
         MBProgressHUD.show(text, icon: "error.png", view: toView)
     }
     
     static func showMessage(text: String, toView: UIView = UIApplication.sharedApplication().keyWindow!) {
-        
+        MBProgressHUD.hideHUD(toView)
         let hud = MBProgressHUD.showHUDAddedTo(toView, animated: true)
         hud.label.text = text
         hud.removeFromSuperViewOnHide = true
