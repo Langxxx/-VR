@@ -24,9 +24,11 @@ class NewsListController: UIViewController {
         }
     }
     
+    var topNewsModelArray: [NewsModel] = []
+    
     var parameters: [String: AnyObject] {
         return [
-            "page": newsModelArray.count / 10
+            "page": newsModelArray.count / 10 + 1
         ]
     }
     
@@ -54,30 +56,48 @@ extension NewsListController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         
-        tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadNetworkData))
+        tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadMoreNews))
     }
     func loadNetworkData() {
         
-        if newsModelArray.count == 0 {
-            self.reloadLabel.hidden = true
-            MBProgressHUD.showMessage("正在玩命加载", toView: view)
-        }
+        self.reloadLabel.hidden = true
+        MBProgressHUD.showMessage("正在玩命加载", toView: view)
 
+        func success(modelArray: [[NewsModel]]) {
+            MBProgressHUD.hideHUD(self.view)
+            self.newsModelArray += modelArray[0]
+            self.topNewsModelArray = modelArray[1]
+        }
+        
+        func failure(_: ErrorType) {
+            MBProgressHUD.hideHUD(self.view)
+            MBProgressHUD.showError("网络异常，请稍后尝试")
+            self.reloadLabel.hidden = false
+        }
+        
+        fetchJsonFromNet(URL, parameters)
+            .then(fetchTopNewsJsonFromNet)
+            .map { jsonToModelArray( $0, initial: NewsModel.init) }
+            .complete(success: success, failure: failure)
+    }
+    
+    func loadMoreNews() {
+        
+        func success(modelArray: [NewsModel]) {
+            MBProgressHUD.hideHUD(self.view)
+            self.newsModelArray += modelArray
+        }
+        
+        func failure(_: ErrorType) {
+            MBProgressHUD.hideHUD(self.view)
+            MBProgressHUD.showError("网络异常，请稍后尝试")
+        }
+        
         fetchJsonFromNet(URL, parameters)
             .map { jsonToModelArray( $0["posts"], initial: NewsModel.init) }
-            .operation { result in
-                self.tableView.mj_footer.endRefreshing()
-                switch result {
-                case .Success(let v):
-                    MBProgressHUD.hideHUD(self.view)
-                    self.newsModelArray += v
-                case .Failure(_):
-                    MBProgressHUD.hideHUD(self.view)
-                    MBProgressHUD.showError("网络异常，请稍后尝试")
-                    self.reloadLabel.hidden = false
-                }
-        }
+            .complete(success: success, failure: failure)
     }
+
 }
 
 extension NewsListController: UITableViewDataSource {

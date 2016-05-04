@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		00B3E151668AB05078D689E4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3D58D6A7EE1074ECD4E855 /* Pods.framework */; };
+		7711026D1CD8D07B0081B953 /* AuxiliaryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7711026A1CD8D07B0081B953 /* AuxiliaryModels.swift */; };
+		7711026E1CD8D07B0081B953 /* CyclePictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7711026B1CD8D07B0081B953 /* CyclePictureCell.swift */; };
+		7711026F1CD8D07B0081B953 /* CyclePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7711026C1CD8D07B0081B953 /* CyclePictureView.swift */; };
 		77185C0B1CD063D700525789 /* Details.css in Resources */ = {isa = PBXBuildFile; fileRef = 77185C0A1CD063D700525789 /* Details.css */; };
 		77185C0F1CD0FC7300525789 /* MBProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77185C0E1CD0FC7300525789 /* MBProgressHUD+Extension.swift */; };
 		774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774F5EBA1CCB12090087413F /* BBSURLConfig.swift */; };
@@ -47,6 +50,9 @@
 /* Begin PBXFileReference section */
 		4D3D58D6A7EE1074ECD4E855 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA4F884C41B4CD891BBEFC2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7711026A1CD8D07B0081B953 /* AuxiliaryModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuxiliaryModels.swift; sourceTree = "<group>"; };
+		7711026B1CD8D07B0081B953 /* CyclePictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePictureCell.swift; sourceTree = "<group>"; };
+		7711026C1CD8D07B0081B953 /* CyclePictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CyclePictureView.swift; sourceTree = "<group>"; };
 		77185C0A1CD063D700525789 /* Details.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Details.css; sourceTree = "<group>"; };
 		77185C0E1CD0FC7300525789 /* MBProgressHUD+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Extension.swift"; sourceTree = "<group>"; };
 		774F5EBA1CCB12090087413F /* BBSURLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSURLConfig.swift; sourceTree = "<group>"; };
@@ -105,6 +111,16 @@
 				4D3D58D6A7EE1074ECD4E855 /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		771102691CD8D07B0081B953 /* CyclePictureView */ = {
+			isa = PBXGroup;
+			children = (
+				7711026A1CD8D07B0081B953 /* AuxiliaryModels.swift */,
+				7711026B1CD8D07B0081B953 /* CyclePictureCell.swift */,
+				7711026C1CD8D07B0081B953 /* CyclePictureView.swift */,
+			);
+			path = CyclePictureView;
 			sourceTree = "<group>";
 		};
 		77185C091CD063CD00525789 /* Resources */ = {
@@ -233,6 +249,7 @@
 		7761A1931CCC687A004A6EBA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				771102691CD8D07B0081B953 /* CyclePictureView */,
 				7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */,
 				7761A1B11CCCFF43004A6EBA /* ChannelLabel.swift */,
 				77BA12581CCD9FBA002C18AC /* ContainerView.swift */,
@@ -469,6 +486,8 @@
 				775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */,
 				77737E461CCFABEB0071794E /* NewsDetailController.swift in Sources */,
 				77DC85361CCF05720020AF6B /* ViewPresentable.swift in Sources */,
+				7711026E1CD8D07B0081B953 /* CyclePictureCell.swift in Sources */,
+				7711026F1CD8D07B0081B953 /* CyclePictureView.swift in Sources */,
 				77A6D9B81CD58E16003BFAA5 /* OtherLinkWebController.swift in Sources */,
 				77C75D751CCDEE4000D1A396 /* ContainerViewDataSource.swift in Sources */,
 				774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */,
@@ -476,6 +495,7 @@
 				77C75D911CCE0B0900D1A396 /* CustomField.swift in Sources */,
 				77DC853A1CCF0CA70020AF6B /* NewCellViewModel.swift in Sources */,
 				77C75DAB1CCE51D400D1A396 /* JSONHandler.swift in Sources */,
+				7711026D1CD8D07B0081B953 /* AuxiliaryModels.swift in Sources */,
 				77C75D921CCE0B0900D1A396 /* NewsModel.swift in Sources */,
 				77DC85291CCF02E60020AF6B /* Result.swift in Sources */,
 				77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */,

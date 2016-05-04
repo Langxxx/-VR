@@ -31,3 +31,37 @@ extension AsynOperation {
         }
     }
 }
+
+extension AsynOperation {
+    // flatMap
+    func then<U>(f: T throws -> AsynOperation<U>) -> AsynOperation<U> {
+        return AsynOperation<U> { completion in
+            self.operation { result in
+                switch result {
+                case .Success(let v):
+                    do {
+                        try f(v).operation(completion)
+                    }catch let e {
+                        completion(.Failure(e))
+                    }
+                case .Failure(let e):
+                    completion(.Failure(e))
+                }
+            }
+            
+        }
+    }
+}
+
+extension AsynOperation {
+    func complete(success success: T -> (), failure: ErrorType -> ()) {
+        self.operation { result in
+            switch result {
+            case .Success(let v):
+                success(v)
+            case .Failure(let e):
+                failure(e)
+            }
+        }
+    }
+}
