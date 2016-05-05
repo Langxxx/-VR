@@ -56,19 +56,25 @@ extension TabBarController {
     func setupStyle() {
         let tabBarItem = UITabBarItem.appearance()
         let selectedAttr = [
-            NSForegroundColorAttributeName : UIColor(red: 212 / 255.0, green: 25 / 255.0, blue: 38 / 255.0, alpha: 1.0)
+            NSForegroundColorAttributeName : UIColor.TintColor()
         ]
         
         tabBarItem.setTitleTextAttributes(selectedAttr, forState: .Selected)
         
         let navBar = UINavigationBar.appearance()
         navBar.tintColor = UIColor.whiteColor()
-        navBar.barTintColor = UIColor(red: 212 / 255.0, green: 25 / 255.0, blue: 38 / 255.0, alpha: 1.0)
+        navBar.barTintColor = UIColor.TintColor()
         navBar.translucent = false
         
         let attr = [
             NSForegroundColorAttributeName : UIColor.whiteColor()
         ]
         navBar.titleTextAttributes = attr
+    }
+}
+
+extension UIColor {
+    static func TintColor() -> UIColor {
+        return UIColor(red: 212 / 255.0, green: 25 / 255.0, blue: 38 / 255.0, alpha: 1.0)
     }
 }

@@ -15,7 +15,7 @@ class NewsListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var reloadLabel: UILabel!
     
-    var URL: String = ""
+    var channelModel: ChannelModel!
     
     var newsModelArray: [NewsModel] = [] {
         didSet {
@@ -24,7 +24,13 @@ class NewsListController: UIViewController {
         }
     }
     
-    var topNewsModelArray: [NewsModel] = []
+    var topNewsModelArray: [NewsModel] = [] {
+        didSet {
+            if channelModel.title == "资讯" {
+                setupTableHeardView()
+            }
+        }
+    }
     
     var parameters: [String: AnyObject] {
         return [
@@ -49,6 +55,7 @@ class NewsListController: UIViewController {
 }
 
 extension NewsListController {
+    
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -58,6 +65,20 @@ extension NewsListController {
         
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadMoreNews))
     }
+    
+    func setupTableHeardView() {
+        let headerView = CyclePictureView(frame: CGRectZero, imageURLArray: nil)
+        headerView.imageURLArray = topNewsModelArray.map { $0.listThuUrl }
+        headerView.imageDetailArray = topNewsModelArray.map { $0.title }
+        headerView.detailLableBackgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
+        headerView.autoScroll = false
+        headerView.pageControlAliment = .RightBottom
+        headerView.currentDotColor = UIColor.TintColor()
+        headerView.delegate = self
+        tableView.tableHeaderView = headerView
+        headerView.frame.size.height = headerView.frame.size.width * 0.7
+    }
+    
     func loadNetworkData() {
         
         self.reloadLabel.hidden = true
@@ -74,8 +95,8 @@ extension NewsListController {
             MBProgressHUD.showError("网络异常，请稍后尝试")
             self.reloadLabel.hidden = false
         }
-        
-        fetchJsonFromNet(URL, parameters)
+        // TODO: 如果是非资讯分类，不应该fetchTopNewsJsonFromNet
+        fetchJsonFromNet(channelModel.URL, parameters)
             .then(fetchTopNewsJsonFromNet)
             .map { jsonToModelArray( $0, initial: NewsModel.init) }
             .complete(success: success, failure: failure)
@@ -93,11 +114,23 @@ extension NewsListController {
             MBProgressHUD.showError("网络异常，请稍后尝试")
         }
         
-        fetchJsonFromNet(URL, parameters)
+        fetchJsonFromNet(channelModel.URL, parameters)
             .map { jsonToModelArray( $0["posts"], initial: NewsModel.init) }
             .complete(success: success, failure: failure)
     }
 
+}
+
+extension NewsListController {
+    func pushDetailVcBySelectedNewsModel(selectedCellModel: NewsModel) {
+        let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("NewsDetailController") as! NewsDetailController
+        vc.newsModel = selectedCellModel
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+        if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
+            interactivePopGestureRecognizer.delegate = nil
+        }
+    }
 }
 
 extension NewsListController: UITableViewDataSource {
@@ -117,12 +150,13 @@ extension NewsListController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let selectedCellModel = newsModelArray[indexPath.row]
-        let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("NewsDetailController") as! NewsDetailController
-        vc.newsModel = selectedCellModel
-        vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
-        if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
-            interactivePopGestureRecognizer.delegate = nil
-        }
+        pushDetailVcBySelectedNewsModel(selectedCellModel)
+    }
+}
+
+extension NewsListController: CyclePictureViewDelegate {
+    func cyclePictureView(cyclePictureView: CyclePictureView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let selectedCellModel = topNewsModelArray[indexPath.row]
+        pushDetailVcBySelectedNewsModel(selectedCellModel)
     }
 }

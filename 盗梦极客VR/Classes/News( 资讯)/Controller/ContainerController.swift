@@ -37,7 +37,7 @@ class ContainerController: UIViewController {
         let sb = UIStoryboard(name: "News", bundle: nil)
         for i in 0..<channelScrollView.channles.count {
             let vc = sb.instantiateViewControllerWithIdentifier("NewsListController") as! NewsListController
-            vc.URL = self.channelModelArray[i].URL
+            vc.channelModel = self.channelModelArray[i]
             addChildViewController(vc)
         }
     }
