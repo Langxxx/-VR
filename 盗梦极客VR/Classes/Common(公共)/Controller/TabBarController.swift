@@ -56,14 +56,14 @@ extension TabBarController {
     func setupStyle() {
         let tabBarItem = UITabBarItem.appearance()
         let selectedAttr = [
-            NSForegroundColorAttributeName : UIColor.TintColor()
+            NSForegroundColorAttributeName : UIColor.tintColor()
         ]
         
         tabBarItem.setTitleTextAttributes(selectedAttr, forState: .Selected)
         
         let navBar = UINavigationBar.appearance()
         navBar.tintColor = UIColor.whiteColor()
-        navBar.barTintColor = UIColor.TintColor()
+        navBar.barTintColor = UIColor.tintColor()
         navBar.translucent = false
         
         let attr = [
@@ -74,7 +74,7 @@ extension TabBarController {
 }
 
 extension UIColor {
-    static func TintColor() -> UIColor {
+    static func tintColor() -> UIColor {
         return UIColor(red: 212 / 255.0, green: 25 / 255.0, blue: 38 / 255.0, alpha: 1.0)
     }
 }

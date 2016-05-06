@@ -29,6 +29,8 @@
 		776275011CC71EBB001B5793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776275001CC71EBB001B5793 /* Assets.xcassets */; };
 		776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776275021CC71EBB001B5793 /* LaunchScreen.storyboard */; };
 		77737E461CCFABEB0071794E /* NewsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77737E451CCFABEB0071794E /* NewsDetailController.swift */; };
+		777EBEB71CDB3DBD001A4BE4 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777EBEB61CDB3DBD001A4BE4 /* ProfileController.swift */; };
+		777EBEBD1CDB800C001A4BE4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777EBEBC1CDB800C001A4BE4 /* LoginController.swift */; };
 		77A6D9B61CD4A958003BFAA5 /* ShareTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A6D9B51CD4A958003BFAA5 /* ShareTool.swift */; };
 		77A6D9B81CD58E16003BFAA5 /* OtherLinkWebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A6D9B71CD58E16003BFAA5 /* OtherLinkWebController.swift */; };
 		77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BA12581CCD9FBA002C18AC /* ContainerView.swift */; };
@@ -74,6 +76,8 @@
 		776275031CC71EBB001B5793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		776275051CC71EBB001B5793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77737E451CCFABEB0071794E /* NewsDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailController.swift; sourceTree = "<group>"; };
+		777EBEB61CDB3DBD001A4BE4 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		777EBEBC1CDB800C001A4BE4 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		77A6D9B51CD4A958003BFAA5 /* ShareTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareTool.swift; sourceTree = "<group>"; };
 		77A6D9B71CD58E16003BFAA5 /* OtherLinkWebController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinkWebController.swift; sourceTree = "<group>"; };
 		77BA12581CCD9FBA002C18AC /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 		775114961CC75C3A00BC6FB4 /* Profile(我) */ = {
 			isa = PBXGroup;
 			children = (
+				777EBEB51CDB3D0E001A4BE4 /* View */,
 				775114971CC75C3A00BC6FB4 /* Controller */,
 				775114A01CC75CA900BC6FB4 /* Profile.storyboard */,
 			);
@@ -242,6 +247,8 @@
 		775114971CC75C3A00BC6FB4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				777EBEB61CDB3DBD001A4BE4 /* ProfileController.swift */,
+				777EBEBC1CDB800C001A4BE4 /* LoginController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -298,6 +305,13 @@
 			sourceTree = "<group>";
 		};
 		776BE3691CD73F3600E58C18 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		777EBEB51CDB3D0E001A4BE4 /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -502,7 +516,9 @@
 				77C75DA51CCE3EF000D1A396 /* ChannelModel.swift in Sources */,
 				775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */,
 				7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */,
+				777EBEBD1CDB800C001A4BE4 /* LoginController.swift in Sources */,
 				77DC85271CCEFDA40020AF6B /* NewsCell.swift in Sources */,
+				777EBEB71CDB3DBD001A4BE4 /* ProfileController.swift in Sources */,
 				7761A1B01CCCF95B004A6EBA /* NewsListController.swift in Sources */,
 				77C75DAA1CCE51D400D1A396 /* AsynOperation.swift in Sources */,
 				7761A1A81CCC7439004A6EBA /* ContainerController.swift in Sources */,

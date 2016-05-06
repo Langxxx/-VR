@@ -73,7 +73,7 @@ extension NewsListController {
         headerView.detailLableBackgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
         headerView.autoScroll = false
         headerView.pageControlAliment = .RightBottom
-        headerView.currentDotColor = UIColor.TintColor()
+        headerView.currentDotColor = UIColor.tintColor()
         headerView.delegate = self
         tableView.tableHeaderView = headerView
         headerView.frame.size.height = headerView.frame.size.width * 0.7
