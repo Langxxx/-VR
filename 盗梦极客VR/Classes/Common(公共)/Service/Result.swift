@@ -10,6 +10,7 @@ import Foundation
 
 enum Error: ErrorType {
     case NetworkError
+    case AccountInvalid
 }
 
 enum Result<Value> {

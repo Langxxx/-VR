@@ -229,6 +229,9 @@
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <state key="highlighted" backgroundImage="login_tip_button_highlight"/>
+                                                <connections>
+                                                    <action selector="loginButtonClik" destination="KbN-pf-K65" eventType="touchUpInside" id="2cL-ho-baF"/>
+                                                </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="账号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5R3-SI-ULY">
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
@@ -281,6 +284,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLp-iZ-Krg">
                                                 <rect key="frame" x="80" y="80" width="40" height="40"/>
                                                 <state key="normal" image="login_button_qqfriends"/>
+                                                <connections>
+                                                    <action selector="QQLoginButtonClik" destination="KbN-pf-K65" eventType="touchUpInside" id="pEp-Dm-Z58"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -298,6 +304,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7t-XQ-ex3">
                                                 <rect key="frame" x="80" y="80" width="40" height="40"/>
                                                 <state key="normal" image="login_button_wechat"/>
+                                                <connections>
+                                                    <action selector="WechatLoginButtonClik" destination="KbN-pf-K65" eventType="touchUpInside" id="Tcp-Jf-LPs"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用微信登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6D-27-5ng">
                                                 <rect key="frame" x="58" y="130" width="84" height="17"/>
@@ -320,6 +329,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwV-rr-9v0">
                                                 <rect key="frame" x="80" y="80" width="40" height="40"/>
                                                 <state key="normal" image="login_button_sina"/>
+                                                <connections>
+                                                    <action selector="SinaLoginButtonClik" destination="KbN-pf-K65" eventType="touchUpInside" id="aUB-dC-wW9"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用微博登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nig-oS-Dki">
                                                 <rect key="frame" x="58" y="130" width="84" height="17"/>
@@ -368,10 +380,14 @@
                             <constraint firstAttribute="trailing" secondItem="rbk-jU-1z6" secondAttribute="trailing" id="tkz-6Q-dHS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="accountTextField" destination="5R3-SI-ULY" id="QQv-Lb-Tv5"/>
+                        <outlet property="passwordTextField" destination="KD1-Y0-M9y" id="IAw-U8-C9q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K96-Dg-yqa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1068" y="441"/>
+            <point key="canvasLocation" x="1009" y="433"/>
         </scene>
     </scenes>
     <resources>
