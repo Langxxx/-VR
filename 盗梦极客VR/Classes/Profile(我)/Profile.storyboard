@@ -101,6 +101,28 @@
                                         </mask>
                                     </variation>
                                 </view>
+                                <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="web-XM-npr">
+                                    <rect key="frame" x="0.0" y="429" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1m-TI-vLS">
+                                            <rect key="frame" x="10" y="0.0" width="580" height="44"/>
+                                            <state key="normal" title="退出当前账号" backgroundImage="account_logout_button">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="exitButtonClik" destination="Bx2-No-Jju" eventType="touchUpInside" id="1QX-62-5il"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="l1m-TI-vLS" secondAttribute="trailing" constant="10" id="9tY-nB-dti"/>
+                                        <constraint firstItem="l1m-TI-vLS" firstAttribute="leading" secondItem="web-XM-npr" secondAttribute="leading" constant="10" id="Ekf-MX-FKt"/>
+                                        <constraint firstAttribute="bottom" secondItem="l1m-TI-vLS" secondAttribute="bottom" id="Xbd-bw-qQK"/>
+                                        <constraint firstItem="l1m-TI-vLS" firstAttribute="top" secondItem="web-XM-npr" secondAttribute="top" id="n1O-vT-McD"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="test" id="qQq-Dd-S6B">
                                         <rect key="frame" x="0.0" y="367" width="600" height="44"/>
@@ -129,12 +151,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="我" id="vkF-jz-sTR"/>
                     <connections>
+                        <outlet property="avatarImageView" destination="gaD-BX-0dh" id="qY3-qM-kJt"/>
+                        <outlet property="exitContainerView" destination="web-XM-npr" id="mp2-41-6Gb"/>
+                        <outlet property="loginButton" destination="hjw-Nm-d5l" id="YzC-8M-XZs"/>
                         <outlet property="tableView" destination="mSg-9b-iOj" id="Q9t-8G-orL"/>
+                        <outlet property="usernameLabel" destination="KE2-hr-3q2" id="BXK-Rh-BDV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XDn-Gx-Jwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="379" y="425"/>
+            <point key="canvasLocation" x="374" y="423"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="rSV-EJ-97X">
@@ -391,6 +417,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="account_logout_button" width="9" height="47"/>
         <image name="back" width="50" height="50"/>
         <image name="login_button_qqfriends" width="40" height="40"/>
         <image name="login_button_sina" width="40" height="40"/>

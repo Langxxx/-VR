@@ -12,6 +12,18 @@ class ProfileController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var exitContainerView: UIView!
+    
+    
+    var user: User? {
+        didSet {
+            setupUserInfo()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,14 +35,42 @@ class ProfileController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
+
+    
+}
+
+extension ProfileController {
+
+    func setupUserInfo() {
+        guard let user = user else {
+            return
+        }
+        
+        loginButton.enabled = false
+        
+        avatarImageView.sd_setImageWithURL(NSURL(string: user.avatar)!)
+        avatarImageView.layer.cornerRadius =  avatarImageView.bounds.width * 0.5
+        usernameLabel.text = user.displayname
+        exitContainerView.hidden = false
+    }
+}
+
+extension ProfileController {
     
     @IBAction func loginButtonClik() {
         let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+        vc.completion = { user in
+            self.user = user
+        }
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
         if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
             interactivePopGestureRecognizer.delegate = nil
         }
+    }
+    
+    @IBAction func exitButtonClik() {
+        
     }
     
 }

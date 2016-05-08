@@ -23,6 +23,8 @@ class LoginController: UIViewController {
         ]
     }
     
+    var completion: ((user: User) -> Void)!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,13 +36,15 @@ class LoginController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func backButtonClik() {
-        navigationController?.popViewControllerAnimated(true)
+    deinit {
+        print("LoginController deinit")
     }
-    
 }
 
 extension LoginController {
+    @IBAction func backButtonClik() {
+        navigationController?.popViewControllerAnimated(true)
+    }
     
     @IBAction func loginButtonClik() {
         guard let account = accountTextField.text where !account.isEmpty else {
@@ -54,6 +58,8 @@ extension LoginController {
         
         func success(user: User) {
             MBProgressHUD.showSuccess(user.displayname)
+            completion(user: user)
+            navigationController?.popViewControllerAnimated(true)
         }
         
         func failure(error: ErrorType) {
@@ -77,7 +83,7 @@ extension LoginController {
         snsPlatform.loginClickHandler!(self, UMSocialControllerService.defaultControllerService(), true) { response in
             
             if response.responseCode == UMSResponseCodeSuccess {
-                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToSina]
+                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToQQ]
                 print("userName: \(snsAccount)")
             }
         }
@@ -100,7 +106,7 @@ extension LoginController {
         snsPlatform.loginClickHandler!(self, UMSocialControllerService.defaultControllerService(), true) { response in
             
             if response.responseCode == UMSResponseCodeSuccess {
-                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToSina]
+                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToWechatSession]
                 print("userName: \(snsAccount)")
             }
         }
