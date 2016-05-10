@@ -20,7 +20,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var exitContainerView: UIView!
     
     
-    var user: User! {
+    var user: User! = UserManager.sharedInstance.user {
         didSet {
             setupUserInfo()
         }
@@ -51,6 +51,10 @@ extension ProfileController {
         tableView.registerClass(StaticCell.self, forCellReuseIdentifier: staticCellProvider.cellID)
         
         addLastGroup()
+        
+        if user != nil {
+            setupUserInfo()
+        }
     }
     
     func setupUserInfo() {
@@ -122,6 +126,7 @@ extension ProfileController {
         tableView.deleteSections(firstSection, withRowAnimation: .None)
         
         clearUserInfo()
+        UserManager.loginout()
     }
     
 }

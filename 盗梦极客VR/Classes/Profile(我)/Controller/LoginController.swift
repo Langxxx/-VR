@@ -73,8 +73,10 @@ extension LoginController {
         
         MBProgressHUD.showMessage("正在登陆...")
         
-        checkLogin(loginUrl, parameters)
-            .complete(success: success, failure: failure)
+        UserManager.login(loginUrl,
+                          paramaters: parameters,
+                          success: success,
+                          failure: failure)
     }
     
     // TODO: 应用未审核，第三方登陆无效
