@@ -19,16 +19,11 @@ import SwiftyJSON
 class User : NSObject, NSCoding{
     
     var avatar : String!
-    var descriptionField : String!
     var displayname : String!
     var email : String!
-    var firstname : String!
     var id : Int!
-    var lastname : String!
-    var nicename : String!
     var nickname : String!
     var registered : String!
-    var url : String!
     var username : String!
     
     
@@ -40,16 +35,11 @@ class User : NSObject, NSCoding{
             return
         }
         avatar = json["avatar"].stringValue
-        descriptionField = json["description"].stringValue
         displayname = json["displayname"].stringValue
         email = json["email"].stringValue
-        firstname = json["firstname"].stringValue
         id = json["id"].intValue
-        lastname = json["lastname"].stringValue
-        nicename = json["nicename"].stringValue
         nickname = json["nickname"].stringValue
         registered = json["registered"].stringValue
-        url = json["url"].stringValue
         username = json["username"].stringValue
     }
     
@@ -62,35 +52,20 @@ class User : NSObject, NSCoding{
         if avatar != nil{
             dictionary["avatar"] = avatar
         }
-        if descriptionField != nil{
-            dictionary["description"] = descriptionField
-        }
         if displayname != nil{
             dictionary["displayname"] = displayname
         }
         if email != nil{
             dictionary["email"] = email
         }
-        if firstname != nil{
-            dictionary["firstname"] = firstname
-        }
         if id != nil{
             dictionary["id"] = id
         }
-        if lastname != nil{
-            dictionary["lastname"] = lastname
-        }
-        if nicename != nil{
-            dictionary["nicename"] = nicename
-        }
         if nickname != nil{
-            dictionary["nickname"] = nickname
+            dictionary["nicename"] = nickname
         }
         if registered != nil{
             dictionary["registered"] = registered
-        }
-        if url != nil{
-            dictionary["url"] = url
         }
         if username != nil{
             dictionary["username"] = username
@@ -105,16 +80,12 @@ class User : NSObject, NSCoding{
     @objc required init(coder aDecoder: NSCoder)
     {
         avatar = aDecoder.decodeObjectForKey("avatar") as? String
-        descriptionField = aDecoder.decodeObjectForKey("description") as? String
         displayname = aDecoder.decodeObjectForKey("displayname") as? String
         email = aDecoder.decodeObjectForKey("email") as? String
-        firstname = aDecoder.decodeObjectForKey("firstname") as? String
+       
         id = aDecoder.decodeObjectForKey("id") as? Int
-        lastname = aDecoder.decodeObjectForKey("lastname") as? String
-        nicename = aDecoder.decodeObjectForKey("nicename") as? String
-        nickname = aDecoder.decodeObjectForKey("nickname") as? String
+        nickname = aDecoder.decodeObjectForKey("nicename") as? String
         registered = aDecoder.decodeObjectForKey("registered") as? String
-        url = aDecoder.decodeObjectForKey("url") as? String
         username = aDecoder.decodeObjectForKey("username") as? String
         
     }
@@ -128,35 +99,20 @@ class User : NSObject, NSCoding{
         if avatar != nil{
             aCoder.encodeObject(avatar, forKey: "avatar")
         }
-        if descriptionField != nil{
-            aCoder.encodeObject(descriptionField, forKey: "description")
-        }
         if displayname != nil{
             aCoder.encodeObject(displayname, forKey: "displayname")
         }
         if email != nil{
             aCoder.encodeObject(email, forKey: "email")
         }
-        if firstname != nil{
-            aCoder.encodeObject(firstname, forKey: "firstname")
-        }
         if id != nil{
             aCoder.encodeObject(id, forKey: "id")
         }
-        if lastname != nil{
-            aCoder.encodeObject(lastname, forKey: "lastname")
-        }
-        if nicename != nil{
-            aCoder.encodeObject(nicename, forKey: "nicename")
-        }
         if nickname != nil{
-            aCoder.encodeObject(nickname, forKey: "nickname")
+            aCoder.encodeObject(nickname, forKey: "nicename")
         }
         if registered != nil{
             aCoder.encodeObject(registered, forKey: "registered")
-        }
-        if url != nil{
-            aCoder.encodeObject(url, forKey: "url")
         }
         if username != nil{
             aCoder.encodeObject(username, forKey: "username")

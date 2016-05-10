@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+import MBProgressHUD
 
 class ProfileController: UIViewController {
 
@@ -18,17 +20,19 @@ class ProfileController: UIViewController {
     @IBOutlet weak var exitContainerView: UIView!
     
     
-    var user: User? {
+    var user: User! {
         didSet {
             setupUserInfo()
         }
     }
     
+    var staticCellProvider =  TableViewProvider()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         automaticallyAdjustsScrollViewInsets = false
-        tableView.dataSource = self
+        setupTableView()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -41,6 +45,14 @@ class ProfileController: UIViewController {
 
 extension ProfileController {
 
+    func setupTableView() {
+        tableView.dataSource = staticCellProvider
+        tableView.delegate = staticCellProvider
+        tableView.registerClass(StaticCell.self, forCellReuseIdentifier: staticCellProvider.cellID)
+        
+        addLastGroup()
+    }
+    
     func setupUserInfo() {
         guard let user = user else {
             return
@@ -52,6 +64,41 @@ extension ProfileController {
         avatarImageView.layer.cornerRadius =  avatarImageView.bounds.width * 0.5
         usernameLabel.text = user.displayname
         exitContainerView.hidden = false
+        
+        addGroup0()
+        tableView.reloadData()
+    }
+    
+    func clearUserInfo() {
+        loginButton.enabled = true
+        
+        avatarImageView.image = UIImage(named: "user_defaultavatar")
+        usernameLabel.text = "点击登录"
+        exitContainerView.hidden = true
+        
+        user = nil
+    }
+    
+    func addGroup0() {
+        let nickname = RightDetallCellModel(text: "昵称", rightDetall: user.nickname)
+        let group = CellGroup(header: "基本信息", items: [nickname])
+        staticCellProvider.dataList.insert(group, atIndex: 0)
+    }
+    
+    func addLastGroup() {
+        let clearCell = RightDetallCellModel(text: "清理缓存", rightDetall: SDImageCache.getCacheSizeMB()) {
+            MBProgressHUD.showMessage("正在清理缓存...")
+            SDImageCache.sharedImageCache().clearDiskOnCompletion {
+                MBProgressHUD.hideHUD()
+                self.staticCellProvider.dataList.removeLast()
+                self.addLastGroup()
+                let section  = NSIndexSet(index: self.staticCellProvider.dataList.count - 1)
+                self.tableView.reloadSections(section, withRowAnimation: .None)
+            }
+            
+        }
+        let group = CellGroup(header: "功能",items: [clearCell])
+        staticCellProvider.dataList.append(group)
     }
 }
 
@@ -70,25 +117,17 @@ extension ProfileController {
     }
     
     @IBAction func exitButtonClik() {
+        staticCellProvider.dataList.removeFirst()
+        let firstSection = NSIndexSet(index: 0)
+        tableView.deleteSections(firstSection, withRowAnimation: .None)
         
+        clearUserInfo()
     }
     
 }
 
-
-extension ProfileController: UITableViewDataSource {
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("test", forIndexPath: indexPath)
-        cell.textLabel?.text = "test"
-        return cell
+extension SDImageCache {
+    static func getCacheSizeMB() -> String {
+        return String(format: "%.2f MB", Float(SDImageCache.sharedImageCache().getSize() / 1024) / 1024)
     }
 }
