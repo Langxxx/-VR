@@ -18,6 +18,9 @@
 		77185C0B1CD063D700525789 /* Details.css in Resources */ = {isa = PBXBuildFile; fileRef = 77185C0A1CD063D700525789 /* Details.css */; };
 		77185C0F1CD0FC7300525789 /* MBProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77185C0E1CD0FC7300525789 /* MBProgressHUD+Extension.swift */; };
 		771EF7C81CE18238008956C0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771EF7C71CE18238008956C0 /* UserManager.swift */; };
+		771EF7CA1CE2CBE5008956C0 /* BBSInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771EF7C91CE2CBE5008956C0 /* BBSInfo.swift */; };
+		771EF7CE1CE2CC1F008956C0 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771EF7CD1CE2CC1F008956C0 /* Participant.swift */; };
+		771EF7D21CE2D15B008956C0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771EF7D11CE2D15B008956C0 /* Post.swift */; };
 		774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774F5EBA1CCB12090087413F /* BBSURLConfig.swift */; };
 		775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */; };
 		775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775114911CC75C3A00BC6FB4 /* AppDelegate.swift */; };
@@ -69,6 +72,9 @@
 		77185C0A1CD063D700525789 /* Details.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Details.css; sourceTree = "<group>"; };
 		77185C0E1CD0FC7300525789 /* MBProgressHUD+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Extension.swift"; sourceTree = "<group>"; };
 		771EF7C71CE18238008956C0 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		771EF7C91CE2CBE5008956C0 /* BBSInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSInfo.swift; sourceTree = "<group>"; };
+		771EF7CD1CE2CC1F008956C0 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		771EF7D11CE2D15B008956C0 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		774F5EBA1CCB12090087413F /* BBSURLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSURLConfig.swift; sourceTree = "<group>"; };
 		7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		775114911CC75C3A00BC6FB4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -377,6 +383,9 @@
 				77C75D8D1CCE0B0900D1A396 /* NewsModel.swift */,
 				77C75D8F1CCE0B0900D1A396 /* Tag.swift */,
 				77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */,
+				771EF7C91CE2CBE5008956C0 /* BBSInfo.swift */,
+				771EF7CD1CE2CC1F008956C0 /* Participant.swift */,
+				771EF7D11CE2D15B008956C0 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -559,7 +568,9 @@
 				7711026D1CD8D07B0081B953 /* AuxiliaryModels.swift in Sources */,
 				77C75D921CCE0B0900D1A396 /* NewsModel.swift in Sources */,
 				77DC85291CCF02E60020AF6B /* Result.swift in Sources */,
+				771EF7CE1CE2CC1F008956C0 /* Participant.swift in Sources */,
 				77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */,
+				771EF7D21CE2D15B008956C0 /* Post.swift in Sources */,
 				771EF7C81CE18238008956C0 /* UserManager.swift in Sources */,
 				7703FA401CDF6AD2002DF803 /* CellModel.swift in Sources */,
 				77C75DA51CCE3EF000D1A396 /* ChannelModel.swift in Sources */,
@@ -567,6 +578,7 @@
 				7703FA3E1CDF6AAD002DF803 /* StaticTableViewPresentable.swift in Sources */,
 				7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */,
 				777EBEBD1CDB800C001A4BE4 /* LoginController.swift in Sources */,
+				771EF7CA1CE2CBE5008956C0 /* BBSInfo.swift in Sources */,
 				77C225251CDC858C003DF5F0 /* UserModel.swift in Sources */,
 				77DC85271CCEFDA40020AF6B /* NewsCell.swift in Sources */,
 				777EBEB71CDB3DBD001A4BE4 /* ProfileController.swift in Sources */,

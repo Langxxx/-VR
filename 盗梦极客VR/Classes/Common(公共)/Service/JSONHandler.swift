@@ -25,6 +25,10 @@ extension CustomField: JSONToModel {
 extension Tag: JSONToModel {
     
 }
+extension BBSInfo: JSONToModel {}
+extension Participant: JSONToModel {}
+extension Post: JSONToModel {}
+
 func fetchJsonFromNet(urlStr: String, _ parameters: [String: AnyObject]? = nil) -> AsynOperation<JSON> {
     return AsynOperation { completion in
         

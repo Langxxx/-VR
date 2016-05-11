@@ -34,6 +34,8 @@ class NewsModel : NSObject, NSCoding{
     	/// html的URL
 	var url : String!
 
+        /// 获取评论模块的数据
+    var bbsInfo : BBSInfo!
 
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
@@ -67,7 +69,12 @@ class NewsModel : NSObject, NSCoding{
 		}
 		title = json["title"].stringValue
 		type = json["type"].stringValue
-		url = json["url"].stringValue
+        url = json["url"].stringValue
+        
+        let bbsInfoJson = json["bbs_info"]
+        if bbsInfoJson != JSON.null{
+            bbsInfo = BBSInfo(fromJson: bbsInfoJson)
+        }
 	}
 
 	/**
@@ -120,6 +127,9 @@ class NewsModel : NSObject, NSCoding{
 		if url != nil{
 			dictionary["url"] = url
 		}
+        if bbsInfo != nil{
+            dictionary["bbs_info"] = bbsInfo.toDictionary()
+        }
 		return dictionary
 	}
 
@@ -141,7 +151,7 @@ class NewsModel : NSObject, NSCoding{
          title = aDecoder.decodeObjectForKey("title") as? String
          type = aDecoder.decodeObjectForKey("type") as? String
          url = aDecoder.decodeObjectForKey("url") as? String
-
+         bbsInfo = aDecoder.decodeObjectForKey("bbs_info") as? BBSInfo
 	}
 
     /**
@@ -186,7 +196,9 @@ class NewsModel : NSObject, NSCoding{
 		if url != nil{
 			aCoder.encodeObject(url, forKey: "url")
 		}
-
+        if bbsInfo != nil{
+            aCoder.encodeObject(bbsInfo, forKey: "bbs_info")
+        }
 	}
 
 }
