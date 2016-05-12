@@ -23,15 +23,8 @@ class NewsDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        automaticallyAdjustsScrollViewInsets = false
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 200
-        webView = UIWebView()
-        webView.delegate = self
-        webView.scrollView.scrollEnabled = false
-        loadNewsDetail()
+        setupTableView()
+        setupWebView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -43,77 +36,29 @@ class NewsDetailController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
-    deinit {
-        print("deinit")
-    }
-    
-    @IBAction func backButtonClik() {
-        navigationController?.popViewControllerAnimated(true)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    @IBAction func shareButtonClik() {
-        
-        ShareTool.setAllShareConfig(newsModel.title, shareText: newsModel.excerpt, url: newsModel.url)
-        UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: ShareTool.shareImage, shareToSnsNames: ShareTool.shareArray, delegate: nil)
-    }
+
     
 }
 
-extension NewsDetailController: UIWebViewDelegate {
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        MBProgressHUD.showError("网络异常，请稍后尝试！")
-    }
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        let urlStr = request.URL!.absoluteString
-        if urlStr == "about:blank" || urlStr.hasPrefix("http://player.youku.com/") || urlStr.hasPrefix("http://v.qq.com/iframe/player.html") {
-            return true
-        }
-
-        jumpToOtherLinker(request.URLString)
-        return false
-    }
-    func webViewDidFinishLoad(webView: UIWebView) {
-        let str = webView.stringByEvaluatingJavaScriptFromString("document.body.offsetHeight")!
-        let height = CGFloat((str as NSString).doubleValue)
-        webView.frame.size.height = height
-        tableView.reloadData()
-    }
-
-}
-
-extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsModel.bbsInfo.posts.count + 1
+extension NewsDetailController {
+    func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 150
+        tableView.sectionHeaderHeight = 25
+        tableView.sectionFooterHeight = 0
+        tableView.hidden = true
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let identifier = indexPath.row == 0 ? webCellIdentifier : replyCellIdentifier
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
-        
-        if indexPath.row == 0 {
-            cell.contentView.addSubview(webView)
-            webView.frame = cell.bounds
-            
-        }else {
-            let postModel = newsModel.bbsInfo.posts[indexPath.row - 1]
-            let replyCellViewModel = ReplyCellViewModel(model: postModel)
-            (cell as! ReplyCell).configure(replyCellViewModel)
-        }
-        
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return webView.frame.height
-        }else {
-            return UITableViewAutomaticDimension
-        }
+    func setupWebView() {
+        webView = UIWebView()
+        webView.delegate = self
+        webView.scrollView.scrollEnabled = false
+        loadNewsDetail()
     }
 }
+
 
 extension NewsDetailController {
     
@@ -159,3 +104,101 @@ extension NewsDetailController {
     }
     
 }
+// MARK: - 监听方法
+extension NewsDetailController {
+    @IBAction func backButtonClik() {
+        navigationController?.popViewControllerAnimated(true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    @IBAction func shareButtonClik() {
+        
+        ShareTool.setAllShareConfig(newsModel.title, shareText: newsModel.excerpt, url: newsModel.url)
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: ShareTool.shareImage, shareToSnsNames: ShareTool.shareArray, delegate: nil)
+    }
+}
+
+// MARK: - webView代理
+extension NewsDetailController: UIWebViewDelegate {
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        MBProgressHUD.showError("网络异常，请稍后尝试！")
+    }
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        let urlStr = request.URL!.absoluteString
+        if urlStr == "about:blank" || urlStr.hasPrefix("http://player.youku.com/") || urlStr.hasPrefix("http://v.qq.com/iframe/player.html") {
+            return true
+        }
+
+        jumpToOtherLinker(request.URLString)
+        return false
+    }
+    func webViewDidFinishLoad(webView: UIWebView) {
+        let str = webView
+            .stringByEvaluatingJavaScriptFromString("document.body.offsetHeight")!
+        let height = CGFloat((str as NSString).doubleValue)
+        webView.frame.size.height = height + 20 //为了去除获得高度的偏差造成影响所以+20
+        let webViewIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+        
+        tableView.reloadRowsAtIndexPaths([webViewIndexPath], withRowAnimation: .None)
+        tableView.scrollToRowAtIndexPath(webViewIndexPath, atScrollPosition: .Top, animated: false)
+        
+        // 延迟0.5S再显示
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
+            self.tableView.hidden = false
+        }
+    }
+
+}
+// MARK: - tableview代理和数据源
+extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return section == 0 ? 1 : newsModel.bbsInfo.posts.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let identifier = indexPath.section == 0 ? webCellIdentifier : replyCellIdentifier
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+        
+        if indexPath.section == 0 {
+            cell.contentView.addSubview(webView)
+            webView.frame = cell.bounds
+            
+        }else {
+            let postModel = newsModel.bbsInfo.posts[indexPath.row]
+            let replyCellViewModel = ReplyCellViewModel(model: postModel)
+            (cell as! ReplyCell).configure(replyCellViewModel)
+        }
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return webView.frame.height
+        }else {
+            return UITableViewAutomaticDimension
+        }
+    }
+
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section != 0 && newsModel.bbsInfo.posts.count != 0 else {
+            return nil
+        }
+        
+        let attriStr = NSMutableAttributedString(string: "  用户评论")
+        let redStrAttr = [NSForegroundColorAttributeName : UIColor.redColor()]
+        attriStr.addAttributes(redStrAttr, range: NSRange(location: 0, length: attriStr.length))
+        let label = UILabel()
+        label.attributedText = attriStr
+        label.backgroundColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
+        label.font = UIFont.systemFontOfSize(15)
+        return label
+    }
+}
+
