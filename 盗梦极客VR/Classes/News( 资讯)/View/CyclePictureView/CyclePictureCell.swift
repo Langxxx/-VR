@@ -21,7 +21,8 @@ class CyclePictureCell: UICollectionViewCell {
             case let .Local(name):
                 self.imageView.image = UIImage(named: name)
             case let .Network(urlStr):
-                self.imageView.sd_setImageWithURL(NSURL(string: urlStr)!, placeholderImage: placeholderImage)
+                let encodeString = urlStr.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+                self.imageView.sd_setImageWithURL(NSURL(string: encodeString)!, placeholderImage: placeholderImage)
             }
         }
     }

@@ -14,6 +14,7 @@ class NewsDetailController: UIViewController {
     
     /// 这里不使用WKWebView是因为Loadhtml方法加载出来的，样式会很奇怪
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var replyContainerView: UIView!
     
     var webView: UIWebView!
     var newsModel: NewsModel!
@@ -115,6 +116,11 @@ extension NewsDetailController {
         ShareTool.setAllShareConfig(newsModel.title, shareText: newsModel.excerpt, url: newsModel.url)
         UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: ShareTool.shareImage, shareToSnsNames: ShareTool.shareArray, delegate: nil)
     }
+    
+    @IBAction func replyButtonClik() {
+    }
+
+    
 }
 
 // MARK: - webView代理
@@ -144,6 +150,7 @@ extension NewsDetailController: UIWebViewDelegate {
         // 延迟0.5S再显示
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
             self.tableView.hidden = false
+            self.replyContainerView.hidden = false
         }
     }
 
