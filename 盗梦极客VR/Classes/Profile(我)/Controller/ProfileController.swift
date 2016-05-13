@@ -20,9 +20,9 @@ class ProfileController: UIViewController {
     @IBOutlet weak var exitContainerView: UIView!
     
     
-    var user: User! = UserManager.sharedInstance.user {
-        didSet {
-            setupUserInfo()
+    var user: User! {
+        get {
+            return UserManager.sharedInstance.user
         }
     }
     
@@ -33,6 +33,9 @@ class ProfileController: UIViewController {
         
         automaticallyAdjustsScrollViewInsets = false
         setupTableView()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userDidLogin), name: UserDidLoginNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userDidLoginout), name: UserDidLoginoutNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -40,7 +43,9 @@ class ProfileController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
-    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }
 
 extension ProfileController {
@@ -79,8 +84,6 @@ extension ProfileController {
         avatarImageView.image = UIImage(named: "user_defaultavatar")
         usernameLabel.text = "点击登录"
         exitContainerView.hidden = true
-        
-        user = nil
     }
     
     func addGroup0() {
@@ -110,9 +113,6 @@ extension ProfileController {
     
     @IBAction func loginButtonClik() {
         let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("LoginController") as! LoginController
-        vc.completion = { user in
-            self.user = user
-        }
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
         if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
@@ -128,6 +128,15 @@ extension ProfileController {
         clearUserInfo()
         UserManager.loginout()
     }
+    
+    func userDidLogin() {
+        setupUserInfo()
+    }
+    
+    func userDidLoginout() {
+        clearUserInfo()
+    }
+    
     
 }
 

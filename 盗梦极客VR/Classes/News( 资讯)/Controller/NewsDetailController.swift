@@ -118,6 +118,19 @@ extension NewsDetailController {
     }
     
     @IBAction func replyButtonClik() {
+        
+        if UserManager.sharedInstance.user == nil { //未登录
+            let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+            if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
+                interactivePopGestureRecognizer.delegate = nil
+            }
+        }else {
+            let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("ReplyController")
+            presentViewController(vc, animated: true) {print("111")}
+        }
+        
     }
 
     

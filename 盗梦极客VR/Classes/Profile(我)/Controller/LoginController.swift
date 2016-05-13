@@ -23,7 +23,7 @@ class LoginController: UIViewController {
         ]
     }
     
-    var completion: ((user: User) -> Void)!
+//    var completion: ((user: User) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +57,6 @@ extension LoginController {
         }
         
         func success(user: User) {
-            MBProgressHUD.showSuccess(user.displayname)
-            completion(user: user)
             navigationController?.popViewControllerAnimated(true)
         }
         

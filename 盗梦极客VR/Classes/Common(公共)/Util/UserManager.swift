@@ -8,9 +8,12 @@
 
 import Foundation
 
+let UserDidLoginNotification = "UserDidLoginNotification"
+let UserDidLoginoutNotification = "UserDidLoginoutNotification"
+
 class UserManager {
 
-    let user: User?
+    var user: User?
     
     static let key = "UserKey"
     
@@ -36,6 +39,8 @@ class UserManager {
                 let data = NSKeyedArchiver.archivedDataWithRootObject(user)
                 userDefaults.setObject(data, forKey: UserManager.key)
                 userDefaults.synchronize()
+                UserManager.sharedInstance.user = user
+                NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
                 success(user)
                 },
                 failure: failure
@@ -45,5 +50,8 @@ class UserManager {
     static func loginout() {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.removeObjectForKey(UserManager.key)
+        userDefaults.synchronize()
+        UserManager.sharedInstance.user = nil
+        NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginoutNotification, object: nil)
     }
 }
