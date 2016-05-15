@@ -57,6 +57,7 @@ extension LoginController {
         }
         
         func success(user: User) {
+            MBProgressHUD.hideHUD()
             navigationController?.popViewControllerAnimated(true)
         }
         

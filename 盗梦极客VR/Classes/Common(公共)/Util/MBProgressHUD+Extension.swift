@@ -15,21 +15,21 @@ extension MBProgressHUD {
         
         hud.label.text = text
         
-        hud.customView = UIImageView(image: UIImage(named: "MBProgressHUD.bundle/\(icon)"))
+        hud.customView = UIImageView(image: UIImage(named: icon))
         hud.mode = .CustomView
         
         hud.removeFromSuperViewOnHide = true
-        hud.hideAnimated(true, afterDelay: 0.7)
+        hud.hideAnimated(true, afterDelay: 1.5)
     }
 
     static func showSuccess(text: String, toView: UIView = UIApplication.sharedApplication().keyWindow!) {
         MBProgressHUD.hideHUD(toView)
-        MBProgressHUD.show(text, icon: "success.png", view: toView)
+        MBProgressHUD.show(text, icon: "success", view: toView)
     }
     
     static func showError(text: String, toView: UIView = UIApplication.sharedApplication().keyWindow!) {
         MBProgressHUD.hideHUD(toView)
-        MBProgressHUD.show(text, icon: "error.png", view: toView)
+        MBProgressHUD.show(text, icon: "error", view: toView)
     }
     
     static func showMessage(text: String, toView: UIView = UIApplication.sharedApplication().keyWindow!) {

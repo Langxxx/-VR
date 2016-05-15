@@ -49,6 +49,7 @@ extension NewsDetailController {
         tableView.estimatedRowHeight = 150
         tableView.sectionHeaderHeight = 25
         tableView.sectionFooterHeight = 0
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
         tableView.hidden = true
     }
     
@@ -112,7 +113,6 @@ extension NewsDetailController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     @IBAction func shareButtonClik() {
-        
         ShareTool.setAllShareConfig(newsModel.title, shareText: newsModel.excerpt, url: newsModel.url)
         UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: ShareTool.shareImage, shareToSnsNames: ShareTool.shareArray, delegate: nil)
     }
@@ -127,8 +127,9 @@ extension NewsDetailController {
                 interactivePopGestureRecognizer.delegate = nil
             }
         }else {
-            let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("ReplyController")
-            presentViewController(vc, animated: true) {print("111")}
+            let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("ReplyController") as! ReplyController
+            vc.newsModel = newsModel
+            presentViewController(vc, animated: true, completion: nil)
         }
         
     }
