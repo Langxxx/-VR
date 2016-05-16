@@ -43,6 +43,16 @@ class NewsDetailController: UIViewController {
         return !(newsModel.type == "device" || newsModel.type == "video")
     }
     
+    let videoRequestList = [
+        "http://player.youku.com/",
+        "http://v.qq.com/",
+        "http://play.video.qcloud.com/",
+        "http://www.tudou.com",
+        "http://tv.sohu.com",
+        "http://www.acfun.tv",
+        "http://www.bilibili.com"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -52,11 +62,6 @@ class NewsDetailController: UIViewController {
             tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadDeviceListInfo))
             tableView.mj_footer.beginRefreshing()
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -117,6 +122,15 @@ extension NewsDetailController {
 
 extension NewsDetailController {
     
+    func isVideoRequst(urlStr: String) -> Bool {
+        for str in videoRequestList {
+            if urlStr.hasPrefix(str) {
+                return true
+            }
+        }
+        return false
+    }
+    
     func jumpToOtherLinker(urlStr: String) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OtherLinkWebController") as! OtherLinkWebController
         vc.URLStr = urlStr
@@ -157,6 +171,7 @@ extension NewsDetailController {
         
         return body
     }
+    
 }
 // MARK: - 监听方法
 extension NewsDetailController {
@@ -196,7 +211,7 @@ extension NewsDetailController: UIWebViewDelegate {
     }
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         let urlStr = request.URL!.absoluteString
-        if urlStr == "about:blank" || urlStr.hasPrefix("http://player.youku.com/") || urlStr.hasPrefix("http://v.qq.com/iframe/player.html") ||  urlStr.hasPrefix("http://play.video.qcloud.com/") {
+        if urlStr == "about:blank" || isVideoRequst(urlStr) {
             return true
         }
         
