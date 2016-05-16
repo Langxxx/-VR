@@ -39,6 +39,11 @@ class LoginController: UIViewController {
     deinit {
         print("LoginController deinit")
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+    }
 }
 
 extension LoginController {

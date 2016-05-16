@@ -41,6 +41,7 @@ class ProfileController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
     }
 
     deinit {

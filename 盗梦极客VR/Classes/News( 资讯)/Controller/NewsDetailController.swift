@@ -39,6 +39,10 @@ class NewsDetailController: UIViewController {
     }
     var deviceListPage = 1
     
+    var canReply: Bool {
+        return !(newsModel.type == "device" || newsModel.type == "video")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -58,6 +62,7 @@ class NewsDetailController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
     }
 
     
@@ -211,7 +216,9 @@ extension NewsDetailController: UIWebViewDelegate {
         // 延迟0.5S再显示
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
             self.tableView.hidden = false
-            self.replyContainerView.hidden = false
+            if self.canReply {
+                self.replyContainerView.hidden = false
+            }
         }
     }
 
@@ -252,6 +259,7 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
                 let postModel = newsModel.bbsInfo.posts[indexPath.row]
                 let replyCellViewModel = ReplyCellViewModel(model: postModel)
                 (cell as! ReplyCell).configure(replyCellViewModel)
+                cell.selectionStyle = .None
             }
             
             return cell
@@ -280,6 +288,18 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
         label.backgroundColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
         label.font = UIFont.systemFontOfSize(15)
         return label
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if isDeviceList {
+            let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("NewsDetailController") as! NewsDetailController
+            vc.newsModel = newsModelArray[indexPath.row]
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+            if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
+                interactivePopGestureRecognizer.delegate = nil
+            }
+        }
     }
 }
 

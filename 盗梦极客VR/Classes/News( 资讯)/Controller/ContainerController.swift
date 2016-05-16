@@ -23,9 +23,15 @@ class ContainerController: UIViewController {
         setupChannelScrollView()
         setupChildViewControllers()
         setupContainerView()
-        
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+    }
+  }
+
+extension ContainerController {
     func setupChannelScrollView() {
         
         channelScrollView.myDelegate = self
@@ -50,7 +56,7 @@ class ContainerController: UIViewController {
             
             let vc = self.childViewControllers[indexPath.row] as! NewsListController
             cell.contentView.addSubview(vc.view)
-
+            
             vc.view.snp_remakeConstraints { (make) in
                 make.top.equalTo(cell.contentView)
                 make.bottom.equalTo(cell.contentView)
@@ -62,9 +68,8 @@ class ContainerController: UIViewController {
         containerView.dataSource = collectionViewCellProvider
         containerView.delegate = self
     }
+
 }
-
-
 
 // MARK: - UICollectionViewDelegate 代理
 extension ContainerController: UICollectionViewDelegate {

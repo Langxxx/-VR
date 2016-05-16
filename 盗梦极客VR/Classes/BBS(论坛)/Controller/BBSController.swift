@@ -48,6 +48,7 @@ class BBSController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
     }
 
 
