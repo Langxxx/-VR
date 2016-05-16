@@ -196,10 +196,10 @@ extension NewsDetailController: UIWebViewDelegate {
     }
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         let urlStr = request.URL!.absoluteString
-        if urlStr == "about:blank" || urlStr.hasPrefix("http://player.youku.com/") || urlStr.hasPrefix("http://v.qq.com/iframe/player.html") {
+        if urlStr == "about:blank" || urlStr.hasPrefix("http://player.youku.com/") || urlStr.hasPrefix("http://v.qq.com/iframe/player.html") ||  urlStr.hasPrefix("http://play.video.qcloud.com/") {
             return true
         }
-
+        
         jumpToOtherLinker(request.URLString)
         return false
     }
