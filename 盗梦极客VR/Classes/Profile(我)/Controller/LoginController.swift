@@ -47,6 +47,13 @@ class LoginController: UIViewController {
 }
 
 extension LoginController {
+    
+    
+    @IBAction func registerButtonClik() {
+        let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("RegisterController")
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @IBAction func backButtonClik() {
         navigationController?.popViewControllerAnimated(true)
     }
