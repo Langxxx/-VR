@@ -57,6 +57,8 @@
 		77C75DA51CCE3EF000D1A396 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */; };
 		77C75DAA1CCE51D400D1A396 /* AsynOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA81CCE51D400D1A396 /* AsynOperation.swift */; };
 		77C75DAB1CCE51D400D1A396 /* JSONHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C75DA91CCE51D400D1A396 /* JSONHandler.swift */; };
+		77C888DE1CE89B9C00BA6A7B /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C888DD1CE89B9C00BA6A7B /* DeviceCell.swift */; };
+		77C888E01CE89C1700BA6A7B /* DeviceCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C888DF1CE89C1700BA6A7B /* DeviceCellViewModel.swift */; };
 		77DC85271CCEFDA40020AF6B /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85261CCEFDA40020AF6B /* NewsCell.swift */; };
 		77DC85291CCF02E60020AF6B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85281CCF02E60020AF6B /* Result.swift */; };
 		77DC85361CCF05720020AF6B /* ViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85351CCF05720020AF6B /* ViewPresentable.swift */; };
@@ -118,6 +120,8 @@
 		77C75DA41CCE3EF000D1A396 /* ChannelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		77C75DA81CCE51D400D1A396 /* AsynOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynOperation.swift; sourceTree = "<group>"; };
 		77C75DA91CCE51D400D1A396 /* JSONHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONHandler.swift; sourceTree = "<group>"; };
+		77C888DD1CE89B9C00BA6A7B /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
+		77C888DF1CE89C1700BA6A7B /* DeviceCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCellViewModel.swift; sourceTree = "<group>"; };
 		77DC85261CCEFDA40020AF6B /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		77DC85281CCF02E60020AF6B /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		77DC85351CCF05720020AF6B /* ViewPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPresentable.swift; sourceTree = "<group>"; };
@@ -310,6 +314,7 @@
 				77BA12581CCD9FBA002C18AC /* ContainerView.swift */,
 				77DC85261CCEFDA40020AF6B /* NewsCell.swift */,
 				771EF7D31CE35B0D008956C0 /* ReplyCell.swift */,
+				77C888DD1CE89B9C00BA6A7B /* DeviceCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 				77C75D741CCDEE4000D1A396 /* ContainerViewDataSource.swift */,
 				77DC85391CCF0CA70020AF6B /* NewCellViewModel.swift */,
 				771EF7D51CE35BDF008956C0 /* ReplyCellViewModel.swift */,
+				77C888DF1CE89C1700BA6A7B /* DeviceCellViewModel.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 				77737E461CCFABEB0071794E /* NewsDetailController.swift in Sources */,
 				77C225271CDC8681003DF5F0 /* LoginCheck.swift in Sources */,
 				771EF7D61CE35BDF008956C0 /* ReplyCellViewModel.swift in Sources */,
+				77C888E01CE89C1700BA6A7B /* DeviceCellViewModel.swift in Sources */,
 				77DC85361CCF05720020AF6B /* ViewPresentable.swift in Sources */,
 				7711026E1CD8D07B0081B953 /* CyclePictureCell.swift in Sources */,
 				7711026F1CD8D07B0081B953 /* CyclePictureView.swift in Sources */,
@@ -586,6 +593,7 @@
 				77DC85291CCF02E60020AF6B /* Result.swift in Sources */,
 				771EF7CE1CE2CC1F008956C0 /* Participant.swift in Sources */,
 				77BA12591CCD9FBA002C18AC /* ContainerView.swift in Sources */,
+				77C888DE1CE89B9C00BA6A7B /* DeviceCell.swift in Sources */,
 				771EF7D21CE2D15B008956C0 /* Post.swift in Sources */,
 				771EF7C81CE18238008956C0 /* UserManager.swift in Sources */,
 				7703FA401CDF6AD2002DF803 /* CellModel.swift in Sources */,

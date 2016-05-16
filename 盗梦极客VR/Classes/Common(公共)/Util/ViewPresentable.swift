@@ -116,3 +116,26 @@ extension TopImageViewPresentable {
         imageView.sd_setImageWithURL(url)
     }
 }
+
+protocol TagPresentable {
+    var tagString: String {get}
+    var tagColor: UIColor { get }
+    var tagFont: UIFont { get }
+    
+    func configTageString(label: UILabel)
+}
+
+extension TagPresentable {
+    var tagColor: UIColor {
+        return UIColor.grayColor()
+    }
+    var tagFont: UIFont {
+        return UIFont.systemFontOfSize(15)
+    }
+    
+    func configTageString(label: UILabel) {
+        label.text = tagString
+        label.textColor = tagColor
+        label.font = tagFont
+    }
+}

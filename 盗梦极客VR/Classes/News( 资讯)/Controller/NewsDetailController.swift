@@ -8,7 +8,7 @@
 
 import UIKit
 import MBProgressHUD
-import SnapKit
+import MJRefresh
 
 class NewsDetailController: UIViewController {
     
@@ -21,11 +21,33 @@ class NewsDetailController: UIViewController {
     
     let webCellIdentifier = "WebCell"
     let replyCellIdentifier = "ReplyCell"
+    let deviceCellIdentifier = "DeviceCell"
+    
+    var isDeviceList: Bool {
+        return newsModel.type == "device"
+    }
+    
+    var newsModelArray: [NewsModel] = []
+    
+    let deviceURL = "http://dmgeek.com/DG_api/get_device_posts/"
+    var parameters: [String: AnyObject] {
+        return [
+            "page": deviceListPage,
+            "post_id": newsModel.id,
+            "post_type": "device"
+        ]
+    }
+    var deviceListPage = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupWebView()
+        
+        if isDeviceList {
+            tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadDeviceListInfo))
+            tableView.mj_footer.beginRefreshing()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,6 +80,32 @@ extension NewsDetailController {
         webView.delegate = self
         webView.scrollView.scrollEnabled = false
         loadNewsDetail()
+    }
+
+    func loadDeviceListInfo() {
+
+        func success(modelArray: [NewsModel]) {
+            tableView.mj_footer.endRefreshing()
+            guard modelArray.count != 0 else {
+                MBProgressHUD.showError("没有更多信息")
+                return
+            }
+            newsModelArray += modelArray
+            deviceListPage += 1
+            let section = NSIndexSet(index: 1)
+            tableView.reloadSections(section, withRowAnimation: .None)
+            
+        }
+        
+        func failure(_: ErrorType) {
+            tableView.mj_footer.endRefreshing()
+            MBProgressHUD.showError("网络拥堵，请稍后尝试!")
+        }
+        
+        fetchJsonFromNet(deviceURL, parameters)
+            .map { jsonToModelArray( $0["posts"], initial: NewsModel.init) }
+            .complete(success: success, failure: failure)
+        
     }
 }
 
@@ -104,7 +152,6 @@ extension NewsDetailController {
         
         return body
     }
-    
 }
 // MARK: - 监听方法
 extension NewsDetailController {
@@ -177,33 +224,46 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 1 : newsModel.bbsInfo.posts.count
+        if newsModelArray.count == 0 {
+            return section == 0 ? 1 : newsModel.bbsInfo.posts.count
+        }else {
+            return section == 0 ? 1 : newsModelArray.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let identifier = indexPath.section == 0 ? webCellIdentifier : replyCellIdentifier
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
-        
         if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(webCellIdentifier, forIndexPath: indexPath)
             cell.contentView.addSubview(webView)
             webView.frame = cell.bounds
+            return cell
             
         }else {
-            let postModel = newsModel.bbsInfo.posts[indexPath.row]
-            let replyCellViewModel = ReplyCellViewModel(model: postModel)
-            (cell as! ReplyCell).configure(replyCellViewModel)
+            
+            let identifier = isDeviceList ? deviceCellIdentifier : replyCellIdentifier
+            let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+            
+            if isDeviceList {
+                let newsModel = newsModelArray[indexPath.row]
+                let deviceCellViewModel = DeviceCellViewModel(model: newsModel)
+                (cell as! DeviceCell).configure(deviceCellViewModel)
+            }else {
+                let postModel = newsModel.bbsInfo.posts[indexPath.row]
+                let replyCellViewModel = ReplyCellViewModel(model: postModel)
+                (cell as! ReplyCell).configure(replyCellViewModel)
+            }
+            
+            return cell
         }
         
-        return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return webView.frame.height
         }else {
-            return UITableViewAutomaticDimension
+            return isDeviceList ? 100 : UITableViewAutomaticDimension
         }
     }
 

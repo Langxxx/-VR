@@ -88,12 +88,14 @@ extension NewsListController {
             MBProgressHUD.hideHUD(self.view)
             self.newsModelArray += modelArray[0]
             self.topNewsModelArray = modelArray[1]
+            tableView.mj_footer.endRefreshing()
         }
         
         func failure(_: ErrorType) {
             MBProgressHUD.hideHUD(self.view)
             MBProgressHUD.showError("网络异常，请稍后尝试")
             self.reloadLabel.hidden = false
+            tableView.mj_footer.endRefreshing()
         }
         // TODO: 如果是非资讯分类，不应该fetchTopNewsJsonFromNet
         fetchJsonFromNet(channelModel.URL, parameters)
@@ -107,11 +109,13 @@ extension NewsListController {
         func success(modelArray: [NewsModel]) {
             MBProgressHUD.hideHUD(self.view)
             self.newsModelArray += modelArray
+            tableView.mj_footer.endRefreshing()
         }
         
         func failure(_: ErrorType) {
             MBProgressHUD.hideHUD(self.view)
             MBProgressHUD.showError("网络异常，请稍后尝试")
+            tableView.mj_footer.endRefreshing()
         }
         
         fetchJsonFromNet(channelModel.URL, parameters)

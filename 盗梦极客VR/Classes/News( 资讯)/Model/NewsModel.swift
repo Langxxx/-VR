@@ -37,6 +37,21 @@ class NewsModel : NSObject, NSCoding{
         /// 获取评论模块的数据
     var bbsInfo : BBSInfo!
 
+    
+    var tag: String {
+        guard let str = type else {
+            return ""
+        }
+        
+        if str == "review" {
+            return "评测"
+        }else if str == "video" {
+            return "视频"
+        }else {
+            return "资讯"
+        }
+    }
+    
 	/**
 	 * Instantiate the instance using the passed json values to set the properties values
 	 */
