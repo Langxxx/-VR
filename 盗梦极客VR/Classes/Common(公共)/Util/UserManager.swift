@@ -54,4 +54,48 @@ class UserManager {
         UserManager.sharedInstance.user = nil
         NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginoutNotification, object: nil)
     }
+    
+    static func checkEmailValid(email: String,
+                                success: (Bool) -> (),
+                                failure: (ErrorType) -> ()) {
+        
+        checkInfoValid("http://dmgeek.com/DG_api/users/email_exists/",
+                       parameters: ["email": email])
+            .complete(success: success, failure: failure)
+    }
+    
+    static func checkAccountValid(account: String,
+                                success: (Bool) -> (),
+                                failure: (ErrorType) -> ()) {
+        
+        checkInfoValid("http://dmgeek.com/DG_api/users/email_exists/",
+            parameters: ["user_id": account])
+            .complete(success: success, failure: failure)
+    }
+    
+//    static func register(registerInfo:
+//                                    (   nickName: String,
+//                                        email: String,
+//                                        account: String,
+//                                        password: String
+//                                    ),
+//                         success: () -> (),
+//                         failure: () -> ()) {
+//        
+//        func jointParameters(nonce: String) -> [String: AnyObject] {
+//            return [
+//                "username": registerInfo.account,
+//                "email": registerInfo.email,
+//                "nickname": registerInfo.nickName,
+//                "user_pass": registerInfo.password,
+//                "nonce": nonce,
+//                "notify": "both",
+//                "display_name": registerInfo.nickName
+//            ]
+//        }
+//        
+//        getNonceValue()
+//            .map(jointParameters)
+//            .then(checkRegisterValid)
+//    }
 }

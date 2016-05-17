@@ -508,7 +508,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="nickNameDidChange" destination="0hY-Hf-KhY" eventType="editingDidEnd" id="vFV-Yy-ky1"/>
+                                            <action selector="nickNameDidChange" destination="0hY-Hf-KhY" eventType="editingChanged" id="JDd-Cd-qAE"/>
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电子邮件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQc-3B-XCe">
@@ -523,6 +523,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="emailDidChange" destination="0hY-Hf-KhY" eventType="editingChanged" id="BBp-YZ-bT1"/>
+                                            <action selector="emailDidEndEditing" destination="0hY-Hf-KhY" eventType="editingDidEnd" id="Atc-EC-xW4"/>
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账号(英文数字组成)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWM-CM-ns8">
@@ -536,7 +537,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <action selector="accountDidChange" destination="0hY-Hf-KhY" eventType="editingDidEnd" id="966-mB-Zmk"/>
+                                            <action selector="accountDidChange" destination="0hY-Hf-KhY" eventType="editingChanged" id="aEx-9S-EXw"/>
+                                            <action selector="accountDidEndEditing" destination="0hY-Hf-KhY" eventType="editingDidEnd" id="pMK-zn-AMM"/>
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLD-XG-UqJ">
@@ -766,7 +768,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdX-yX-Wqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901" y="1082"/>
+            <point key="canvasLocation" x="865" y="1078"/>
         </scene>
     </scenes>
     <resources>

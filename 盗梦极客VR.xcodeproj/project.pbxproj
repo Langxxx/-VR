@@ -24,6 +24,7 @@
 		771EF7D41CE35B0D008956C0 /* ReplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771EF7D31CE35B0D008956C0 /* ReplyCell.swift */; };
 		771EF7D61CE35BDF008956C0 /* ReplyCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771EF7D51CE35BDF008956C0 /* ReplyCellViewModel.swift */; };
 		771EF7D81CE36356008956C0 /* RegexHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771EF7D71CE36356008956C0 /* RegexHelper.swift */; };
+		772F7DF71CEAA2D800C1E1D6 /* RegisterCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 772F7DF61CEAA2D800C1E1D6 /* RegisterCheck.swift */; };
 		773B8CF91CE4A64C004077F6 /* ReplyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773B8CF81CE4A64C004077F6 /* ReplyController.swift */; };
 		774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774F5EBA1CCB12090087413F /* BBSURLConfig.swift */; };
 		775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */; };
@@ -85,6 +86,7 @@
 		771EF7D31CE35B0D008956C0 /* ReplyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyCell.swift; sourceTree = "<group>"; };
 		771EF7D51CE35BDF008956C0 /* ReplyCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyCellViewModel.swift; sourceTree = "<group>"; };
 		771EF7D71CE36356008956C0 /* RegexHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexHelper.swift; sourceTree = "<group>"; };
+		772F7DF61CEAA2D800C1E1D6 /* RegisterCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCheck.swift; sourceTree = "<group>"; };
 		773B8CF81CE4A64C004077F6 /* ReplyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyController.swift; sourceTree = "<group>"; };
 		774F5EBA1CCB12090087413F /* BBSURLConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSURLConfig.swift; sourceTree = "<group>"; };
 		7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				77C75DA81CCE51D400D1A396 /* AsynOperation.swift */,
 				77C75DA91CCE51D400D1A396 /* JSONHandler.swift */,
 				77C225261CDC8681003DF5F0 /* LoginCheck.swift */,
+				772F7DF61CEAA2D800C1E1D6 /* RegisterCheck.swift */,
 				7703FA3A1CDF6A2D002DF803 /* StaticTableViewPresentable */,
 			);
 			path = Service;
@@ -605,6 +608,7 @@
 				775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */,
 				7703FA3E1CDF6AAD002DF803 /* StaticTableViewPresentable.swift in Sources */,
 				7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */,
+				772F7DF71CEAA2D800C1E1D6 /* RegisterCheck.swift in Sources */,
 				777EBEBD1CDB800C001A4BE4 /* LoginController.swift in Sources */,
 				771EF7CA1CE2CBE5008956C0 /* BBSInfo.swift in Sources */,
 				77C225251CDC858C003DF5F0 /* UserModel.swift in Sources */,
