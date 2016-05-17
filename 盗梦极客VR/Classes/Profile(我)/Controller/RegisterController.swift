@@ -31,6 +31,10 @@ class RegisterController: UIViewController {
     @IBOutlet weak var passwordValidLogo: UIButton!
     @IBOutlet weak var againPasswordValidLogo: UIButton!
     
+    @IBOutlet weak var emailActivityView: UIActivityIndicatorView!
+    @IBOutlet weak var accountActivityView: UIActivityIndicatorView!
+    
+    
     var returnKeyHandler: IQKeyboardReturnKeyHandler!
 
     var validCount: UInt8 = 0b00000000 {
@@ -64,7 +68,7 @@ extension RegisterController {
         
         noticeLabel.hidden = isValid
         iconButton.hidden = text.characters.count == 0
-        iconButton.selected = !emailErrorInfo.hidden
+        iconButton.selected = !isValid
         
         isValid ? validCount.setBit(index) : validCount.clrBit(index)
     }
@@ -90,7 +94,7 @@ extension RegisterController {
                          text: nickname,
                          noticeLabel: nicknameErrorInfo,
                          iconButton: nicknameValidLogo,
-                         index: 0)
+                         index: UInt8(nicknameValidLogo.tag))
     }
 
     @IBAction func emailDidChange() {
@@ -104,12 +108,36 @@ extension RegisterController {
                          text: email,
                          noticeLabel: emailErrorInfo,
                          iconButton: emailValidLogo,
-                         index: 1)
+                         index: UInt8(emailValidLogo.tag))
         emailErrorInfo.text = "(请填写正确的邮箱地址!)"
     }
     @IBAction func emailDidEndEditing() {
+        guard let email = emailTextField.text where emailErrorInfo.hidden && !email.isEmpty else {
+            return
+        }
         
+        func success(isExists: Bool) {
+            emailActivityView.hidden = true
+            emailValidLogo.hidden = false
+            if isExists {
+                setInvalidNotice(false,
+                                 text: email,
+                                 noticeLabel: emailErrorInfo,
+                                 iconButton: emailValidLogo,
+                                 index: UInt8(emailValidLogo.tag))
+                emailErrorInfo.text = "(邮箱已被注册!)"
+            }
+        }
         
+        func failure(_: ErrorType) {
+            emailActivityView.hidden = true
+            emailValidLogo.hidden = false
+        }
+        emailActivityView.hidden = false
+        emailValidLogo.hidden = true
+        UserManager.checkEmailValid(email,
+                                    success: success,
+                                    failure: failure)
     }
     
     @IBAction func accountDidChange() {
@@ -124,28 +152,35 @@ extension RegisterController {
                          text: account,
                          noticeLabel: accountErrorInfo,
                          iconButton: accountValidLogo,
-                         index: 2)
-        accountErrorInfo.text = "(账号格式不正确)"
+                         index: UInt8(accountValidLogo.tag))
+        accountErrorInfo.text = "(账号格式不正确!)"
     }
     @IBAction func accountDidEndEditing() {
-//        guard accountErrorInfo.hidden else {
-//            return
-//        }
-//        
-//        func success(success: Bool) {
-//            if !success {
-//                
-//            }
-//        }
-//        
-//        func failure(_: ErrorType) {
-//            
-//        }
-//        
-//        UserManager.checkAccountValid(accountTextField.text!,
-//                                      success: success,
-//                                      failure: failure)
-        print("accountDidEndEditing")
+        guard let account = accountTextField.text where accountErrorInfo.hidden && !account.isEmpty else {
+            return
+        }
+        func success(isExists: Bool) {
+            accountActivityView.hidden = true
+            accountValidLogo.hidden = false
+            if isExists {
+                setInvalidNotice(false,
+                                 text: account,
+                                 noticeLabel: accountErrorInfo,
+                                 iconButton: accountValidLogo,
+                                 index: UInt8(accountValidLogo.tag))
+                accountErrorInfo.text = "(用户已存在!)"
+            }
+        }
+        
+        func failure(_: ErrorType) {
+            accountActivityView.hidden = true
+            accountValidLogo.hidden = false
+        }
+        accountActivityView.hidden = false
+        accountValidLogo.hidden = true
+        UserManager.checkAccountValid(account,
+                                      success: success,
+                                      failure: failure)
     }
 
     @IBAction func passwordDidChange() {
@@ -157,7 +192,7 @@ extension RegisterController {
                          text: password,
                          noticeLabel: passwordErrorInfo,
                          iconButton: passwordValidLogo,
-                         index: 3)
+                         index:  UInt8(passwordValidLogo.tag))
         againPasswordDidChange()
     }
     @IBAction func againPasswordDidChange() {
@@ -170,7 +205,7 @@ extension RegisterController {
                          text: password,
                          noticeLabel: againPasswordErrorInfo,
                          iconButton: againPasswordValidLogo,
-                         index: 4)
+                         index: UInt8(againPasswordValidLogo.tag))
     }
 }
 

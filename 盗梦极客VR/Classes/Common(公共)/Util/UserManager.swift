@@ -68,7 +68,7 @@ class UserManager {
                                 success: (Bool) -> (),
                                 failure: (ErrorType) -> ()) {
         
-        checkInfoValid("http://dmgeek.com/DG_api/users/email_exists/",
+        checkInfoValid("http://dmgeek.com/DG_api/users/user_id_exists/",
             parameters: ["user_id": account])
             .complete(success: success, failure: failure)
     }
