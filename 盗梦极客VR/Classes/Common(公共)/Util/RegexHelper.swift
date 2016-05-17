@@ -10,20 +10,24 @@ import Foundation
 
 struct RegexHelper {
     
-    let regex: NSRegularExpression
+    let regex: NSRegularExpression?
     
 
     
-    init(_ pattern: String) throws {
-        try regex = NSRegularExpression(pattern: pattern,
+    init(_ pattern: String) {
+        regex = try? NSRegularExpression(pattern: pattern,
                                         options: .CaseInsensitive)
     }
     
     func match(input: String) -> Bool {
-        let matches = regex.matchesInString(input,
+        if let matches = regex?.matchesInString(input,
                                             options: [],
-                                            range: NSMakeRange(0, input.utf16.count))
-        return matches.count > 0
+                                            range: NSMakeRange(0, input.utf16.count)) {
+            
+            return matches.count > 0
+        }else {
+            return false
+        }
     }
 
 }

@@ -72,7 +72,7 @@ extension ProfileController {
         
         avatarImageView.sd_setImageWithURL(NSURL(string: user.avatar)!)
         avatarImageView.layer.cornerRadius =  avatarImageView.bounds.width * 0.5
-        usernameLabel.text = user.displayname
+        usernameLabel.text = user.nickname
         exitContainerView.hidden = false
         
         addGroup0()

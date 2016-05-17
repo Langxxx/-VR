@@ -19,7 +19,6 @@ import SwiftyJSON
 class User : NSObject, NSCoding{
     
     var avatar : String!
-    var displayname : String!
     var email : String!
     var id : Int!
     var nickname : String!
@@ -35,7 +34,6 @@ class User : NSObject, NSCoding{
             return
         }
         avatar = json["avatar"].stringValue
-        displayname = json["displayname"].stringValue
         email = json["email"].stringValue
         id = json["id"].intValue
         nickname = json["nickname"].stringValue
@@ -51,9 +49,6 @@ class User : NSObject, NSCoding{
         let dictionary = NSMutableDictionary()
         if avatar != nil{
             dictionary["avatar"] = avatar
-        }
-        if displayname != nil{
-            dictionary["displayname"] = displayname
         }
         if email != nil{
             dictionary["email"] = email
@@ -80,7 +75,6 @@ class User : NSObject, NSCoding{
     @objc required init(coder aDecoder: NSCoder)
     {
         avatar = aDecoder.decodeObjectForKey("avatar") as? String
-        displayname = aDecoder.decodeObjectForKey("displayname") as? String
         email = aDecoder.decodeObjectForKey("email") as? String
        
         id = aDecoder.decodeObjectForKey("id") as? Int
@@ -98,9 +92,6 @@ class User : NSObject, NSCoding{
     {
         if avatar != nil{
             aCoder.encodeObject(avatar, forKey: "avatar")
-        }
-        if displayname != nil{
-            aCoder.encodeObject(displayname, forKey: "displayname")
         }
         if email != nil{
             aCoder.encodeObject(email, forKey: "email")
