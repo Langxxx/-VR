@@ -8,6 +8,7 @@
 
 import UIKit
 import IQKeyboardManager
+import MBProgressHUD
 
 class RegisterController: UIViewController {
     
@@ -56,6 +57,16 @@ class RegisterController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.sharedManager().enable = false
+    }
 }
 
 extension RegisterController {
@@ -78,6 +89,30 @@ extension RegisterController {
 extension RegisterController {
     @IBAction func registerButtonClik() {
         
+        func sccess(_: Bool) {
+            MBProgressHUD.showSuccess("注册成功!")
+            navigationController?.popViewControllerAnimated(true)
+        }
+        
+        func failure(error: ErrorType) {
+            switch error as! Error {
+            case .RegisterError(let errorInfo):
+                MBProgressHUD.showError(errorInfo)
+            case .NetworkError:
+                MBProgressHUD.showError("网络拥堵，请稍后尝试")
+            default:
+                break
+            }
+        }
+        
+        MBProgressHUD.showMessage("正在验证...")
+        UserManager.register(
+            (nicknameTextField.text!,
+                emailTextField.text!,
+                accountTextField.text!,
+                passwordTextField.text!),
+            success: sccess,
+            failure: failure)
     }
     @IBAction func backButtonClik() {
         navigationController?.popViewControllerAnimated(true)

@@ -79,6 +79,8 @@ extension LoginController {
                 MBProgressHUD.showError("账号/密码错误")
             case .NetworkError:
                 MBProgressHUD.showError("网络拥堵，请稍后尝试")
+            default:
+                break
             }
         }
         

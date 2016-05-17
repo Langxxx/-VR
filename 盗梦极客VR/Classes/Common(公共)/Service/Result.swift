@@ -11,6 +11,7 @@ import Foundation
 enum Error: ErrorType {
     case NetworkError
     case AccountInvalid
+    case RegisterError(String)
 }
 
 enum Result<Value> {

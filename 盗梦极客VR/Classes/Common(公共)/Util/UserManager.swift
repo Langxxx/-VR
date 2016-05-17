@@ -73,29 +73,30 @@ class UserManager {
             .complete(success: success, failure: failure)
     }
     
-//    static func register(registerInfo:
-//                                    (   nickName: String,
-//                                        email: String,
-//                                        account: String,
-//                                        password: String
-//                                    ),
-//                         success: () -> (),
-//                         failure: () -> ()) {
-//        
-//        func jointParameters(nonce: String) -> [String: AnyObject] {
-//            return [
-//                "username": registerInfo.account,
-//                "email": registerInfo.email,
-//                "nickname": registerInfo.nickName,
-//                "user_pass": registerInfo.password,
-//                "nonce": nonce,
-//                "notify": "both",
-//                "display_name": registerInfo.nickName
-//            ]
-//        }
-//        
-//        getNonceValue()
-//            .map(jointParameters)
-//            .then(checkRegisterValid)
-//    }
+    static func register(registerInfo:
+                                    (   nickName: String,
+                                        email: String,
+                                        account: String,
+                                        password: String
+                                    ),
+                         success: (Bool) -> (),
+                         failure: (ErrorType) -> ()) {
+        
+        func jointParameters(nonce: String) -> [String: String] {
+            return [
+                "username": registerInfo.account,
+                "email": registerInfo.email,
+                "nickname": registerInfo.nickName,
+                "user_pass": registerInfo.password,
+                "nonce": nonce,
+                "notify": "both",
+                "display_name": registerInfo.nickName
+            ]
+        }
+
+        getNonceValue()
+            .map(jointParameters)
+            .then(checkRegisterValid)
+            .complete(success: success, failure: failure)
+    }
 }
