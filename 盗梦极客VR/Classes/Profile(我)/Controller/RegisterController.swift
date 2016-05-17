@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManager
 
 class RegisterController: UIViewController {
     
@@ -30,10 +31,13 @@ class RegisterController: UIViewController {
     @IBOutlet weak var passwordValidLogo: UIButton!
     @IBOutlet weak var againPasswordValidLogo: UIButton!
     
+    var returnKeyHandler: IQKeyboardReturnKeyHandler!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        returnKeyHandler = IQKeyboardReturnKeyHandler(viewController: self)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

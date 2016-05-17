@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.3.1)
+  - IQKeyboardManager (4.0.2)
   - MBProgressHUD (0.9.2)
   - MJRefresh (3.1.0)
   - SDWebImage (3.7.5):
@@ -11,6 +12,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`)
+  - IQKeyboardManager (from `https://github.com/hackiftekhar/IQKeyboardManager.git`)
   - MBProgressHUD (from `https://github.com/matej/MBProgressHUD.git`)
   - MJRefresh (from `https://github.com/CoderMJLee/MJRefresh.git`)
   - SDWebImage (from `https://github.com/rs/SDWebImage.git`)
@@ -21,6 +23,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   Alamofire:
     :git: https://github.com/Alamofire/Alamofire.git
+  IQKeyboardManager:
+    :git: https://github.com/hackiftekhar/IQKeyboardManager.git
   MBProgressHUD:
     :git: https://github.com/matej/MBProgressHUD.git
   MJRefresh:
@@ -34,6 +38,9 @@ CHECKOUT OPTIONS:
   Alamofire:
     :commit: 4edf17756fdde9f6d834f1715f234ef1b5022c23
     :git: https://github.com/Alamofire/Alamofire.git
+  IQKeyboardManager:
+    :commit: 375eefd0938bb1bbd29c7851eaee383a45142028
+    :git: https://github.com/hackiftekhar/IQKeyboardManager.git
   MBProgressHUD:
     :commit: 5c3b93fe4ff9542e08e6b3a98d945805131eb55c
     :git: https://github.com/matej/MBProgressHUD.git
@@ -49,6 +56,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  IQKeyboardManager: 2341089c4ae25fa2fa82ce356a259fcd267dc6b6
   MBProgressHUD: c10206b47acf9e1659bd80a366cc935e35745b9b
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461

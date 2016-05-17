@@ -623,14 +623,6 @@
                                         <state key="normal" image="valid"/>
                                         <state key="selected" image="Invalid"/>
                                     </button>
-                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="再次输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XLB-Mn-R7F">
-                                        <rect key="frame" x="0.0" y="305" width="515" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                        <connections>
-                                            <action selector="againPasswordDidChange" destination="0hY-Hf-KhY" eventType="editingChanged" id="4UZ-Jm-zqd"/>
-                                        </connections>
-                                    </textField>
                                     <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhi-hT-9jj">
                                         <rect key="frame" x="520" y="178" width="20" height="20"/>
                                         <constraints>
@@ -658,6 +650,14 @@
                                         <state key="normal" image="valid"/>
                                         <state key="selected" image="Invalid"/>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="再次输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XLB-Mn-R7F">
+                                        <rect key="frame" x="0.0" y="305" width="515" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <connections>
+                                            <action selector="againPasswordDidChange" destination="0hY-Hf-KhY" eventType="editingChanged" id="4UZ-Jm-zqd"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
