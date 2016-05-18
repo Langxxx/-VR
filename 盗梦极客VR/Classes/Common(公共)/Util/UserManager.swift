@@ -13,7 +13,16 @@ let UserDidLoginoutNotification = "UserDidLoginoutNotification"
 
 class UserManager {
 
-    var user: User?
+    var user: User? {
+        didSet {
+            if user != nil {
+                let userDefaults = NSUserDefaults.standardUserDefaults()
+                let data = NSKeyedArchiver.archivedDataWithRootObject(user!)
+                userDefaults.setObject(data, forKey: UserManager.key)
+                userDefaults.synchronize()
+            }
+        }
+    }
     
     static let key = "UserKey"
     
@@ -28,17 +37,13 @@ class UserManager {
     }
     
     static func login(urlStr: String,
-                      paramaters: [String: AnyObject],
+                      parameters: [String: AnyObject],
                       success: (User) -> (),
                       failure: (ErrorType) -> ()) {
         
-        checkLogin(urlStr, paramaters)
+        checkLogin(urlStr, parameters)
             .complete(
                 success: { user in
-                let userDefaults = NSUserDefaults.standardUserDefaults()
-                let data = NSKeyedArchiver.archivedDataWithRootObject(user)
-                userDefaults.setObject(data, forKey: UserManager.key)
-                userDefaults.synchronize()
                 UserManager.sharedInstance.user = user
                 NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
                 success(user)
@@ -77,7 +82,9 @@ class UserManager {
                                     (   nickName: String,
                                         email: String,
                                         account: String,
-                                        password: String
+                                        password: String,
+                                        usid: String?,
+                                        platformName: String?
                                     ),
                          success: (Bool) -> (),
                          failure: (ErrorType) -> ()) {
@@ -90,7 +97,9 @@ class UserManager {
                 "user_pass": registerInfo.password,
                 "nonce": nonce,
                 "notify": "both",
-                "display_name": registerInfo.nickName
+                "display_name": registerInfo.nickName,
+                "s_id": registerInfo.usid ?? "",
+                "s_type": registerInfo.platformName ?? ""
             ]
         }
 
@@ -98,5 +107,25 @@ class UserManager {
             .map(jointParameters)
             .then(checkRegisterValid)
             .complete(success: success, failure: failure)
+    }
+    
+    static func oauthLogin(usid: String,
+                           platformName: String,
+                           success: (User) -> (),
+                           failure: (ErrorType) -> ()) {
+        let parameters: [String: String] = [
+            "s_id": usid,
+            "s_type": platformName
+        ]
+
+        checkOauthLogin(parameters)
+                .complete(success: success,
+                          failure: failure)
+
+    }
+    
+    static func login(user: User) {
+        UserManager.sharedInstance.user = user
+        NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
     }
 }

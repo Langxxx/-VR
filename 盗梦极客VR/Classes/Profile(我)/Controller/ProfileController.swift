@@ -77,6 +77,7 @@ extension ProfileController {
         
         addGroup0()
         tableView.reloadData()
+        view.setNeedsDisplay()
     }
     
     func clearUserInfo() {

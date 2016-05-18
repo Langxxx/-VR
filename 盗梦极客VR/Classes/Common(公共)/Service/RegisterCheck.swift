@@ -69,3 +69,22 @@ func checkRegisterValid(parameters: [String: String]) -> AsynOperation<Bool> {
         }
     }
 }
+
+func checkOauthLogin(parameters: [String: String]) -> AsynOperation<User> {
+    return AsynOperation { completion in 
+        Alamofire.request(.GET, "http://dmgeek.com/DG_api/users/get_social_user/", parameters: parameters)
+            .responseJSON { response in
+                guard response.result.error == nil else {
+                    print("checkOauthLogin error!\n URL:\(response.result.error)")
+                    completion(.Failure(Error.NetworkError))
+                    return
+                }
+                let value = JSON(response.result.value!)
+                let user =  User(fromJson: value["user"])
+                completion(.Success(user))
+        }
+
+    }
+}
+
+

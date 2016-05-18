@@ -24,6 +24,15 @@ class LoginController: UIViewController {
     }
     
 //    var completion: ((user: User) -> Void)?
+    var oauthInfo: (
+        platformName: String,
+        usid: String,
+        username: String,
+        iconURL: String)? {
+        didSet {
+            doSomeForOauthLogin()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +52,63 @@ class LoginController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+    }
+}
+
+extension LoginController {
+    
+    func login(parameters: [String: String]) {
+        func success(user: User) {
+            MBProgressHUD.hideHUD()
+            navigationController?.popViewControllerAnimated(true)
+        }
+        
+        func failure(error: ErrorType) {
+            switch error as! Error {
+            case .AccountInvalid:
+                MBProgressHUD.showError("账号/密码错误")
+            case .NetworkError:
+                MBProgressHUD.showError("网络拥堵，请稍后尝试")
+            default:
+                break
+            }
+        }
+        
+        MBProgressHUD.showMessage("正在登陆...")
+        
+        UserManager.login(loginUrl,
+                          parameters: parameters,
+                          success: success,
+                          failure: failure)
+    }
+    
+    func doSomeForOauthLogin() {
+        guard let oauthInfo = oauthInfo else {
+            return
+        }
+        
+        func success(user: User) {
+            MBProgressHUD.hideHUD()
+            // 第一次进行第三方登陆，需要进行注册
+            if user.id == 0 {
+                let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("RegisterController") as! RegisterController
+                vc.oauthInfo = oauthInfo
+                vc.autoLogin = login
+                navigationController?.pushViewController(vc, animated: true)
+            }else {
+                UserManager.login(user)
+                navigationController?.popViewControllerAnimated(true)
+            }
+        }
+        
+        func failure(_: ErrorType) {
+            MBProgressHUD.showError("网络繁忙，请稍后测试")
+        }
+        MBProgressHUD.showMessage("正在获取用户信息...")
+        UserManager.oauthLogin(oauthInfo.usid,
+                               platformName: oauthInfo.platformName,
+                               success: success,
+                               failure: failure)
     }
 }
 
@@ -68,28 +134,7 @@ extension LoginController {
             return
         }
         
-        func success(user: User) {
-            MBProgressHUD.hideHUD()
-            navigationController?.popViewControllerAnimated(true)
-        }
-        
-        func failure(error: ErrorType) {
-            switch error as! Error {
-            case .AccountInvalid:
-                MBProgressHUD.showError("账号/密码错误")
-            case .NetworkError:
-                MBProgressHUD.showError("网络拥堵，请稍后尝试")
-            default:
-                break
-            }
-        }
-        
-        MBProgressHUD.showMessage("正在登陆...")
-        
-        UserManager.login(loginUrl,
-                          paramaters: parameters,
-                          success: success,
-                          failure: failure)
+        login(parameters)
     }
     
     // TODO: 应用未审核，第三方登陆无效
@@ -110,7 +155,12 @@ extension LoginController {
         snsPlatform.loginClickHandler!(self, UMSocialControllerService.defaultControllerService(), true) { response in
             
             if response.responseCode == UMSResponseCodeSuccess {
-                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToSina]
+                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToSina]!
+                let usid = snsAccount.usid
+                let userName = snsAccount.userName
+                let iconURL = snsAccount.iconURL
+                let platformName = snsAccount.platformName
+                self.oauthInfo = (platformName, usid, userName, iconURL)
                 print("userName: \(snsAccount)")
             }
         }

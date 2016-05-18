@@ -35,6 +35,7 @@ class RegisterController: UIViewController {
     @IBOutlet weak var emailActivityView: UIActivityIndicatorView!
     @IBOutlet weak var accountActivityView: UIActivityIndicatorView!
     
+    @IBOutlet weak var oauthInfoLabel: UILabel!
     
     var returnKeyHandler: IQKeyboardReturnKeyHandler!
 
@@ -48,10 +49,26 @@ class RegisterController: UIViewController {
         }
     }
     
+    var oauthInfo: (
+        platformName: String,
+        usid: String,
+        username: String,
+        iconURL: String)?
+    
+    var autoLogin: ((parameters: [String: String]) -> ())?
+    
+    var parameters: [String: String] {
+        return [
+            "username": accountTextField.text!,
+            "password": passwordTextField.text!,
+        ]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         returnKeyHandler = IQKeyboardReturnKeyHandler(viewController: self)
+        setOauthRegister()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -70,6 +87,17 @@ class RegisterController: UIViewController {
 }
 
 extension RegisterController {
+    
+    func setOauthRegister() {
+        guard let oauthInfo = oauthInfo else {
+            return
+        }
+        
+        nicknameTextField.text = oauthInfo.username
+        oauthInfoLabel.hidden = false
+        oauthInfoLabel.text = "[\(oauthInfo.username)]已验证成功，请继续完成注册！稍后您便可以直接通过\(oauthInfo.platformName)登录或使用ID密码登录。"
+        nickNameDidChange()
+    }
     
     func setInvalidNotice(isValid: Bool,
                           text: String,
@@ -91,7 +119,16 @@ extension RegisterController {
         
         func sccess(_: Bool) {
             MBProgressHUD.showSuccess("注册成功!")
-            navigationController?.popViewControllerAnimated(true)
+            
+            if oauthInfoLabel != nil {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
+                    self.navigationController?.popViewControllerAnimated(true)
+                    self.autoLogin?(parameters: self.parameters)
+                }
+            }else {
+                navigationController?.popViewControllerAnimated(true)
+            }
+            
         }
         
         func failure(error: ErrorType) {
@@ -110,7 +147,10 @@ extension RegisterController {
             (nicknameTextField.text!,
                 emailTextField.text!,
                 accountTextField.text!,
-                passwordTextField.text!),
+                passwordTextField.text!,
+                oauthInfo?.usid,
+                oauthInfo?.platformName
+            ),
             success: sccess,
             failure: failure)
     }

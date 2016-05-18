@@ -22,7 +22,7 @@ func checkLogin(url: String, _ parameters: [String: AnyObject] = [:]) -> AsynOpe
 
 func loginRequest(url: String, _ parameters: [String: AnyObject] = [:]) -> AsynOperation<JSON> {
     return AsynOperation { completion in
-        Alamofire.request(.GET, "http://dmgeek.com/DG_api/users/generate_auth_cookie/",parameters: parameters)
+        Alamofire.request(.GET, url,parameters: parameters)
             .responseJSON { response in
                 guard response.result.error == nil else {
                     print("loginRequest error!\n URL:\(response.result.error)")
