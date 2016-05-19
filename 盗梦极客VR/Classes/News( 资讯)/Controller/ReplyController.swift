@@ -40,7 +40,7 @@ class ReplyController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usernameLabel.text = user.username
+        usernameLabel.text = user.nickname
         textView.becomeFirstResponder()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(textViewDidChange(_:)), name: UITextViewTextDidChangeNotification, object: nil)
     }
@@ -57,6 +57,10 @@ extension ReplyController {
     @IBAction func sendButtonClik() {
         Alamofire.request(.POST, "http://bbs.dmgeek.com/posts", parameters: parameters, headers: headers)
             .responseJSON { response in
+                guard response.result.error == nil else {
+                    print("post reply error!\n URL:\(response.result.error)")
+                    return
+                }
                 if let (_, error) = JSON(response.result.value!)["errors"].first {
                     MBProgressHUD.showError(error.stringValue)
                 }else {
@@ -64,8 +68,8 @@ extension ReplyController {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
         }
-
     }
+    
     @IBAction func cancelButtonClik() {
         dismissViewControllerAnimated(true, completion: nil)
     }

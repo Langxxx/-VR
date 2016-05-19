@@ -110,6 +110,14 @@ extension LoginController {
                                success: success,
                                failure: failure)
     }
+    
+    func fillOauthInfo(snsAccount: AnyObject) {
+        let usid = snsAccount.usid
+        let userName = snsAccount.userName
+        let iconURL = snsAccount.iconURL
+        let platformName = snsAccount.platformName
+        self.oauthInfo = (platformName, usid, userName, iconURL)
+    }
 }
 
 extension LoginController {
@@ -137,14 +145,14 @@ extension LoginController {
         login(parameters)
     }
     
-    // TODO: 应用未审核，第三方登陆无效
+    
     @IBAction func QQLoginButtonClik() {
         let snsPlatform = UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToQQ)
         snsPlatform.loginClickHandler!(self, UMSocialControllerService.defaultControllerService(), true) { response in
             
             if response.responseCode == UMSResponseCodeSuccess {
-                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToQQ]
-                print("userName: \(snsAccount)")
+                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToQQ]!
+                self.fillOauthInfo(snsAccount)
             }
         }
     }
@@ -156,25 +164,20 @@ extension LoginController {
             
             if response.responseCode == UMSResponseCodeSuccess {
                 let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToSina]!
-                let usid = snsAccount.usid
-                let userName = snsAccount.userName
-                let iconURL = snsAccount.iconURL
-                let platformName = snsAccount.platformName
-                self.oauthInfo = (platformName, usid, userName, iconURL)
-                print("userName: \(snsAccount)")
+                self.fillOauthInfo(snsAccount)
             }
         }
     }
-    
+    // TODO: 应用未审核，第三方登陆无效
     @IBAction func WechatLoginButtonClik() {
-        let snsPlatform = UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToWechatSession)
-        snsPlatform.loginClickHandler!(self, UMSocialControllerService.defaultControllerService(), true) { response in
-            
-            if response.responseCode == UMSResponseCodeSuccess {
-                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToWechatSession]
-                print("userName: \(snsAccount)")
-            }
-        }
+//        let snsPlatform = UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToWechatSession)
+//        snsPlatform.loginClickHandler!(self, UMSocialControllerService.defaultControllerService(), true) { response in
+//            
+//            if response.responseCode == UMSResponseCodeSuccess {
+//                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToWechatSession]
+//                print("userName: \(snsAccount)")
+//            }
+//        }
     }
     
 }
