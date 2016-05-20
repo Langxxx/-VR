@@ -24,7 +24,7 @@ class User : NSObject, NSCoding{
     var nickname : String!
     var registered : String!
     var username : String!
-    
+    var displayname: String!
     
     /**
      * Instantiate the instance using the passed json values to set the properties values
@@ -39,6 +39,7 @@ class User : NSObject, NSCoding{
         nickname = json["nickname"].stringValue
         registered = json["registered"].stringValue
         username = json["username"].stringValue
+        displayname = json["display_name"].stringValue
     }
     
     /**
@@ -65,6 +66,9 @@ class User : NSObject, NSCoding{
         if username != nil{
             dictionary["username"] = username
         }
+        if displayname != nil{
+            dictionary["display_name"] = displayname
+        }
         return dictionary
     }
     
@@ -81,6 +85,7 @@ class User : NSObject, NSCoding{
         nickname = aDecoder.decodeObjectForKey("nicename") as? String
         registered = aDecoder.decodeObjectForKey("registered") as? String
         username = aDecoder.decodeObjectForKey("username") as? String
+        displayname = aDecoder.decodeObjectForKey("display_name") as? String
         
     }
     
@@ -107,6 +112,9 @@ class User : NSObject, NSCoding{
         }
         if username != nil{
             aCoder.encodeObject(username, forKey: "username")
+        }
+        if displayname != nil{
+            aCoder.encodeObject(displayname, forKey: "display_name")
         }
         
     }

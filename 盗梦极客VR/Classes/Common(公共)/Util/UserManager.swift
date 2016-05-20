@@ -128,4 +128,18 @@ class UserManager {
         UserManager.sharedInstance.user = user
         NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
     }
+    
+    static func updateUserInfo() {
+        guard let user = UserManager.sharedInstance.user else {
+            return
+        }
+        
+        checkLogin("http://dmgeek.com/DG_api/users/get_userinfo/", ["user_id": user.id])
+            .complete(
+                success: { user in
+                    UserManager.sharedInstance.user = user
+            }) { (_ : ErrorType) in
+                
+            }
+    }
 }

@@ -40,7 +40,7 @@ class ReplyController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usernameLabel.text = user.nickname
+        usernameLabel.text = user.displayname
         textView.becomeFirstResponder()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(textViewDidChange(_:)), name: UITextViewTextDidChangeNotification, object: nil)
     }

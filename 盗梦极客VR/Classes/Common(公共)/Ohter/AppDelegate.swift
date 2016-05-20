@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UMSocialData.openLog(true)
         IQKeyboardManager.sharedManager().enable = false
         ShareTool.setAllAppKey()
+        UserManager.updateUserInfo()
         return true
     }
 

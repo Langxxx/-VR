@@ -72,7 +72,7 @@ extension ProfileController {
         
         avatarImageView.sd_setImageWithURL(NSURL(string: user.avatar)!)
         avatarImageView.layer.cornerRadius =  avatarImageView.bounds.width * 0.5
-        usernameLabel.text = user.nickname
+        usernameLabel.text = user.displayname
         exitContainerView.hidden = false
         
         addGroup0()
@@ -89,7 +89,7 @@ extension ProfileController {
     }
     
     func addGroup0() {
-        let nickname = RightDetallCellModel(text: "昵称", rightDetall: user.nickname)
+        let nickname = RightDetallCellModel(text: "昵称", rightDetall: user.displayname)
         let group = CellGroup(header: "基本信息", items: [nickname])
         staticCellProvider.dataList.insert(group, atIndex: 0)
     }
