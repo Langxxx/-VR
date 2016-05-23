@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = false
         ShareTool.setAllAppKey()
         UserManager.updateUserInfo()
+        let userAgent = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent")! + " DG_iosapp"
+        NSUserDefaults.standardUserDefaults().registerDefaults(["UserAgent" : userAgent])
         return true
     }
 
