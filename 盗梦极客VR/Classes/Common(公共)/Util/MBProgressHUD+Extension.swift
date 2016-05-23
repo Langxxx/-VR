@@ -35,7 +35,7 @@ extension MBProgressHUD {
     static func showMessage(text: String, toView: UIView = UIApplication.sharedApplication().keyWindow!) {
         MBProgressHUD.hideHUD(toView)
         let hud = MBProgressHUD.showHUDAddedTo(toView, animated: true)
-        hud.label.text = text
+        hud.detailsLabel.text = text
         hud.removeFromSuperViewOnHide = true
     }
     
