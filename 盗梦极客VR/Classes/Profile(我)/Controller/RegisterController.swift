@@ -123,36 +123,6 @@ extension RegisterController {
     
     func synchronizeBBSAcount() {
         MBProgressHUD.showMessage("注册成功!\n 正在同步论坛账号...")
-        let configuretion = WKWebViewConfiguration()
-        
-        let webView = WKWebView(frame: CGRectZero, configuration: configuretion)
-        webView.navigationDelegate = self
-        self.webView = webView
-        
-        let url = NSURL(string: "http://dmgeek.com/login/?action=login_bbs&username=\(accountTextField.text!)&password=\(passwordTextField.text!)")!
-        let requst = NSURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
-        webView.loadRequest(requst)
-    }
-    
-    func completeRegiste() {
-        if oauthInfoLabel != nil {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
-                self.navigationController?.popViewControllerAnimated(true)
-                self.autoLogin?(parameters: self.parameters)
-            }
-        }else {
-            navigationController?.popViewControllerAnimated(true)
-        }
-    }
-}
-
-extension RegisterController: WKNavigationDelegate {
-    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("正在加载...")
-    }
-    
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        print("加载成功...")
         
         func reponse(result: Bool) {
             if result == true {
@@ -164,32 +134,37 @@ extension RegisterController: WKNavigationDelegate {
         }
         
         func failure(error: ErrorType) {
-            MBProgressHUD.showError("网络拥堵!稍后尝试")
-            completeRegiste()
+            MBProgressHUD.hideHUD()
+            let alert = UIAlertController(title: "失败", message: "与论坛同步失败！\n部分功能无法使用，是否重试？", preferredStyle: .ActionSheet)
+            let cancel = UIAlertAction(title: "取消",
+                                       style: .Cancel) { _ in
+                                        MBProgressHUD.showWarning("注册成功！稍后为您进行同步!")
+                                        self.completeRegiste()
+            }
+            let reTry = UIAlertAction(title: "重试",
+                                      style: .Default) { _ in
+                                        self.synchronizeBBSAcount()
+            }
+            alert.addAction(reTry)
+            alert.addAction(cancel)
+            presentViewController(alert, animated: true, completion: nil)
         }
         
-        UserManager.synchronizeBBSAcount(self.userID!,
-                                         reponse: reponse,
-                                         failure: failure)
-        
+        UserManager.sharedInstance
+            .synchronizeBBSAcount(userID!,
+                                success: reponse,
+                                failure: failure)
     }
     
-    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
-        // TODO: 失败应该设置User某一个字段为false以便下次进行同步和其他提示性操作
-        MBProgressHUD.hideHUD()
-        
-        let alert = UIAlertController(title: "失败", message: "与论坛同步失败！\n部分功能无法使用，是否重试？", preferredStyle: .ActionSheet)
-        let cancel = UIAlertAction(title: "取消",
-                                   style: .Cancel) { _ in
-                                    self.completeRegiste()
+    func completeRegiste() {
+        if oauthInfoLabel != nil {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
+                self.navigationController?.popViewControllerAnimated(true)
+                self.autoLogin?(parameters: self.parameters)
+            }
+        }else {
+            navigationController?.popViewControllerAnimated(true)
         }
-        let reTry = UIAlertAction(title: "重试",
-                                  style: .Default) { _ in
-                                    self.synchronizeBBSAcount()
-        }
-        alert.addAction(reTry)
-        alert.addAction(cancel)
-        presentViewController(alert, animated: true, completion: nil)
     }
 }
 

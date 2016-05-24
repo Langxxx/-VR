@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import WebKit
 
 let UserDidLoginNotification = "UserDidLoginNotification"
 let UserDidLoginoutNotification = "UserDidLoginoutNotification"
 
-class UserManager {
+class UserManager: NSObject {
 
     var user: User? {
         didSet {
@@ -24,10 +25,39 @@ class UserManager {
         }
     }
     
+    let passwordKey = "passwordKey"
+    let accountKey = "accountKey"
+    var password: String! {
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue!, forKey: passwordKey)
+        }
+        
+        get {
+            return  NSUserDefaults.standardUserDefaults().objectForKey(passwordKey) as! String
+        }
+    }
+    
+    var account: String! {
+        set {
+             NSUserDefaults.standardUserDefaults().setObject(newValue!, forKey: accountKey)
+        }
+        
+        get {
+            return  NSUserDefaults.standardUserDefaults().objectForKey(accountKey) as! String
+        }
+    }
+
+    var webView: WKWebView?
+    
+    var synchronizeSuccess: ((Bool) -> ())!
+    var synchronizeFailure: ((ErrorType) -> ())!
+    var userID: Int!
+    
     static let key = "UserKey"
     
     static let sharedInstance = UserManager()
-    private init() {
+    private override init() {
+        super.init()
         let userDefaults = NSUserDefaults.standardUserDefaults()
         if let data = userDefaults.objectForKey(UserManager.key) as? NSData {
             user = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? User
@@ -37,7 +67,7 @@ class UserManager {
     }
     
     static func login(urlStr: String,
-                      parameters: [String: AnyObject],
+                      parameters: [String: String],
                       success: (User) -> (),
                       failure: (ErrorType) -> ()) {
         
@@ -45,6 +75,8 @@ class UserManager {
             .complete(
                 success: { user in
                 UserManager.sharedInstance.user = user
+                UserManager.sharedInstance.password = parameters["password"]
+                UserManager.sharedInstance.account = parameters["username"]
                 NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
                 success(user)
                 },
@@ -106,7 +138,12 @@ class UserManager {
         getNonceValue()
             .map(jointParameters)
             .then(checkRegisterValid)
-            .complete(success: success, failure: failure)
+            .complete(
+                success: { userID in
+                    UserManager.sharedInstance.password = registerInfo.password
+                    UserManager.sharedInstance.account = registerInfo.account
+                    success(userID)
+                }, failure: failure)
     }
     
     static func oauthLogin(usid: String,
@@ -142,45 +179,42 @@ class UserManager {
                 
             }
     }
+
     
-    static func synchronizeBBSAcount(userID: Int,
-        reponse: (Bool) -> (),
+    func synchronizeBBSAcount(
+        userID: Int,
+        success: (Bool) -> (),
         failure: (ErrorType) -> ()) {
+        let configuretion = WKWebViewConfiguration()
         
-        synchronizeAcount("http://dmgeek.com/DG_api/users/set_bbs_user_created/?user_id=\(userID)")
-            .complete(success: reponse,
-                      failure: failure)
+        let webView = WKWebView(frame: CGRectZero, configuration: configuretion)
+        webView.navigationDelegate = self
+        
+        self.webView = webView
+        self.userID = userID
+        synchronizeSuccess = success
+        synchronizeFailure = failure
+        
+        let url = NSURL(string: "http://dmgeek.com/login/?action=login_bbs&username=\(account)&password=\(password)")!
+        let requst = NSURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
+        webView.loadRequest(requst)
     }
-    
-//    func synchronizeBBSAcount(
-//        success: () -> (),
-//        failure: () -> ()) {
-//        let configuretion = WKWebViewConfiguration()
-//        
-//        let webView = WKWebView(frame: CGRectZero, configuration: configuretion)
-//        webView.navigationDelegate = self
-//        self.webView = webView
-//        synchronizeSuccess = success
-//        synchronizeFailure = failure
-//        
-//        let url = NSURL(string: "http://dmgeek.com/login/?action=login_bbs&username=\(account)&password=\(password)")!
-//        let requst = NSURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
-//        webView.loadRequest(requst)
-//        
-//    }
+
 }
 
-//extension UserManager: WKNavigationDelegate {
-//    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-//        print("正在加载...")
-//    }
-//    
-//    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-//        print("加载成功...")
-//        synchronizeSuccess?()
-//    }
-//    
-//    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
-//        synchronizeFailure?()
-//    }
-//}
+extension UserManager: WKNavigationDelegate {
+    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        print("正在加载...")
+    }
+    
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        print("加载成功...")
+        synchronizeAcount("http://dmgeek.com/DG_api/users/set_bbs_user_created/?user_id=\(userID)")
+            .complete(success: synchronizeSuccess,
+                      failure: synchronizeFailure)
+    }
+    
+    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+        synchronizeFailure(Error.NetworkError)
+    }
+}

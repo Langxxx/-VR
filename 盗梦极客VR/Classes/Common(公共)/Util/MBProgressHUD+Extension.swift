@@ -39,6 +39,11 @@ extension MBProgressHUD {
         hud.removeFromSuperViewOnHide = true
     }
     
+    static func showWarning(text: String, toView: UIView = UIApplication.sharedApplication().keyWindow!) {
+        MBProgressHUD.hideHUD(toView)
+        MBProgressHUD.show(text, icon: "warning", view: toView)
+    }
+    
     static func hideHUD(toView: UIView = UIApplication.sharedApplication().keyWindow!) {
         MBProgressHUD.hideHUDForView(toView, animated: true)
     }

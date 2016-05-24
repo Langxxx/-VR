@@ -92,7 +92,7 @@ func synchronizeAcount(urlStr: String) -> AsynOperation<Bool>  {
         Alamofire.request(.GET, urlStr)
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    print("checkOauthLogin error!\n URL:\(response.result.error)")
+                    print("synchronizeAcount error!\n URL:\(response.result.error)")
                     completion(.Failure(Error.NetworkError))
                     return
                 }
