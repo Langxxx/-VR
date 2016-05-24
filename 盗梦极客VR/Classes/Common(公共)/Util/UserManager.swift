@@ -86,7 +86,7 @@ class UserManager {
                                         usid: String?,
                                         platformName: String?
                                     ),
-                         success: (Bool) -> (),
+                         success: (Int) -> (),
                          failure: (ErrorType) -> ()) {
         
         func jointParameters(nonce: String) -> [String: String] {
@@ -142,4 +142,45 @@ class UserManager {
                 
             }
     }
+    
+    static func synchronizeBBSAcount(userID: Int,
+        reponse: (Bool) -> (),
+        failure: (ErrorType) -> ()) {
+        
+        synchronizeAcount("http://dmgeek.com/DG_api/users/set_bbs_user_created/?user_id=\(userID)")
+            .complete(success: reponse,
+                      failure: failure)
+    }
+    
+//    func synchronizeBBSAcount(
+//        success: () -> (),
+//        failure: () -> ()) {
+//        let configuretion = WKWebViewConfiguration()
+//        
+//        let webView = WKWebView(frame: CGRectZero, configuration: configuretion)
+//        webView.navigationDelegate = self
+//        self.webView = webView
+//        synchronizeSuccess = success
+//        synchronizeFailure = failure
+//        
+//        let url = NSURL(string: "http://dmgeek.com/login/?action=login_bbs&username=\(account)&password=\(password)")!
+//        let requst = NSURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
+//        webView.loadRequest(requst)
+//        
+//    }
 }
+
+//extension UserManager: WKNavigationDelegate {
+//    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+//        print("正在加载...")
+//    }
+//    
+//    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+//        print("加载成功...")
+//        synchronizeSuccess?()
+//    }
+//    
+//    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+//        synchronizeFailure?()
+//    }
+//}

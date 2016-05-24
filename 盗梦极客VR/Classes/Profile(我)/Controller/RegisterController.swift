@@ -65,6 +65,8 @@ class RegisterController: UIViewController {
         ]
     }
     
+    var userID: Int?
+    
     var webView: WKWebView!
     
     override func viewDidLoad() {
@@ -131,16 +133,8 @@ extension RegisterController {
         let requst = NSURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
         webView.loadRequest(requst)
     }
-}
-
-extension RegisterController: WKNavigationDelegate {
-    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("正在加载...")
-    }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        print("加载成功...")
-        MBProgressHUD.showMessage("同步成功!")
+    func completeRegiste() {
         if oauthInfoLabel != nil {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
                 self.navigationController?.popViewControllerAnimated(true)
@@ -150,6 +144,35 @@ extension RegisterController: WKNavigationDelegate {
             navigationController?.popViewControllerAnimated(true)
         }
     }
+}
+
+extension RegisterController: WKNavigationDelegate {
+    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        print("正在加载...")
+    }
+    
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        print("加载成功...")
+        
+        func reponse(result: Bool) {
+            if result == true {
+                MBProgressHUD.showSuccess("同步成功!")
+            }else {
+                MBProgressHUD.showError("同步失败!稍后尝试")
+            }
+            completeRegiste()
+        }
+        
+        func failure(error: ErrorType) {
+            MBProgressHUD.showError("网络拥堵!稍后尝试")
+            completeRegiste()
+        }
+        
+        UserManager.synchronizeBBSAcount(self.userID!,
+                                         reponse: reponse,
+                                         failure: failure)
+        
+    }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
         // TODO: 失败应该设置User某一个字段为false以便下次进行同步和其他提示性操作
@@ -157,8 +180,9 @@ extension RegisterController: WKNavigationDelegate {
         
         let alert = UIAlertController(title: "失败", message: "与论坛同步失败！\n部分功能无法使用，是否重试？", preferredStyle: .ActionSheet)
         let cancel = UIAlertAction(title: "取消",
-                                   style: .Cancel,
-                                   handler: nil)
+                                   style: .Cancel) { _ in
+                                    self.completeRegiste()
+        }
         let reTry = UIAlertAction(title: "重试",
                                   style: .Default) { _ in
                                     self.synchronizeBBSAcount()
@@ -172,7 +196,8 @@ extension RegisterController: WKNavigationDelegate {
 extension RegisterController {
     @IBAction func registerButtonClik() {
         
-        func sccess(_: Bool) {
+        func sccess(userID: Int) {
+            self.userID = userID
             synchronizeBBSAcount()
         }
         

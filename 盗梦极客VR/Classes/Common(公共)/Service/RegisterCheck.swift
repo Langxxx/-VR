@@ -50,7 +50,7 @@ func getNonceValue(urlStr: String = "http://dmgeek.com/DG_api/get_nonce/",
         }
     }
 }
-func checkRegisterValid(parameters: [String: String]) -> AsynOperation<Bool> {
+func checkRegisterValid(parameters: [String: String]) -> AsynOperation<Int> {
     
     return AsynOperation { completion in
         Alamofire.request(.GET, "http://dmgeek.com/DG_api/users/register/", parameters: parameters)
@@ -64,7 +64,7 @@ func checkRegisterValid(parameters: [String: String]) -> AsynOperation<Bool> {
                 if value["status"].stringValue == "error" {
                     completion(.Failure(Error.RegisterError(value["error"].stringValue)))
                 }else {
-                     completion(.Success(true))
+                     completion(.Success(value["user_id"].intValue))
                 }
         }
     }
@@ -87,4 +87,23 @@ func checkOauthLogin(parameters: [String: String]) -> AsynOperation<User> {
     }
 }
 
-
+func synchronizeAcount(urlStr: String) -> AsynOperation<Bool>  {
+    return AsynOperation { completion in
+        Alamofire.request(.GET, urlStr)
+            .responseJSON { response in
+                guard response.result.error == nil else {
+                    print("checkOauthLogin error!\n URL:\(response.result.error)")
+                    completion(.Failure(Error.NetworkError))
+                    return
+                }
+                let value = JSON(response.result.value!)
+                let status = value["status"].stringValue
+                if status == "ok" {
+                    completion(.Success(true))
+                }else {
+                    completion(.Success(false))
+                }
+        }
+        
+    }
+}
