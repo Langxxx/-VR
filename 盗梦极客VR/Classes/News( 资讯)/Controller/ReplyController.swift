@@ -45,6 +45,19 @@ class ReplyController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(textViewDidChange(_:)), name: UITextViewTextDidChangeNotification, object: nil)
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        showNoticeMessage()
+        if !user.userCreated {
+            view.endEditing(true)
+            showNoticeMessage()
+        }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,8 +66,49 @@ class ReplyController: UIViewController {
 }
 
 extension ReplyController {
+    func showNoticeMessage(message: String = "该账户未与论坛进行同步,无法进行评论") {
+        let alert = UIAlertController(title: "错误", message: message, preferredStyle: .ActionSheet)
+        let cancel = UIAlertAction(title: "取消",
+                                   style: .Cancel) { _ in
+                                    self.dismissViewControllerAnimated(true, completion: nil)
+        }
+        let reTry = UIAlertAction(title: "同步",
+                                  style: .Default) { _ in
+                                    self.synchronizeBBSAcount()
+        }
+        alert.addAction(reTry)
+        alert.addAction(cancel)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func synchronizeBBSAcount() {
+        MBProgressHUD.showMessage("正在同步论坛账号...")
+        
+        func reponse(result: Bool) {
+            if result == true {
+                MBProgressHUD.showSuccess("同步成功!")
+            }else {
+                showNoticeMessage("同步失败")
+            }
+        }
+        
+        func failure(error: ErrorType) {
+            MBProgressHUD.hideHUD()
+            showNoticeMessage()
+        }
+        
+        UserManager.sharedInstance
+            .synchronizeBBSAcount(user.id,
+                                  success: reponse,
+                                  failure: failure)
+    }
+    
+}
+
+extension ReplyController {
     
     @IBAction func sendButtonClik() {
+        MBProgressHUD.showMessage("正在提交...")
         Alamofire.request(.POST, "http://bbs.dmgeek.com/posts", parameters: parameters, headers: headers)
             .responseJSON { response in
                 guard response.result.error == nil else {
@@ -64,7 +118,7 @@ extension ReplyController {
                 if let (_, error) = JSON(response.result.value!)["errors"].first {
                     MBProgressHUD.showError(error.stringValue)
                 }else {
-                    MBProgressHUD.showSuccess("您的回复已经提交")
+                    MBProgressHUD.showSuccess("您的回复已经提交!")
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
         }
