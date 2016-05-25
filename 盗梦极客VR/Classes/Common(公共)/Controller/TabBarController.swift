@@ -24,10 +24,10 @@ extension TabBarController {
      添加导航控制器
      */
     func setupRootNavController() {
-        addRootNavController("News", title: "首页", iconName: "tabbar_icon_news_normal", seletedIconName: "tabbar_icon_news_highlight")
+        addRootNavController("News", title: "首页", iconName: "1", seletedIconName: "1")
 //        addRootNavController("Evaluation", title: "评测", iconName: "")
-        addRootNavController("BBS", title: "论坛", iconName: "tabbar_icon_BBS_normal", seletedIconName: "tabbar_icon_BBS_highlight")
-        addRootNavController("Profile", title: "我", iconName: "tabbar_icon_profile_normal", seletedIconName: "tabbar_icon_profile_highlight")
+        addRootNavController("BBS", title: "论坛", iconName: "2", seletedIconName: "2")
+        addRootNavController("Profile", title: "我", iconName: "3", seletedIconName: "3")
     }
     
     /**
@@ -65,6 +65,9 @@ extension TabBarController {
         navBar.tintColor = UIColor.whiteColor()
         navBar.barTintColor = UIColor.tintColor()
         navBar.translucent = false
+        
+        tabBar.tintColor = UIColor.tintColor()
+        tabBar.translucent = false
         
         let attr = [
             NSForegroundColorAttributeName : UIColor.whiteColor()
