@@ -202,7 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				7751148D1CC75C3A00BC6FB4 /* Common(公共) */,
-				775114941CC75C3A00BC6FB4 /* News( 资讯) */,
+				775114941CC75C3A00BC6FB4 /* News( 首页) */,
 				775114921CC75C3A00BC6FB4 /* Evaluation(评测) */,
 				7751148B1CC75C3A00BC6FB4 /* BBS(论坛) */,
 				775114961CC75C3A00BC6FB4 /* Profile(我) */,
@@ -276,7 +276,7 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		775114941CC75C3A00BC6FB4 /* News( 资讯) */ = {
+		775114941CC75C3A00BC6FB4 /* News( 首页) */ = {
 			isa = PBXGroup;
 			children = (
 				77C75D8A1CCE0AFD00D1A396 /* Model */,
@@ -285,6 +285,7 @@
 				7761A1931CCC687A004A6EBA /* View */,
 				7751149E1CC75C9D00BC6FB4 /* News.storyboard */,
 			);
+			name = "News( 首页)";
 			path = "News( 资讯)";
 			sourceTree = "<group>";
 		};

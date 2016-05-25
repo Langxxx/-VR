@@ -78,7 +78,7 @@ extension ChannelScrollView {
             // 初始化
             let label = ChannelLabel()
             label.text = title
-            label.textColor = UIColor.blackColor()
+            label.textColor = UIColor.grayColor()
             label.font = UIFont.systemFontOfSize(17)
             label.sizeToFit()
             label.frame.size.width = labelW

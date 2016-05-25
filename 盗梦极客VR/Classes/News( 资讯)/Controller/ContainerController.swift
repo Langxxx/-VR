@@ -27,7 +27,8 @@ class ContainerController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+//        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
   }
 

@@ -10,9 +10,14 @@ import UIKit
 
 class ChannelLabel: UILabel {
 
+    let gray: CGFloat = 109
+    
     var scale: CGFloat = 0.0 {
         didSet {
-            self.textColor = UIColor(red: scale, green: 0, blue: 0, alpha: 1)
+            let redColor = (146 * scale + 109) / 255
+            let otherColor = gray * (1 - scale) / 255
+            
+            self.textColor = UIColor(red: redColor, green: otherColor, blue: otherColor, alpha: 1)
             let s: CGFloat = 1 + scale * CGFloat(0.3)
             self.transform = CGAffineTransformMakeScale(s, s)
         }

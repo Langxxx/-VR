@@ -56,9 +56,15 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdS-Kp-jAp">
+                                <rect key="frame" x="0.0" y="94" width="600" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Hcg-6j-SwK"/>
+                                </constraints>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6h-vP-1TV" customClass="ChannelScrollView" customModule="盗梦极客VR" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="30"/>
-                                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LKa-M3-w7f"/>
                                 </constraints>
@@ -67,11 +73,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="b6h-vP-1TV" firstAttribute="leading" secondItem="has-bJ-Gf2" secondAttribute="leading" id="DHe-6l-R7I"/>
+                            <constraint firstItem="qdS-Kp-jAp" firstAttribute="leading" secondItem="has-bJ-Gf2" secondAttribute="leading" id="FIE-bF-eNJ"/>
                             <constraint firstAttribute="trailing" secondItem="bj6-ps-HbR" secondAttribute="trailing" id="IHl-S5-1T0"/>
                             <constraint firstItem="b6h-vP-1TV" firstAttribute="top" secondItem="xtn-qv-WvF" secondAttribute="bottom" id="New-iQ-OcO"/>
                             <constraint firstAttribute="trailing" secondItem="b6h-vP-1TV" secondAttribute="trailing" id="Pn6-F0-L3C"/>
+                            <constraint firstItem="qdS-Kp-jAp" firstAttribute="top" secondItem="b6h-vP-1TV" secondAttribute="bottom" id="X5f-FF-m1O"/>
                             <constraint firstItem="Ny8-Gd-WLw" firstAttribute="top" secondItem="bj6-ps-HbR" secondAttribute="bottom" id="asK-ZD-8tn"/>
                             <constraint firstItem="bj6-ps-HbR" firstAttribute="top" secondItem="b6h-vP-1TV" secondAttribute="bottom" id="kzH-J9-LgO"/>
+                            <constraint firstAttribute="trailing" secondItem="qdS-Kp-jAp" secondAttribute="trailing" id="mXC-Q2-85Q"/>
                             <constraint firstItem="bj6-ps-HbR" firstAttribute="leading" secondItem="has-bJ-Gf2" secondAttribute="leading" id="pRW-xs-R9s"/>
                         </constraints>
                     </view>
