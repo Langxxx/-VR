@@ -96,7 +96,7 @@ extension ReplyCountPresentable {
     }
     
     func configReplyCountLabel(label: UILabel) {
-        label.text = replyCountText + "跟帖"
+        label.text = replyCountText + " 跟帖"
         label.textColor = replyCountColor
         label.font = replyCountFont
     }

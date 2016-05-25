@@ -21,6 +21,7 @@ class NewsListController: UIViewController {
         didSet {
             tableView.hidden = false
             tableView.reloadData()
+            page += 1
         }
     }
     
@@ -34,9 +35,11 @@ class NewsListController: UIViewController {
     
     var parameters: [String: AnyObject] {
         return [
-            "page": newsModelArray.count / 10 + 1
+            "page": page
         ]
     }
+    
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,8 +111,12 @@ extension NewsListController {
         
         func success(modelArray: [NewsModel]) {
             MBProgressHUD.hideHUD(self.view)
-            self.newsModelArray += modelArray
             tableView.mj_footer.endRefreshing()
+            if modelArray.count == 0 {
+                MBProgressHUD.showWarning("没有更多数据!")
+            }else {
+                self.newsModelArray += modelArray
+            }
         }
         
         func failure(_: ErrorType) {
@@ -146,6 +153,11 @@ extension NewsListController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("NewsCell", forIndexPath: indexPath) as! NewsCell
         let model = newsModelArray[indexPath.row]
         cell.configure(NewsCellViewModel(model: model))
+        if channelModel.title == "设备" || channelModel.title == "视频" {
+            cell.replyCountLabel.hidden = true
+        }else {
+            cell.replyCountLabel.hidden = false
+        }
         return cell
     }
 }

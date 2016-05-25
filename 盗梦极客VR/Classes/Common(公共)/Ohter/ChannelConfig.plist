@@ -30,7 +30,7 @@
 		<key>title</key>
 		<string>活动</string>
 		<key>URL</key>
-		<string>http://dmgeek.com/DG_api/get_recent_posts/</string>
+		<string>http://dmgeek.com/DG_api/get_recent_posts/?post_type=tribe_events</string>
 	</dict>
 </array>
 </plist>
