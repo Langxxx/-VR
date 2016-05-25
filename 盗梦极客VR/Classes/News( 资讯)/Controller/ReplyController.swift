@@ -47,7 +47,6 @@ class ReplyController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        showNoticeMessage()
         if !user.userCreated {
             view.endEditing(true)
             showNoticeMessage()

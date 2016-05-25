@@ -33,11 +33,11 @@ struct NewsCellViewModel: NewsCellPresentable {
 
 extension String {
     func limitStringLenth(lenth: Int) -> String {
-        let index = self.startIndex.advancedBy(lenth)
         if self.characters.count > lenth {
+            let index = self.startIndex.advancedBy(lenth)
             return self.substringToIndex(index) + "..."
         }else {
-            return self.substringToIndex(index)
+            return self
         }
     }
 }
