@@ -25,9 +25,19 @@ struct NewsCellViewModel: NewsCellPresentable {
     init(model: NewsModel) {
         URL = model.listThuUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())! + "!spc.png"
         titleText = model.title
-        excerptText = model.excerpt
+        excerptText = model.excerpt.limitStringLenth(70)
         timeText = model.date.componentsSeparatedByString(" ").first!
         replyCountText = model.customFields.discourseCommentsCount.first ?? "0"
     }
 }
 
+extension String {
+    func limitStringLenth(lenth: Int) -> String {
+        let index = self.startIndex.advancedBy(lenth)
+        if self.characters.count > lenth {
+            return self.substringToIndex(index) + "..."
+        }else {
+            return self.substringToIndex(index)
+        }
+    }
+}

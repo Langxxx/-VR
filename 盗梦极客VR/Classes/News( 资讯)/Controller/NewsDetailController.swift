@@ -307,6 +307,7 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if isDeviceList {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("NewsDetailController") as! NewsDetailController
             vc.newsModel = newsModelArray[indexPath.row]
             vc.hidesBottomBarWhenPushed = true

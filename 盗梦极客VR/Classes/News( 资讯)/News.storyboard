@@ -211,6 +211,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="U8Z-Kb-8TM">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nwe-ka-YXk" userLabel="topVIew">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
                                 <subviews>
@@ -476,7 +479,9 @@
                             <constraint firstAttribute="trailing" secondItem="nwe-ka-YXk" secondAttribute="trailing" id="ZqV-p1-dqS"/>
                             <constraint firstItem="Pnv-rD-iAe" firstAttribute="leading" secondItem="QSJ-EP-zRw" secondAttribute="leading" id="dEl-HY-g1l"/>
                             <constraint firstAttribute="trailing" secondItem="Scf-ZL-eDS" secondAttribute="trailing" id="fDS-0O-SeW"/>
+                            <constraint firstItem="U8Z-Kb-8TM" firstAttribute="centerX" secondItem="QSJ-EP-zRw" secondAttribute="centerX" id="jG0-EF-GJJ"/>
                             <constraint firstItem="nwe-ka-YXk" firstAttribute="top" secondItem="7jb-Iq-LSe" secondAttribute="bottom" id="shb-LR-uLc"/>
+                            <constraint firstItem="U8Z-Kb-8TM" firstAttribute="centerY" secondItem="QSJ-EP-zRw" secondAttribute="centerY" id="wRu-at-h1C"/>
                             <constraint firstAttribute="trailing" secondItem="Pnv-rD-iAe" secondAttribute="trailing" id="xaY-VL-4UI"/>
                         </constraints>
                         <variation key="default">
