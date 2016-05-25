@@ -170,6 +170,7 @@ extension LoginController {
     }
     // TODO: 应用未审核，第三方登陆无效
     @IBAction func WechatLoginButtonClik() {
+        MBProgressHUD.showWarning("暂不支持!")
 //        let snsPlatform = UMSocialSnsPlatformManager.getSocialPlatformWithName(UMShareToWechatSession)
 //        snsPlatform.loginClickHandler!(self, UMSocialControllerService.defaultControllerService(), true) { response in
 //            

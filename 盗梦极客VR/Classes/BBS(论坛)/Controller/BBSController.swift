@@ -17,7 +17,14 @@ class BBSController: UIViewController {
     
     @IBOutlet weak var progressView: UIProgressView!
     
-    let baseURL = "http://bbs.dmgeek.com"
+    var baseURL: String {
+        // 如果已经登陆，则自动登陆
+        if let _ = UserManager.sharedInstance.user {
+            return "http://dmgeek.com/login/?action=login_bbs&username=\(UserManager.sharedInstance.account)&password=\(UserManager.sharedInstance.password)"
+        }else {
+            return "http://bbs.dmgeek.com"
+        }
+    }
     
     @IBOutlet weak var reloadLabel: UILabel!
     var request: NSURLRequest {

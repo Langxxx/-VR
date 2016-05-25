@@ -16,7 +16,7 @@ extension BBSController {
         //登录重定向链接
         "http://dmgeek.com/discourse/",
         "http://m.dmgeek.com/",
-        
+        "http://dmgeek.com/login/",
         //使用QQ登录链接
         "https://graph.qq.com/oauth2.0/",
         "https://xui.ptlogin2.qq.com/cgi-bin/",
