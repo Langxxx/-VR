@@ -23,7 +23,9 @@ class ChannelScrollView: UIScrollView {
     let labelMargin: CGFloat = 25
     
     var labelArray: [ChannelLabel] = []
-
+    
+    var defaultShowLabelCount = 5
+    
     var currentChannelIndex: Int = 0 {
         didSet {
             let newChannelLabel = labelArray[currentChannelIndex]
@@ -68,6 +70,9 @@ extension ChannelScrollView {
             }
             return CGRectGetMaxX(lastLabel.frame) + labelMargin
         }
+        let windowsW = UIApplication.sharedApplication().keyWindow!.frame.width
+        let totalMargin = CGFloat(defaultShowLabelCount + 1) * labelMargin
+        let labelW = (windowsW - totalMargin) / CGFloat(defaultShowLabelCount)
 
         for (idx, title) in channles.enumerate() {
             // 初始化
@@ -76,6 +81,7 @@ extension ChannelScrollView {
             label.textColor = UIColor.blackColor()
             label.font = UIFont.systemFontOfSize(17)
             label.sizeToFit()
+            label.frame.size.width = labelW
             label.frame.origin.y = (bounds.height -  label.bounds.height) * 0.5
             label.frame.origin.x = getLabelX()
             
