@@ -107,7 +107,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1m-TI-vLS">
                                             <rect key="frame" x="10" y="0.0" width="580" height="44"/>
-                                            <state key="normal" title="退出当前账号" backgroundImage="account_logout_button">
+                                            <state key="normal" title="退出当前账号" backgroundImage="grayButton">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -803,6 +803,7 @@
         <image name="Invalid" width="32" height="32"/>
         <image name="account_logout_button" width="9" height="47"/>
         <image name="back" width="50" height="50"/>
+        <image name="grayButton" width="1" height="5"/>
         <image name="login_button_qqfriends" width="40" height="40"/>
         <image name="login_button_sina" width="40" height="40"/>
         <image name="login_button_wechat" width="40" height="40"/>

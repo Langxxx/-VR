@@ -56,6 +56,7 @@ extension ProfileController {
         tableView.delegate = staticCellProvider
         tableView.registerClass(StaticCell.self, forCellReuseIdentifier: staticCellProvider.cellID)
         tableView.showsVerticalScrollIndicator = false
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
         addLastGroup()
         
         if user != nil {

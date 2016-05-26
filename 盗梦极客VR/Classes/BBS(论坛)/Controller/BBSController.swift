@@ -16,17 +16,20 @@ class BBSController: UIViewController {
     var webView: WKWebView!
     
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var reloadLabel: UILabel!
     
     var baseURL: String {
-        // 如果已经登陆，则自动登陆
-        if let _ = UserManager.sharedInstance.user {
+        // 如果已经登陆且没有登录过论坛，则自动登陆论坛
+        if UserManager.sharedInstance.needAutoLoginBSS {
+            isLoginBBSUER = true
             return "http://dmgeek.com/login/?action=login_bbs&username=\(UserManager.sharedInstance.account)&password=\(UserManager.sharedInstance.password)"
         }else {
             return "http://bbs.dmgeek.com"
         }
     }
     
-    @IBOutlet weak var reloadLabel: UILabel!
+    var isLoginBBSUER = false
+    
     var request: NSURLRequest {
         return NSURLRequest(URL: NSURL(string: baseURL)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
     }
@@ -54,11 +57,11 @@ class BBSController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+        if UserManager.sharedInstance.needAutoLoginBSS {
+            webView.loadRequest(request)
+        }
     }
-
-
-    
-    
+ 
 }
 
 extension BBSController {
@@ -163,6 +166,11 @@ extension BBSController: WKNavigationDelegate {
         MBProgressHUD.hideHUD(view)
         progressView.hidden = true
         webView.hidden = false
+        if isLoginBBSUER {
+            //进行到这里，表示是自动登录论坛成功
+            isLoginBBSUER = false
+            UserManager.sharedInstance.bbsIsLogin = true
+        }
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {

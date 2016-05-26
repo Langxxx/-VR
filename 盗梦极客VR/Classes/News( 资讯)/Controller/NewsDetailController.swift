@@ -290,19 +290,26 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard section != 0 && newsModel.bbsInfo.posts.count != 0 else {
+//            return nil
+//        }
+//        
+//        let attriStr = NSMutableAttributedString(string: "  用户评论")
+//        let redStrAttr = [NSForegroundColorAttributeName : UIColor.redColor()]
+//        attriStr.addAttributes(redStrAttr, range: NSRange(location: 0, length: attriStr.length))
+//        let label = UILabel()
+//        label.attributedText = attriStr
+//        label.backgroundColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
+//        label.font = UIFont.systemFontOfSize(15)
+//        return label
+//    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard section != 0 && newsModel.bbsInfo.posts.count != 0 else {
             return nil
         }
-        
-        let attriStr = NSMutableAttributedString(string: "  用户评论")
-        let redStrAttr = [NSForegroundColorAttributeName : UIColor.redColor()]
-        attriStr.addAttributes(redStrAttr, range: NSRange(location: 0, length: attriStr.length))
-        let label = UILabel()
-        label.attributedText = attriStr
-        label.backgroundColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
-        label.font = UIFont.systemFontOfSize(15)
-        return label
+        return "论坛热点评论"
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

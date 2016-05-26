@@ -27,6 +27,7 @@ class UserManager: NSObject {
     
     let passwordKey = "passwordKey"
     let accountKey = "accountKey"
+    let bbsLoginStatusKey = "loginKey"
     var password: String! {
         set {
             NSUserDefaults.standardUserDefaults().setObject(newValue!, forKey: passwordKey)
@@ -44,6 +45,16 @@ class UserManager: NSObject {
         
         get {
             return  NSUserDefaults.standardUserDefaults().objectForKey(accountKey) as! String
+        }
+    }
+    
+    var bbsIsLogin: Bool! {
+        set {
+            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: bbsLoginStatusKey)
+        }
+        
+        get {
+            return  NSUserDefaults.standardUserDefaults().boolForKey(bbsLoginStatusKey)
         }
     }
 
@@ -77,6 +88,7 @@ class UserManager: NSObject {
                 UserManager.sharedInstance.user = user
                 UserManager.sharedInstance.password = parameters["password"]
                 UserManager.sharedInstance.account = parameters["username"]
+                UserManager.sharedInstance.bbsIsLogin = false
                 NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
                 success(user)
                 },
@@ -84,11 +96,17 @@ class UserManager: NSObject {
             )
     }
     
+    static func login(user: User) {
+        UserManager.sharedInstance.user = user
+        NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
+    }
+    
     static func loginout() {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.removeObjectForKey(UserManager.key)
         userDefaults.synchronize()
         UserManager.sharedInstance.user = nil
+         UserManager.sharedInstance.bbsIsLogin = false
         NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginoutNotification, object: nil)
     }
     
@@ -161,11 +179,6 @@ class UserManager: NSObject {
 
     }
     
-    static func login(user: User) {
-        UserManager.sharedInstance.user = user
-        NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
-    }
-    
     static func updateUserInfo() {
         guard let user = UserManager.sharedInstance.user else {
             return
@@ -200,6 +213,12 @@ class UserManager: NSObject {
         webView.loadRequest(requst)
     }
 
+}
+
+extension UserManager {
+    var needAutoLoginBSS: Bool {
+        return self.user != nil && !self.bbsIsLogin
+    }
 }
 
 extension UserManager: WKNavigationDelegate {

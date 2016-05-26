@@ -87,7 +87,7 @@ extension NewsListController {
     func loadNetworkData() {
         
         self.reloadLabel.hidden = true
-        MBProgressHUD.showMessage("正在玩命加载", toView: view)
+//        MBProgressHUD.showMessage("正在玩命加载", toView: view)
 
         func success(modelArray: [[NewsModel]]) {
             MBProgressHUD.hideHUD(self.view)
