@@ -155,7 +155,7 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     deinit{
-        //print("CyclePictureView---deinit")
+        //dPrint("CyclePictureView---deinit")
     }
     
     /**
@@ -229,7 +229,7 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
     private func reloadData() {
         
         guard let imageBox = self.imageBox else {
-            //print("reloadData---error")
+            //dPrint("reloadData---error")
             return
         }
         

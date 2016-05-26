@@ -204,11 +204,11 @@ class UserManager: NSObject {
 
 extension UserManager: WKNavigationDelegate {
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("正在加载...")
+        dPrint("正在加载...")
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        print("加载成功...")
+        dPrint("加载成功...")
         synchronizeAcount("http://dmgeek.com/DG_api/users/set_bbs_user_created/?user_id=\(userID)")
             .complete(success: synchronizeSuccess,
                       failure: synchronizeFailure)

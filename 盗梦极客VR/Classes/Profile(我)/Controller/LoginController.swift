@@ -46,7 +46,7 @@ class LoginController: UIViewController {
     }
 
     deinit {
-        print("LoginController deinit")
+        dPrint("LoginController deinit")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -176,7 +176,7 @@ extension LoginController {
 //            
 //            if response.responseCode == UMSResponseCodeSuccess {
 //                let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToWechatSession]
-//                print("userName: \(snsAccount)")
+//                dPrint("userName: \(snsAccount)")
 //            }
 //        }
     }

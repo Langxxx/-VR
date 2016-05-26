@@ -111,7 +111,7 @@ extension ReplyController {
         Alamofire.request(.POST, "http://bbs.dmgeek.com/posts", parameters: parameters, headers: headers)
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    print("post reply error!\n URL:\(response.result.error)")
+                    dPrint("post reply error!\n URL:\(response.result.error)")
                     return
                 }
                 if let (_, error) = JSON(response.result.value!)["errors"].first {

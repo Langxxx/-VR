@@ -101,7 +101,7 @@ extension BBSController {
     }
     
     func prepareLoadRequst() {
-        print("prepareLoadRequst")
+        dPrint("prepareLoadRequst")
         reloadLabel.hidden = true
         progressView.hidden = false
         progressView.progress = 0
@@ -134,7 +134,7 @@ extension BBSController: WKNavigationDelegate {
      */
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
 
-//        print(navigationAction.request.URLString)
+//        dPrint(navigationAction.request.URLString)
         guard let targetFrame = navigationAction.targetFrame,
             requstURL = navigationAction.request.URL else {
                 decisionHandler(.Cancel)
@@ -155,11 +155,11 @@ extension BBSController: WKNavigationDelegate {
     
     
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("正在加载...")
+        dPrint("正在加载...")
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        print("加载成功...")
+        dPrint("加载成功...")
         MBProgressHUD.hideHUD(view)
         progressView.hidden = true
         webView.hidden = false

@@ -17,7 +17,7 @@ func checkInfoValid(str: String, parameters: [String: AnyObject]) -> AsynOperati
         Alamofire.request(.GET, str, parameters: parameters)
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    print("checkInfoValid error!\n URL:\(response.result.error)")
+                    dPrint("checkInfoValid error!\n URL:\(response.result.error)")
                     completion(.Failure(Error.NetworkError))
                     return
                 }
@@ -37,7 +37,7 @@ func getNonceValue(urlStr: String = "http://dmgeek.com/DG_api/get_nonce/",
         Alamofire.request(.GET, urlStr, parameters: parameters)
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    print("loginRequest error!\n URL:\(response.result.error)")
+                    dPrint("loginRequest error!\n URL:\(response.result.error)")
                     completion(.Failure(Error.NetworkError))
                     return
                 }
@@ -56,7 +56,7 @@ func checkRegisterValid(parameters: [String: String]) -> AsynOperation<Int> {
         Alamofire.request(.GET, "http://dmgeek.com/DG_api/users/register/", parameters: parameters)
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    print("loginRequest error!\n URL:\(response.result.error)")
+                    dPrint("loginRequest error!\n URL:\(response.result.error)")
                     completion(.Failure(Error.NetworkError))
                     return
                 }
@@ -75,7 +75,7 @@ func checkOauthLogin(parameters: [String: String]) -> AsynOperation<User> {
         Alamofire.request(.GET, "http://dmgeek.com/DG_api/users/get_social_user/", parameters: parameters)
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    print("checkOauthLogin error!\n URL:\(response.result.error)")
+                    dPrint("checkOauthLogin error!\n URL:\(response.result.error)")
                     completion(.Failure(Error.NetworkError))
                     return
                 }
@@ -92,7 +92,7 @@ func synchronizeAcount(urlStr: String) -> AsynOperation<Bool>  {
         Alamofire.request(.GET, urlStr)
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    print("synchronizeAcount error!\n URL:\(response.result.error)")
+                    dPrint("synchronizeAcount error!\n URL:\(response.result.error)")
                     completion(.Failure(Error.NetworkError))
                     return
                 }

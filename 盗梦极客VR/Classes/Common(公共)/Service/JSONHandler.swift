@@ -35,7 +35,7 @@ func fetchJsonFromNet(urlStr: String, _ parameters: [String: AnyObject]? = nil) 
         Alamofire.request(.GET, urlStr, parameters: parameters)
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    print("Alamofire error!")
+                    dPrint("Alamofire error!")
                     completion(.Failure(Error.NetworkError))
                     return
                 }
@@ -51,7 +51,7 @@ func fetchTopNewsJsonFromNet(otherJson: JSON) -> AsynOperation<[JSON]> {
         Alamofire.request(.GET, "http://dmgeek.com/DG_api/get_taxonomy_posts/?taxonomy=post_tag&id=167&count=5")
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    print("Alamofire error!")
+                    dPrint("Alamofire error!")
                     completion(.Failure(Error.NetworkError))
                     return
                 }

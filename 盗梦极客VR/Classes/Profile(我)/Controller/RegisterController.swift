@@ -77,7 +77,7 @@ class RegisterController: UIViewController {
     }
     
     deinit {
-        print("Register deinit")
+        dPrint("Register deinit")
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

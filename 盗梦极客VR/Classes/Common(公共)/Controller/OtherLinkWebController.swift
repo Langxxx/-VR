@@ -43,7 +43,7 @@ class OtherLinkWebController: UIViewController {
     }
     
     deinit {
-        print("deinit---")
+        dPrint("deinit---")
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
 }
@@ -77,13 +77,13 @@ extension OtherLinkWebController: WKNavigationDelegate {
 
     
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        print("正在加载...")
+        dPrint("正在加载...")
         progressView.progress = 0
         progressView.hidden = false
     }
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
-        print("加载成功...")
+        dPrint("加载成功...")
         progressView.hidden = true
         webView.hidden = false
         titleLabel.hidden = false
@@ -91,7 +91,7 @@ extension OtherLinkWebController: WKNavigationDelegate {
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
-        print("加载失败")
+        dPrint("加载失败")
         MBProgressHUD.showError("网络异常，请稍后尝试！")
         progressView.hidden = true
         progressView.progress = 0

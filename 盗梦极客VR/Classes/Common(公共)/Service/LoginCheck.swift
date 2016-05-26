@@ -25,7 +25,7 @@ func loginRequest(url: String, _ parameters: [String: AnyObject] = [:]) -> AsynO
         Alamofire.request(.GET, url,parameters: parameters)
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    print("loginRequest error!\n URL:\(response.result.error)")
+                    dPrint("loginRequest error!\n URL:\(response.result.error)")
                     completion(.Failure(Error.NetworkError))
                     return
                 }
