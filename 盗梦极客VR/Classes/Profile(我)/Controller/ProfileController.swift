@@ -55,7 +55,7 @@ extension ProfileController {
         tableView.dataSource = staticCellProvider
         tableView.delegate = staticCellProvider
         tableView.registerClass(StaticCell.self, forCellReuseIdentifier: staticCellProvider.cellID)
-        
+        tableView.showsVerticalScrollIndicator = false
         addLastGroup()
         
         if user != nil {
@@ -72,6 +72,7 @@ extension ProfileController {
         
         avatarImageView.sd_setImageWithURL(NSURL(string: user.avatar)!)
         avatarImageView.layer.cornerRadius =  avatarImageView.bounds.width * 0.5
+        avatarImageView.layer.masksToBounds = true
         usernameLabel.text = user.displayname
         exitContainerView.hidden = false
         
@@ -89,8 +90,10 @@ extension ProfileController {
     }
     
     func addGroup0() {
+        let account = RightDetallCellModel(text: "账号", rightDetall: user.username)
         let nickname = RightDetallCellModel(text: "昵称", rightDetall: user.displayname)
-        let group = CellGroup(header: "基本信息", items: [nickname])
+        let email = RightDetallCellModel(text: "邮箱", rightDetall: user.email)
+        let group = CellGroup(header: "基本信息", items: [account, nickname, email])
         staticCellProvider.dataList.insert(group, atIndex: 0)
     }
     

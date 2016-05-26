@@ -46,7 +46,9 @@ class BBSController: UIViewController {
      点击视图重新加载
      */
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        webView.loadRequest(request)
+        if !webView.loading {
+            webView.loadRequest(request)
+        }
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -83,7 +85,7 @@ extension BBSController {
         
         webView.snp_makeConstraints { (make) in
             make.top.equalTo(self.progressView)
-            make.bottom.equalTo(self.view).offset(-44)
+            make.bottom.equalTo(self.view)
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
         }
@@ -93,7 +95,7 @@ extension BBSController {
         // 监听加载进度
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         //监听是否可以前进后退，修改btn.enable属性
-        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
+//        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
         
         webView.loadRequest(request)
     }
