@@ -48,7 +48,9 @@ class NewsListController: UIViewController {
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        loadNetworkData()
+        if !reloadLabel.hidden {
+            loadNetworkData()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
