@@ -3,37 +3,37 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Slice 2-2.png",
+      "filename" : "appicon.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Slice 2@3x-2.png",
+      "filename" : "appicon-1.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Slice 2-1.png",
+      "filename" : "appicon-2.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Slice 2@3x-1.png",
+      "filename" : "appicon-3.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Slice 2.png",
+      "filename" : "appicon-4.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Slice 2@3x.png",
+      "filename" : "appicon-5.png",
       "scale" : "3x"
     }
   ],

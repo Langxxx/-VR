@@ -110,7 +110,7 @@ extension BBSController {
         self.webView = webView
         
         webView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.progressView)
+            make.top.equalTo(self.progressView.snp_bottom)
             make.bottom.equalTo(self.view)
             make.left.equalTo(self.view)
             make.right.equalTo(self.view)
@@ -131,6 +131,7 @@ extension BBSController {
         reloadLabel.hidden = true
         progressView.hidden = false
         progressView.progress = 0
+        
         MBProgressHUD.showMessage("正在加载...", toView: view)
     }
     
@@ -153,6 +154,11 @@ extension BBSController: WKUIDelegate {
 
 // MARK: - WKNavigationDelegate
 extension BBSController: WKNavigationDelegate {
+
+    func webView(webView: WKWebView, createWebViewWithConfiguration configuration: WKWebViewConfiguration, forNavigationAction navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        webView.loadRequest(navigationAction.request)
+        return nil
+    }
 
     /**
      处理跳转的URL，如果不是http://bbs.dmgeek.com子域名
