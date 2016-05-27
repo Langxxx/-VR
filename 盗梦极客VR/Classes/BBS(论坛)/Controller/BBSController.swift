@@ -132,7 +132,7 @@ extension BBSController {
         progressView.hidden = false
         progressView.progress = 0
         
-        MBProgressHUD.showMessage("正在加载...", toView: view)
+//        MBProgressHUD.showMessage("正在加载...", toView: view)
     }
     
     func jumpToOtherLinker(urlStr: String) {
