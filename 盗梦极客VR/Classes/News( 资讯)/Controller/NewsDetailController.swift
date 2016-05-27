@@ -78,9 +78,9 @@ extension NewsDetailController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 150
-        tableView.sectionHeaderHeight = 25
-        tableView.sectionFooterHeight = 0
+        tableView.estimatedRowHeight = 300
+//        tableView.sectionHeaderHeight = 10
+//        tableView.sectionFooterHeight = 40
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
         tableView.hidden = true
     }
@@ -201,7 +201,15 @@ extension NewsDetailController {
         
     }
 
-    
+    func loadMoreReplyButtonClik() {
+        guard let navVc = tabBarController!.viewControllers?[1] as? UINavigationController else {
+            return
+        }
+        let bbsvc = navVc.topViewController as? BBSController
+        bbsvc?.jumpURL = newsModel.customFields.discoursePermalink.first
+
+        tabBarController?.selectedViewController = navVc
+    }
 }
 
 // MARK: - webView代理
@@ -310,6 +318,34 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
             return nil
         }
         return "论坛热点评论"
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        guard section != 0 && newsModel.bbsInfo.posts.count >= 9 else {
+            return 0
+        }
+        return 40
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard section != 0 && newsModel.bbsInfo.posts.count >= 5 else {
+            return nil
+        }
+        let view = UIView()
+        let button = UIButton()
+        button.setTitle("更多评论，请点击此处", forState: .Normal)
+        view.addSubview(button)
+        button.snp_makeConstraints { (make) in
+            make.top.equalTo(view).offset(5)
+            make.bottom.equalTo(view)
+            make.right.equalTo(view).offset(-10)
+            make.left.equalTo(view).offset(10)
+        }
+
+        button.titleLabel?.font = UIFont.systemFontOfSize(15)
+        button.setBackgroundImage(UIImage(named: "account_logout_button"), forState: .Normal)
+        button.addTarget(self, action: #selector(loadMoreReplyButtonClik), forControlEvents: .TouchUpInside)
+        return view
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

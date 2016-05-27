@@ -21,14 +21,30 @@ class BBSController: UIViewController {
     var baseURL: String {
         // 如果已经登陆且没有登录过论坛，则自动登陆论坛
         if UserManager.sharedInstance.needAutoLoginBSS {
-            isLoginBBSUER = true
+            isLoginingBBSURL = true
             return "http://dmgeek.com/login/?action=login_bbs&username=\(UserManager.sharedInstance.account)&password=\(UserManager.sharedInstance.password)"
         }else {
             return "http://bbs.dmgeek.com"
         }
     }
     
-    var isLoginBBSUER = false
+        /// 首页跳转来的URL
+    var jumpURL: String? {
+        didSet {
+            if jumpURL != nil {
+                needJump = true
+            }
+        }
+    }
+    var needJump = false
+    
+    var jumpRequest: NSURLRequest {
+        return NSURLRequest(URL: NSURL(string: jumpURL!)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
+    }
+    
+    var isLoginingBBSURL = false
+    
+    var isFirstAppear = true
     
     var request: NSURLRequest {
         return NSURLRequest(URL: NSURL(string: baseURL)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
@@ -57,9 +73,16 @@ class BBSController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
-        if UserManager.sharedInstance.needAutoLoginBSS {
+        
+        if isFirstAppear && !needJump {
             webView.loadRequest(request)
+        }else if UserManager.sharedInstance.needAutoLoginBSS && !isLoginingBBSURL {
+            webView.loadRequest(request)
+        }else if needJump {
+            webView.loadRequest(jumpRequest)
+            needJump = false
         }
+        isFirstAppear = false
     }
  
 }
@@ -100,7 +123,7 @@ extension BBSController {
         //监听是否可以前进后退，修改btn.enable属性
 //        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
         
-        webView.loadRequest(request)
+//        webView.loadRequest(request)
     }
     
     func prepareLoadRequst() {
@@ -166,10 +189,15 @@ extension BBSController: WKNavigationDelegate {
         MBProgressHUD.hideHUD(view)
         progressView.hidden = true
         webView.hidden = false
-        if isLoginBBSUER {
+        if isLoginingBBSURL {
             //进行到这里，表示是自动登录论坛成功
-            isLoginBBSUER = false
+            isLoginingBBSURL = false
             UserManager.sharedInstance.bbsIsLogin = true
+            if needJump {
+                webView.loadRequest(jumpRequest)
+                needJump = false
+            }
+
         }
     }
     
