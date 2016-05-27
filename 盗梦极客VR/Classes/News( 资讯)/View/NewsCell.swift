@@ -16,6 +16,7 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var excerptLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var replyCountLabel: UILabel!
+    @IBOutlet weak var tagLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,5 +29,6 @@ class NewsCell: UITableViewCell {
         presenter.configExcerptLabel(excerptLabel)
         presenter.configTimeLabel(timeLabel)
         presenter.configReplyCountLabel(replyCountLabel)
+        presenter.configTageString(tagLabel)
     }
 }

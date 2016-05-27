@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias NewsCellPresentable = protocol<TopImageViewPresentable, TitlePresentable, ExcerptPresentable, TimePresentable, ReplyCountPresentable>
+typealias NewsCellPresentable = protocol<TopImageViewPresentable, TitlePresentable, ExcerptPresentable, TimePresentable, ReplyCountPresentable, TagPresentable>
 
 struct NewsCellViewModel: NewsCellPresentable {
      /// 图片URL
@@ -21,6 +21,8 @@ struct NewsCellViewModel: NewsCellPresentable {
     var timeText: String
      /// 跟帖数
     var replyCountText: String
+        /// 新闻类别(目前用于设备和视频)
+    var tagString: String
     
     init(model: NewsModel) {
         URL = model.listThuUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())! + "!spc.png"
@@ -28,6 +30,7 @@ struct NewsCellViewModel: NewsCellPresentable {
         excerptText = model.excerpt.limitStringLenth(70)
         timeText = model.date.componentsSeparatedByString(" ").first!
         replyCountText = model.customFields.discourseCommentsCount.first ?? "0"
+        tagString = model.specialTag
     }
 }
 

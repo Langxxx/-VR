@@ -157,8 +157,10 @@ extension NewsListController: UITableViewDataSource {
         cell.configure(NewsCellViewModel(model: model))
         if channelModel.title == "设备" || channelModel.title == "视频" {
             cell.replyCountLabel.hidden = true
+            cell.tagLabel.hidden = false
         }else {
             cell.replyCountLabel.hidden = false
+            cell.tagLabel.hidden = true
         }
         return cell
     }

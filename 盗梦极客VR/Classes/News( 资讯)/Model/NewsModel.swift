@@ -37,6 +37,10 @@ class NewsModel : NSObject, NSCoding{
         /// 获取评论模块的数据
     var bbsInfo : BBSInfo!
 
+        /// 设备模块特有数据
+    var taxonomyPlatformsDevice : [TaxonomyPlatformsDevice]!
+        /// 视频模块特有数据
+    var taxonomyVideos : [TaxonomyVideo]!
     
     var tag: String {
         guard let str = type else {
@@ -50,6 +54,15 @@ class NewsModel : NSObject, NSCoding{
         }else {
             return "资讯"
         }
+    }
+    
+    var specialTag: String {
+        if let str = taxonomyPlatformsDevice.first?.title {
+            return str
+        }else if let str = taxonomyVideos.first?.title {
+            return str
+        }
+        return ""
     }
     
 	/**
@@ -89,6 +102,20 @@ class NewsModel : NSObject, NSCoding{
         let bbsInfoJson = json["bbs_info"]
         if bbsInfoJson != JSON.null{
             bbsInfo = BBSInfo(fromJson: bbsInfoJson)
+        }
+        
+        taxonomyPlatformsDevice = [TaxonomyPlatformsDevice]()
+        let taxonomyPlatformsDeviceArray = json["taxonomy_platforms_device"].arrayValue
+        for taxonomyPlatformsDeviceJson in taxonomyPlatformsDeviceArray{
+            let value = TaxonomyPlatformsDevice(fromJson: taxonomyPlatformsDeviceJson)
+            taxonomyPlatformsDevice.append(value)
+        }
+        
+        taxonomyVideos = [TaxonomyVideo]()
+        let taxonomyVideosArray = json["taxonomy_videos"].arrayValue
+        for taxonomyVideosJson in taxonomyVideosArray{
+            let value = TaxonomyVideo(fromJson: taxonomyVideosJson)
+            taxonomyVideos.append(value)
         }
 	}
 
@@ -145,6 +172,20 @@ class NewsModel : NSObject, NSCoding{
         if bbsInfo != nil{
             dictionary["bbs_info"] = bbsInfo.toDictionary()
         }
+        if taxonomyPlatformsDevice != nil{
+            var dictionaryElements = [NSDictionary]()
+            for taxonomyPlatformsDeviceElement in taxonomyPlatformsDevice {
+                dictionaryElements.append(taxonomyPlatformsDeviceElement.toDictionary())
+            }
+            dictionary["taxonomy_platforms_device"] = dictionaryElements
+        }
+        if taxonomyVideos != nil{
+            var dictionaryElements = [NSDictionary]()
+            for taxonomyVideosElement in taxonomyVideos {
+                dictionaryElements.append(taxonomyVideosElement.toDictionary())
+            }
+            dictionary["taxonomy_videos"] = dictionaryElements
+        }
 		return dictionary
 	}
 
@@ -167,6 +208,8 @@ class NewsModel : NSObject, NSCoding{
          type = aDecoder.decodeObjectForKey("type") as? String
          url = aDecoder.decodeObjectForKey("url") as? String
          bbsInfo = aDecoder.decodeObjectForKey("bbs_info") as? BBSInfo
+         taxonomyPlatformsDevice = aDecoder.decodeObjectForKey("taxonomy_platforms_device") as? [TaxonomyPlatformsDevice]
+         taxonomyVideos = aDecoder.decodeObjectForKey("taxonomy_videos") as? [TaxonomyVideo]
 	}
 
     /**
@@ -213,6 +256,12 @@ class NewsModel : NSObject, NSCoding{
 		}
         if bbsInfo != nil{
             aCoder.encodeObject(bbsInfo, forKey: "bbs_info")
+        }
+        if taxonomyPlatformsDevice != nil{
+            aCoder.encodeObject(taxonomyPlatformsDevice, forKey: "taxonomy_platforms_device")
+        }
+        if taxonomyVideos != nil{
+            aCoder.encodeObject(taxonomyVideos, forKey: "taxonomy_videos")
         }
 	}
 

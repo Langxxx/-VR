@@ -157,12 +157,19 @@
                                                         <constraint firstAttribute="width" secondItem="Lkb-BG-w1E" secondAttribute="height" multiplier="43:16" id="jpx-S5-zGO"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEx-HP-bQZ">
+                                                    <rect key="frame" x="327" y="300" width="38" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Lkb-BG-w1E" firstAttribute="leading" secondItem="bE4-ie-kMt" secondAttribute="leading" constant="10" id="13K-fx-ppR"/>
                                                 <constraint firstAttribute="trailing" secondItem="Lkb-BG-w1E" secondAttribute="trailing" constant="10" id="2Pg-ZH-M00"/>
                                                 <constraint firstItem="I4h-Qa-bE9" firstAttribute="trailing" secondItem="Lkb-BG-w1E" secondAttribute="trailing" id="5xV-YN-mW9"/>
                                                 <constraint firstItem="Lkb-BG-w1E" firstAttribute="top" secondItem="bE4-ie-kMt" secondAttribute="top" constant="10" id="7LG-2D-dCZ"/>
+                                                <constraint firstItem="pEx-HP-bQZ" firstAttribute="bottom" secondItem="HSP-yz-728" secondAttribute="bottom" id="A4B-tG-EFW"/>
                                                 <constraint firstItem="I4h-Qa-bE9" firstAttribute="top" secondItem="Lkb-BG-w1E" secondAttribute="bottom" constant="10" id="Bqr-3D-rYR"/>
                                                 <constraint firstItem="I4h-Qa-bE9" firstAttribute="leading" secondItem="Lkb-BG-w1E" secondAttribute="leading" id="DGC-ML-FIS"/>
                                                 <constraint firstItem="JOB-Pf-DY3" firstAttribute="leading" secondItem="Lkb-BG-w1E" secondAttribute="leading" id="IZu-jh-G50"/>
@@ -170,6 +177,7 @@
                                                 <constraint firstItem="HSP-yz-728" firstAttribute="leading" secondItem="Lkb-BG-w1E" secondAttribute="leading" id="LlO-ak-uc6"/>
                                                 <constraint firstItem="JOB-Pf-DY3" firstAttribute="top" secondItem="I4h-Qa-bE9" secondAttribute="bottom" constant="10" id="N9J-w4-c80"/>
                                                 <constraint firstItem="wIm-hA-vEC" firstAttribute="top" secondItem="HSP-yz-728" secondAttribute="top" id="Rf0-l7-km6"/>
+                                                <constraint firstItem="pEx-HP-bQZ" firstAttribute="trailing" secondItem="Lkb-BG-w1E" secondAttribute="trailing" id="TYi-hl-4kk"/>
                                                 <constraint firstItem="JOB-Pf-DY3" firstAttribute="trailing" secondItem="Lkb-BG-w1E" secondAttribute="trailing" id="Y97-5S-ZQc"/>
                                                 <constraint firstItem="HSP-yz-728" firstAttribute="top" secondItem="JOB-Pf-DY3" secondAttribute="bottom" constant="10" id="afC-kE-aO4"/>
                                                 <constraint firstItem="wIm-hA-vEC" firstAttribute="trailing" secondItem="Lkb-BG-w1E" secondAttribute="trailing" id="hPu-9f-EO9"/>
@@ -184,6 +192,7 @@
                                         <connections>
                                             <outlet property="excerptLabel" destination="JOB-Pf-DY3" id="NWC-Wp-PYa"/>
                                             <outlet property="replyCountLabel" destination="wIm-hA-vEC" id="8Bx-DD-0W5"/>
+                                            <outlet property="tagLabel" destination="pEx-HP-bQZ" id="fol-SI-CKF"/>
                                             <outlet property="timeLabel" destination="HSP-yz-728" id="iN0-8C-ZPR"/>
                                             <outlet property="titleLabel" destination="I4h-Qa-bE9" id="GiL-Tz-bx9"/>
                                             <outlet property="topImageView" destination="Lkb-BG-w1E" id="yzi-Sb-s15"/>
