@@ -1,4 +1,12 @@
 
+body {
+    background: #f4f4f4;
+}
+a {
+    color: #f25d3c;
+    text-decoration: none;
+    
+}
 .title {
     text-align:left;
     font-size:25px;

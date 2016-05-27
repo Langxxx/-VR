@@ -167,6 +167,10 @@ extension NewsDetailController {
         
         body += newsModel.content.stringByReplacingOccurrencesOfString("\r\n", withString: "<br/>")
         
+        if let str = newsModel.taxonomyVideos.first?.title where str == "全景视频" {
+            body += "<h4 style=\"color:#cc0000\">优酷全景视频暂不支持手机播放，请尝试在PC端观看</h4>"
+        }
+        
         body += "</body>"
         
         return body
