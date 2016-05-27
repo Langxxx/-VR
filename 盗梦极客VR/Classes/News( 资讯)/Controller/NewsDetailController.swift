@@ -165,7 +165,7 @@ extension NewsDetailController {
         body += newsModel.date
         body += "</div>"
         
-        body += newsModel.content.stringByReplacingOccurrencesOfString("\r\n\r\n", withString: "<br/>")
+        body += newsModel.content.stringByReplacingOccurrencesOfString("\r\n", withString: "<br/>")
         
         body += "</body>"
         
