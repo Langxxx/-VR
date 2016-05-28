@@ -80,6 +80,7 @@ extension NewsListController {
         headerView.pageControlAliment = .RightBottom
         headerView.currentDotColor = UIColor.tintColor()
         headerView.delegate = self
+        headerView.placeholderImage = UIImage(named: "placeholderImage")
         tableView.tableHeaderView = headerView
         headerView.frame.size.height = headerView.frame.size.width * 0.7
     }

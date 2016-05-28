@@ -94,7 +94,7 @@ extension ProfileController {
         let account = RightDetallCellModel(text: "账号", rightDetall: user.username)
         let nickname = RightDetallCellModel(text: "昵称", rightDetall: user.displayname)
         let email = RightDetallCellModel(text: "邮箱", rightDetall: user.email)
-        let group = CellGroup(header: "基本信息", items: [account, nickname, email])
+        let group = CellGroup(header: "基本信息", items: [account, nickname, email], footer: "此版本暂不支持修改个人信息")
         staticCellProvider.dataList.insert(group, atIndex: 0)
     }
     

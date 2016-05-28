@@ -113,7 +113,7 @@ extension TopImageViewPresentable {
         guard let url = NSURL(string: URL) else {
             return
         }
-        imageView.sd_setImageWithURL(url)
+        imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholderImage"))
     }
 }
 
