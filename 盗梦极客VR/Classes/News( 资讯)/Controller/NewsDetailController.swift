@@ -15,6 +15,7 @@ class NewsDetailController: UIViewController {
     /// 这里不使用WKWebView是因为Loadhtml方法加载出来的，样式会很奇怪
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var replyContainerView: UIView!
+    @IBOutlet weak var replyCountLabel: UILabel!
     
     var webView: UIWebView!
     var newsModel: NewsModel!
@@ -245,6 +246,7 @@ extension NewsDetailController: UIWebViewDelegate {
             self.tableView.hidden = false
             if self.canReply {
                 self.replyContainerView.hidden = false
+                self.replyCountLabel.text = "\(self.newsModel.bbsInfo.posts.count) 跟帖"
             }
         }
     }
