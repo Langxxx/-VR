@@ -52,6 +52,7 @@ class BBSController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWebView()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
 
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -88,6 +89,10 @@ class BBSController: UIViewController {
 }
 
 extension BBSController {
+    
+    func reEnterForeground() {
+        webView.reload()
+    }
     
     func shareCurrentURL() {
         guard let title = webView.title?.componentsSeparatedByString(" - ").first else {
