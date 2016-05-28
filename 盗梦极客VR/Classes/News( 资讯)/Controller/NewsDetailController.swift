@@ -246,7 +246,7 @@ extension NewsDetailController: UIWebViewDelegate {
             self.tableView.hidden = false
             if self.canReply {
                 self.replyContainerView.hidden = false
-                self.replyCountLabel.text = "\(self.newsModel.bbsInfo.posts.count) 跟帖"
+                self.replyCountLabel.text = "\(self.newsModel.customFields.discourseCommentsCount.first!) 跟帖"
             }
         }
     }

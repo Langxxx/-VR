@@ -44,7 +44,7 @@ class BBSController: UIViewController {
     
     var isLoginingBBSURL = false
     
-    var isFirstAppear = true
+    var isFirstRequste = true
     
     var request: NSURLRequest {
         return NSURLRequest(URL: NSURL(string: baseURL)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
@@ -74,15 +74,15 @@ class BBSController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
         
-        if isFirstAppear && !needJump {
+        if webView.loading { return }
+        
+        if isFirstRequste && !needJump {
             webView.loadRequest(request)
         }else if UserManager.sharedInstance.needAutoLoginBSS && !isLoginingBBSURL {
             webView.loadRequest(request)
         }else if needJump {
             webView.loadRequest(jumpRequest)
-            needJump = false
         }
-        isFirstAppear = false
     }
  
 }
@@ -132,7 +132,11 @@ extension BBSController {
         progressView.hidden = false
         progressView.progress = 0
         
-//        MBProgressHUD.showMessage("正在加载...", toView: view)
+        if isLoginingBBSURL {
+            MBProgressHUD.showMessage("正在同步用户数据...")
+        }else if needJump {
+            MBProgressHUD.showMessage("正在跳转链接...")
+        }
     }
     
     func jumpToOtherLinker(urlStr: String) {
@@ -192,23 +196,25 @@ extension BBSController: WKNavigationDelegate {
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         dPrint("加载成功...")
-        MBProgressHUD.hideHUD(view)
+        MBProgressHUD.hideHUD()
         progressView.hidden = true
         webView.hidden = false
+        isFirstRequste = false
         if isLoginingBBSURL {
             //进行到这里，表示是自动登录论坛成功
             isLoginingBBSURL = false
             UserManager.sharedInstance.bbsIsLogin = true
             if needJump {
                 webView.loadRequest(jumpRequest)
-                needJump = false
             }
 
+        }else if needJump {
+            needJump = false
         }
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
-        MBProgressHUD.hideHUD(view)
+        MBProgressHUD.hideHUD()
         reloadLabel.hidden = false
         progressView.hidden = true
         // 102可能是程序中断(内部跳转)

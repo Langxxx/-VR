@@ -434,7 +434,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Scf-ZL-eDS">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Scf-ZL-eDS">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KKy-wR-C1e" userLabel="SplitView">
@@ -478,15 +478,15 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4R-Xv-drV">
                                         <rect key="frame" x="351" y="12" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.7803921568627451" green="0.0" blue="0.11372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topic" translatesAutoresizingMaskIntoConstraints="NO" id="beV-F4-eNr">
-                                        <rect key="frame" x="320" y="7" width="31" height="31"/>
+                                        <rect key="frame" x="320" y="10" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="beV-F4-eNr" secondAttribute="height" multiplier="1:1" id="Efb-B0-gTn"/>
-                                            <constraint firstAttribute="width" constant="31" id="pQ9-Cw-tfi"/>
+                                            <constraint firstAttribute="width" constant="25" id="pQ9-Cw-tfi"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
