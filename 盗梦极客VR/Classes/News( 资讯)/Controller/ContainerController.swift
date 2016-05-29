@@ -17,12 +17,15 @@ class ContainerController: UIViewController {
     
     var channelModelArray: [ChannelModel]!
     
+    var isSeletedVc = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupChannelScrollView()
         setupChildViewControllers()
         setupContainerView()
+        tabBarController?.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -107,4 +110,22 @@ extension ContainerController: ChannelScrollViewDelegate {
         containerView.scrollToItemAtIndexPath(indexpath, atScrollPosition: .None, animated: false)
     }
 
+}
+
+extension ContainerController: UITabBarControllerDelegate {
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        guard let navVC = viewController as? UINavigationController else {
+            return
+        }
+        if navVC.topViewController!.isKindOfClass(ContainerController.self) {
+            if  isSeletedVc {
+                let cellIndexPath = containerView.indexPathForCell(containerView.visibleCells().first!)!
+                let vc = childViewControllers[cellIndexPath.row] as! NewsListController
+                vc.tableView.setContentOffset(CGPointZero, animated:true)
+            }
+            isSeletedVc = true
+        }else {
+            isSeletedVc = false
+        }
+    }
 }
