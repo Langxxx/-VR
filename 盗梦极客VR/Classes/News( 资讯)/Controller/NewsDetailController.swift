@@ -215,6 +215,14 @@ extension NewsDetailController {
 
         tabBarController?.selectedViewController = navVc
     }
+    
+    @IBAction func lookupReplyButtonClik() {
+        if newsModel.bbsInfo.posts.count > 0 {
+            let indexPath = NSIndexPath(forRow: 0, inSection: 1)
+            tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+        }
+    }
+    
 }
 
 // MARK: - webView代理
