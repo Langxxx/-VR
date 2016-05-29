@@ -2,11 +2,14 @@
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'SnapKit', '~> 0.17.0'
-pod 'MBProgressHUD', :git => 'https://github.com/matej/MBProgressHUD.git'
-pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git'
-pod 'SDWebImage', :git => 'https://github.com/rs/SDWebImage.git'
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
-pod 'MJRefresh', :git => 'https://github.com/CoderMJLee/MJRefresh.git'
-pod 'UMengSocial', '~> 5.0'
-pod 'IQKeyboardManager', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git'
+target '盗梦极客VR' do
+
+	pod 'SnapKit', '~> 0.17.0'
+	pod 'MBProgressHUD', :git => 'https://github.com/matej/MBProgressHUD.git'
+	pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git'
+	pod 'SDWebImage', :git => 'https://github.com/rs/SDWebImage.git'
+	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+	pod 'MJRefresh', :git => 'https://github.com/CoderMJLee/MJRefresh.git'
+	pod 'UMengSocial', '~> 5.0'
+	pod 'IQKeyboardManager', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git'
+end
