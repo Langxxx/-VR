@@ -56,6 +56,12 @@ class NewsListController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        tableView.scrollsToTop = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableView.scrollsToTop = false
     }
 }
 
@@ -66,9 +72,10 @@ extension NewsListController {
         tableView.delegate = self
         tableView.hidden = true
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 300
         
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadMoreNews))
+        tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(loadNetworkData))
     }
     
     func setupTableHeardView() {
@@ -91,20 +98,19 @@ extension NewsListController {
 //        MBProgressHUD.showMessage("正在玩命加载", toView: view)
 
         func success(modelArray: [[NewsModel]]) {
-            MBProgressHUD.hideHUD(self.view)
-            self.newsModelArray += modelArray[0]
+            tableView.mj_header.endRefreshing()
+            self.newsModelArray = modelArray[0]
             self.topNewsModelArray = modelArray[1]
-            tableView.mj_footer.endRefreshing()
+            page = 1
         }
         
         func failure(_: ErrorType) {
-            MBProgressHUD.hideHUD(self.view)
+            tableView.mj_header.endRefreshing()
             MBProgressHUD.showError("网络异常，请稍后尝试")
             self.reloadLabel.hidden = false
-            tableView.mj_footer.endRefreshing()
         }
         // TODO: 如果是非资讯分类，不应该fetchTopNewsJsonFromNet
-        fetchJsonFromNet(channelModel.URL, parameters)
+        fetchJsonFromNet(channelModel.URL, ["page": 1])
             .then(fetchTopNewsJsonFromNet)
             .map { jsonToModelArray( $0, initial: NewsModel.init) }
             .complete(success: success, failure: failure)
@@ -113,7 +119,6 @@ extension NewsListController {
     func loadMoreNews() {
         
         func success(modelArray: [NewsModel]) {
-            MBProgressHUD.hideHUD(self.view)
             tableView.mj_footer.endRefreshing()
             if modelArray.count == 0 {
                 MBProgressHUD.showWarning("没有更多数据!")
@@ -123,7 +128,6 @@ extension NewsListController {
         }
         
         func failure(_: ErrorType) {
-            MBProgressHUD.hideHUD(self.view)
             MBProgressHUD.showError("网络异常，请稍后尝试")
             tableView.mj_footer.endRefreshing()
         }

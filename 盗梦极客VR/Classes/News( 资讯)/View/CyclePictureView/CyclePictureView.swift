@@ -181,6 +181,7 @@ class CyclePictureView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.registerClass(CyclePictureCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView.scrollsToTop = false
         self.addSubview(collectionView)
 
         self.collectionView = collectionView

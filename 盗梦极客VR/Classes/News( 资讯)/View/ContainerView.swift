@@ -25,6 +25,7 @@ extension ContainerView {
         pagingEnabled = true
         showsVerticalScrollIndicator = false
         showsHorizontalScrollIndicator = false
+        scrollsToTop = false
     }
 }
 

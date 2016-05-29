@@ -41,6 +41,7 @@ class ChannelScrollView: UIScrollView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        scrollsToTop = false
     }
 
 }
