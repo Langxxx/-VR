@@ -65,7 +65,7 @@ class RegisterController: UIViewController {
         ]
     }
     
-    var userID: Int?
+    var registeReturnInfo: RegisteReturnInfo!
     
     var webView: WKWebView!
     
@@ -151,13 +151,13 @@ extension RegisterController {
         }
         
         UserManager.sharedInstance
-            .synchronizeBBSAcount(userID!,
+            .synchronizeBBSAcount(registeReturnInfo!,
                                 success: reponse,
                                 failure: failure)
     }
     
     func completeRegiste() {
-        if oauthInfoLabel != nil {
+        if oauthInfo != nil {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
                 self.navigationController?.popViewControllerAnimated(true)
                 self.autoLogin?(parameters: self.parameters)
@@ -171,8 +171,8 @@ extension RegisterController {
 extension RegisterController {
     @IBAction func registerButtonClik() {
         
-        func sccess(userID: Int) {
-            self.userID = userID
+        func sccess(userID: Int, cookie: String) {
+            registeReturnInfo = (userID, cookie)
             synchronizeBBSAcount()
         }
         

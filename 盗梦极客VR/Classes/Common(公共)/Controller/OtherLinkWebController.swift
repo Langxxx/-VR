@@ -4,7 +4,7 @@
 //
 //  Created by wl on 5/1/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  一个内嵌浏览器，加载一些非论坛的链接
 
 import UIKit
 import WebKit

@@ -18,14 +18,8 @@ class BBSController: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var reloadLabel: UILabel!
     
-    var baseURL: String {
-        // 如果已经登陆且没有登录过论坛，则自动登陆论坛
-        if UserManager.sharedInstance.needAutoLoginBSS {
-            isLoginingBBSURL = true
-            return "http://dmgeek.com/login/?action=login_bbs&username=\(UserManager.sharedInstance.account)&password=\(UserManager.sharedInstance.password)"
-        }else {
-            return "http://bbs.dmgeek.com"
-        }
+    var user: User? {
+        return UserManager.sharedInstance.user
     }
     
         /// 首页跳转来的URL
@@ -47,7 +41,7 @@ class BBSController: UIViewController {
     var isFirstRequste = true
     
     var request: NSURLRequest {
-        return NSURLRequest(URL: NSURL(string: baseURL)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
+        return NSURLRequest(URL: NSURL(string: getBaseURL())!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +83,21 @@ class BBSController: UIViewController {
 }
 
 extension BBSController {
+    
+    func getBaseURL() -> String {
+        // 如果已经登陆且没有登录过论坛，则自动登陆论坛
+        if UserManager.sharedInstance.needAutoLoginBSS {
+            isLoginingBBSURL = true
+            if let cookie = user?.cookie, userID = user?.id {
+                return "http://dmgeek.com/login/?action=login_bbs&cookie=\(cookie)&user_id=\(userID)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            }else {
+                dPrint("getBaseURL error!")
+                return "http://bbs.dmgeek.com"
+            }
+        }else {
+            return "http://bbs.dmgeek.com"
+        }
+    }
     
     func reEnterForeground() {
         webView.reload()

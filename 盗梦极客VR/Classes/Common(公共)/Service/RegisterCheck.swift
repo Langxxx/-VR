@@ -50,7 +50,13 @@ func getNonceValue(urlStr: String = "http://dmgeek.com/DG_api/get_nonce/",
         }
     }
 }
-func checkRegisterValid(parameters: [String: String]) -> AsynOperation<Int> {
+
+typealias UserID = Int
+typealias Cookie = String
+typealias RegisteReturnInfo = (UserID, Cookie)
+
+func checkRegisterValid(parameters: [String: String])
+    -> AsynOperation<RegisteReturnInfo> {
     
     return AsynOperation { completion in
         Alamofire.request(.GET, "http://dmgeek.com/DG_api/users/register/", parameters: parameters)
@@ -64,7 +70,10 @@ func checkRegisterValid(parameters: [String: String]) -> AsynOperation<Int> {
                 if value["status"].stringValue == "error" {
                     completion(.Failure(Error.RegisterError(value["error"].stringValue)))
                 }else {
-                     completion(.Success(value["user_id"].intValue))
+                    let userID = value["user_id"].intValue
+                    let cookie = value["cookie"].stringValue
+                    let info = (userID, cookie)
+                     completion(.Success(info))
                 }
         }
     }

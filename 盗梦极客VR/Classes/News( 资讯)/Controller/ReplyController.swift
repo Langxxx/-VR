@@ -93,11 +93,11 @@ extension ReplyController {
         
         func failure(error: ErrorType) {
             MBProgressHUD.hideHUD()
-            showNoticeMessage()
+            showNoticeMessage("同步失败")
         }
-        
+        let info: RegisteReturnInfo = (user.id, user.cookie)
         UserManager.sharedInstance
-            .synchronizeBBSAcount(user.id,
+            .synchronizeBBSAcount(info,
                                   success: reponse,
                                   failure: failure)
     }
@@ -112,6 +112,7 @@ extension ReplyController {
             .responseJSON { response in
                 guard response.result.error == nil else {
                     dPrint("post reply error!\n URL:\(response.result.error)")
+                    MBProgressHUD.showError("发生未知错误!")
                     return
                 }
                 if let (_, error) = JSON(response.result.value!)["errors"].first {

@@ -24,29 +24,9 @@ class UserManager: NSObject {
             }
         }
     }
-    
-    let passwordKey = "passwordKey"
-    let accountKey = "accountKey"
+
     let bbsLoginStatusKey = "loginKey"
-    var password: String! {
-        set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue!, forKey: passwordKey)
-        }
-        
-        get {
-            return  NSUserDefaults.standardUserDefaults().objectForKey(passwordKey) as! String
-        }
-    }
     
-    var account: String! {
-        set {
-             NSUserDefaults.standardUserDefaults().setObject(newValue!, forKey: accountKey)
-        }
-        
-        get {
-            return  NSUserDefaults.standardUserDefaults().objectForKey(accountKey) as! String
-        }
-    }
     
     var bbsIsLogin: Bool! {
         set {
@@ -86,8 +66,6 @@ class UserManager: NSObject {
             .complete(
                 success: { user in
                 UserManager.sharedInstance.user = user
-                UserManager.sharedInstance.password = parameters["password"]
-                UserManager.sharedInstance.account = parameters["username"]
                 UserManager.sharedInstance.bbsIsLogin = false
                 NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
                 success(user)
@@ -136,7 +114,7 @@ class UserManager: NSObject {
                                         usid: String?,
                                         platformName: String?
                                     ),
-                         success: (Int) -> (),
+                         success: (Int, String) -> (),
                          failure: (ErrorType) -> ()) {
         
         func jointParameters(nonce: String) -> [String: String] {
@@ -157,11 +135,8 @@ class UserManager: NSObject {
             .map(jointParameters)
             .then(checkRegisterValid)
             .complete(
-                success: { userID in
-                    UserManager.sharedInstance.password = registerInfo.password
-                    UserManager.sharedInstance.account = registerInfo.account
-                    success(userID)
-                }, failure: failure)
+                success: success,
+                failure: failure)
     }
     
     static func oauthLogin(usid: String,
@@ -195,7 +170,7 @@ class UserManager: NSObject {
 
     
     func synchronizeBBSAcount(
-        userID: Int,
+        registeReturnInfo: RegisteReturnInfo,
         success: (Bool) -> (),
         failure: (ErrorType) -> ()) {
         let configuretion = WKWebViewConfiguration()
@@ -204,11 +179,11 @@ class UserManager: NSObject {
         webView.navigationDelegate = self
         
         self.webView = webView
-        self.userID = userID
         synchronizeSuccess = success
         synchronizeFailure = failure
-        
-        let url = NSURL(string: "http://dmgeek.com/login/?action=login_bbs&username=\(account)&password=\(password)")!
+        userID = registeReturnInfo.0
+        let urlStr = "http://dmgeek.com/login/?action=login_bbs&cookie=\(registeReturnInfo.1)&user_id=\(registeReturnInfo.0)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        let url = NSURL(string: urlStr)!
         let requst = NSURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
         webView.loadRequest(requst)
     }
