@@ -22,4 +22,11 @@ struct DeviceCellViewModel: DeviceCellPresentable {
         timeText = model.date.componentsSeparatedByString(" ").first!
         tagString = model.tag
     }
+    
+    func configTopImageView(imageView: UIImageView) {
+        guard let url = NSURL(string: URL) else {
+            return
+        }
+        imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "placeholderImage_1_1"))
+    }
 }

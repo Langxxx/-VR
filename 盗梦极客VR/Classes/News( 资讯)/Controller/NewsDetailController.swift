@@ -269,7 +269,7 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if newsModelArray.count == 0 {
+        if !isDeviceList {
             return section == 0 ? 1 : newsModel.bbsInfo.posts.count
         }else {
             return section == 0 ? 1 : newsModelArray.count
