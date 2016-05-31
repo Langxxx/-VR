@@ -4,7 +4,7 @@
 //
 //  Created by wl on 5/5/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  登录控制器
 
 import UIKit
 import MBProgressHUD
@@ -24,6 +24,7 @@ class LoginController: UIViewController {
     }
     
 //    var completion: ((user: User) -> Void)?
+        /// 授权返回的信息
     var oauthInfo: (
         platformName: String,
         usid: String,
@@ -55,8 +56,15 @@ class LoginController: UIViewController {
     }
 }
 
+// MARK: - 功能方法
 extension LoginController {
     
+    /**
+     进行登录请求
+     当用户点击登录后调用(第三方授权注册后自动调用)
+     
+     - parameter parameters: 登录参数
+     */
     func login(parameters: [String: String]) {
         func success(user: User) {
             MBProgressHUD.hideHUD()
@@ -81,6 +89,10 @@ extension LoginController {
                           failure: failure)
     }
     
+    /**
+     做一些第三方登录成功后的操作，主要是自动登录或者跳转注册
+     第三方授权成功后调用
+     */
     func doSomeForOauthLogin() {
         guard let oauthInfo = oauthInfo else {
             return
@@ -110,6 +122,12 @@ extension LoginController {
                                failure: failure)
     }
     
+    /**
+     获取第三方授权登录返回的信息
+     第三方授权成功后调用
+     
+     - parameter snsAccount: 授权信息
+     */
     func fillOauthInfo(snsAccount: AnyObject) {
         let usid = snsAccount.usid
         let userName = snsAccount.userName
@@ -119,8 +137,8 @@ extension LoginController {
     }
 }
 
+// MARK: - 监听方法
 extension LoginController {
-    
     
     @IBAction func registerButtonClik() {
         let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("RegisterController")

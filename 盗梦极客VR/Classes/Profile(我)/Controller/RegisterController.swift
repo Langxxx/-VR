@@ -4,7 +4,7 @@
 //
 //  Created by wl on 5/16/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  注册
 
 import UIKit
 import IQKeyboardManager
@@ -39,7 +39,8 @@ class RegisterController: UIViewController {
     @IBOutlet weak var oauthInfoLabel: UILabel!
     
     var returnKeyHandler: IQKeyboardReturnKeyHandler!
-
+    
+        /// 注册信息合法性校验位
     var validCount: UInt8 = 0b00000000 {
         didSet {
             if validCount == 0b00011111 {
@@ -50,12 +51,13 @@ class RegisterController: UIViewController {
         }
     }
     
+        /// 第三方授权信息，如果是第三跳转来的注册界面才有值
     var oauthInfo: (
         platformName: String,
         usid: String,
         username: String,
         iconURL: String)?
-    
+        /// 第三方授权注册成功后执行的自动登录方法
     var autoLogin: ((parameters: [String: String]) -> ())?
     
     var parameters: [String: String] {
@@ -64,9 +66,9 @@ class RegisterController: UIViewController {
             "password": passwordTextField.text!,
         ]
     }
-    
+        /// 授注册成功后返回的信息，主要是userid和cookie用于论坛同步
     var registeReturnInfo: RegisteReturnInfo!
-    
+        /// 仅仅用于注册后同步论坛
     var webView: WKWebView!
     
     override func viewDidLoad() {
@@ -96,7 +98,10 @@ class RegisterController: UIViewController {
 }
 
 extension RegisterController {
-    
+    /**
+     设置第三方登录的注册信息
+     只有是第三方登录后跳转的注册才会完整执行代码
+     */
     func setOauthRegister() {
         guard let oauthInfo = oauthInfo else {
             return
@@ -108,6 +113,16 @@ extension RegisterController {
         nickNameDidChange()
     }
     
+    /**
+     根据相应注册信息，设置相应提示信息
+     在每完成一行用户信息后调用
+     
+     - parameter isValid:     是否合法
+     - parameter text:        输入框文本的内容
+     - parameter noticeLabel: 提示的标签
+     - parameter iconButton:  提示的图标
+     - parameter index:       当前索引，用来设置标志位
+     */
     func setInvalidNotice(isValid: Bool,
                           text: String,
                           noticeLabel: UILabel,
@@ -121,6 +136,10 @@ extension RegisterController {
         isValid ? validCount.setBit(index) : validCount.clrBit(index)
     }
     
+    /**
+     同步账号
+     在注册成功后调用
+     */
     func synchronizeBBSAcount() {
         MBProgressHUD.showMessage("注册成功!\n 正在同步论坛账号...")
         
@@ -156,6 +175,9 @@ extension RegisterController {
                                 failure: failure)
     }
     
+    /**
+     完成注册操作，可能同步成功，也可能同步失败
+     */
     func completeRegiste() {
         if oauthInfo != nil {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
@@ -168,7 +190,9 @@ extension RegisterController {
     }
 }
 
+// MARK: - 监听方法
 extension RegisterController {
+    
     @IBAction func registerButtonClik() {
         
         func sccess(userID: Int, cookie: String) {

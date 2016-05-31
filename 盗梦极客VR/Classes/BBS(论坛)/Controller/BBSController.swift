@@ -30,16 +30,17 @@ class BBSController: UIViewController {
             }
         }
     }
+        /// 是否需要进跳转的标识
     var needJump = false
-    
+        /// 跳转请求
     var jumpRequest: NSURLRequest {
         return NSURLRequest(URL: NSURL(string: jumpURL!)!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
     }
-    
+        /// 是否正在登陆论坛
     var isLoginingBBSURL = false
-    
+        /// 是否是第一次进行请求加载
     var isFirstRequste = true
-    
+        /// 请求
     var request: NSURLRequest {
         return NSURLRequest(URL: NSURL(string: getBaseURL())!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
     }
@@ -82,40 +83,16 @@ class BBSController: UIViewController {
  
 }
 
+// MARK: - 初始化方法
 extension BBSController {
     
-    func getBaseURL() -> String {
-        // 如果已经登陆且没有登录过论坛，则自动登陆论坛
-        if UserManager.sharedInstance.needAutoLoginBSS {
-            isLoginingBBSURL = true
-            if let cookie = user?.cookie, userID = user?.id {
-                return "http://dmgeek.com/login/?action=login_bbs&cookie=\(cookie)&user_id=\(userID)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-            }else {
-                dPrint("getBaseURL error!")
-                return "http://bbs.dmgeek.com"
-            }
-        }else {
-            return "http://bbs.dmgeek.com"
-        }
-    }
-    
-    func reEnterForeground() {
-        webView.reload()
-    }
-    
-    func shareCurrentURL() {
-        guard let title = webView.title?.componentsSeparatedByString(" - ").first else {
-            MBProgressHUD.showError("网页存在错误")
-            return
-        }
-        ShareTool.setAllShareConfig(title, shareText: "来自盗梦极客为您推荐的内容", url: webView.URL!.absoluteString)
-        UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: ShareTool.shareImage, shareToSnsNames: ShareTool.shareArray, delegate: nil)
-    }
-    
+    /**
+     设置webview
+     */
     func setupWebView() {
         
         let configuretion = WKWebViewConfiguration()
-
+        
         let webView = WKWebView(frame: CGRectZero, configuration: configuretion)
         webView.hidden = true
         //允许手势，后退前进等操作
@@ -135,11 +112,58 @@ extension BBSController {
         // 监听加载进度
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
         //监听是否可以前进后退，修改btn.enable属性
-//        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
+        //        webView.addObserver(self, forKeyPath: "loading", options: .New, context: nil)
         
-//        webView.loadRequest(request)
+        //        webView.loadRequest(request)
     }
     
+}
+
+// MARK: - 功能性方法
+extension BBSController {
+    
+    /**
+     获得请求连接URL
+     */
+    func getBaseURL() -> String {
+        // 如果已经登陆且没有登录过论坛，则自动登陆论坛
+        if UserManager.sharedInstance.needAutoLoginBSS {
+            isLoginingBBSURL = true
+            if let cookie = user?.cookie, userID = user?.id {
+                return "http://dmgeek.com/login/?action=login_bbs&cookie=\(cookie)&user_id=\(userID)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+            }else {
+                dPrint("getBaseURL error!")
+                return "http://bbs.dmgeek.com"
+            }
+        }else {
+            return "http://bbs.dmgeek.com"
+        }
+    }
+    /**
+     重新加载当前页面
+     当用程序从后台进入前台的时候调用
+     */
+    func reEnterForeground() {
+        webView.reload()
+    }
+    
+    /**
+     分享当前界面
+     当界面发生分享事件的时候调用
+     */
+    func shareCurrentURL() {
+        guard let title = webView.title?.componentsSeparatedByString(" - ").first else {
+            MBProgressHUD.showError("网页存在错误")
+            return
+        }
+        ShareTool.setAllShareConfig(title, shareText: "来自盗梦极客为您推荐的内容", url: webView.URL!.absoluteString)
+        UMSocialSnsService.presentSnsIconSheetView(self, appKey: nil, shareText: nil, shareImage: ShareTool.shareImage, shareToSnsNames: ShareTool.shareArray, delegate: nil)
+    }
+
+    /**
+     用来请求前的一些准备操作
+     每次进行请求加载的时候调用
+     */
     func prepareLoadRequst() {
         dPrint("prepareLoadRequst")
         reloadLabel.hidden = true
@@ -153,6 +177,12 @@ extension BBSController {
         }
     }
     
+    /**
+     使用OtherLinkWebController加载链接
+     当点击了外部链接的时候调用
+     
+     - parameter urlStr: 链接
+     */
     func jumpToOtherLinker(urlStr: String) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OtherLinkWebController") as! OtherLinkWebController
         vc.URLStr = urlStr
@@ -161,6 +191,7 @@ extension BBSController {
     }
 }
 
+// MARK: - WKUIDelegate
 extension BBSController: WKUIDelegate {
     func webView(webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: () -> Void) {
         if message == "app_share" {
@@ -179,7 +210,7 @@ extension BBSController: WKNavigationDelegate {
     }
 
     /**
-     处理跳转的URL，如果不是http://bbs.dmgeek.com子域名
+     处理跳转的URL，如果不是期待
      的url则跳转到safari
      */
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {

@@ -4,7 +4,7 @@
 //
 //  Created by wl on 5/5/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  我模块
 
 import UIKit
 import SDWebImage
@@ -19,7 +19,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var exitContainerView: UIView!
     
-    
+        /// 用户数据模型
     var user: User! {
         get {
             return UserManager.sharedInstance.user
@@ -49,8 +49,11 @@ class ProfileController: UIViewController {
     }
 }
 
+// MARK: - 初始化方法
 extension ProfileController {
-
+    /**
+     设置tabview
+     */
     func setupTableView() {
         tableView.dataSource = staticCellProvider
         tableView.delegate = staticCellProvider
@@ -64,6 +67,9 @@ extension ProfileController {
         }
     }
     
+    /**
+     设置需要展示的用户数据
+     */
     func setupUserInfo() {
         guard let user = user else {
             return
@@ -81,7 +87,10 @@ extension ProfileController {
         tableView.reloadData()
         view.setNeedsDisplay()
     }
-    
+    /**
+     清理所有的用户数据
+     点击退出登录后调用
+     */
     func clearUserInfo() {
         loginButton.enabled = true
         
@@ -90,6 +99,9 @@ extension ProfileController {
         exitContainerView.hidden = true
     }
     
+    /**
+     添加第一组数据显示(用户数据)
+     */
     func addGroup0() {
         let account = RightDetallCellModel(text: "账号", rightDetall: user.username)
         let nickname = RightDetallCellModel(text: "昵称", rightDetall: user.displayname)
@@ -97,7 +109,9 @@ extension ProfileController {
         let group = CellGroup(header: "基本信息", items: [account, nickname, email], footer: "此版本暂不支持修改个人信息")
         staticCellProvider.dataList.insert(group, atIndex: 0)
     }
-    
+    /**
+     添加最后一组数据显示(功能数据)
+     */
     func addLastGroup() {
         let clearCell = RightDetallCellModel(text: "清理缓存", rightDetall: SDImageCache.getCacheSizeMB()) {
             MBProgressHUD.showMessage("正在清理缓存...")
@@ -115,8 +129,8 @@ extension ProfileController {
     }
 }
 
+// MARK: - 监听方法
 extension ProfileController {
-    
     @IBAction func loginButtonClik() {
         let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("LoginController") as! LoginController
         vc.hidesBottomBarWhenPushed = true
