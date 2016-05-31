@@ -4,7 +4,7 @@
 //
 //  Created by wl on 5/15/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  设备详情的cell
 
 import UIKit
 

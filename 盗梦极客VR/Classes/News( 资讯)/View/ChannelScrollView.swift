@@ -4,7 +4,7 @@
 //
 //  Created by wl on 4/24/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  显示频道标签的view
 
 import UIKit
 
@@ -13,19 +13,20 @@ protocol ChannelScrollViewDelegate: class {
 }
 
 class ChannelScrollView: UIScrollView {
-    
+        /// 频道名称
     var channles: [String]! {
         didSet {
             setupChannelLabel()
         }
     }
 
+        /// 频道标签之间的间距
     let labelMargin: CGFloat = 25
-    
+        /// 所有频道标签
     var labelArray: [ChannelLabel] = []
-    
+        /// 默认一个屏幕显示标签个数
     var defaultShowLabelCount = 5
-    
+        /// 当前标签
     var currentChannelIndex: Int = 0 {
         didSet {
             let newChannelLabel = labelArray[currentChannelIndex]
@@ -63,7 +64,9 @@ extension ChannelScrollView {
         let offset = CGPoint(x: offsetX, y: 0)
         setContentOffset(offset, animated: true)
     }
-    
+    /**
+     设置频道标签显示
+     */
     func setupChannelLabel() {
         func getLabelX() -> CGFloat {
             guard let lastLabel = labelArray.last else {
