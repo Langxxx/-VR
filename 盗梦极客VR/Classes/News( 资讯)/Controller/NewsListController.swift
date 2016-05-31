@@ -13,10 +13,11 @@ import MJRefresh
 class NewsListController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+        /// 重新加载的提示label
     @IBOutlet weak var reloadLabel: UILabel!
-    
+        /// 当前频道的模型
     var channelModel: ChannelModel!
-    
+        /// 新闻模型数组
     var newsModelArray: [NewsModel] = [] {
         didSet {
             tableView.hidden = false
@@ -24,7 +25,7 @@ class NewsListController: UIViewController {
             page += 1
         }
     }
-    
+        /// 资讯列表头部轮播新闻数组
     var topNewsModelArray: [NewsModel] = [] {
         didSet {
             if channelModel.title == "资讯" {
@@ -32,13 +33,13 @@ class NewsListController: UIViewController {
             }
         }
     }
-    
+        /// 请求参数
     var parameters: [String: AnyObject] {
         return [
             "page": page
         ]
     }
-    
+        /// 当前请求的页数
     var page = 1
     
     override func viewDidLoad() {
@@ -65,8 +66,11 @@ class NewsListController: UIViewController {
     }
 }
 
+// MARK: - 初始化方法
 extension NewsListController {
-    
+    /**
+     设置tabView
+     */
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -77,7 +81,9 @@ extension NewsListController {
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadMoreNews))
         tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(loadNetworkData))
     }
-    
+    /**
+     设置顶部轮播视图
+     */
     func setupTableHeardView() {
         let headerView = CyclePictureView(frame: CGRectZero, imageURLArray: nil)
         headerView.imageURLArray = topNewsModelArray.map { $0.listThuUrl }
@@ -91,12 +97,18 @@ extension NewsListController {
         tableView.tableHeaderView = headerView
         headerView.frame.size.height = headerView.frame.size.width * 0.7
     }
-    
+}
+
+// MARK: - 功能方法
+extension NewsListController {
+    /**
+     加载最新新闻数据
+     */
     func loadNetworkData() {
         
         self.reloadLabel.hidden = true
-//        MBProgressHUD.showMessage("正在玩命加载", toView: view)
-
+        //        MBProgressHUD.showMessage("正在玩命加载", toView: view)
+        
         func success(modelArray: [[NewsModel]]) {
             tableView.mj_header.endRefreshing()
             self.newsModelArray = modelArray[0]
@@ -116,6 +128,9 @@ extension NewsListController {
             .complete(success: success, failure: failure)
     }
     
+    /**
+     加载更多新闻数据
+     */
     func loadMoreNews() {
         
         func success(modelArray: [NewsModel]) {
@@ -136,10 +151,13 @@ extension NewsListController {
             .map { jsonToModelArray( $0["posts"], initial: NewsModel.init) }
             .complete(success: success, failure: failure)
     }
-
-}
-
-extension NewsListController {
+    
+    /**
+     跳转到新闻详情页面
+     在点击某一个新闻后调用
+     
+     - parameter selectedCellModel: 被点击新闻的模型
+     */
     func pushDetailVcBySelectedNewsModel(selectedCellModel: NewsModel) {
         let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("NewsDetailController") as! NewsDetailController
         vc.newsModel = selectedCellModel
@@ -151,6 +169,7 @@ extension NewsListController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension NewsListController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsModelArray.count
@@ -171,6 +190,7 @@ extension NewsListController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension NewsListController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -179,6 +199,7 @@ extension NewsListController: UITableViewDelegate {
     }
 }
 
+// MARK: - CyclePictureViewDelegate
 extension NewsListController: CyclePictureViewDelegate {
     func cyclePictureView(cyclePictureView: CyclePictureView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let selectedCellModel = topNewsModelArray[indexPath.row]

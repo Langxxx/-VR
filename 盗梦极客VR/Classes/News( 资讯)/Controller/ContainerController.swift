@@ -9,14 +9,15 @@
 import UIKit
 
 class ContainerController: UIViewController {
-    
+        /// 显示频道标签的view
     @IBOutlet weak var channelScrollView: ChannelScrollView!
+        /// 容纳显示列表的view
     @IBOutlet weak var containerView: ContainerView!
-    
+        /// collectionView的数据源
     var collectionViewCellProvider: ContainerViewDataSource!
-    
+        /// 频道的model数组
     var channelModelArray: [ChannelModel]!
-    
+        /// 当前控制器被选中的标识
     var isSeletedVc = true
     
     override func viewDidLoad() {
@@ -35,7 +36,11 @@ class ContainerController: UIViewController {
     }
   }
 
+// MARK: - 一些初始化方法
 extension ContainerController {
+    /**
+     设置频道标签的一些内容
+     */
     func setupChannelScrollView() {
         
         channelScrollView.myDelegate = self
@@ -43,6 +48,9 @@ extension ContainerController {
         channelScrollView.channles = channelModelArray.map { $0.title }
     }
     
+    /**
+     设置所有子控制器
+     */
     func setupChildViewControllers() {
         let sb = UIStoryboard(name: "News", bundle: nil)
         for i in 0..<channelScrollView.channles.count {
@@ -51,7 +59,9 @@ extension ContainerController {
             addChildViewController(vc)
         }
     }
-    
+    /**
+      设置collectionView cell的显示内容
+     */
     func setupContainerView() {
         
         collectionViewCellProvider = ContainerViewDataSource(items: channelScrollView.channles, cellIdentifier: "Cell") { cell, item, indexPath in
@@ -113,6 +123,13 @@ extension ContainerController: ChannelScrollViewDelegate {
 }
 
 extension ContainerController: UITabBarControllerDelegate {
+    /**
+     用来回滚到列表顶部
+     UITabBarController被点击时调用
+     
+     - parameter tabBarController: <#tabBarController description#>
+     - parameter viewController:   <#viewController description#>
+     */
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
         guard let navVC = viewController as? UINavigationController else {
             return

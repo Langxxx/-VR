@@ -4,7 +4,7 @@
 //
 //  Created by wl on 4/26/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  新闻详情
 
 import UIKit
 import MBProgressHUD
@@ -14,23 +14,28 @@ class NewsDetailController: UIViewController {
     
     /// 这里不使用WKWebView是因为Loadhtml方法加载出来的，样式会很奇怪
     @IBOutlet weak var tableView: UITableView!
+        /// 底部评论界面
     @IBOutlet weak var replyContainerView: UIView!
+        /// 评论数量的label
     @IBOutlet weak var replyCountLabel: UILabel!
     
     var webView: UIWebView!
+        /// 当前新闻模型
     var newsModel: NewsModel!
     
     let webCellIdentifier = "WebCell"
     let replyCellIdentifier = "ReplyCell"
     let deviceCellIdentifier = "DeviceCell"
     
+        /// 当前新闻是否是设备新闻
     var isDeviceList: Bool {
         return newsModel.type == "device"
     }
-    
+        /// 设备新闻的所有相关新闻模型
     var newsModelArray: [NewsModel] = []
-    
+        /// 设备新闻请求URL
     let deviceURL = "http://dmgeek.com/DG_api/get_device_posts/"
+        /// 设备新闻请求参数
     var parameters: [String: AnyObject] {
         return [
             "page": deviceListPage,
@@ -40,10 +45,12 @@ class NewsDetailController: UIViewController {
     }
     var deviceListPage = 1
     
+        /// 当前界面是否需要评论功能
     var canReply: Bool {
         return !(newsModel.type == "device" || newsModel.type == "video")
     }
     
+        /// 所有可能的视频来源
     let videoRequestList = [
         "http://player.youku.com/",
         "http://v.qq.com/",
@@ -74,7 +81,11 @@ class NewsDetailController: UIViewController {
     
 }
 
+// MARK: -  初始化方法
 extension NewsDetailController {
+    /**
+     设置setupTableView
+     */
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -85,7 +96,9 @@ extension NewsDetailController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
         tableView.hidden = true
     }
-    
+    /**
+     设置WebView
+     */
     func setupWebView() {
         webView = UIWebView()
         webView.delegate = self
@@ -93,8 +106,16 @@ extension NewsDetailController {
         loadNewsDetail()
     }
 
-    func loadDeviceListInfo() {
+}
 
+
+// MARK: - 功能性方法
+extension NewsDetailController {
+    /**
+     加载设备列表数据
+     */
+    func loadDeviceListInfo() {
+        
         func success(modelArray: [NewsModel]) {
             tableView.mj_footer.endRefreshing()
             guard modelArray.count != 0 else {
@@ -118,11 +139,12 @@ extension NewsDetailController {
             .complete(success: success, failure: failure)
         
     }
-}
-
-
-extension NewsDetailController {
-    
+    /**
+     判断请求是否是视频链接
+     
+     - parameter urlStr: 需要判断的请求
+     
+     */
     func isVideoRequst(urlStr: String) -> Bool {
         for str in videoRequestList {
             if urlStr.hasPrefix(str) {
@@ -132,12 +154,21 @@ extension NewsDetailController {
         return false
     }
     
+    /**
+     外部链接跳转
+     当点击页面内链接后调用
+     
+     - parameter urlStr: <#urlStr description#>
+     */
     func jumpToOtherLinker(urlStr: String) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OtherLinkWebController") as! OtherLinkWebController
         vc.URLStr = urlStr
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    /**
+     加载HTML
+     */
     func loadNewsDetail() {
         
         let css = NSBundle.mainBundle().URLForResource("Details.css", withExtension: nil)!
@@ -154,7 +185,9 @@ extension NewsDetailController {
         
         webView.loadHTMLString(html, baseURL: nil)
     }
-    
+    /**
+     拼接body
+     */
     func getBody() -> String {
         var body = ""
         

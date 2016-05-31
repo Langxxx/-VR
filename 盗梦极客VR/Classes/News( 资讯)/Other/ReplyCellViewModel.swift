@@ -4,7 +4,7 @@
 //
 //  Created by wl on 5/11/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//   ReplyCell的Viewmodel，负责 ReplyCell显示逻辑
 
 import Foundation
 

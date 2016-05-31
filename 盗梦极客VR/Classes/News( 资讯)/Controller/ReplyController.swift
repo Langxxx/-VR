@@ -4,7 +4,7 @@
 //
 //  Created by wl on 5/12/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  评论界面
 
 import UIKit
 import Alamofire
@@ -12,13 +12,16 @@ import SwiftyJSON
 import MBProgressHUD
 
 class ReplyController: UIViewController {
-    
+        /// 用户名
     @IBOutlet weak var usernameLabel: UILabel!
+        /// 发送按钮
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var textView: UITextView!
 
     let user = UserManager.sharedInstance.user!
     var newsModel: NewsModel!
+    
+        /// 评论参数
     var parameters: [String: AnyObject] {
         return [
             "category": 1,
@@ -30,6 +33,8 @@ class ReplyController: UIViewController {
         ]
         
     }
+    
+        /// 请求头
     var headers: [String: String] {
         return [
             "timeout": "30",
@@ -64,7 +69,15 @@ class ReplyController: UIViewController {
 
 }
 
+// MARK: - 功能性方法
 extension ReplyController {
+    
+    /**
+     提示账号未进行同步
+     界面加载的时候进行判断进而调用、同步失败后也会调用
+
+     - parameter message: 提示信息
+     */
     func showNoticeMessage(message: String = "该账户未与论坛进行同步,无法进行评论") {
         let alert = UIAlertController(title: "错误", message: message, preferredStyle: .ActionSheet)
         let cancel = UIAlertAction(title: "取消",
@@ -80,6 +93,9 @@ extension ReplyController {
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    /**
+     同步当前账户
+     */
     func synchronizeBBSAcount() {
         MBProgressHUD.showMessage("正在同步论坛账号...")
         
@@ -104,6 +120,7 @@ extension ReplyController {
     
 }
 
+// MARK: - 监听方法
 extension ReplyController {
     
     @IBAction func sendButtonClik() {

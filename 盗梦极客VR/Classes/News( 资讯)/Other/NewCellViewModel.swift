@@ -4,7 +4,7 @@
 //
 //  Created by wl on 4/26/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  NewsCell的Viewmodel，负责NewsCell显示逻辑
 
 import Foundation
 

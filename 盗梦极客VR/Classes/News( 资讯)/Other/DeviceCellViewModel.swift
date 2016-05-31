@@ -4,7 +4,7 @@
 //
 //  Created by wl on 5/15/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//   DeviceCell的Viewmodel，负责 DeviceCell显示逻辑
 
 import Foundation
 
