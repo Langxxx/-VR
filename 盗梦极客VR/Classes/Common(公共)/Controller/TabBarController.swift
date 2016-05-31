@@ -52,7 +52,10 @@ extension TabBarController {
         vc.tabBarItem.selectedImage = UIImage(named: seletedIconName)
         addChildViewController(vc)
     }
-    
+    /**
+     程序最开始由viewDidLoad调用
+     用作设置一些展示样式(主题色)
+     */
     func setupStyle() {
         let tabBarItem = UITabBarItem.appearance()
         let selectedAttr = [

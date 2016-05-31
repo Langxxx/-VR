@@ -11,9 +11,10 @@ import WebKit
 import MBProgressHUD
 
 class OtherLinkWebController: UIViewController {
-
+        /// 需要加载的请求
     var URLStr: String!
     var webView: WKWebView!
+    
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -49,7 +50,9 @@ class OtherLinkWebController: UIViewController {
 }
 
 extension OtherLinkWebController {
-    
+    /**
+     初始化、设置webview
+     */
     func setupWebView() {
         
         let configuretion = WKWebViewConfiguration()
@@ -73,9 +76,9 @@ extension OtherLinkWebController {
 
 }
 
+// MARK: - WKNavigationDelegate
 extension OtherLinkWebController: WKNavigationDelegate {
 
-    
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         dPrint("正在加载...")
         progressView.progress = 0
