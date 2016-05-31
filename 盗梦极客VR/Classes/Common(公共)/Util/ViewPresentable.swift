@@ -4,7 +4,7 @@
 //
 //  Created by wl on 4/26/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  一些展示用的协议
 
 import UIKit
 import SDWebImage

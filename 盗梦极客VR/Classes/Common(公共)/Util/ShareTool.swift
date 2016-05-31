@@ -4,20 +4,23 @@
 //
 //  Created by wl on 4/30/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  友盟的一些分享设置
 
 import Foundation
 
 struct ShareTool {
-    
+        /// 期待分享的平台
     static var shareArray: [String] {
         return [UMShareToSina, UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline, UMShareToEmail,UMShareToSms]
     }
-    
+        /// 分享的默认图标
     static var shareImage: UIImage {
         return UIImage(named: "dmgeek_100")!
     }
-    
+    /**
+     设置所有平台的APPKEY
+     在程序启动就调用
+     */
     static func setAllAppKey() {
         UMSocialData.setAppKey("5722b62d67e58ec79c002539")
         UMSocialSinaSSOHandler.openNewSinaSSOWithAppKey("2213009825", secret: "5128b0e807dc390492346e67bc9c1a92", redirectURL: "http://dmgeek.com/")
@@ -26,6 +29,13 @@ struct ShareTool {
         UMSocialConfig.hiddenNotInstallPlatforms([UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline])
     }
     
+    /**
+     设置所有分享的默认参数
+     分享前进行调用
+     - parameter title:     分享标题
+     - parameter shareText: 分享描述文章
+     - parameter url:       跳转URL
+     */
     static func setAllShareConfig(title: String = "", shareText: String = "", url: String = "") {
         UMSocialData.defaultData().extConfig.qqData.title = title
         UMSocialData.defaultData().extConfig.qqData.url = url

@@ -80,9 +80,9 @@ func checkValidity(json: JSON) -> AsynOperation<User> {
  
  - returns: 成功用户信息(第一次登陆为空)；失败NetworkError
  */
-func checkOauthLogin(parameters: [String: String]) -> AsynOperation<User> {
+func checkOauthLogin(url: String, parameters: [String: String]) -> AsynOperation<User> {
     return AsynOperation { completion in
-        Alamofire.request(.GET, "http://dmgeek.com/DG_api/users/get_social_user/", parameters: parameters)
+        Alamofire.request(.GET, url, parameters: parameters)
             .responseJSON { response in
                 guard response.result.error == nil else {
                     dPrint("checkOauthLogin error!\n URL:\(response.result.error)")

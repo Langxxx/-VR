@@ -4,7 +4,7 @@
 //
 //  Created by wl on 4/27/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  MBProgressHUD的扩展操作
 
 import MBProgressHUD
 

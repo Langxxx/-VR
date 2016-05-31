@@ -4,7 +4,7 @@
 //
 //  Created by wl on 5/10/16.
 //  Copyright © 2016 wl. All rights reserved.
-//
+//  关于用户的操作
 
 import Foundation
 import WebKit
@@ -13,7 +13,7 @@ let UserDidLoginNotification = "UserDidLoginNotification"
 let UserDidLoginoutNotification = "UserDidLoginoutNotification"
 
 class UserManager: NSObject {
-
+        /// 用户信息模型
     var user: User? {
         didSet {
             if user != nil {
@@ -27,7 +27,7 @@ class UserManager: NSObject {
 
     let bbsLoginStatusKey = "loginKey"
     
-    
+        /// 表示是否已经登录论坛
     var bbsIsLogin: Bool! {
         set {
             NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: bbsLoginStatusKey)
@@ -38,15 +38,24 @@ class UserManager: NSObject {
         }
     }
 
+        /// 用于用户账户同步
     var webView: WKWebView?
     
+        /// 同步成功后的回调方法
     var synchronizeSuccess: ((Bool) -> ())!
+        /// 同步失败后的回调方法
     var synchronizeFailure: ((ErrorType) -> ())!
+        /// 用于同步
     var userID: Int!
-    
+        /// 用于粗糙你用户数据的key
     static let key = "UserKey"
-    
+        /// 单例方法
     static let sharedInstance = UserManager()
+        /// 是否需要登录的标识
+    var needAutoLoginBSS: Bool {
+        return self.user != nil && !self.bbsIsLogin
+    }
+    
     private override init() {
         super.init()
         let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -56,104 +65,14 @@ class UserManager: NSObject {
             user = nil
         }
     }
-    
-    static func login(urlStr: String,
-                      parameters: [String: String],
-                      success: (User) -> (),
-                      failure: (ErrorType) -> ()) {
-        
-        checkLogin(urlStr, parameters)
-            .complete(
-                success: { user in
-                UserManager.sharedInstance.user = user
-                UserManager.sharedInstance.bbsIsLogin = false
-                NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
-                success(user)
-                },
-                failure: failure
-            )
-    }
-    
-    static func login(user: User) {
-        UserManager.sharedInstance.user = user
-        NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
-    }
-    
-    static func loginout() {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.removeObjectForKey(UserManager.key)
-        userDefaults.synchronize()
-        UserManager.sharedInstance.user = nil
-         UserManager.sharedInstance.bbsIsLogin = false
-        NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginoutNotification, object: nil)
-    }
-    
-    static func checkEmailValid(email: String,
-                                success: (Bool) -> (),
-                                failure: (ErrorType) -> ()) {
-        
-        checkInfoValid("http://dmgeek.com/DG_api/users/email_exists/",
-                       parameters: ["email": email])
-            .complete(success: success, failure: failure)
-    }
-    
-    static func checkAccountValid(account: String,
-                                success: (Bool) -> (),
-                                failure: (ErrorType) -> ()) {
-        
-        checkInfoValid("http://dmgeek.com/DG_api/users/user_id_exists/",
-            parameters: ["user_id": account])
-            .complete(success: success, failure: failure)
-    }
-    
-    static func register(registerInfo:
-                                    (   nickName: String,
-                                        email: String,
-                                        account: String,
-                                        password: String,
-                                        usid: String?,
-                                        platformName: String?
-                                    ),
-                         success: (Int, String) -> (),
-                         failure: (ErrorType) -> ()) {
-        
-        func jointParameters(nonce: String) -> [String: String] {
-            return [
-                "username": registerInfo.account,
-                "email": registerInfo.email,
-                "nickname": registerInfo.nickName,
-                "user_pass": registerInfo.password,
-                "nonce": nonce,
-                "notify": "both",
-                "display_name": registerInfo.nickName,
-                "s_id": registerInfo.usid ?? "",
-                "s_type": registerInfo.platformName ?? ""
-            ]
-        }
 
-        getNonceValue()
-            .map(jointParameters)
-            .then(checkRegisterValid)
-            .complete(
-                success: success,
-                failure: failure)
-    }
-    
-    static func oauthLogin(usid: String,
-                           platformName: String,
-                           success: (User) -> (),
-                           failure: (ErrorType) -> ()) {
-        let parameters: [String: String] = [
-            "s_id": usid,
-            "s_type": platformName
-        ]
+}
 
-        checkOauthLogin(parameters)
-                .complete(success: success,
-                          failure: failure)
-
-    }
-    
+extension UserManager {
+    /**
+     用来更新用户数据
+     在程序启动就自动调用
+     */
     static func updateUserInfo() {
         guard let user = UserManager.sharedInstance.user else {
             return
@@ -165,10 +84,17 @@ class UserManager: NSObject {
                     UserManager.sharedInstance.user = user
             }) { (_ : ErrorType) in
                 
-            }
+        }
     }
-
     
+    /**
+     用来将账户与论坛进行同步
+     在注册完后、评论界面调用
+     
+     - parameter registeReturnInfo: 返回的注册信息，用于同步
+     - parameter success:           成功回调
+     - parameter failure:           失败的回调
+     */
     func synchronizeBBSAcount(
         registeReturnInfo: RegisteReturnInfo,
         success: (Bool) -> (),
@@ -187,15 +113,160 @@ class UserManager: NSObject {
         let requst = NSURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
         webView.loadRequest(requst)
     }
+}
+
+// MARK: - 用户登录功能
+extension UserManager {
+    /**
+     用户普通登录方法，使用账号密码。
+     在点击登录按钮、第三方第一次注册后自动调用
+     
+     - parameter urlStr:     登录的URL
+     - parameter parameters: 参数(账号密码)
+     - parameter success:    登录成功回调方法
+     - parameter failure:    登录失败回调方法
+     */
+    static func login(parameters: [String: String],
+                      success: (User) -> (),
+                      failure: (ErrorType) -> ()) {
+        
+        checkLogin("http://dmgeek.com/DG_api/users/generate_auth_cookie/", parameters)
+            .complete(
+                success: { user in
+                    UserManager.sharedInstance.user = user
+                    UserManager.sharedInstance.bbsIsLogin = false
+                    NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
+                    success(user)
+                },
+                failure: failure
+        )
+    }
+    /**
+     第三方登录调用方法
+     在第三方登录授权后调用
+     - parameter user: 第三方授权后获得的用户信息
+     */
+    static func login(user: User) {
+        UserManager.sharedInstance.user = user
+        NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
+    }
+    
+    /**
+     退出登录调用方法，退出登录
+     在点击退出登录后调用
+     */
+    static func loginout() {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.removeObjectForKey(UserManager.key)
+        userDefaults.synchronize()
+        UserManager.sharedInstance.user = nil
+        UserManager.sharedInstance.bbsIsLogin = false
+        NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginoutNotification, object: nil)
+    }
+    /**
+     第三方登录方法，
+     在第三方授权后调用
+     - parameter usid:         第三方授权返回的id
+     - parameter platformName: 授权平台
+     - parameter success:      登录成功的回调
+     - parameter failure:      登录失败的回调
+     */
+    static func oauthLogin(usid: String,
+                           platformName: String,
+                           success: (User) -> (),
+                           failure: (ErrorType) -> ()) {
+        let parameters: [String: String] = [
+            "s_id": usid,
+            "s_type": platformName
+        ]
+        
+        checkOauthLogin("http://dmgeek.com/DG_api/users/get_social_user/", parameters: parameters)
+            .complete(success: success,
+                      failure: failure)
+        
+    }
 
 }
 
+// MARK: - 注册方法
 extension UserManager {
-    var needAutoLoginBSS: Bool {
-        return self.user != nil && !self.bbsIsLogin
+    /**
+     检验邮箱唯一性
+     在用户输入完邮箱后调用
+     
+     - parameter email:   需要检验的邮件地址
+     - parameter success: 成功的回调方法
+     - parameter failure: 失败的回调方法
+     */
+    static func checkEmailValid(email: String,
+                                success: (Bool) -> (),
+                                failure: (ErrorType) -> ()) {
+        
+        checkInfoValid("http://dmgeek.com/DG_api/users/email_exists/",
+            parameters: ["email": email])
+            .complete(success: success, failure: failure)
+    }
+    
+    /**
+     检验账号唯一性
+     在用户输入完账号后调用
+     
+     - parameter account: 需要检验的账号
+     - parameter success: 成功的回调方法
+     - parameter failure: 失败的回调方法
+     */
+    static func checkAccountValid(account: String,
+                                  success: (Bool) -> (),
+                                  failure: (ErrorType) -> ()) {
+        
+        checkInfoValid("http://dmgeek.com/DG_api/users/user_id_exists/",
+            parameters: ["user_id": account])
+            .complete(success: success, failure: failure)
+    }
+    
+    /**
+     注册方法
+     在用户点击注册后调用
+     
+     - parameter registerInfo: 一些注册必要信息
+     - parameter success:      成功的回调函数
+     - parameter failure:      失败的回调函数
+     */
+    static func register(registerInfo:
+        (   nickName: String,
+        email: String,
+        account: String,
+        password: String,
+        usid: String?,
+        platformName: String?
+        ),
+                         success: (Int, String) -> (),
+                         failure: (ErrorType) -> ()) {
+        
+        func jointParameters(nonce: String) -> [String: String] {
+            return [
+                "username": registerInfo.account,
+                "email": registerInfo.email,
+                "nickname": registerInfo.nickName,
+                "user_pass": registerInfo.password,
+                "nonce": nonce,
+                "notify": "both",
+                "display_name": registerInfo.nickName,
+                "s_id": registerInfo.usid ?? "",
+                "s_type": registerInfo.platformName ?? ""
+            ]
+        }
+        
+        getNonceValue()
+            .map(jointParameters)
+            .then(checkRegisterValid)
+            .complete(
+                success: success,
+                failure: failure)
     }
 }
 
+// MARK: - WKNavigationDelegate
 extension UserManager: WKNavigationDelegate {
     func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         dPrint("正在加载...")

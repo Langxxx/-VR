@@ -15,7 +15,7 @@ class LoginController: UIViewController {
     @IBOutlet weak var accountTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    let loginUrl = "http://dmgeek.com/DG_api/users/generate_auth_cookie/"
+
     var parameters: [String: String] {
         return [
             "username": accountTextField.text!,
@@ -76,8 +76,7 @@ extension LoginController {
         
         MBProgressHUD.showMessage("正在登陆...")
         
-        UserManager.login(loginUrl,
-                          parameters: parameters,
+        UserManager.login(parameters,
                           success: success,
                           failure: failure)
     }
