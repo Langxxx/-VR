@@ -156,7 +156,9 @@ extension NewsDetailController {
     }
     
     func getBody() -> String {
-        var body = "<body>"
+        var body = ""
+        
+        body += isDeviceList ? "<body style=\"background-color:#fff\">" : "<body>"
         
         body += "<div class=\"title\">"
         body += newsModel.title
@@ -329,10 +331,17 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
 //    }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard section != 0 && newsModel.bbsInfo.posts.count != 0 else {
+        guard section != 0 else {
             return nil
         }
-        return "论坛热点评论"
+        
+        if isDeviceList {
+            return "相关文章"
+        }else if newsModel.bbsInfo.posts.count != 0 {
+            return "论坛热点评论"
+        }else {
+            return nil
+        }
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

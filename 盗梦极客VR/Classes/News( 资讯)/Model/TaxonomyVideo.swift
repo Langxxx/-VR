@@ -38,7 +38,7 @@ class TaxonomyVideo : NSObject, NSCoding{
 	 */
 	func toDictionary() -> NSDictionary
 	{
-		var dictionary = NSMutableDictionary()
+		let dictionary = NSMutableDictionary()
 		if descriptionField != nil{
 			dictionary["description"] = descriptionField
 		}
