@@ -111,9 +111,9 @@ extension NewsListController {
         
         func success(modelArray: [[NewsModel]]) {
             tableView.mj_header.endRefreshing()
+            page = 1
             self.newsModelArray = modelArray[0]
             self.topNewsModelArray = modelArray[1]
-            page = 1
         }
         
         func failure(_: ErrorType) {
