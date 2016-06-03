@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image=" launchImage" translatesAutoresizingMaskIntoConstraints="NO" id="4d8-VX-QUq">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -27,7 +27,13 @@
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="4d8-VX-QUq" secondAttribute="bottom" id="FJf-KE-Eob"/>
                             <constraint firstItem="4d8-VX-QUq" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="LkQ-QA-GoO"/>
                             <constraint firstItem="4d8-VX-QUq" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="bRC-KU-ODd"/>
+                            <constraint firstItem="4d8-VX-QUq" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="uYc-8k-Ob1"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="bRC-KU-ODd"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -36,6 +42,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name=" launchImage" width="320" height="480"/>
+        <image name=" launchImage" width="842" height="1497"/>
     </resources>
 </document>

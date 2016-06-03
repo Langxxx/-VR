@@ -529,7 +529,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ufn-qx-aYr">
-                                <rect key="frame" x="30" y="120" width="540" height="420"/>
+                                <rect key="frame" x="30" y="145" width="540" height="370"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAX-ic-dJO">
                                         <rect key="frame" x="0.0" y="0.0" width="34" height="21"/>
@@ -724,6 +724,7 @@
                                     <constraint firstItem="qhi-hT-9jj" firstAttribute="leading" secondItem="Blr-TS-xuy" secondAttribute="leading" id="KQU-bl-gX6"/>
                                     <constraint firstAttribute="trailing" secondItem="sHh-sT-nY0" secondAttribute="trailing" id="KYA-AD-CZN"/>
                                     <constraint firstAttribute="trailing" secondItem="LAX-ic-dJO" secondAttribute="trailing" id="Lk9-QR-Mji"/>
+                                    <constraint firstAttribute="bottom" secondItem="6ly-wr-3xu" secondAttribute="bottom" id="Mfz-EQ-u9u"/>
                                     <constraint firstItem="sHh-sT-nY0" firstAttribute="top" secondItem="Pdw-xD-IqY" secondAttribute="bottom" constant="15" id="PKI-Zq-smk"/>
                                     <constraint firstAttribute="trailing" secondItem="XLB-Mn-R7F" secondAttribute="trailing" constant="25" id="RGV-Te-ULF"/>
                                     <constraint firstAttribute="trailing" secondItem="IWM-CM-ns8" secondAttribute="trailing" id="Rcn-wf-N2a"/>
@@ -786,7 +787,7 @@
                                 </variation>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【XXXX】已验证成功，请继续完成注册!稍后您便可以直接通过Weibo登录或使用ID密码登录。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVG-pu-jRn">
-                                <rect key="frame" x="30" y="83" width="540" height="32"/>
+                                <rect key="frame" x="30" y="108" width="540" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.83137254901960778" green="0.098039215686274508" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -805,6 +806,11 @@
                             <constraint firstItem="Ufn-qx-aYr" firstAttribute="leading" secondItem="RVG-pu-jRn" secondAttribute="leading" id="faA-H6-cAA"/>
                             <constraint firstItem="Ufn-qx-aYr" firstAttribute="centerY" secondItem="a9h-Yj-xhm" secondAttribute="centerY" constant="30" id="fw9-zG-y0a"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="M4v-pq-7jH"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="accountActivityView" destination="YRU-z8-D37" id="kA2-Oa-cwX"/>
@@ -830,7 +836,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdX-yX-Wqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="795" y="1073"/>
+            <point key="canvasLocation" x="722" y="1070"/>
         </scene>
     </scenes>
     <resources>

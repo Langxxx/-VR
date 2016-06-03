@@ -78,7 +78,9 @@ class NewsDetailController: UIViewController {
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
     }
 
-    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
 }
 
 // MARK: -  初始化方法
