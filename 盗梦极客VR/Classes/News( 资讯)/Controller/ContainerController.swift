@@ -31,7 +31,7 @@ class ContainerController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
   }
@@ -46,6 +46,7 @@ extension ContainerController {
         channelScrollView.myDelegate = self
         channelModelArray = ChannelModel.getChannelModels()
         channelScrollView.channles = channelModelArray.map { $0.title }
+        channelScrollView.backgroundColor = UIColor.tintColor()
     }
     
     /**

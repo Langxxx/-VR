@@ -82,11 +82,11 @@ extension ChannelScrollView {
             // 初始化
             let label = ChannelLabel()
             label.text = title
-            label.textColor = UIColor.grayColor()
+            label.textColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
             label.font = UIFont.systemFontOfSize(17)
             label.sizeToFit()
             label.frame.size.width = labelW
-            label.frame.origin.y = (bounds.height -  label.bounds.height) * 0.5
+            label.frame.origin.y = (bounds.height -  label.bounds.height + 20) * 0.5
             label.frame.origin.x = getLabelX()
             
             //增加点击事件
