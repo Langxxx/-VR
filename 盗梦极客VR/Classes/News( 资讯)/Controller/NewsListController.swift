@@ -96,6 +96,7 @@ extension NewsListController {
         headerView.placeholderImage = UIImage(named: "placeholderImage")
         tableView.tableHeaderView = headerView
         headerView.frame.size.height = headerView.frame.size.width * 0.7
+        tableView.reloadData()
     }
 }
 
