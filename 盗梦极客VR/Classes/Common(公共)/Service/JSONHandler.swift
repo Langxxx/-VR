@@ -36,20 +36,7 @@ extension Post: JSONToModel {}
  - parameter parameters: 参数
  */
 func fetchJsonFromNet(urlStr: String, _ parameters: [String: AnyObject]? = nil) -> AsynOperation<JSON> {
-    return AsynOperation { completion in
-        
-        Alamofire.request(.GET, urlStr, parameters: parameters)
-            .responseJSON { response in
-                guard response.result.error == nil else {
-                    dPrint("Alamofire error!")
-                    completion(.Failure(Error.NetworkError))
-                    return
-                }
-                
-                let value = JSON(response.result.value!)
-                completion(.Success(value))
-        }
-    }
+    return networkRequest(urlStr, parameters: parameters)
 }
 
 /**
@@ -60,20 +47,11 @@ func fetchJsonFromNet(urlStr: String, _ parameters: [String: AnyObject]? = nil) 
 
  */
 func fetchTopNewsJsonFromNet(otherJson: JSON) -> AsynOperation<[JSON]> {
-    return AsynOperation { completion in
-        Alamofire.request(.GET, "http://dmgeek.com/DG_api/get_taxonomy_posts/?taxonomy=post_tag&id=167&count=5")
-            .responseJSON { response in
-                guard response.result.error == nil else {
-                    dPrint("Alamofire error!")
-                    completion(.Failure(Error.NetworkError))
-                    return
-                }
-                let value = JSON(response.result.value!)
-                completion(.Success([otherJson,value]))
-        }
-
-    }
+    let url = "http://dmgeek.com/DG_api/get_taxonomy_posts/?taxonomy=post_tag&id=167&count=5"
+    return networkRequest(url)
+        .map { [otherJson, $0] }
 }
+
 /**
  JSON转model的便捷方法
  

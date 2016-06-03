@@ -19,19 +19,21 @@ import SwiftyJSON
  
  */
 func checkInfoValid(str: String, parameters: [String: AnyObject]) -> AsynOperation<Bool> {
-    
-    return AsynOperation { completion in
-        Alamofire.request(.GET, str, parameters: parameters)
-            .responseJSON { response in
-                guard response.result.error == nil else {
-                    dPrint("checkInfoValid error!\n URL:\(response.result.error)")
-                    completion(.Failure(Error.NetworkError))
-                    return
-                }
-                let value = JSON(response.result.value!)
-                completion(.Success(value["status"].boolValue))
-            }
-    }
+    return networkRequest(str, parameters: parameters)
+        .map { $0["status"].boolValue }
+//    
+//    return AsynOperation { completion in
+//        Alamofire.request(.GET, str, parameters: parameters)
+//            .responseJSON { response in
+//                guard response.result.error == nil else {
+//                    dPrint("checkInfoValid error!\n URL:\(response.result.error)")
+//                    completion(.Failure(Error.NetworkError))
+//                    return
+//                }
+//                let value = JSON(response.result.value!)
+//                completion(.Success(value["status"].boolValue))
+//            }
+//    }
 }
 
 /**
@@ -49,22 +51,25 @@ func getNonceValue(urlStr: String = "http://dmgeek.com/DG_api/get_nonce/",
     "method": "register"
     ]) -> AsynOperation<String> {
     
-    return AsynOperation { completion in
-        Alamofire.request(.GET, urlStr, parameters: parameters)
-            .responseJSON { response in
-                guard response.result.error == nil else {
-                    dPrint("loginRequest error!\n URL:\(response.result.error)")
-                    completion(.Failure(Error.NetworkError))
-                    return
-                }
-                let value = JSON(response.result.value!)
-                if value["status"].stringValue != "ok" {
-                    completion(.Failure(Error.NetworkError))
-                }else {
-                    completion(.Success(value["nonce"].stringValue))
-                }
-        }
-    }
+    return networkRequest(urlStr, parameters: parameters)
+        .map { $0["nonce"].stringValue }
+    
+//    return AsynOperation { completion in
+//        Alamofire.request(.GET, urlStr, parameters: parameters)
+//            .responseJSON { response in
+//                guard response.result.error == nil else {
+//                    dPrint("loginRequest error!\n URL:\(response.result.error)")
+//                    completion(.Failure(Error.NetworkError))
+//                    return
+//                }
+//                let value = JSON(response.result.value!)
+//                if value["status"].stringValue != "ok" {
+//                    completion(.Failure(Error.NetworkError))
+//                }else {
+//                    completion(.Success(value["nonce"].stringValue))
+//                }
+//        }
+//    }
 }
 
 typealias UserID = Int
@@ -81,26 +86,40 @@ typealias RegisteReturnInfo = (UserID, Cookie)
  */
 func checkRegisterValid(parameters: [String: String])
     -> AsynOperation<RegisteReturnInfo> {
-    
-    return AsynOperation { completion in
-        Alamofire.request(.GET, "http://dmgeek.com/DG_api/users/register/", parameters: parameters)
-            .responseJSON { response in
-                guard response.result.error == nil else {
-                    dPrint("loginRequest error!\n URL:\(response.result.error)")
-                    completion(.Failure(Error.NetworkError))
-                    return
-                }
-                let value = JSON(response.result.value!)
-                if value["status"].stringValue == "error" {
-                    completion(.Failure(Error.RegisterError(value["error"].stringValue)))
+
+    return networkRequest("http://dmgeek.com/DG_api/users/register/", parameters: parameters)
+        .then { json in
+            return AsynOperation { completion in
+                if json["status"].stringValue == "error" {
+                    completion(.Failure(Error.RegisterError(json["error"].stringValue)))
                 }else {
-                    let userID = value["user_id"].intValue
-                    let cookie = value["cookie"].stringValue
+                    let userID = json["user_id"].intValue
+                    let cookie = json["cookie"].stringValue
                     let info = (userID, cookie)
-                     completion(.Success(info))
+                    completion(.Success(info))
                 }
+            }
         }
-    }
+
+//    return AsynOperation { completion in
+//        Alamofire.request(.GET, "http://dmgeek.com/DG_api/users/register/", parameters: parameters)
+//            .responseJSON { response in
+//                guard response.result.error == nil else {
+//                    dPrint("loginRequest error!\n URL:\(response.result.error)")
+//                    completion(.Failure(Error.NetworkError))
+//                    return
+//                }
+//                let value = JSON(response.result.value!)
+//                if value["status"].stringValue == "error" {
+//                    completion(.Failure(Error.RegisterError(value["error"].stringValue)))
+//                }else {
+//                    let userID = value["user_id"].intValue
+//                    let cookie = value["cookie"].stringValue
+//                    let info = (userID, cookie)
+//                     completion(.Success(info))
+//                }
+//        }
+//    }
 }
 
 /**
@@ -109,22 +128,33 @@ func checkRegisterValid(parameters: [String: String])
  - parameter urlStr: 同步请求URL
  */
 func synchronizeAcount(urlStr: String) -> AsynOperation<Bool>  {
-    return AsynOperation { completion in
-        Alamofire.request(.GET, urlStr)
-            .responseJSON { response in
-                guard response.result.error == nil else {
-                    dPrint("synchronizeAcount error!\n URL:\(response.result.error)")
-                    completion(.Failure(Error.NetworkError))
-                    return
-                }
-                let value = JSON(response.result.value!)
-                let status = value["status"].stringValue
-                if status == "ok" {
-                    completion(.Success(true))
-                }else {
-                    completion(.Success(false))
-                }
+    
+    return networkRequest(urlStr)
+        .map { json in
+            let status = json["status"].stringValue
+            if status == "ok" {
+                return true
+            }else {
+                return false
+            }
         }
-        
-    }
+//    
+//    return AsynOperation { completion in
+//        Alamofire.request(.GET, urlStr)
+//            .responseJSON { response in
+//                guard response.result.error == nil else {
+//                    dPrint("synchronizeAcount error!\n URL:\(response.result.error)")
+//                    completion(.Failure(Error.NetworkError))
+//                    return
+//                }
+//                let value = JSON(response.result.value!)
+//                let status = value["status"].stringValue
+//                if status == "ok" {
+//                    completion(.Success(true))
+//                }else {
+//                    completion(.Success(false))
+//                }
+//        }
+//        
+//    }
 }

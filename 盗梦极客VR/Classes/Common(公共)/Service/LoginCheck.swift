@@ -31,7 +31,7 @@ func checkLogin(url: String, _ parameters: [String: AnyObject] = [:]) -> AsynOpe
 
 /**
  登陆第一步，发出登陆请求，
- checkLogin嗲用
+ checkLogin调用
  
  - parameter url:        登陆URL
  - parameter parameters: 参数
@@ -39,18 +39,7 @@ func checkLogin(url: String, _ parameters: [String: AnyObject] = [:]) -> AsynOpe
  - returns: 登陆后反馈的JSON
  */
 func loginRequest(url: String, _ parameters: [String: AnyObject] = [:]) -> AsynOperation<JSON> {
-    return AsynOperation { completion in
-        Alamofire.request(.GET, url,parameters: parameters)
-            .responseJSON { response in
-                guard response.result.error == nil else {
-                    dPrint("loginRequest error!\n URL:\(response.result.error)")
-                    completion(.Failure(Error.NetworkError))
-                    return
-                }
-                let value = JSON(response.result.value!)
-                completion(.Success(value))
-        }
-    }
+    return networkRequest(url, parameters: parameters)
 }
 
 /**
@@ -81,18 +70,6 @@ func checkValidity(json: JSON) -> AsynOperation<User> {
  - returns: 成功用户信息(第一次登陆为空)；失败NetworkError
  */
 func checkOauthLogin(url: String, parameters: [String: String]) -> AsynOperation<User> {
-    return AsynOperation { completion in
-        Alamofire.request(.GET, url, parameters: parameters)
-            .responseJSON { response in
-                guard response.result.error == nil else {
-                    dPrint("checkOauthLogin error!\n URL:\(response.result.error)")
-                    completion(.Failure(Error.NetworkError))
-                    return
-                }
-                let value = JSON(response.result.value!)
-                let user =  User(fromJson: value["user"])
-                completion(.Success(user))
-        }
-        
-    }
+    return networkRequest(url, parameters: parameters)
+        .map { User(fromJson: $0["user"]) }
 }

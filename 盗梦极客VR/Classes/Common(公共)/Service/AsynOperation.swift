@@ -7,6 +7,8 @@
 //  异步操作
 
 import Foundation
+import Alamofire
+import SwiftyJSON
 
 struct AsynOperation<T> {
     
@@ -65,3 +67,26 @@ extension AsynOperation {
         }
     }
 }
+// TODO: 这里用扩展XCODE会崩溃...
+func networkRequest(urlStr: String,
+                    parameters: [String: AnyObject]? = nil,
+                    debugNotice: String = "Alamofire error!"
+    ) -> AsynOperation<JSON> {
+    
+    return AsynOperation { completion in
+        
+        Alamofire.request(.GET, urlStr, parameters: parameters)
+            .responseJSON { response in
+                guard response.result.error == nil else {
+                    dPrint("Alamofire error!")
+                    completion(.Failure(Error.NetworkError))
+                    return
+                }
+                
+                let value = JSON(response.result.value!)
+                completion(.Success(value))
+        }
+    }
+    
+}
+
