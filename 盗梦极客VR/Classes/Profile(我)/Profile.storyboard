@@ -548,7 +548,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ufn-qx-aYr">
-                                <rect key="frame" x="30" y="145" width="540" height="370"/>
+                                <rect key="frame" x="30" y="150" width="540" height="370"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAX-ic-dJO">
                                         <rect key="frame" x="0.0" y="0.0" width="34" height="21"/>
@@ -806,7 +806,7 @@
                                 </variation>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【XXXX】已验证成功，请继续完成注册!稍后您便可以直接通过Weibo登录或使用ID密码登录。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVG-pu-jRn">
-                                <rect key="frame" x="30" y="108" width="540" height="32"/>
+                                <rect key="frame" x="30" y="113" width="540" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.83137254901960778" green="0.098039215686274508" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -823,7 +823,7 @@
                             <constraint firstItem="Ufn-qx-aYr" firstAttribute="centerX" secondItem="a9h-Yj-xhm" secondAttribute="centerX" id="WoE-Tz-U4R"/>
                             <constraint firstAttribute="trailing" secondItem="F2h-c2-1U5" secondAttribute="trailing" id="dE3-4M-jP6"/>
                             <constraint firstItem="Ufn-qx-aYr" firstAttribute="leading" secondItem="RVG-pu-jRn" secondAttribute="leading" id="faA-H6-cAA"/>
-                            <constraint firstItem="Ufn-qx-aYr" firstAttribute="centerY" secondItem="a9h-Yj-xhm" secondAttribute="centerY" constant="30" id="fw9-zG-y0a"/>
+                            <constraint firstItem="Ufn-qx-aYr" firstAttribute="centerY" secondItem="a9h-Yj-xhm" secondAttribute="centerY" constant="35" id="fw9-zG-y0a"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

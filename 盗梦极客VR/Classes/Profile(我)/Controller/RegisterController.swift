@@ -52,11 +52,8 @@ class RegisterController: UIViewController {
     }
     
         /// 第三方授权信息，如果是第三跳转来的注册界面才有值
-    var oauthInfo: (
-        platformName: String,
-        usid: String,
-        username: String,
-        iconURL: String)?
+    var oauthInfo: OauthInfo?
+    
         /// 第三方授权注册成功后执行的自动登录方法
     var autoLogin: ((parameters: [String: String]) -> ())?
     
@@ -109,7 +106,7 @@ extension RegisterController {
         
         nicknameTextField.text = oauthInfo.username
         oauthInfoLabel.hidden = false
-        oauthInfoLabel.text = "[\(oauthInfo.username)]已验证成功，请继续完成注册！稍后您便可以直接通过\(oauthInfo.platformName)登录或使用ID密码登录。"
+        oauthInfoLabel.text = "[\(oauthInfo.username)]已验证成功，请继续完成注册！稍后您便可以直接通过\(oauthInfo.platformName.uppercaseString)登录或使用ID密码登录。"
         nickNameDidChange()
     }
     
@@ -217,8 +214,7 @@ extension RegisterController {
                 emailTextField.text!,
                 accountTextField.text!,
                 passwordTextField.text!,
-                oauthInfo?.usid,
-                oauthInfo?.platformName
+                oauthInfo
             ),
             success: sccess,
             failure: failure)

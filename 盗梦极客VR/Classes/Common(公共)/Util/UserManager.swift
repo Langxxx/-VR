@@ -234,11 +234,10 @@ extension UserManager {
      */
     static func register(registerInfo:
         (   nickName: String,
-        email: String,
-        account: String,
-        password: String,
-        usid: String?,
-        platformName: String?
+            email: String,
+            account: String,
+            password: String,
+            oauthInfo: OauthInfo?
         ),
                          success: (Int, String) -> (),
                          failure: (ErrorType) -> ()) {
@@ -252,8 +251,10 @@ extension UserManager {
                 "nonce": nonce,
                 "notify": "both",
                 "display_name": registerInfo.nickName,
-                "s_id": registerInfo.usid ?? "",
-                "s_type": registerInfo.platformName ?? ""
+                "s_id": registerInfo.oauthInfo?.usid ?? "",
+                "s_type": registerInfo.oauthInfo?.platformName ?? "",
+                "s_token": registerInfo.oauthInfo?.token ?? "",
+                "avatar": registerInfo.oauthInfo?.iconURL ?? ""
             ]
         }
         

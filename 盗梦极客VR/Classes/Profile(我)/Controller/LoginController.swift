@@ -25,11 +25,17 @@ class LoginController: UIViewController {
     
 //    var completion: ((user: User) -> Void)?
         /// 授权返回的信息
-    var oauthInfo: (
-        platformName: String,
-        usid: String,
-        username: String,
-        iconURL: String)? {
+//    var oauthInfo: (
+//        platformName: String,
+//        usid: String,
+//        username: String,
+//        iconURL: String,
+//        token: String)? {
+//        didSet {
+//            doSomeForOauthLogin()
+//        }
+//    }
+    var oauthInfo: OauthInfo? {
         didSet {
             doSomeForOauthLogin()
         }
@@ -53,6 +59,9 @@ class LoginController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
     }
 }
 
@@ -128,13 +137,14 @@ extension LoginController {
      
      - parameter snsAccount: 授权信息
      */
-    func fillOauthInfo(snsAccount: AnyObject) {
-        let usid = snsAccount.usid
-        let userName = snsAccount.userName
-        let iconURL = snsAccount.iconURL
-        let platformName = snsAccount.platformName
-        self.oauthInfo = (platformName, usid, userName, iconURL)
-    }
+//    func fillOauthInfo(snsAccount: AnyObject) {
+//        let usid = snsAccount.usid
+//        let userName = snsAccount.userName
+//        let iconURL = snsAccount.iconURL
+//        let platformName = snsAccount.platformName
+//        let token = snsAccount.accessToken
+//        self.oauthInfo = (platformName, usid, userName, iconURL, token)
+//    }
 }
 
 // MARK: - 监听方法
@@ -160,6 +170,7 @@ extension LoginController {
         }
         
         login(parameters)
+        view.endEditing(true)
     }
     
     
@@ -169,7 +180,7 @@ extension LoginController {
             
             if response.responseCode == UMSResponseCodeSuccess {
                 let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToQQ]!
-                self.fillOauthInfo(snsAccount)
+                self.oauthInfo = OauthInfo(snsAccount: snsAccount)
             }
         }
     }
@@ -181,7 +192,7 @@ extension LoginController {
             
             if response.responseCode == UMSResponseCodeSuccess {
                 let snsAccount = UMSocialAccountManager.socialAccountDictionary()[UMShareToSina]!
-                self.fillOauthInfo(snsAccount)
+                self.oauthInfo = OauthInfo(snsAccount: snsAccount)
             }
         }
     }
