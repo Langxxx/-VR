@@ -12,6 +12,7 @@ enum Error: ErrorType {
     case NetworkError
     case AccountInvalid
     case RegisterError(String)
+    case UserInterrupt
 }
 
 enum Result<Value> {

@@ -67,6 +67,8 @@ extension AsynOperation {
         }
     }
 }
+
+var currentTask: Request?
 // TODO: 这里用扩展XCODE会崩溃...
 func networkRequest(urlStr: String,
                     parameters: [String: AnyObject]? = nil,
@@ -75,11 +77,15 @@ func networkRequest(urlStr: String,
     
     return AsynOperation { completion in
         
-        Alamofire.request(.GET, urlStr, parameters: parameters)
+        currentTask = Alamofire.request(.GET, urlStr, parameters: parameters)
             .responseJSON { response in
                 guard response.result.error == nil else {
-                    dPrint("Alamofire error!")
-                    completion(.Failure(Error.NetworkError))
+                    dPrint(debugNotice)
+                    if response.result.error?.code == -999 {
+                        completion(.Failure(Error.UserInterrupt))
+                    }else {
+                        completion(.Failure(Error.NetworkError))
+                    }
                     return
                 }
                 

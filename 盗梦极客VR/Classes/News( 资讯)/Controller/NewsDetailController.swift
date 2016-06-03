@@ -80,6 +80,8 @@ class NewsDetailController: UIViewController {
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        // 若不停止任务，IOS8中会崩溃
+        currentTask?.cancel()
     }
 }
 
@@ -131,9 +133,14 @@ extension NewsDetailController {
             
         }
         
-        func failure(_: ErrorType) {
+        func failure(error: ErrorType) {
             tableView.mj_footer.endRefreshing()
-            MBProgressHUD.showError("网络拥堵，请稍后尝试!")
+            switch error as! Error {
+            case .UserInterrupt:
+                break
+            default:
+                MBProgressHUD.showError("网络拥堵，请稍后尝试!")
+            }
         }
         
         fetchJsonFromNet(deviceURL, parameters)
