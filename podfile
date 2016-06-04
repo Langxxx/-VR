@@ -10,6 +10,6 @@ target '盗梦极客VR' do
 	pod 'SDWebImage', :git => 'https://github.com/rs/SDWebImage.git'
 	pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 	pod 'MJRefresh', :git => 'https://github.com/CoderMJLee/MJRefresh.git'
-	pod 'UMengSocial', '~> 5.0'
 	pod 'IQKeyboardManager', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git'
+	pod 'UMengSocialCOM', '~> 5.2.1'
 end

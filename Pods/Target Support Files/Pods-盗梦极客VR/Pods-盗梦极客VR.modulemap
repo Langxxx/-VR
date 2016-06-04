@@ -1,0 +1,6 @@
+framework module Pods_____VR {
+  umbrella header "Pods-盗梦极客VR-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00B3E151668AB05078D689E4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D3D58D6A7EE1074ECD4E855 /* Pods.framework */; };
+		0BB8DA0B59FB70924EC07223 /* Pods_____VR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DCCE2BE5CA2CAAFB0ED136E /* Pods_____VR.framework */; };
 		770102031D01838B00A1DEEE /* OauthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 770102021D01838B00A1DEEE /* OauthInfo.swift */; };
 		7701A6221CF83EE4003213CD /* TaxonomyPlatformsDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7701A6211CF83EE4003213CD /* TaxonomyPlatformsDevice.swift */; };
 		7701A6241CF84017003213CD /* TaxonomyVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7701A6231CF84017003213CD /* TaxonomyVideo.swift */; };
@@ -71,8 +71,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B5F316317EDD5A694E87B85 /* Pods-盗梦极客VR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-盗梦极客VR.debug.xcconfig"; path = "Pods/Target Support Files/Pods-盗梦极客VR/Pods-盗梦极客VR.debug.xcconfig"; sourceTree = "<group>"; };
 		4D3D58D6A7EE1074ECD4E855 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EA4F884C41B4CD891BBEFC2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		770102021D01838B00A1DEEE /* OauthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthInfo.swift; sourceTree = "<group>"; };
 		7701A6211CF83EE4003213CD /* TaxonomyPlatformsDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxonomyPlatformsDevice.swift; sourceTree = "<group>"; };
 		7701A6231CF84017003213CD /* TaxonomyVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxonomyVideo.swift; sourceTree = "<group>"; };
@@ -136,7 +136,8 @@
 		77DC85351CCF05720020AF6B /* ViewPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPresentable.swift; sourceTree = "<group>"; };
 		77DC85391CCF0CA70020AF6B /* NewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCellViewModel.swift; sourceTree = "<group>"; };
 		77FAB1D71CE9E97E00C5366F /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
-		F70860C4EE6301743A84DC91 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		9DCCE2BE5CA2CAAFB0ED136E /* Pods_____VR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____VR.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7A77D67EA230552523C86F5 /* Pods-盗梦极客VR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-盗梦极客VR.release.xcconfig"; path = "Pods/Target Support Files/Pods-盗梦极客VR/Pods-盗梦极客VR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00B3E151668AB05078D689E4 /* Pods.framework in Frameworks */,
+				0BB8DA0B59FB70924EC07223 /* Pods_____VR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				4D3D58D6A7EE1074ECD4E855 /* Pods.framework */,
+				9DCCE2BE5CA2CAAFB0ED136E /* Pods_____VR.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -347,8 +349,8 @@
 			children = (
 				776274F81CC71EBB001B5793 /* 盗梦极客VR */,
 				776274F71CC71EBB001B5793 /* Products */,
-				E476746F3128D659BDE7B22A /* Pods */,
 				500F18F1A4A196E9DA65025B /* Frameworks */,
+				D24CCC9ADEC2CDFE941CB452 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -447,11 +449,11 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
-		E476746F3128D659BDE7B22A /* Pods */ = {
+		D24CCC9ADEC2CDFE941CB452 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5EA4F884C41B4CD891BBEFC2 /* Pods.debug.xcconfig */,
-				F70860C4EE6301743A84DC91 /* Pods.release.xcconfig */,
+				1B5F316317EDD5A694E87B85 /* Pods-盗梦极客VR.debug.xcconfig */,
+				D7A77D67EA230552523C86F5 /* Pods-盗梦极客VR.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -463,12 +465,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 776275081CC71EBB001B5793 /* Build configuration list for PBXNativeTarget "盗梦极客VR" */;
 			buildPhases = (
-				8B8F16FBE0A187299B2BFDFA /* Check Pods Manifest.lock */,
+				F71E10CE5643C1195EDD9088 /* [CP] Check Pods Manifest.lock */,
 				776274F21CC71EBB001B5793 /* Sources */,
 				776274F31CC71EBB001B5793 /* Frameworks */,
 				776274F41CC71EBB001B5793 /* Resources */,
-				051E3562374C5EB87FAF2C47 /* Embed Pods Frameworks */,
-				204EF3CDD68B5D37B5F3FF36 /* Copy Pods Resources */,
+				BC16D2899741374BFF3D07DD /* [CP] Embed Pods Frameworks */,
+				F101B02A6268403F2A4F8FDB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -533,44 +535,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		051E3562374C5EB87FAF2C47 /* Embed Pods Frameworks */ = {
+		BC16D2899741374BFF3D07DD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-盗梦极客VR/Pods-盗梦极客VR-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		204EF3CDD68B5D37B5F3FF36 /* Copy Pods Resources */ = {
+		F101B02A6268403F2A4F8FDB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-盗梦极客VR/Pods-盗梦极客VR-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8B8F16FBE0A187299B2BFDFA /* Check Pods Manifest.lock */ = {
+		F71E10CE5643C1195EDD9088 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,7 +751,7 @@
 		};
 		776275091CC71EBB001B5793 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5EA4F884C41B4CD891BBEFC2 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 1B5F316317EDD5A694E87B85 /* Pods-盗梦极客VR.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -774,8 +776,6 @@
 					"-l\"SocialTwitter\"",
 					"-l\"SocialWechat\"",
 					"-l\"SocialWhatsapp\"",
-					"-l\"UMSocial_Sdk_5.0\"",
-					"-l\"UMSocial_Sdk_Comment_5.0\"",
 					"-l\"WeChatSDK\"",
 					"-l\"WeiboSDK\"",
 					"-l\"iconv\"",
@@ -837,7 +837,7 @@
 		};
 		7762750A1CC71EBB001B5793 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F70860C4EE6301743A84DC91 /* Pods.release.xcconfig */;
+			baseConfigurationReference = D7A77D67EA230552523C86F5 /* Pods-盗梦极客VR.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -862,8 +862,6 @@
 					"-l\"SocialTwitter\"",
 					"-l\"SocialWechat\"",
 					"-l\"SocialWhatsapp\"",
-					"-l\"UMSocial_Sdk_5.0\"",
-					"-l\"UMSocial_Sdk_Comment_5.0\"",
 					"-l\"WeChatSDK\"",
 					"-l\"WeiboSDK\"",
 					"-l\"iconv\"",
