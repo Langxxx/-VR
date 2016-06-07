@@ -10,11 +10,12 @@ import UIKit
 import MBProgressHUD
 import MJRefresh
 
-class NewsListController: UIViewController {
+class NewsListController: UIViewController, DetailVcJumpable {
 
     @IBOutlet weak var tableView: UITableView!
         /// tableView距离顶部的距离约束
     @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     
         /// 重新加载的提示label
     @IBOutlet weak var reloadLabel: UILabel!
@@ -172,6 +173,7 @@ extension NewsListController {
             tableView.mj_header.endRefreshing()
             MBProgressHUD.showError("网络异常，请稍后尝试")
             self.reloadLabel.hidden = false
+            self.activityView.hidden = true
         }
         // TODO: 如果是非资讯分类，不应该fetchTopNewsJsonFromNet
         fetchJsonFromNet(requstURL, ["page": 1])
@@ -202,22 +204,6 @@ extension NewsListController {
         fetchJsonFromNet(requstURL, parameters)
             .map { jsonToModelArray( $0["posts"], initial: NewsModel.init) }
             .complete(success: success, failure: failure)
-    }
-    
-    /**
-     跳转到新闻详情页面
-     在点击某一个新闻后调用
-     
-     - parameter selectedCellModel: 被点击新闻的模型
-     */
-    func pushDetailVcBySelectedNewsModel(selectedCellModel: NewsModel) {
-        let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("NewsDetailController") as! NewsDetailController
-        vc.newsModel = selectedCellModel
-        vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
-        if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
-            interactivePopGestureRecognizer.delegate = nil
-        }
     }
 }
 

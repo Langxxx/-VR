@@ -47,6 +47,8 @@
 		776275011CC71EBB001B5793 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 776275001CC71EBB001B5793 /* Assets.xcassets */; };
 		776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 776275021CC71EBB001B5793 /* LaunchScreen.storyboard */; };
 		77737E461CCFABEB0071794E /* NewsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77737E451CCFABEB0071794E /* NewsDetailController.swift */; };
+		777CD0871D06C8F2000088A6 /* DetailVcJumpable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD0861D06C8F2000088A6 /* DetailVcJumpable.swift */; };
+		777CD0891D06FF06000088A6 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777CD0881D06FF06000088A6 /* NavigationController.swift */; };
 		777EBEB71CDB3DBD001A4BE4 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777EBEB61CDB3DBD001A4BE4 /* ProfileController.swift */; };
 		777EBEBD1CDB800C001A4BE4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777EBEBC1CDB800C001A4BE4 /* LoginController.swift */; };
 		77A6D9B61CD4A958003BFAA5 /* ShareTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A6D9B51CD4A958003BFAA5 /* ShareTool.swift */; };
@@ -117,6 +119,8 @@
 		776275031CC71EBB001B5793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		776275051CC71EBB001B5793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77737E451CCFABEB0071794E /* NewsDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailController.swift; sourceTree = "<group>"; };
+		777CD0861D06C8F2000088A6 /* DetailVcJumpable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVcJumpable.swift; sourceTree = "<group>"; };
+		777CD0881D06FF06000088A6 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		777EBEB61CDB3DBD001A4BE4 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		777EBEBC1CDB800C001A4BE4 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		77A6D9B51CD4A958003BFAA5 /* ShareTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareTool.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 			children = (
 				7751148F1CC75C3A00BC6FB4 /* TabBarController.swift */,
 				77A6D9B71CD58E16003BFAA5 /* OtherLinkWebController.swift */,
+				777CD0881D06FF06000088A6 /* NavigationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -341,11 +346,11 @@
 		7761A1A61CCC741D004A6EBA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				775319C11D069E5F00E0DC3C /* SearchController.swift */,
 				7761A1A71CCC7439004A6EBA /* ContainerController.swift */,
 				7761A1AF1CCCF95B004A6EBA /* NewsListController.swift */,
 				77737E451CCFABEB0071794E /* NewsDetailController.swift */,
 				773B8CF81CE4A64C004077F6 /* ReplyController.swift */,
+				775319C11D069E5F00E0DC3C /* SearchController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				77DC85391CCF0CA70020AF6B /* NewCellViewModel.swift */,
 				771EF7D51CE35BDF008956C0 /* ReplyCellViewModel.swift */,
 				77C888DF1CE89C1700BA6A7B /* DeviceCellViewModel.swift */,
+				777CD0861D06C8F2000088A6 /* DetailVcJumpable.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -615,7 +621,9 @@
 				773B8CF91CE4A64C004077F6 /* ReplyController.swift in Sources */,
 				775319C01D069C9F00E0DC3C /* TaxonomyScrollView.swift in Sources */,
 				77C75DAB1CCE51D400D1A396 /* JSONHandler.swift in Sources */,
+				777CD0891D06FF06000088A6 /* NavigationController.swift in Sources */,
 				7711026D1CD8D07B0081B953 /* AuxiliaryModels.swift in Sources */,
+				777CD0871D06C8F2000088A6 /* DetailVcJumpable.swift in Sources */,
 				77C75D921CCE0B0900D1A396 /* NewsModel.swift in Sources */,
 				77DC85291CCF02E60020AF6B /* Result.swift in Sources */,
 				771EF7CE1CE2CC1F008956C0 /* Participant.swift in Sources */,

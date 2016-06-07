@@ -91,12 +91,6 @@ extension ContainerController {
 
 }
 
-extension ContainerController {
-    @IBAction func searchButtonClik() {
-    }
-
-}
-
 // MARK: - UICollectionViewDelegate 代理
 extension ContainerController: UICollectionViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {

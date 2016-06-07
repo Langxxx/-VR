@@ -10,7 +10,7 @@ import UIKit
 import MBProgressHUD
 import MJRefresh
 
-class NewsDetailController: UIViewController {
+class NewsDetailController: UIViewController, DetailVcJumpable {
     
     /// 这里不使用WKWebView是因为Loadhtml方法加载出来的，样式会很奇怪
     @IBOutlet weak var tableView: UITableView!
@@ -419,13 +419,7 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if isDeviceList {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("NewsDetailController") as! NewsDetailController
-            vc.newsModel = newsModelArray[indexPath.row]
-            vc.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(vc, animated: true)
-            if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
-                interactivePopGestureRecognizer.delegate = nil
-            }
+            pushDetailVcBySelectedNewsModel(newsModelArray[indexPath.row])
         }
     }
 }
