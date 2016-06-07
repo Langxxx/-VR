@@ -13,6 +13,9 @@ class ContainerController: UIViewController {
     @IBOutlet weak var channelScrollView: ChannelScrollView!
         /// 容纳显示列表的view
     @IBOutlet weak var containerView: ContainerView!
+
+    @IBOutlet weak var searchButton: UIButton!
+    
         /// collectionView的数据源
     var collectionViewCellProvider: ContainerViewDataSource!
         /// 频道的model数组
@@ -27,6 +30,7 @@ class ContainerController: UIViewController {
         setupChildViewControllers()
         setupContainerView()
         tabBarController?.delegate = self
+        searchButton.backgroundColor = UIColor.tintColor().colorWithAlphaComponent(0.7)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -47,6 +51,7 @@ extension ContainerController {
         channelModelArray = ChannelModel.getChannelModels()
         channelScrollView.channles = channelModelArray.map { $0.title }
         channelScrollView.backgroundColor = UIColor.tintColor()
+        channelScrollView.bounces = true
     }
     
     /**
@@ -82,6 +87,12 @@ extension ContainerController {
         
         containerView.dataSource = collectionViewCellProvider
         containerView.delegate = self
+    }
+
+}
+
+extension ContainerController {
+    @IBAction func searchButtonClik() {
     }
 
 }

@@ -83,6 +83,10 @@ class NewsDetailController: UIViewController {
         // 若不停止任务，IOS8中会崩溃
         currentTask?.cancel()
     }
+    
+    deinit {
+        dPrint("NewsDetailController deinit")
+    }
 }
 
 // MARK: -  初始化方法
@@ -95,8 +99,6 @@ extension NewsDetailController {
         tableView.delegate = self
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 300
-//        tableView.sectionHeaderHeight = 10
-//        tableView.sectionFooterHeight = 40
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
         tableView.hidden = true
     }

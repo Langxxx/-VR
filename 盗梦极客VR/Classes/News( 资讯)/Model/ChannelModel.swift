@@ -11,10 +11,38 @@ import Foundation
 struct ChannelModel {
     let title: String
     let URL: String
+    let taxonomies: [Taxonomy]
+    let type: String
+    
+    init(dict: [String: AnyObject]) {
+        title = dict["title"] as! String
+        URL = dict["URL"] as! String
+        let terms = dict["terms"] as! [[String: String]]
+        taxonomies = terms.map { Taxonomy(dict: $0) }
+        type = dict["type"] as! String
+    }
+}
+/**
+ *  频道下的字分类
+ */
+struct Taxonomy {
+        /// 分类ID，用来请求数据
+    let id: String
+        /// web端 url里的链接
+    let slug: String
+        /// 分类名
+    let title: String
+        /// 描述
+    let description: String
+        /// 总帖子
+    let postCount: String
     
     init(dict: [String: String]) {
+        id = dict["id"]!
+        slug = dict["slug"]!
         title = dict["title"]!
-        URL = dict["URL"]!
+        description = dict["description"]!
+        postCount = dict["postCount"]!
     }
 }
 
@@ -26,7 +54,7 @@ extension ChannelModel {
      */
     static func getChannelModels() -> [ChannelModel] {
         let path = NSBundle.mainBundle().pathForResource("ChannelConfig.plist", ofType: nil)!
-        let array = NSArray(contentsOfFile: path) as! [[String: String]]
+        let array = NSArray(contentsOfFile: path) as! [[String: AnyObject]]
         
         return array.map { ChannelModel(dict: $0) }
     }

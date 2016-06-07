@@ -98,7 +98,8 @@ extension ChannelScrollView {
             self.addSubview(label)
         }
         currentChannelIndex = 0
-        contentSize = CGSize(width: getLabelX(), height: 0)
+        // 这里+20是为了防止搜索按钮遮挡最后一个字
+        contentSize = CGSize(width: getLabelX() + 20, height: 0)
     }
 }
 

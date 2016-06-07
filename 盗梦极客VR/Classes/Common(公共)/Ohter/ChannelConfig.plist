@@ -3,34 +3,274 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>terms</key>
+		<array>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>5</string>
+				<key>postCount</key>
+				<string>491</string>
+				<key>slug</key>
+				<string>vrgame</string>
+				<key>title</key>
+				<string>内容资讯</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>166</string>
+				<key>postCount</key>
+				<string>277</string>
+				<key>slug</key>
+				<string>vrdevice</string>
+				<key>title</key>
+				<string>硬件资讯</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>1</string>
+				<key>postCount</key>
+				<string>860</string>
+				<key>slug</key>
+				<string>vrnews</string>
+				<key>title</key>
+				<string>行业资讯</string>
+			</dict>
+		</array>
 		<key>title</key>
 		<string>资讯</string>
 		<key>URL</key>
 		<string>http://dmgeek.com/DG_api/get_recent_posts/</string>
+		<key>type</key>
+		<string>category</string>
 	</dict>
 	<dict>
+		<key>terms</key>
+		<array>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>211</string>
+				<key>postCount</key>
+				<string>4</string>
+				<key>slug</key>
+				<string>waishe</string>
+				<key>title</key>
+				<string>外设</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>210</string>
+				<key>postCount</key>
+				<string>12</string>
+				<key>slug</key>
+				<string>toudai</string>
+				<key>title</key>
+				<string>头戴</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>209</string>
+				<key>postCount</key>
+				<string>7</string>
+				<key>slug</key>
+				<string>app</string>
+				<key>title</key>
+				<string>应用</string>
+			</dict>
+		</array>
 		<key>title</key>
 		<string>评测</string>
 		<key>URL</key>
 		<string>http://dmgeek.com/DG_api/get_recent_posts/?post_type=review</string>
+		<key>type</key>
+		<string>platforms</string>
 	</dict>
 	<dict>
+		<key>terms</key>
+		<array>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>226</string>
+				<key>postCount</key>
+				<string>1</string>
+				<key>slug</key>
+				<string>yitiji</string>
+				<key>title</key>
+				<string>一体机</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>152</string>
+				<key>postCount</key>
+				<string>4</string>
+				<key>slug</key>
+				<string>zhuji</string>
+				<key>title</key>
+				<string>主机端头戴</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>227</string>
+				<key>postCount</key>
+				<string>1</string>
+				<key>slug</key>
+				<string>zhoubian</string>
+				<key>title</key>
+				<string>周边设备</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>155</string>
+				<key>postCount</key>
+				<string>5</string>
+				<key>slug</key>
+				<string>yidong</string>
+				<key>title</key>
+				<string>移动光学头戴</string>
+			</dict>
+		</array>
 		<key>title</key>
 		<string>设备</string>
 		<key>URL</key>
 		<string>http://dmgeek.com/DG_api/get_recent_posts/?post_type=device</string>
+		<key>type</key>
+		<string>platforms_device</string>
 	</dict>
 	<dict>
+		<key>terms</key>
+		<array>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>204</string>
+				<key>postCount</key>
+				<string>8</string>
+				<key>slug</key>
+				<string>3dshipin</string>
+				<key>title</key>
+				<string>3D视频</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>203</string>
+				<key>postCount</key>
+				<string>36</string>
+				<key>slug</key>
+				<string>quanjing</string>
+				<key>title</key>
+				<string>全景视频</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>187</string>
+				<key>postCount</key>
+				<string>29</string>
+				<key>slug</key>
+				<string>yuanchuang</string>
+				<key>title</key>
+				<string>原创视频</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>207</string>
+				<key>postCount</key>
+				<string>7</string>
+				<key>slug</key>
+				<string>vrtech</string>
+				<key>title</key>
+				<string>技术教学</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>137</string>
+				<key>postCount</key>
+				<string>34</string>
+				<key>slug</key>
+				<string>vrplay</string>
+				<key>title</key>
+				<string>游戏试玩</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>95</string>
+				<key>postCount</key>
+				<string>69</string>
+				<key>slug</key>
+				<string>vrvideos</string>
+				<key>title</key>
+				<string>视频区</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>165</string>
+				<key>postCount</key>
+				<string>16</string>
+				<key>slug</key>
+				<string>vrreview</string>
+				<key>title</key>
+				<string>评测视频</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>104</string>
+				<key>postCount</key>
+				<string>91</string>
+				<key>slug</key>
+				<string>vrnews</string>
+				<key>title</key>
+				<string>预告宣传</string>
+			</dict>
+		</array>
 		<key>title</key>
 		<string>视频</string>
 		<key>URL</key>
 		<string>http://dmgeek.com/DG_api/get_recent_posts/?post_type=video</string>
+		<key>type</key>
+		<string>videos</string>
 	</dict>
 	<dict>
 		<key>title</key>
 		<string>活动</string>
 		<key>URL</key>
 		<string>http://dmgeek.com/DG_api/get_recent_posts/?post_type=tribe_events</string>
+		<key>type</key>
+		<string>tribe_events</string>
+		<key>terms</key>
+		<array/>
 	</dict>
 </array>
 </plist>

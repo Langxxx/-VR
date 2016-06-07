@@ -37,6 +37,8 @@
 		7751149F1CC75C9D00BC6FB4 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7751149E1CC75C9D00BC6FB4 /* News.storyboard */; };
 		775114A11CC75CA900BC6FB4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 775114A01CC75CA900BC6FB4 /* Profile.storyboard */; };
 		775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775114A21CC766BA00BC6FB4 /* BBSController.swift */; };
+		775319C01D069C9F00E0DC3C /* TaxonomyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775319BF1D069C9F00E0DC3C /* TaxonomyScrollView.swift */; };
+		775319C21D069E5F00E0DC3C /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775319C11D069E5F00E0DC3C /* SearchController.swift */; };
 		7761A1A81CCC7439004A6EBA /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761A1A71CCC7439004A6EBA /* ContainerController.swift */; };
 		7761A1AA1CCC983A004A6EBA /* ChannelScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */; };
 		7761A1B01CCCF95B004A6EBA /* NewsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7761A1AF1CCCF95B004A6EBA /* NewsListController.swift */; };
@@ -103,6 +105,8 @@
 		775114A01CC75CA900BC6FB4 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		775114A21CC766BA00BC6FB4 /* BBSController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BBSController.swift; sourceTree = "<group>"; };
 		775114A41CC7C3DF00BC6FB4 /* 盗梦极客VR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "盗梦极客VR-Bridging-Header.h"; sourceTree = "<group>"; };
+		775319BF1D069C9F00E0DC3C /* TaxonomyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxonomyScrollView.swift; sourceTree = "<group>"; };
+		775319C11D069E5F00E0DC3C /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		7761A1A71CCC7439004A6EBA /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		7761A1A91CCC983A004A6EBA /* ChannelScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelScrollView.swift; sourceTree = "<group>"; };
 		7761A1AF1CCCF95B004A6EBA /* NewsListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListController.swift; sourceTree = "<group>"; };
@@ -327,6 +331,7 @@
 				7761A1B11CCCFF43004A6EBA /* ChannelLabel.swift */,
 				77BA12581CCD9FBA002C18AC /* ContainerView.swift */,
 				77DC85261CCEFDA40020AF6B /* NewsCell.swift */,
+				775319BF1D069C9F00E0DC3C /* TaxonomyScrollView.swift */,
 				771EF7D31CE35B0D008956C0 /* ReplyCell.swift */,
 				77C888DD1CE89B9C00BA6A7B /* DeviceCell.swift */,
 			);
@@ -336,6 +341,7 @@
 		7761A1A61CCC741D004A6EBA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				775319C11D069E5F00E0DC3C /* SearchController.swift */,
 				7761A1A71CCC7439004A6EBA /* ContainerController.swift */,
 				7761A1AF1CCCF95B004A6EBA /* NewsListController.swift */,
 				77737E451CCFABEB0071794E /* NewsDetailController.swift */,
@@ -607,6 +613,7 @@
 				77C75D911CCE0B0900D1A396 /* CustomField.swift in Sources */,
 				77DC853A1CCF0CA70020AF6B /* NewCellViewModel.swift in Sources */,
 				773B8CF91CE4A64C004077F6 /* ReplyController.swift in Sources */,
+				775319C01D069C9F00E0DC3C /* TaxonomyScrollView.swift in Sources */,
 				77C75DAB1CCE51D400D1A396 /* JSONHandler.swift in Sources */,
 				7711026D1CD8D07B0081B953 /* AuxiliaryModels.swift in Sources */,
 				77C75D921CCE0B0900D1A396 /* NewsModel.swift in Sources */,
@@ -634,6 +641,7 @@
 				7761A1B21CCCFF43004A6EBA /* ChannelLabel.swift in Sources */,
 				7701A6241CF84017003213CD /* TaxonomyVideo.swift in Sources */,
 				77A6D9B61CD4A958003BFAA5 /* ShareTool.swift in Sources */,
+				775319C21D069E5F00E0DC3C /* SearchController.swift in Sources */,
 				77C75D941CCE0B0900D1A396 /* Tag.swift in Sources */,
 				775114981CC75C3A00BC6FB4 /* TabBarController.swift in Sources */,
 				7701A6221CF83EE4003213CD /* TaxonomyPlatformsDevice.swift in Sources */,
