@@ -1,5 +1,16 @@
 PODS:
   - Alamofire (3.3.1)
+  - DTCoreText (1.6.17):
+    - DTFoundation/Core (~> 1.7.5)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
+    - DTFoundation/DTHTMLParser (~> 1.7.5)
+    - DTFoundation/UIKit (~> 1.7.5)
+  - DTFoundation/Core (1.7.10)
+  - DTFoundation/DTAnimatedGIF (1.7.10)
+  - DTFoundation/DTHTMLParser (1.7.10):
+    - DTFoundation/Core
+  - DTFoundation/UIKit (1.7.10):
+    - DTFoundation/Core
   - IQKeyboardManager (4.0.2)
   - MBProgressHUD (0.9.2)
   - MJRefresh (3.1.0)
@@ -12,6 +23,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`)
+  - DTCoreText
   - IQKeyboardManager (from `https://github.com/hackiftekhar/IQKeyboardManager.git`)
   - MBProgressHUD (from `https://github.com/matej/MBProgressHUD.git`)
   - MJRefresh (from `https://github.com/CoderMJLee/MJRefresh.git`)
@@ -56,6 +68,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  DTCoreText: 3ea8bba23dd2141ba18adb227a7dd33a822df1c4
+  DTFoundation: 3b6b1b817d2a7fb02e7eaf2596c922a68145bd43
   IQKeyboardManager: 2341089c4ae25fa2fa82ce356a259fcd267dc6b6
   MBProgressHUD: c10206b47acf9e1659bd80a366cc935e35745b9b
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
@@ -64,6 +78,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UMengSocialCOM: 074c135ce349aa4c8848d3fb8458757bcb6ffb67
 
-PODFILE CHECKSUM: 77b83a5636644bec3b176616859f4edd7ac35190
+PODFILE CHECKSUM: 0ac79d8bd8cdd836ccbe4813e22edd36b632a1f8
 
 COCOAPODS: 1.0.1

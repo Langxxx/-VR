@@ -417,34 +417,32 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="round" translatesAutoresizingMaskIntoConstraints="NO" id="gzI-ya-lEI">
                                                     <rect key="frame" x="10" y="10" width="40" height="40"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbH-uM-Zke">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agd-p4-42u" customClass="CoreTextView" customModule="盗梦极客VR" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="60" width="580" height="95"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cz4-Bc-Qhc" firstAttribute="top" secondItem="SZJ-aO-NdE" secondAttribute="top" constant="10" id="0i2-Jj-0Cs"/>
-                                                <constraint firstAttribute="trailing" secondItem="ZbH-uM-Zke" secondAttribute="trailing" constant="10" id="0yM-7C-b5p"/>
                                                 <constraint firstItem="jrp-7h-zl8" firstAttribute="top" secondItem="SZJ-aO-NdE" secondAttribute="top" constant="10" id="1sp-gj-gTC"/>
                                                 <constraint firstItem="gzI-ya-lEI" firstAttribute="height" secondItem="jrp-7h-zl8" secondAttribute="height" id="CXV-EN-r4Q"/>
-                                                <constraint firstItem="ZbH-uM-Zke" firstAttribute="leading" secondItem="SZJ-aO-NdE" secondAttribute="leading" constant="10" id="D5J-2A-gcy"/>
-                                                <constraint firstAttribute="bottom" secondItem="ZbH-uM-Zke" secondAttribute="bottom" constant="10" id="KEh-tV-qgJ"/>
-                                                <constraint firstItem="ZbH-uM-Zke" firstAttribute="top" secondItem="gzI-ya-lEI" secondAttribute="bottom" constant="10" id="N0w-9M-vpK"/>
                                                 <constraint firstItem="gzI-ya-lEI" firstAttribute="leading" secondItem="jrp-7h-zl8" secondAttribute="leading" id="Ozs-fD-ihr"/>
                                                 <constraint firstItem="eL7-nl-fsV" firstAttribute="leading" secondItem="gzI-ya-lEI" secondAttribute="trailing" constant="10" id="Q3c-XQ-s05"/>
                                                 <constraint firstItem="jrp-7h-zl8" firstAttribute="leading" secondItem="SZJ-aO-NdE" secondAttribute="leading" constant="10" id="SJJ-BR-w7E"/>
+                                                <constraint firstAttribute="trailing" secondItem="agd-p4-42u" secondAttribute="trailing" constant="10" id="SxR-fl-FTe"/>
+                                                <constraint firstItem="agd-p4-42u" firstAttribute="leading" secondItem="SZJ-aO-NdE" secondAttribute="leading" constant="10" id="Tf4-uW-Eqz"/>
                                                 <constraint firstAttribute="trailing" secondItem="eL7-nl-fsV" secondAttribute="trailing" constant="10" id="Wfc-tW-Snz"/>
                                                 <constraint firstItem="cz4-Bc-Qhc" firstAttribute="leading" secondItem="gzI-ya-lEI" secondAttribute="trailing" constant="10" id="Z6d-qK-94u"/>
                                                 <constraint firstItem="eL7-nl-fsV" firstAttribute="bottom" secondItem="gzI-ya-lEI" secondAttribute="bottom" id="b4C-fH-Bfd"/>
                                                 <constraint firstItem="gzI-ya-lEI" firstAttribute="width" secondItem="jrp-7h-zl8" secondAttribute="width" id="bgs-4M-d1P"/>
+                                                <constraint firstItem="agd-p4-42u" firstAttribute="top" secondItem="eL7-nl-fsV" secondAttribute="bottom" constant="10" id="e6y-rp-jKs"/>
+                                                <constraint firstAttribute="bottom" secondItem="agd-p4-42u" secondAttribute="bottom" constant="10" id="nab-2i-YL9"/>
                                                 <constraint firstItem="gzI-ya-lEI" firstAttribute="top" secondItem="jrp-7h-zl8" secondAttribute="top" id="scQ-Ts-haS"/>
                                                 <constraint firstAttribute="trailing" secondItem="cz4-Bc-Qhc" secondAttribute="trailing" constant="10" id="z4w-R0-H9W"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="messageLabel" destination="ZbH-uM-Zke" id="DFX-LN-h5F"/>
+                                            <outlet property="coreTextView" destination="agd-p4-42u" id="uyK-ut-PsX"/>
                                             <outlet property="timeLabel" destination="eL7-nl-fsV" id="EUB-Bt-Y6y"/>
                                             <outlet property="userIcon" destination="jrp-7h-zl8" id="8hU-Xy-8r2"/>
                                             <outlet property="userNameLabel" destination="cz4-Bc-Qhc" id="Fe4-ZU-8mN"/>

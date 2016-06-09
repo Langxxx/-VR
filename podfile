@@ -12,4 +12,5 @@ target '盗梦极客VR' do
 	pod 'MJRefresh', :git => 'https://github.com/CoderMJLee/MJRefresh.git'
 	pod 'IQKeyboardManager', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git'
 	pod 'UMengSocialCOM', '~> 5.2.1'
+	pod 'DTCoreText'
 end

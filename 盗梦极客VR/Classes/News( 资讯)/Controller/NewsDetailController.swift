@@ -172,6 +172,7 @@ extension NewsDetailController {
      - parameter urlStr: <#urlStr description#>
      */
     func jumpToOtherLinker(urlStr: String) {
+        // TODO: 内部链接应该跳转到论坛模块
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OtherLinkWebController") as! OtherLinkWebController
         vc.URLStr = urlStr
         navigationController?.pushViewController(vc, animated: true)
@@ -343,7 +344,9 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
                 let postModel = newsModel.bbsInfo.posts[indexPath.row]
                 let replyCellViewModel = ReplyCellViewModel(model: postModel)
                 (cell as! ReplyCell).configure(replyCellViewModel)
+                (cell as! ReplyCell).delegate = self
                 cell.selectionStyle = .None
+                cell.frame = tableView.bounds
             }
             
             return cell
@@ -424,3 +427,15 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+extension NewsDetailController: ReplyCellDelegate {
+
+    func replyCell(cell: ReplyCell, linkDidPress link: NSURL) {
+        jumpToOtherLinker(link.URLString)
+    }
+    
+    func replyCellSizeDidChange(cell: ReplyCell) {
+        if let _ = tableView.indexPathForCell(cell) {
+            tableView.reloadData()
+        }
+    }
+}
