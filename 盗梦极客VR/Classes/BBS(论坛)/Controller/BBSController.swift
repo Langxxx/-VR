@@ -44,6 +44,9 @@ class BBSController: UIViewController {
     var request: NSURLRequest {
         return NSURLRequest(URL: NSURL(string: getBaseURL())!, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
     }
+    /// 当前加载(跳转、登陆)提示的URL，若不是前面的操作，则为空
+    var MBPMessage: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWebView()
@@ -70,6 +73,10 @@ class BBSController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
         
+        if let meassge = MBPMessage {
+            MBProgressHUD.showMessage(meassge, toView: view)
+        }
+        
         if webView.loading { return }
         
         if isFirstRequste && !needJump {
@@ -81,6 +88,11 @@ class BBSController: UIViewController {
         }
     }
  
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        MBProgressHUD.hideHUD(view)
+    }
+    
 }
 
 // MARK: - 初始化方法
@@ -170,10 +182,13 @@ extension BBSController {
         progressView.hidden = false
         progressView.progress = 0
         
+        if MBPMessage != nil { return }
         if isLoginingBBSURL {
-            MBProgressHUD.showMessage("正在同步用户数据...")
+            MBPMessage = "正在同步用户数据..."
+            MBProgressHUD.showMessage(MBPMessage!, toView: view)
         }else if needJump {
-            MBProgressHUD.showMessage("正在跳转链接...")
+            MBPMessage = "正在跳转链接..."
+            MBProgressHUD.showMessage(MBPMessage!, toView: view)
         }
     }
     
@@ -241,7 +256,8 @@ extension BBSController: WKNavigationDelegate {
     
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         dPrint("加载成功...")
-        MBProgressHUD.hideHUD()
+        MBProgressHUD.hideHUD(view)
+        MBPMessage = nil
         progressView.hidden = true
         webView.hidden = false
         isFirstRequste = false
@@ -259,7 +275,8 @@ extension BBSController: WKNavigationDelegate {
     }
     
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
-        MBProgressHUD.hideHUD()
+        MBProgressHUD.hideHUD(view)
+        MBPMessage = nil
         reloadLabel.hidden = false
         progressView.hidden = true
         // 102可能是程序中断(内部跳转)
