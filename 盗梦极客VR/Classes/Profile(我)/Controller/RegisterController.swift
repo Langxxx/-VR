@@ -151,9 +151,9 @@ extension RegisterController {
         
         func failure(error: ErrorType) {
             MBProgressHUD.hideHUD()
-            let alert = UIAlertController(title: "失败", message: "与论坛同步失败！\n部分功能无法使用，是否重试？", preferredStyle: .ActionSheet)
+            let alert = UIAlertController(title: "失败", message: "与论坛同步失败！\n部分功能无法使用，是否重试？", preferredStyle: .Alert)
             let cancel = UIAlertAction(title: "取消",
-                                       style: .Cancel) { _ in
+                                       style: .Default) { _ in
                                         MBProgressHUD.showWarning("注册成功！稍后为您进行同步!")
                                         self.completeRegiste()
             }
@@ -161,8 +161,8 @@ extension RegisterController {
                                       style: .Default) { _ in
                                         self.synchronizeBBSAcount()
             }
-            alert.addAction(reTry)
             alert.addAction(cancel)
+            alert.addAction(reTry)
             presentViewController(alert, animated: true, completion: nil)
         }
         

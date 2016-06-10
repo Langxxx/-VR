@@ -79,17 +79,17 @@ extension ReplyController {
      - parameter message: 提示信息
      */
     func showNoticeMessage(message: String = "该账户未与论坛进行同步,无法进行评论") {
-        let alert = UIAlertController(title: "错误", message: message, preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: "错误", message: message, preferredStyle: .Alert)
         let cancel = UIAlertAction(title: "取消",
-                                   style: .Cancel) { _ in
+                                   style: .Default) { _ in
                                     self.dismissViewControllerAnimated(true, completion: nil)
         }
         let reTry = UIAlertAction(title: "同步",
                                   style: .Default) { _ in
                                     self.synchronizeBBSAcount()
         }
-        alert.addAction(reTry)
         alert.addAction(cancel)
+        alert.addAction(reTry)
         presentViewController(alert, animated: true, completion: nil)
     }
     

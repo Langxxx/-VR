@@ -17,7 +17,7 @@ class ContainerView: UICollectionView {
 
 extension ContainerView {
     func initailContainerView() {
-        let layout = UICollectionViewFlowLayout()
+        let layout = ContainerViewFlowLayout()
         layout.scrollDirection = .Horizontal
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
@@ -29,8 +29,8 @@ extension ContainerView {
     }
 }
 
-extension UICollectionViewFlowLayout {
-    override public func prepareLayout() {
+class ContainerViewFlowLayout: UICollectionViewFlowLayout {
+    override internal func prepareLayout() {
         super.prepareLayout()
         guard let collectionView = collectionView else {
             return
