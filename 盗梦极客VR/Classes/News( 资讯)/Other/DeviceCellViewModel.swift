@@ -17,7 +17,7 @@ struct DeviceCellViewModel: DeviceCellPresentable {
     var tagString: String
     
     init(model: NewsModel) {
-        URL = model.listThuUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        URL = model.listThuUrl.stringByReplacingOccurrencesOfString("430x297", withString: "166x166").encodeURLString()
         titleText = model.title
         timeText = model.date.componentsSeparatedByString(" ").first!
         tagString = model.tag
