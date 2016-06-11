@@ -48,11 +48,12 @@ class RegisterController: UIViewController {
     var validBit: UInt8 {
         return oauthInfo == nil ? 0b00011111 : 0b00000111
     }
-    
+    /// 设置此标志位不会影响注册信息合法性校验,用于邮箱、账号格式验证
+    let unusefulBit: UInt8 = 7
         /// 注册信息合法性校验位
     var validCount: UInt8 = 0b00000000 {
         didSet {
-            if validCount == validBit {
+            if (validCount & 0b01111111) == validBit { //将最高位置0
                 registerButton.enabled = true
             }else {
                 registerButton.enabled = false
@@ -66,12 +67,6 @@ class RegisterController: UIViewController {
         /// 第三方授权注册成功后执行的自动登录方法
     var autoLogin: (() -> ())?
     
-//    var parameters: [String: String] {
-//        return [
-//            "username": accountTextField.text!,
-//            "password": passwordTextField.text!,
-//        ]
-//    }
         /// 授注册成功后返回的信息，主要是userid和cookie用于论坛同步
     var registeReturnInfo: RegisteReturnInfo!
         /// 仅仅用于注册后同步论坛
@@ -267,7 +262,8 @@ extension RegisterController {
                          text: email,
                          noticeLabel: emailErrorInfo,
                          iconButton: emailValidLogo,
-                         index: UInt8(emailValidLogo.tag))
+                         index: unusefulBit)
+        validCount.clrBit(UInt8(emailValidLogo.tag)) //一旦改变，就需要重新校验唯一性
         emailErrorInfo.text = "(请填写正确的邮箱地址!)"
     }
     @IBAction func emailDidEndEditing() {
@@ -278,12 +274,12 @@ extension RegisterController {
         func success(isExists: Bool) {
             emailActivityView.hidden = true
             emailValidLogo.hidden = false
+            setInvalidNotice(!isExists,
+                             text: email,
+                             noticeLabel: emailErrorInfo,
+                             iconButton: emailValidLogo,
+                             index: UInt8(emailValidLogo.tag))
             if isExists {
-                setInvalidNotice(false,
-                                 text: email,
-                                 noticeLabel: emailErrorInfo,
-                                 iconButton: emailValidLogo,
-                                 index: UInt8(emailValidLogo.tag))
                 emailErrorInfo.text = "(邮箱已被注册!)"
             }
         }
@@ -311,7 +307,8 @@ extension RegisterController {
                          text: account,
                          noticeLabel: accountErrorInfo,
                          iconButton: accountValidLogo,
-                         index: UInt8(accountValidLogo.tag))
+                         index: unusefulBit)
+        validCount.clrBit(UInt8(accountValidLogo.tag)) //一旦改变，就需要重新校验唯一性
         accountErrorInfo.text = "(账号格式不正确!)"
     }
     @IBAction func accountDidEndEditing() {
@@ -321,12 +318,12 @@ extension RegisterController {
         func success(isExists: Bool) {
             accountActivityView.hidden = true
             accountValidLogo.hidden = false
+            setInvalidNotice(!isExists,
+                             text: account,
+                             noticeLabel: accountErrorInfo,
+                             iconButton: accountValidLogo,
+                             index: UInt8(accountValidLogo.tag))
             if isExists {
-                setInvalidNotice(false,
-                                 text: account,
-                                 noticeLabel: accountErrorInfo,
-                                 iconButton: accountValidLogo,
-                                 index: UInt8(accountValidLogo.tag))
                 accountErrorInfo.text = "(用户已存在!)"
             }
         }
