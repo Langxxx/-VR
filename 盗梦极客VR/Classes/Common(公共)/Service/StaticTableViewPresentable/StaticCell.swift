@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class StaticCell: UITableViewCell {
 
@@ -16,16 +17,7 @@ class StaticCell: UITableViewCell {
             setUpAccessoryView()
         }
     }
-    
-    lazy var rightLabel: UILabel = {
-        let label = UILabel()
-        label.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
-        label.textAlignment = .Right
-        label.textColor = UIColor.grayColor()
-        label.font = UIFont.systemFontOfSize(13)
-        return label
-    }()
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -43,11 +35,43 @@ extension StaticCell {
     }
     
     func setUpAccessoryView() {
-        if item.isKindOfClass(RightDetallCellModel.self) {
+        if item.isKindOfClass(RightDetallWithArrowCellModel.self) {
+            let model = item as! RightDetallWithArrowCellModel
+            selectionStyle = .Default
+            accessoryView = getRightTextWithArrowView(model.rightDetall)
+        }else if item.isKindOfClass(RightDetallCellModel.self) {
             let model = item as! RightDetallCellModel
-            rightLabel.text = model.rightDetall
             selectionStyle = .None
-            accessoryView = rightLabel
+            accessoryView = getDetailLabel(model.rightDetall)
         }
     }
+}
+
+private extension StaticCell {
+   func getDetailLabel(detail: String) -> UILabel {
+        let label = UILabel()
+        label.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+        label.textAlignment = .Right
+        label.textColor = UIColor.grayColor()
+        label.font = UIFont.systemFontOfSize(13)
+        label.text = detail
+        return label
+    }
+    
+    func getRightTextWithArrowView(rightText: String) -> UIView {
+        let view = UIView()
+        view.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+        let arrowImageView = UIImageView()
+        arrowImageView.frame = CGRect(x: view.frame.width - 16, y: 4, width: 35, height: 35)
+        arrowImageView.image = UIImage(named: "cellarrow")
+        view.addSubview(arrowImageView)
+        
+        
+        let label = getDetailLabel(rightText)
+        label.frame = CGRect(x: 0, y: 0, width: view.frame.width - 10, height: 44)
+        view.addSubview(label)
+        
+        return view
+    }
+    
 }

@@ -104,7 +104,8 @@ extension ProfileController {
      */
     func addGroup0() {
         let account = RightDetallCellModel(text: "账号", rightDetall: user.username)
-        let nickname = RightDetallCellModel(text: "昵称", rightDetall: user.displayname)
+        let nickname = RightDetallWithArrowCellModel(text: "昵称", rightDetall: user.displayname)
+        nickname.seletedCallBack = modifyNickname
         let email = RightDetallCellModel(text: "邮箱", rightDetall: user.email)
         let group = CellGroup(header: "基本信息", items: [account, nickname, email], footer: "")
         staticCellProvider.dataList.insert(group, atIndex: 0)
@@ -126,6 +127,65 @@ extension ProfileController {
         }
         let group = CellGroup(header: "功能",items: [clearCell])
         staticCellProvider.dataList.append(group)
+    }
+}
+
+extension ProfileController {
+    
+    func updateUserInfo() {
+        MBProgressHUD.showMessage("正在更新用户数据...", toView: self.view)
+        func success() {
+            MBProgressHUD.hideHUD(view)
+            staticCellProvider.dataList.removeFirst()
+            setupUserInfo()
+        }
+        
+        func failure() {
+            MBProgressHUD.hideHUD(view)
+            let alert = UIAlertController(title: "错误", message: "网络拥堵，是否重试?", preferredStyle: .Alert)
+            let cancel = UIAlertAction(title: "取消",
+                                       style: .Default) { _ in
+                                        self.dismissViewControllerAnimated(true, completion: nil)
+            }
+            let reTry = UIAlertAction(title: "重试",
+                                      style: .Default) { _ in
+                                        self.updateUserInfo()
+            }
+            alert.addAction(cancel)
+            alert.addAction(reTry)
+            presentViewController(alert, animated: true, completion: nil)
+        }
+        
+        UserManager.updateUserInfo(success, failure: failure)
+    }
+    
+    func modifyNickname() {
+        let alert = UIAlertController(title: "修改昵称", message: nil, preferredStyle: .Alert)
+        var newName: String = ""
+        func success(result: Bool) {
+            if result {
+                updateUserInfo()
+            }else {
+                MBProgressHUD.showError("网络拥堵,请稍后尝试！", toView: view)
+            }
+        }
+        
+        func failure(_: ErrorType) {
+            MBProgressHUD.showError("网络拥堵,请稍后尝试！", toView: view)
+        }
+        
+        alert.addTextFieldWithConfigurationHandler(nil)
+        
+        let cancel = UIAlertAction(title: "取消", style: .Default, handler: nil)
+        let ok = UIAlertAction(title: "确定", style: .Default) { actioin in
+            if let nickname = alert.textFields?.first?.text where !nickname.isEmpty {
+                    MBProgressHUD.showMessage("正在修改昵称...", toView: self.view)
+                    UserManager.sharedInstance.modifyNickname(nickname,success: success, failure: failure)
+            }
+        }
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        presentViewController(alert, animated: true, completion: nil)
     }
 }
 

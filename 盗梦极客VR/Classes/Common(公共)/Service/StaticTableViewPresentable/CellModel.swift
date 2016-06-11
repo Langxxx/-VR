@@ -26,7 +26,7 @@ class BaseCellModel: NSObject {
     let text: String
     let icon: String?
     
-    let seletedCallBack: (() -> ())?
+    var seletedCallBack: (() -> ())?
     
     init(text: String, icon: String? = nil, seletedCallBack: (() -> ())? = nil) {
         self.text = text
@@ -43,4 +43,8 @@ class RightDetallCellModel: BaseCellModel {
         self.rightDetall = rightDetall
         super.init(text: text, icon: icon, seletedCallBack: seletedCallBack)
     }
+}
+
+class RightDetallWithArrowCellModel: RightDetallCellModel {
+    
 }

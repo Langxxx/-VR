@@ -79,12 +79,6 @@ extension TabBarController {
     }
 }
 
-extension UIColor {
-    static func tintColor() -> UIColor {
-        return UIColor(red: 212 / 255.0, green: 25 / 255.0, blue: 38 / 255.0, alpha: 1.0)
-    }
-}
-
 func dPrint(@autoclosure item: () -> Any) {
     #if DEBUG
         print(item())

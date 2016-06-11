@@ -49,7 +49,3 @@ extension Result {
     }
 }
 
-extension Result {
-    
-}
-

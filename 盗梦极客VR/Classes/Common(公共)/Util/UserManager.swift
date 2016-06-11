@@ -8,6 +8,7 @@
 
 import Foundation
 import WebKit
+import SwiftyJSON
 
 let UserDidLoginNotification = "UserDidLoginNotification"
 let UserDidLoginoutNotification = "UserDidLoginoutNotification"
@@ -47,7 +48,7 @@ class UserManager: NSObject {
     var synchronizeFailure: ((ErrorType) -> ())!
         /// 用于同步
     var userID: Int!
-        /// 用于粗糙你用户数据的key
+        /// 用于存储你用户数据的key
     static let key = "UserKey"
         /// 单例方法
     static let sharedInstance = UserManager()
@@ -73,7 +74,8 @@ extension UserManager {
      用来更新用户数据
      在程序启动就自动调用
      */
-    static func updateUserInfo() {
+    static func updateUserInfo(success: (() -> ())? = nil,
+                               failure: (() -> ())? = nil) {
         guard let user = UserManager.sharedInstance.user else {
             return
         }
@@ -82,8 +84,9 @@ extension UserManager {
             .complete(
                 success: { user in
                     UserManager.sharedInstance.user = user
+                    success?()
             }) { (_ : ErrorType) in
-                
+                failure?()
         }
     }
     
@@ -112,6 +115,23 @@ extension UserManager {
         let url = NSURL(string: urlStr)!
         let requst = NSURLRequest(URL: url, cachePolicy: .UseProtocolCachePolicy, timeoutInterval: 15)
         webView.loadRequest(requst)
+    }
+}
+// MARK: - 账号信息修改方法
+extension UserManager {
+    func modifyNickname(nickName: String,
+                        success: Bool -> (),
+                        failure: ErrorType -> ()) {
+        
+        func getURLString(nonce: String) -> String {
+            return "http://dmgeek.com/DG_api/users/change_nick/?user_id=\(user!.id)&nickname=\(nickName)&nonce=\(nonce)".encodeURLString()
+        }
+        
+        getNonceValue()
+            .map(getURLString)
+            .then{ networkRequest($0) }
+            .map { $0["status"].boolValue }
+            .complete(success: success, failure: failure)
     }
 }
 
