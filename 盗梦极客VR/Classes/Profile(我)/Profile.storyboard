@@ -345,22 +345,22 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQM-of-CmO">
                                         <rect key="frame" x="194" y="67" width="212" height="67"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQO-km-hbS" userLabel="SinaView">
-                                                <rect key="frame" x="0.0" y="0.0" width="84" height="67"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQO-km-hbS" userLabel="QQView">
+                                                <rect key="frame" x="0.0" y="0.0" width="78" height="67"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwV-rr-9v0">
-                                                        <rect key="frame" x="22" y="0.0" width="40" height="40"/>
+                                                        <rect key="frame" x="19" y="0.0" width="40" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="40" id="0bJ-3Z-xLc"/>
                                                             <constraint firstAttribute="height" constant="40" id="UiC-oj-bAH"/>
                                                         </constraints>
-                                                        <state key="normal" image="login_button_sina"/>
+                                                        <state key="normal" image="login_button_qqfriends"/>
                                                         <connections>
-                                                            <action selector="SinaLoginButtonClik" destination="KbN-pf-K65" eventType="touchUpInside" id="aUB-dC-wW9"/>
+                                                            <action selector="QQLoginButtonClik" destination="KbN-pf-K65" eventType="touchUpInside" id="4nS-qV-JVB"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用微博登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nig-oS-Dki">
-                                                        <rect key="frame" x="0.0" y="50" width="84" height="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用QQ登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nig-oS-Dki">
+                                                        <rect key="frame" x="0.0" y="50" width="78" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -388,24 +388,24 @@
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJl-mx-HPv" userLabel="QQView">
-                                                <rect key="frame" x="134" y="0.0" width="78" height="67"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJl-mx-HPv" userLabel="SinaView">
+                                                <rect key="frame" x="128" y="0.0" width="84" height="67"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用QQ登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQZ-ay-4yO">
-                                                        <rect key="frame" x="0.0" y="50" width="78" height="17"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用微博登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQZ-ay-4yO">
+                                                        <rect key="frame" x="0.0" y="50" width="84" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fLp-iZ-Krg">
-                                                        <rect key="frame" x="19" y="0.0" width="40" height="40"/>
+                                                        <rect key="frame" x="22" y="0.0" width="40" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="40" id="Q4F-zN-C9R"/>
                                                             <constraint firstAttribute="height" constant="40" id="iGE-8v-iDz"/>
                                                         </constraints>
-                                                        <state key="normal" image="login_button_qqfriends"/>
+                                                        <state key="normal" image="login_button_sina"/>
                                                         <connections>
-                                                            <action selector="QQLoginButtonClik" destination="KbN-pf-K65" eventType="touchUpInside" id="pEp-Dm-Z58"/>
+                                                            <action selector="SinaLoginButtonClik" destination="KbN-pf-K65" eventType="touchUpInside" id="Se4-Qh-LcV"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -484,7 +484,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K96-Dg-yqa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1069" y="441"/>
+            <point key="canvasLocation" x="1010" y="449"/>
         </scene>
         <!--Register Controller-->
         <scene sceneID="00D-aQ-LCA">

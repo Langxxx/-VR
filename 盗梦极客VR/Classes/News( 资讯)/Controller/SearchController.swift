@@ -100,7 +100,7 @@ extension SearchController: UISearchBarDelegate {
         
         activityView.hidden = false
         tableView.hidden = true
-        let url = "http://dmgeek.com/DG_api/get_search_results/?search=\(searchStr)"
+        let url = "http://dmgeek.com/DG_api/get_search_results/?search=\(searchStr)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         fetchJsonFromNet(url)
             .map{ jsonToModelArray($0["posts"], initial: NewsModel.init) }
             .complete(success: success, failure: failure)

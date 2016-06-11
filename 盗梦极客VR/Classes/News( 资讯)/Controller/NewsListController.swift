@@ -129,6 +129,11 @@ extension NewsListController {
         taxonomyScrollView.taxonomyDelegate = self
         tableView.tableHeaderView?.bounds.size.height = CGRectGetMaxY(taxonomyScrollView.frame)
         
+        let splitView = UIView()
+        splitView.frame = CGRect(x: 0, y: CGRectGetMaxY(taxonomyScrollView.frame) - 1, width: heardViewW, height: 1)
+        splitView.backgroundColor = UIColor(red: 220/255.0, green: 220/255.0, blue: 223/255.0, alpha: 1)
+        heardView.addSubview(splitView)
+        
         if channelModel.title == "资讯" {
             
             let cyclePictureView = CyclePictureView(frame: CGRectZero, imageURLArray: nil)

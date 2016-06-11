@@ -48,7 +48,7 @@ extension TaxonomyScrollView {
             btn.titleLabel?.font = UIFont.systemFontOfSize(13)
             btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
             
-            btn.setBackgroundImage(UIImage(named: "TaxonomyBtn"), forState: .Normal)
+            btn.setBackgroundImage(UIImage(named: "concerned_border"), forState: .Normal)
             btn.sizeToFit()
             btn.frame.size.width = btn.frame.size.width + 20
             totalWidth += btn.frame.size.width
