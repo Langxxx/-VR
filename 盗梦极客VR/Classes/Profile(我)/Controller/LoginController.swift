@@ -113,7 +113,7 @@ extension LoginController {
             if user.id == 0 {
                 let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("RegisterController") as! RegisterController
                 vc.oauthInfo = oauthInfo
-                vc.autoLogin = login
+                vc.autoLogin = doSomeForOauthLogin
                 navigationController?.pushViewController(vc, animated: true)
             }else {
                 UserManager.login(user)

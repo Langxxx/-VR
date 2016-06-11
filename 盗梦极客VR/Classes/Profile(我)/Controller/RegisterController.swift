@@ -36,14 +36,23 @@ class RegisterController: UIViewController {
     @IBOutlet weak var emailActivityView: UIActivityIndicatorView!
     @IBOutlet weak var accountActivityView: UIActivityIndicatorView!
     
+    @IBOutlet weak var coverView: UIView!
+    @IBOutlet weak var iconView: UIImageView!
+    
+    
     @IBOutlet weak var oauthInfoLabel: UILabel!
     
     var returnKeyHandler: IQKeyboardReturnKeyHandler!
     
+    /// 第三方授权注册是不需要进行密码标志位判断
+    var validBit: UInt8 {
+        return oauthInfo == nil ? 0b00011111 : 0b00000111
+    }
+    
         /// 注册信息合法性校验位
     var validCount: UInt8 = 0b00000000 {
         didSet {
-            if validCount == 0b00011111 {
+            if validCount == validBit {
                 registerButton.enabled = true
             }else {
                 registerButton.enabled = false
@@ -55,14 +64,14 @@ class RegisterController: UIViewController {
     var oauthInfo: OauthInfo?
     
         /// 第三方授权注册成功后执行的自动登录方法
-    var autoLogin: ((parameters: [String: String]) -> ())?
+    var autoLogin: (() -> ())?
     
-    var parameters: [String: String] {
-        return [
-            "username": accountTextField.text!,
-            "password": passwordTextField.text!,
-        ]
-    }
+//    var parameters: [String: String] {
+//        return [
+//            "username": accountTextField.text!,
+//            "password": passwordTextField.text!,
+//        ]
+//    }
         /// 授注册成功后返回的信息，主要是userid和cookie用于论坛同步
     var registeReturnInfo: RegisteReturnInfo!
         /// 仅仅用于注册后同步论坛
@@ -104,9 +113,19 @@ extension RegisterController {
             return
         }
         
+        //如果是第三方不需要账号密码，所以遮挡
+        coverView.hidden = false
+        
+        let urlStr = oauthInfo.iconURL.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        iconView.sd_setImageWithURL(NSURL(string: urlStr), placeholderImage: UIImage(named: "placeholderImage_1_1"))
+        iconView.layer.cornerRadius =  iconView.bounds.width * 0.5
+        iconView.layer.masksToBounds = true
+        iconView.layer.borderWidth = 5
+        iconView.layer.borderColor = UIColor.tintColor().CGColor
+        
         nicknameTextField.text = oauthInfo.username
         oauthInfoLabel.hidden = false
-        oauthInfoLabel.text = "[\(oauthInfo.username)]已验证成功，请继续完成注册！稍后您便可以直接通过\(oauthInfo.platformName.uppercaseString)登录或使用ID密码登录。"
+        oauthInfoLabel.text = "[\(oauthInfo.username)]已验证成功，请继续完成注册！稍后您便可以直接通过\(oauthInfo.platformName.uppercaseString)登录。"
         nickNameDidChange()
     }
     
@@ -179,7 +198,7 @@ extension RegisterController {
         if oauthInfo != nil {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
                 self.navigationController?.popViewControllerAnimated(true)
-                self.autoLogin?(parameters: self.parameters)
+                self.autoLogin?()
             }
         }else {
             navigationController?.popViewControllerAnimated(true)
@@ -213,7 +232,7 @@ extension RegisterController {
             (nicknameTextField.text!,
                 emailTextField.text!,
                 accountTextField.text!,
-                passwordTextField.text!,
+                passwordTextField.text,
                 oauthInfo
             ),
             success: sccess,

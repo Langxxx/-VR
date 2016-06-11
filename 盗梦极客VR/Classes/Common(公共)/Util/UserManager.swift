@@ -236,18 +236,18 @@ extension UserManager {
         (   nickName: String,
             email: String,
             account: String,
-            password: String,
+            password: String?,
             oauthInfo: OauthInfo?
         ),
                          success: (Int, String) -> (),
                          failure: (ErrorType) -> ()) {
         
         func jointParameters(nonce: String) -> [String: String] {
-            return [
+            
+            var parameters =  [
                 "username": registerInfo.account,
                 "email": registerInfo.email,
                 "nickname": registerInfo.nickName,
-                "user_pass": registerInfo.password,
                 "nonce": nonce,
                 "notify": "both",
                 "display_name": registerInfo.nickName,
@@ -256,6 +256,12 @@ extension UserManager {
                 "s_token": registerInfo.oauthInfo?.token ?? "",
                 "avatar": registerInfo.oauthInfo?.iconURL ?? ""
             ]
+
+            if let password = registerInfo.password {
+                parameters["user_pass"] = password
+            }
+            
+            return parameters
         }
         
         getNonceValue()
