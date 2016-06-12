@@ -144,7 +144,10 @@ extension ProfileController {
         }
         
         let mark = ArrowCellModel(text: "给个好评", icon: nil, seletedCallBack: nil)
-        
+        mark.seletedCallBack = {
+            let url = NSURL(string: "itms-apps://itunes.apple.com/cn/app/dao-meng-ji-kevr/id1118642139?mt=8")!
+            UIApplication.sharedApplication().openURL(url)
+        }
         let group = CellGroup(header: "其他",items: [mark, aboutMe])
         staticCellProvider.dataList.append(group)
     }
