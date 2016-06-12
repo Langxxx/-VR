@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WechatInfoView" customModule="盗梦极客VR" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xS-Lu-hFr">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="biV-0m-6IP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weixin" translatesAutoresizingMaskIntoConstraints="NO" id="N9f-WJ-3m7">
+                                <rect key="frame" x="243" y="243" width="115" height="114"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信公众号: DmGeek" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcS-bW-hvD">
+                                <rect key="frame" x="220" y="377" width="161" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="YcS-bW-hvD" firstAttribute="top" secondItem="N9f-WJ-3m7" secondAttribute="bottom" constant="20" id="MdV-N4-gBv"/>
+                            <constraint firstItem="N9f-WJ-3m7" firstAttribute="centerX" secondItem="biV-0m-6IP" secondAttribute="centerX" id="edk-RK-mOh"/>
+                            <constraint firstItem="N9f-WJ-3m7" firstAttribute="centerY" secondItem="biV-0m-6IP" secondAttribute="centerY" id="hfQ-oZ-N0f"/>
+                            <constraint firstItem="YcS-bW-hvD" firstAttribute="centerX" secondItem="biV-0m-6IP" secondAttribute="centerX" id="kYl-5R-by7"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="7xS-Lu-hFr" secondAttribute="trailing" id="2n1-rT-zvC"/>
+                <constraint firstItem="7xS-Lu-hFr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="J3J-yi-tzN"/>
+                <constraint firstAttribute="bottom" secondItem="7xS-Lu-hFr" secondAttribute="bottom" id="hUs-Zh-1S0"/>
+                <constraint firstItem="7xS-Lu-hFr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iZb-ZM-zts"/>
+            </constraints>
+            <point key="canvasLocation" x="344" y="380"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="weixin" width="115" height="114"/>
+    </resources>
+</document>

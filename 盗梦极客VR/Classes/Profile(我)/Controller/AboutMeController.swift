@@ -31,6 +31,7 @@ class AboutMeController: UIViewController {
     deinit {
         dPrint("AboutMeController deinit")
     }
+
 }
 
 
@@ -40,10 +41,15 @@ extension AboutMeController {
     }
     
     @IBAction func jumptoWebButtonClik() {
+        let url = NSURL(string: "http://dmgeek.com/")!
+        UIApplication.sharedApplication().openURL(url)
     }
     @IBAction func followSinaButtonClik() {
+        let url = NSURL(string: "http://weibo.com/dmgeek?is_hot=1")!
+        UIApplication.sharedApplication().openURL(url)
     }
     @IBAction func followWechatButtonClik() {
+        WechatInfoView.show()
     }
     
 }

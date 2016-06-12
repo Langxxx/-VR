@@ -73,6 +73,8 @@
 		77DC85361CCF05720020AF6B /* ViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85351CCF05720020AF6B /* ViewPresentable.swift */; };
 		77DC853A1CCF0CA70020AF6B /* NewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85391CCF0CA70020AF6B /* NewCellViewModel.swift */; };
 		77E7CB091D0D09E7006BBBA6 /* AboutMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E7CB081D0D09E7006BBBA6 /* AboutMeController.swift */; };
+		77E7CB0B1D0D3AFA006BBBA6 /* WechatInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77E7CB0A1D0D3AFA006BBBA6 /* WechatInfoView.xib */; };
+		77E7CB0D1D0D3DF9006BBBA6 /* WechatInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E7CB0C1D0D3DF9006BBBA6 /* WechatInfoView.swift */; };
 		77FAB1D81CE9E97E00C5366F /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FAB1D71CE9E97E00C5366F /* RegisterController.swift */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +149,8 @@
 		77DC85351CCF05720020AF6B /* ViewPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPresentable.swift; sourceTree = "<group>"; };
 		77DC85391CCF0CA70020AF6B /* NewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCellViewModel.swift; sourceTree = "<group>"; };
 		77E7CB081D0D09E7006BBBA6 /* AboutMeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutMeController.swift; sourceTree = "<group>"; };
+		77E7CB0A1D0D3AFA006BBBA6 /* WechatInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WechatInfoView.xib; sourceTree = "<group>"; };
+		77E7CB0C1D0D3DF9006BBBA6 /* WechatInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WechatInfoView.swift; sourceTree = "<group>"; };
 		77FAB1D71CE9E97E00C5366F /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		9DCCE2BE5CA2CAAFB0ED136E /* Pods_____VR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____VR.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A77D67EA230552523C86F5 /* Pods-盗梦极客VR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-盗梦极客VR.release.xcconfig"; path = "Pods/Target Support Files/Pods-盗梦极客VR/Pods-盗梦极客VR.release.xcconfig"; sourceTree = "<group>"; };
@@ -399,6 +403,8 @@
 		777EBEB51CDB3D0E001A4BE4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				77E7CB0A1D0D3AFA006BBBA6 /* WechatInfoView.xib */,
+				77E7CB0C1D0D3DF9006BBBA6 /* WechatInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -542,6 +548,7 @@
 				7751149D1CC75C9300BC6FB4 /* Evaluation.storyboard in Resources */,
 				7751149F1CC75C9D00BC6FB4 /* News.storyboard in Resources */,
 				7751149B1CC75C7D00BC6FB4 /* BBS.storyboard in Resources */,
+				77E7CB0B1D0D3AFA006BBBA6 /* WechatInfoView.xib in Resources */,
 				776275041CC71EBB001B5793 /* LaunchScreen.storyboard in Resources */,
 				77C75DA21CCE3DB500D1A396 /* ChannelConfig.plist in Resources */,
 				776275011CC71EBB001B5793 /* Assets.xcassets in Resources */,
@@ -639,6 +646,7 @@
 				771EF7D21CE2D15B008956C0 /* Post.swift in Sources */,
 				771EF7C81CE18238008956C0 /* UserManager.swift in Sources */,
 				7703FA401CDF6AD2002DF803 /* CellModel.swift in Sources */,
+				77E7CB0D1D0D3DF9006BBBA6 /* WechatInfoView.swift in Sources */,
 				77C75DA51CCE3EF000D1A396 /* ChannelModel.swift in Sources */,
 				775114A31CC766BA00BC6FB4 /* BBSController.swift in Sources */,
 				7703FA3E1CDF6AAD002DF803 /* StaticTableViewPresentable.swift in Sources */,

@@ -229,14 +229,17 @@ extension NewsListController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("NewsCell", forIndexPath: indexPath) as! NewsCell
         let model = newsModelArray[indexPath.row]
-        cell.configure(NewsCellViewModel(model: model))
         if channelModel.title == "设备" || channelModel.title == "视频" {
             cell.replyCountLabel.hidden = true
             cell.tagLabel.hidden = false
         }else {
             cell.replyCountLabel.hidden = false
             cell.tagLabel.hidden = true
+            if channelModel.title == "活动" {
+                model.date = "开始时间：" + model.date
+            }
         }
+        cell.configure(NewsCellViewModel(model: model))
         return cell
     }
 }
