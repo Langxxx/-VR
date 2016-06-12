@@ -72,6 +72,7 @@
 		77DC85291CCF02E60020AF6B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85281CCF02E60020AF6B /* Result.swift */; };
 		77DC85361CCF05720020AF6B /* ViewPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85351CCF05720020AF6B /* ViewPresentable.swift */; };
 		77DC853A1CCF0CA70020AF6B /* NewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC85391CCF0CA70020AF6B /* NewCellViewModel.swift */; };
+		77E7CB091D0D09E7006BBBA6 /* AboutMeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E7CB081D0D09E7006BBBA6 /* AboutMeController.swift */; };
 		77FAB1D81CE9E97E00C5366F /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FAB1D71CE9E97E00C5366F /* RegisterController.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +146,7 @@
 		77DC85281CCF02E60020AF6B /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		77DC85351CCF05720020AF6B /* ViewPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPresentable.swift; sourceTree = "<group>"; };
 		77DC85391CCF0CA70020AF6B /* NewCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCellViewModel.swift; sourceTree = "<group>"; };
+		77E7CB081D0D09E7006BBBA6 /* AboutMeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutMeController.swift; sourceTree = "<group>"; };
 		77FAB1D71CE9E97E00C5366F /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		9DCCE2BE5CA2CAAFB0ED136E /* Pods_____VR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____VR.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A77D67EA230552523C86F5 /* Pods-盗梦极客VR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-盗梦极客VR.release.xcconfig"; path = "Pods/Target Support Files/Pods-盗梦极客VR/Pods-盗梦极客VR.release.xcconfig"; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				777EBEB61CDB3DBD001A4BE4 /* ProfileController.swift */,
 				777EBEBC1CDB800C001A4BE4 /* LoginController.swift */,
 				77FAB1D71CE9E97E00C5366F /* RegisterController.swift */,
+				77E7CB081D0D09E7006BBBA6 /* AboutMeController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 			files = (
 				775114991CC75C3A00BC6FB4 /* AppDelegate.swift in Sources */,
 				77737E461CCFABEB0071794E /* NewsDetailController.swift in Sources */,
+				77E7CB091D0D09E7006BBBA6 /* AboutMeController.swift in Sources */,
 				77C225271CDC8681003DF5F0 /* LoginCheck.swift in Sources */,
 				771EF7D61CE35BDF008956C0 /* ReplyCellViewModel.swift in Sources */,
 				770102031D01838B00A1DEEE /* OauthInfo.swift in Sources */,

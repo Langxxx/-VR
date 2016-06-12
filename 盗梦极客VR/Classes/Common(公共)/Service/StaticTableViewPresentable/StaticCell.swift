@@ -45,8 +45,7 @@ extension StaticCell {
             accessoryView = getDetailLabel(model.rightDetall)
         }else if item.isKindOfClass(ArrowCellModel.self) {
             selectionStyle = .Default
-            accessoryView = nil
-            accessoryType = .DisclosureIndicator
+            accessoryView = getArrowView()
         }
     }
 }
@@ -62,14 +61,19 @@ private extension StaticCell {
         return label
     }
     
-    func getRightTextWithArrowView(rightText: String) -> UIView {
+    func getArrowView() -> UIView {
         let view = UIView()
         view.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
         let arrowImageView = UIImageView()
         arrowImageView.frame = CGRect(x: view.frame.width - 16, y: 4, width: 35, height: 35)
         arrowImageView.image = UIImage(named: "cellarrow")
         view.addSubview(arrowImageView)
+        return view
+    }
+    
+    func getRightTextWithArrowView(rightText: String) -> UIView {
         
+        let view = getArrowView()
         
         let label = getDetailLabel(rightText)
         label.frame = CGRect(x: 0, y: 0, width: view.frame.width - 10, height: 44)

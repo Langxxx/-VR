@@ -60,6 +60,7 @@ extension ProfileController {
         tableView.registerClass(StaticCell.self, forCellReuseIdentifier: staticCellProvider.cellID)
         tableView.showsVerticalScrollIndicator = false
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
+        addGroup1()
         addLastGroup()
         
         if user != nil {
@@ -110,17 +111,15 @@ extension ProfileController {
         let group = CellGroup(header: "基本信息", items: [account, nickname, email], footer: "")
         staticCellProvider.dataList.insert(group, atIndex: 0)
     }
-    /**
-     添加最后一组数据显示(功能数据)
-     */
-    func addLastGroup() {
-        let clearCell = RightDetallCellModel(text: "清理缓存", rightDetall: SDImageCache.getCacheSizeMB()) {
+    
+    func addGroup1() {
+        let clearCell = RightDetallWithArrowCellModel(text: "清理缓存", rightDetall: SDImageCache.getCacheSizeMB()) {
             MBProgressHUD.showMessage("正在清理缓存...")
             SDImageCache.sharedImageCache().clearDiskOnCompletion {
                 MBProgressHUD.hideHUD()
-                self.staticCellProvider.dataList.removeLast()
-                self.addLastGroup()
-                let section  = NSIndexSet(index: self.staticCellProvider.dataList.count - 1)
+                self.staticCellProvider.dataList.removeAtIndex(1)
+                self.addGroup1()
+                let section  = NSIndexSet(index: 1)
                 self.tableView.reloadSections(section, withRowAnimation: .None)
             }
             
@@ -130,6 +129,23 @@ extension ProfileController {
         checkVersion.seletedCallBack = checkAppVersion
         
         let group = CellGroup(header: "功能",items: [clearCell, checkVersion])
+        staticCellProvider.dataList.append(group)
+    }
+    
+    /**
+     添加最后一组数据显示(功能数据)
+     */
+    func addLastGroup() {
+        let aboutMe = ArrowCellModel(text: "关于我们")
+        aboutMe.seletedCallBack = {
+            let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("AboutMeController")
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        let mark = ArrowCellModel(text: "给个好评", icon: nil, seletedCallBack: nil)
+        
+        let group = CellGroup(header: "其他",items: [mark, aboutMe])
         staticCellProvider.dataList.append(group)
     }
 }

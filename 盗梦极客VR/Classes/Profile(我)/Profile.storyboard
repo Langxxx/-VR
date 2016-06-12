@@ -880,20 +880,178 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdX-yX-Wqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="617" y="1070"/>
+            <point key="canvasLocation" x="617" y="1108"/>
+        </scene>
+        <!--About Me Controller-->
+        <scene sceneID="QDg-96-bwk">
+            <objects>
+                <viewController storyboardIdentifier="AboutMeController" id="Bvx-cf-odd" customClass="AboutMeController" customModule="盗梦极客VR" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8wG-N3-alK"/>
+                        <viewControllerLayoutGuide type="bottom" id="bfs-y2-6wq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NP9-ZG-dX0">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QNH-lz-Haq" userLabel="topVIew">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
+                                <subviews>
+                                    <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlG-QX-0p3" userLabel="SplitView">
+                                        <rect key="frame" x="0.0" y="54" width="600" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="nc6-JW-1tv"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关于我们" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edk-GL-RfU">
+                                        <rect key="frame" x="266" y="25" width="68" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GqC-xu-Hlq">
+                                        <rect key="frame" x="0.0" y="15" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="j6W-Rq-ztK"/>
+                                            <constraint firstAttribute="width" constant="40" id="x4h-om-S7A"/>
+                                            <constraint firstAttribute="width" secondItem="GqC-xu-Hlq" secondAttribute="height" multiplier="108:88" id="xgH-Hi-zcm"/>
+                                        </constraints>
+                                        <state key="normal" image="back">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="xgH-Hi-zcm"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="backButtonClik" destination="Bvx-cf-odd" eventType="touchUpInside" id="GVY-9S-hF8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.83137254900000002" green="0.098039215690000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="4JA-Aa-XrI"/>
+                                    <constraint firstAttribute="bottom" secondItem="zlG-QX-0p3" secondAttribute="bottom" id="8zu-dW-cDv"/>
+                                    <constraint firstItem="edk-GL-RfU" firstAttribute="centerY" secondItem="GqC-xu-Hlq" secondAttribute="centerY" id="CC0-bd-0fA"/>
+                                    <constraint firstAttribute="trailing" secondItem="zlG-QX-0p3" secondAttribute="trailing" id="FCv-3E-dw8"/>
+                                    <constraint firstAttribute="height" constant="55" id="FOh-ox-fmy"/>
+                                    <constraint firstItem="GqC-xu-Hlq" firstAttribute="leading" secondItem="QNH-lz-Haq" secondAttribute="leading" id="Jn3-Tb-zGp"/>
+                                    <constraint firstItem="zlG-QX-0p3" firstAttribute="leading" secondItem="QNH-lz-Haq" secondAttribute="leading" id="Kl4-Qm-5rh"/>
+                                    <constraint firstItem="edk-GL-RfU" firstAttribute="centerX" secondItem="QNH-lz-Haq" secondAttribute="centerX" id="Ua5-Ed-k0z"/>
+                                    <constraint firstItem="GqC-xu-Hlq" firstAttribute="top" secondItem="QNH-lz-Haq" secondAttribute="top" constant="15" id="n64-ct-5K1"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="tld-AE-V6k"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DQb-9v-kEs">
+                                <rect key="frame" x="180" y="65" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DQb-9v-kEs" secondAttribute="height" multiplier="1:1" id="3wz-gw-P2S"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎你，朋友。盗梦极客是玩家组成的大社区，在这里，不光有各种VR资讯、资源福利，还有各种设备的玩机教程。当你想购买VR设备，先来看看咱们的评测吧，要是想知道怎么玩，就来看看大神研究好的超级玩家技巧。无论你想要知道什么，这里一定会有一个答案。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhi-1g-hc7">
+                                <rect key="frame" x="60" y="315" width="480" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2k6-Hc-EWh">
+                                <rect key="frame" x="60" y="402" width="480" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="oLF-06-CGp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="访问网站" backgroundImage="account_logout_button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="jumptoWebButtonClik" destination="Bvx-cf-odd" eventType="touchUpInside" id="J0r-Md-Ia9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2h8-rv-A4J">
+                                <rect key="frame" x="305" y="456" width="235" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title=" 关注微信" image="wechat" backgroundImage="concerned_border">
+                                    <color key="titleColor" red="0.26666666666666666" green="0.6588235294117647" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="followWechatButtonClik" destination="Bvx-cf-odd" eventType="touchUpInside" id="xPR-m1-ReG"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="盗梦极客 荣誉出品" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqO-8w-eB8">
+                                <rect key="frame" x="246" y="510" width="108" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EX0-RW-fIZ">
+                                <rect key="frame" x="60" y="456" width="235" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title=" 关注微博" image="sina" backgroundImage="concerned_border">
+                                    <color key="titleColor" red="0.7803921568627451" green="0.082352941176470587" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="followSinaButtonClik" destination="Bvx-cf-odd" eventType="touchUpInside" id="VKs-gl-OVI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2k6-Hc-EWh" firstAttribute="leading" secondItem="vhi-1g-hc7" secondAttribute="leading" id="6nr-fV-IoC"/>
+                            <constraint firstAttribute="trailing" secondItem="QNH-lz-Haq" secondAttribute="trailing" id="7xJ-Mt-qB6"/>
+                            <constraint firstItem="QNH-lz-Haq" firstAttribute="top" secondItem="NP9-ZG-dX0" secondAttribute="top" id="8rO-gi-6nl"/>
+                            <constraint firstItem="vhi-1g-hc7" firstAttribute="width" secondItem="NP9-ZG-dX0" secondAttribute="width" multiplier="0.8" id="Bsi-Ti-qU2"/>
+                            <constraint firstItem="EX0-RW-fIZ" firstAttribute="leading" secondItem="2k6-Hc-EWh" secondAttribute="leading" id="CY3-gJ-Zwf"/>
+                            <constraint firstItem="2h8-rv-A4J" firstAttribute="top" secondItem="EX0-RW-fIZ" secondAttribute="top" id="Jpm-S0-I5v"/>
+                            <constraint firstItem="DQb-9v-kEs" firstAttribute="width" secondItem="NP9-ZG-dX0" secondAttribute="width" multiplier="0.5" priority="998" id="Ro3-j6-Gaq"/>
+                            <constraint firstItem="vhi-1g-hc7" firstAttribute="centerX" secondItem="NP9-ZG-dX0" secondAttribute="centerX" id="SC8-p3-P0j"/>
+                            <constraint firstItem="DQb-9v-kEs" firstAttribute="top" secondItem="QNH-lz-Haq" secondAttribute="bottom" constant="10" id="Vaa-NP-iCY"/>
+                            <constraint firstItem="vqO-8w-eB8" firstAttribute="centerX" secondItem="NP9-ZG-dX0" secondAttribute="centerX" id="Vej-rD-UDc"/>
+                            <constraint firstItem="EX0-RW-fIZ" firstAttribute="top" secondItem="2k6-Hc-EWh" secondAttribute="bottom" constant="10" id="akc-ta-yUa"/>
+                            <constraint firstItem="EX0-RW-fIZ" firstAttribute="height" secondItem="2k6-Hc-EWh" secondAttribute="height" id="bqJ-X0-397"/>
+                            <constraint firstItem="2k6-Hc-EWh" firstAttribute="top" secondItem="vhi-1g-hc7" secondAttribute="bottom" constant="20" id="byz-at-R9W"/>
+                            <constraint firstItem="2k6-Hc-EWh" firstAttribute="trailing" secondItem="vhi-1g-hc7" secondAttribute="trailing" id="e0P-pO-VkT"/>
+                            <constraint firstItem="QNH-lz-Haq" firstAttribute="leading" secondItem="NP9-ZG-dX0" secondAttribute="leading" id="eL3-iY-otT"/>
+                            <constraint firstItem="vhi-1g-hc7" firstAttribute="height" secondItem="NP9-ZG-dX0" secondAttribute="height" multiplier="0.6" id="fWo-Hf-XL8"/>
+                            <constraint firstItem="vhi-1g-hc7" firstAttribute="top" secondItem="DQb-9v-kEs" secondAttribute="bottom" constant="10" id="iPx-7F-8Fh"/>
+                            <constraint firstItem="2h8-rv-A4J" firstAttribute="width" secondItem="EX0-RW-fIZ" secondAttribute="width" id="irW-YW-fmg"/>
+                            <constraint firstItem="2h8-rv-A4J" firstAttribute="leading" secondItem="EX0-RW-fIZ" secondAttribute="trailing" constant="10" id="jAP-c0-Gtj"/>
+                            <constraint firstItem="2h8-rv-A4J" firstAttribute="height" secondItem="2k6-Hc-EWh" secondAttribute="height" id="khd-1H-8as"/>
+                            <constraint firstItem="DQb-9v-kEs" firstAttribute="centerX" secondItem="NP9-ZG-dX0" secondAttribute="centerX" id="nyt-oh-8gE"/>
+                            <constraint firstItem="2h8-rv-A4J" firstAttribute="trailing" secondItem="2k6-Hc-EWh" secondAttribute="trailing" id="qMv-dh-iU7"/>
+                            <constraint firstItem="DQb-9v-kEs" firstAttribute="height" relation="lessThanOrEqual" secondItem="NP9-ZG-dX0" secondAttribute="height" multiplier="0.4" id="ucH-m8-BMz"/>
+                            <constraint firstItem="vqO-8w-eB8" firstAttribute="top" secondItem="2h8-rv-A4J" secondAttribute="bottom" constant="10" id="ufu-iw-Yym"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="fWo-Hf-XL8"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="logoImageView" destination="DQb-9v-kEs" id="puP-fw-G3e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Wy-2e-tVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1251" y="1102"/>
         </scene>
     </scenes>
     <resources>
         <image name="Invalid" width="32" height="32"/>
         <image name="account_logout_button" width="9" height="47"/>
         <image name="back" width="50" height="50"/>
+        <image name="concerned_border" width="25" height="25"/>
         <image name="grayButton" width="1" height="5"/>
         <image name="login_button_qqfriends" width="40" height="40"/>
         <image name="login_button_sina" width="40" height="40"/>
         <image name="login_tip_button" width="3" height="4"/>
         <image name="login_tip_button_highlight" width="2" height="3"/>
+        <image name="sina" width="30" height="30"/>
         <image name="team_status_normal" width="4" height="4"/>
         <image name="user_defaultavatar" width="60" height="60"/>
         <image name="valid" width="32" height="32"/>
+        <image name="wechat" width="30" height="30"/>
     </resources>
 </document>
