@@ -87,3 +87,9 @@ func jsonToModelArray<Model: JSONToModel>(json: JSON, initial: (JSON) -> Model) 
 func jsonToModelArray<Model: JSONToModel>(jsonArray: [JSON], initial: (JSON) -> Model) -> [[Model]] {
     return jsonArray.map { jsonToModelArray($0["posts"], initial: initial)}
 }
+
+func latestAPPVersion(success: String -> (), failure: ErrorType -> ()) {
+    networkRequest("http://dmgeek.com/DG_api/users/get_ios_version/")
+        .map { $0["version"].stringValue }
+        .complete(success: success, failure: failure)
+}

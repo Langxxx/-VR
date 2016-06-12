@@ -48,3 +48,7 @@ class RightDetallCellModel: BaseCellModel {
 class RightDetallWithArrowCellModel: RightDetallCellModel {
     
 }
+
+class ArrowCellModel: BaseCellModel {
+}
+

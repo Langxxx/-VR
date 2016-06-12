@@ -43,6 +43,10 @@ extension StaticCell {
             let model = item as! RightDetallCellModel
             selectionStyle = .None
             accessoryView = getDetailLabel(model.rightDetall)
+        }else if item.isKindOfClass(ArrowCellModel.self) {
+            selectionStyle = .Default
+            accessoryView = nil
+            accessoryType = .DisclosureIndicator
         }
     }
 }

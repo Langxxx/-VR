@@ -508,7 +508,7 @@
 				TargetAttributes = {
 					776274F51CC71EBB001B5793 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 3D6UKL8G2J;
+						DevelopmentTeam = NLUGDBP35M;
 					};
 				};
 			};
@@ -847,7 +847,7 @@
 					"-all_load",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dmgeek.siteios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dmgeek.siteios1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "盗梦极客VR/Classes/Common(公共)/Ohter/盗梦极客VR-Bridging-Header.h";
@@ -933,7 +933,7 @@
 					"-all_load",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dmgeek.siteios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dmgeek.siteios1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "盗梦极客VR/Classes/Common(公共)/Ohter/盗梦极客VR-Bridging-Header.h";

@@ -125,12 +125,46 @@ extension ProfileController {
             }
             
         }
-        let group = CellGroup(header: "功能",items: [clearCell])
+        
+        let checkVersion = ArrowCellModel(text: "版本更新", icon: nil, seletedCallBack: nil)
+        checkVersion.seletedCallBack = checkAppVersion
+        
+        let group = CellGroup(header: "功能",items: [clearCell, checkVersion])
         staticCellProvider.dataList.append(group)
     }
 }
 
 extension ProfileController {
+    
+    func checkAppVersion() {
+        MBProgressHUD.showMessage("正在检查版本...", toView:  view)
+        let currentVersion = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
+        func success(version: String) {
+            MBProgressHUD.hideHUD(view)
+            if currentVersion == version {
+                MBProgressHUD.showWarning("已经是最新版本!", toView: view)
+            }else {
+                let alert = UIAlertController(title: "更新", message: "是否进行更新?", preferredStyle: .Alert)
+                let cancel = UIAlertAction(title: "取消",
+                                           style: .Default) { _ in
+                }
+                let reTry = UIAlertAction(title: "更新",
+                                          style: .Default) { _ in
+                    let url = NSURL(string: "itms-apps://itunes.apple.com/cn/app/dao-meng-ji-kevr/id1118642139?mt=8")!
+                    UIApplication.sharedApplication().openURL(url)
+                }
+                alert.addAction(cancel)
+                alert.addAction(reTry)
+                presentViewController(alert, animated: true, completion: nil)
+            }
+        }
+        
+        func failure(_: ErrorType) {
+            MBProgressHUD.showError("网络错误，请稍后尝试", toView: view)
+        }
+        
+        latestAPPVersion(success, failure: failure)
+    }
     
     func updateUserInfo() {
         MBProgressHUD.showMessage("正在更新用户数据...", toView: self.view)
@@ -145,7 +179,6 @@ extension ProfileController {
             let alert = UIAlertController(title: "错误", message: "网络拥堵，是否重试?", preferredStyle: .Alert)
             let cancel = UIAlertAction(title: "取消",
                                        style: .Default) { _ in
-                                        self.dismissViewControllerAnimated(true, completion: nil)
             }
             let reTry = UIAlertAction(title: "重试",
                                       style: .Default) { _ in
