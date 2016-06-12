@@ -19,6 +19,7 @@ PODS:
   - SDWebImage/Core (3.7.5)
   - SnapKit (0.17.0)
   - SwiftyJSON (2.3.2)
+  - UMengAnalytics-NO-IDFA (4.0.5)
   - UMengSocialCOM (5.2.1)
 
 DEPENDENCIES:
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - SDWebImage (from `https://github.com/rs/SDWebImage.git`)
   - SnapKit (~> 0.17.0)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - UMengAnalytics-NO-IDFA
   - UMengSocialCOM (~> 5.2.1)
 
 EXTERNAL SOURCES:
@@ -76,8 +78,9 @@ SPEC CHECKSUMS:
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SnapKit: 49fd7b1b3ff58ab4064004036b8afcfddbd3a4bd
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
   UMengSocialCOM: 074c135ce349aa4c8848d3fb8458757bcb6ffb67
 
-PODFILE CHECKSUM: 0ac79d8bd8cdd836ccbe4813e22edd36b632a1f8
+PODFILE CHECKSUM: f1fd19052fbdf8ec9d6569cd94078a100c98a85b
 
 COCOAPODS: 1.0.1

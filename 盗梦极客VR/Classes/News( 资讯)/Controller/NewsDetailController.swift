@@ -76,12 +76,15 @@ class NewsDetailController: UIViewController, DetailVcJumpable {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
+        
+        MobClick.beginLogPageView("新闻详情")
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         // 若不停止任务，IOS8中会崩溃
         currentTask?.cancel()
+        MobClick.endLogPageView("新闻详情")
     }
     
     deinit {

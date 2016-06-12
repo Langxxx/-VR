@@ -13,4 +13,5 @@ target '盗梦极客VR' do
 	pod 'IQKeyboardManager', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git'
 	pod 'UMengSocialCOM', '~> 5.2.1'
 	pod 'DTCoreText'
+	pod 'UMengAnalytics-NO-IDFA'
 end

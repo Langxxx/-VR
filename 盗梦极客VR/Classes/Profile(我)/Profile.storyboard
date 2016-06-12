@@ -944,12 +944,6 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="55" id="tld-AE-V6k"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DQb-9v-kEs">
-                                <rect key="frame" x="180" y="65" width="240" height="240"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="DQb-9v-kEs" secondAttribute="height" multiplier="1:1" id="3wz-gw-P2S"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎你，朋友。盗梦极客是玩家组成的大社区，在这里，不光有各种VR资讯、资源福利，还有各种设备的玩机教程。当你想购买VR设备，先来看看咱们的评测吧，要是想知道怎么玩，就来看看大神研究好的超级玩家技巧。无论你想要知道什么，这里一定会有一个答案。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhi-1g-hc7">
                                 <rect key="frame" x="60" y="315" width="480" height="67"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -995,6 +989,12 @@
                                     <action selector="followSinaButtonClik" destination="Bvx-cf-odd" eventType="touchUpInside" id="VKs-gl-OVI"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="DQb-9v-kEs">
+                                <rect key="frame" x="180" y="65" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DQb-9v-kEs" secondAttribute="height" multiplier="1:1" id="3wz-gw-P2S"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1048,6 +1048,7 @@
         <image name="login_button_sina" width="40" height="40"/>
         <image name="login_tip_button" width="3" height="4"/>
         <image name="login_tip_button_highlight" width="2" height="3"/>
+        <image name="logo" width="200" height="200"/>
         <image name="sina" width="30" height="30"/>
         <image name="team_status_normal" width="4" height="4"/>
         <image name="user_defaultavatar" width="60" height="60"/>

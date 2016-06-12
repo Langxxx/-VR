@@ -42,6 +42,13 @@ class SearchController: UIViewController, DetailVcJumpable {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        
+         MobClick.beginLogPageView("搜索界面")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        MobClick.endLogPageView("搜索界面")
     }
     
     override func viewDidAppear(animated: Bool) {

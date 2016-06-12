@@ -85,11 +85,15 @@ class NewsListController: UIViewController, DetailVcJumpable {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         tableView.scrollsToTop = true
+        
+        MobClick.beginLogPageView(channelModel.title)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.scrollsToTop = false
+        
+        MobClick.endLogPageView(channelModel.title)
     }
 }
 

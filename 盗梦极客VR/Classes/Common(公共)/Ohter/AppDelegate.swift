@@ -23,6 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserManager.updateUserInfo()
         let userAgent = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent")! + " DG_iosapp"
         NSUserDefaults.standardUserDefaults().registerDefaults(["UserAgent" : userAgent])
+        
+        let currentVersion = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
+        MobClick.setAppVersion(currentVersion)
+        UMAnalyticsConfig.sharedInstance().appKey = "5722b62d67e58ec79c002539"
+        UMAnalyticsConfig.sharedInstance().channelId = "App Store"
+
+        MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
+        // 不开启后台
+        MobClick.setBackgroundTaskEnabled(false)
         return true
     }
 

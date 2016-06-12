@@ -157,6 +157,9 @@ extension UserManager {
                     UserManager.sharedInstance.bbsIsLogin = false
                     NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
                     success(user)
+                    
+                    //友盟账号统计
+                    MobClick.profileSignInWithPUID(user.username)
                 },
                 failure: failure
         )
@@ -169,6 +172,8 @@ extension UserManager {
     static func login(user: User) {
         UserManager.sharedInstance.user = user
         NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginNotification, object: nil)
+        //友盟账号统计
+        MobClick.profileSignInWithPUID(user.username)
     }
     
     /**
@@ -179,9 +184,13 @@ extension UserManager {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         userDefaults.removeObjectForKey(UserManager.key)
         userDefaults.synchronize()
+        
         UserManager.sharedInstance.user = nil
         UserManager.sharedInstance.bbsIsLogin = false
         NSNotificationCenter.defaultCenter().postNotificationName(UserDidLoginoutNotification, object: nil)
+        
+        //友盟账号统计
+        MobClick.profileSignOff()
     }
     /**
      第三方登录方法，

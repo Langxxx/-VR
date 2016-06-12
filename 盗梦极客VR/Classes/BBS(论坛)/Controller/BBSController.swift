@@ -73,6 +73,8 @@ class BBSController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
         
+         MobClick.beginLogPageView("论坛")
+        
         if let meassge = MBPMessage {
             MBProgressHUD.showMessage(meassge, toView: view)
         }
@@ -91,6 +93,8 @@ class BBSController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         MBProgressHUD.hideHUD(view)
+        
+        MobClick.endLogPageView("论坛")
     }
     
 }

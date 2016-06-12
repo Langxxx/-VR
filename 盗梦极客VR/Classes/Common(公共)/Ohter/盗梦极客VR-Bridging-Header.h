@@ -7,3 +7,4 @@
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSnsPlatformManager.h"
+#import "UMMobClick/MobClick.h"
