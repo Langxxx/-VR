@@ -135,7 +135,13 @@ extension ProfileController {
         let checkVersion = ArrowCellModel(text: "版本更新", icon: nil, seletedCallBack: nil)
         checkVersion.seletedCallBack = checkAppVersion
         
-        let group = CellGroup(header: "功能",items: [clearCell, checkVersion])
+        let suggest = ArrowCellModel(text: "建议反馈")
+        suggest.seletedCallBack = {
+            let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("SuggestController")
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        let group = CellGroup(header: "功能",items: [clearCell, checkVersion, suggest])
         staticCellProvider.dataList.append(group)
     }
     
@@ -164,7 +170,7 @@ extension ProfileController {
     
     func checkAppVersion() {
         MBProgressHUD.showMessage("正在检查版本...", toView:  view)
-        let currentVersion = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
+        let currentVersion = NSBundle.currentVersion
         func success(version: String) {
             MBProgressHUD.hideHUD(view)
             if currentVersion == version {

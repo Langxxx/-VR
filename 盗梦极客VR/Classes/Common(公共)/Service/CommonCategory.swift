@@ -19,3 +19,9 @@ extension String {
         return self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
     }
 }
+
+extension NSBundle {
+    static var currentVersion: String {
+        return NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
+    }
+}
