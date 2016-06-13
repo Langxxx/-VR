@@ -19,10 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 //        UMSocialData.openLog(true)
         IQKeyboardManager.sharedManager().enable = false
+        
         ShareTool.setAllAppKey()
         UserManager.updateUserInfo()
+        addCustomSharelatform()
+        
+        
         let userAgent = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent")! + " DG_iosapp"
         NSUserDefaults.standardUserDefaults().registerDefaults(["UserAgent" : userAgent])
+        
+        // 友盟统计
         
         let currentVersion = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
         MobClick.setAppVersion(currentVersion)

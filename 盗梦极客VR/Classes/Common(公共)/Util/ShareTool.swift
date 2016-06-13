@@ -7,11 +7,16 @@
 //  友盟的一些分享设置
 
 import Foundation
+import MBProgressHUD
 
+let CopyPlatform = "copyPlatform"
+let SafariPlatform = "safariPlatform"
 struct ShareTool {
+    
+    static var customLink: String = ""
         /// 期待分享的平台
     static var shareArray: [String] {
-        return [UMShareToSina, UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline, UMShareToEmail,UMShareToSms]
+        return [UMShareToSina, UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline, UMShareToEmail, UMShareToSms, CopyPlatform, SafariPlatform]
     }
         /// 分享的默认图标
     static var shareImage: UIImage {
@@ -57,6 +62,40 @@ struct ShareTool {
         UMSocialData.defaultData().extConfig.emailData.shareText = shareText
         
         UMSocialData.defaultData().extConfig.smsData.shareText = title
+        
+        ShareTool.customLink = url
     }
     
+}
+
+extension AppDelegate {
+    func addCustomSharelatform() {
+        let copyPlatform = UMSocialSnsPlatform(platformName: CopyPlatform)
+        copyPlatform.displayName = "复制链接"
+        copyPlatform.bigImageName = "link"
+        copyPlatform.snsClickHandler = { [weak self] (presentingController, socialControllerService, isPresentInController) in
+            let pastboad = UIPasteboard.generalPasteboard()
+            pastboad.string = ShareTool.customLink
+            let tab = self?.window?.rootViewController as! TabBarController
+            let nav = tab.selectedViewController as! NavigationController
+            nav.showHint()
+
+        }
+        
+        let safariPlatform = UMSocialSnsPlatform(platformName: SafariPlatform)
+        safariPlatform.displayName = "用Safari打开"
+        safariPlatform.bigImageName = "safari"
+        safariPlatform.snsClickHandler = { (presentingController, socialControllerService, isPresentInController) in
+            UIApplication.sharedApplication().openURL(NSURL(string: ShareTool.customLink.encodeURLString())!)
+        }
+        
+        UMSocialConfig.addSocialSnsPlatform([copyPlatform, safariPlatform])
+        UMSocialConfig.setSnsPlatformNames(ShareTool.shareArray)
+    }
+}
+
+extension UINavigationController {
+    func showHint() {
+        MBProgressHUD.showSuccess("复制链接成功!")
+    }
 }
