@@ -239,11 +239,12 @@ extension NewsListController: UITableViewDataSource {
         }else {
             cell.replyCountLabel.hidden = false
             cell.tagLabel.hidden = true
-            if channelModel.title == "活动" {
-                model.date = "开始时间：" + model.date
-            }
         }
-        cell.configure(NewsCellViewModel(model: model))
+        if channelModel.title == "活动" {
+            cell.configure(NewsCellViewModel(model: model, isActivity: true))
+        }else {
+            cell.configure(NewsCellViewModel(model: model))
+        }
         return cell
     }
 }
