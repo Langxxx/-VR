@@ -113,21 +113,22 @@ class CoreTextView: DTAttributedTextContentView, DTAttributedTextContentViewDele
         }
     }
     
-//    override func intrinsicContentSize() -> CGSize {
-//        
-//        var size = super.intrinsicContentSize()
+    override func intrinsicContentSize() -> CGSize {
+        
+        var size = super.intrinsicContentSize()
 //        print(size)
 //        if let layoutFrame = self.layoutFrame {
 //            for attachments in layoutFrame.textAttachments() {
 //                if let attachment = attachments as? DTImageTextAttachment {
 //                    
-////                    size.height += self.aspectFitSizeForURL(attachment.contentURL).height
+//                    size.height += self.aspectFitSizeForURL(attachment.contentURL).height
 //                    
 //                }
 //            }
 //        }
-//        return size
-//    }
+        size.height += 15
+        return size
+    }
     
     func aspectFitSizeForURL(url: NSURL) -> CGSize {
         let imageSize = imageSizes[url] ?? CGSizeMake(4, 3)

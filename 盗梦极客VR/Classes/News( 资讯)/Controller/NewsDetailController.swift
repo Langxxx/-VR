@@ -402,7 +402,7 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard section != 0 && newsModel.bbsInfo.posts.count >= 5 else {
+        guard section != 0 && newsModel.bbsInfo.posts.count >= 9 else {
             return nil
         }
         let view = UIView()
