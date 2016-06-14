@@ -7,7 +7,7 @@
 //  一些公共的扩展
 
 import Foundation
-
+import SDWebImage
 extension UIColor {
     static func tintColor() -> UIColor {
         return UIColor(red: 212 / 255.0, green: 25 / 255.0, blue: 38 / 255.0, alpha: 1.0)
@@ -23,5 +23,11 @@ extension String {
 extension NSBundle {
     static var currentVersion: String {
         return NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
+    }
+}
+
+extension SDImageCache {
+    static func getCacheSizeMB() -> String {
+        return String(format: "%.2f MB", Float(SDImageCache.sharedImageCache().getSize() / 1024) / 1024)
     }
 }

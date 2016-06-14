@@ -133,6 +133,36 @@ extension UserManager {
             .map { $0["status"].boolValue }
             .complete(success: success, failure: failure)
     }
+    
+    func modifyIcon(imageData: NSData,
+                    success: ((User) -> ()),
+                    failure: ((ErrorType) -> ())) {
+        
+        
+        guard let userID = user?.id else {
+            return
+        }
+        
+        func updateUserInfo(result: Bool) -> AsynOperation<User> {
+            
+            if result {
+                return checkLogin("http://dmgeek.com/DG_api/users/get_userinfo/", ["user_id": userID])
+            }else {
+                return AsynOperation { completion in
+                        completion(.Failure(Error.NetworkError))
+                }
+            }
+        }
+        
+        
+        uploadImage(imageData, userID: String(user!.id))
+            .map { $0["status"].boolValue }
+            .then(updateUserInfo)
+            .complete(success: { user in
+                    self.user = user
+                    success(user)
+                }, failure: failure)
+    }
 }
 
 // MARK: - 用户登录功能

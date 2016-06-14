@@ -9,13 +9,13 @@
 				<key>description</key>
 				<string></string>
 				<key>id</key>
-				<string>5</string>
+				<string>1</string>
 				<key>postCount</key>
-				<string>491</string>
+				<string>860</string>
 				<key>slug</key>
-				<string>vrgame</string>
+				<string>vrnews</string>
 				<key>title</key>
-				<string>内容资讯</string>
+				<string>行业资讯</string>
 			</dict>
 			<dict>
 				<key>description</key>
@@ -33,13 +33,13 @@
 				<key>description</key>
 				<string></string>
 				<key>id</key>
-				<string>1</string>
+				<string>5</string>
 				<key>postCount</key>
-				<string>860</string>
+				<string>491</string>
 				<key>slug</key>
-				<string>vrnews</string>
+				<string>vrgame</string>
 				<key>title</key>
-				<string>行业资讯</string>
+				<string>内容资讯</string>
 			</dict>
 		</array>
 		<key>title</key>
@@ -52,18 +52,6 @@
 	<dict>
 		<key>terms</key>
 		<array>
-			<dict>
-				<key>description</key>
-				<string></string>
-				<key>id</key>
-				<string>211</string>
-				<key>postCount</key>
-				<string>4</string>
-				<key>slug</key>
-				<string>waishe</string>
-				<key>title</key>
-				<string>外设</string>
-			</dict>
 			<dict>
 				<key>description</key>
 				<string></string>
@@ -88,6 +76,18 @@
 				<key>title</key>
 				<string>应用</string>
 			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>211</string>
+				<key>postCount</key>
+				<string>4</string>
+				<key>slug</key>
+				<string>waishe</string>
+				<key>title</key>
+				<string>外设</string>
+			</dict>
 		</array>
 		<key>title</key>
 		<string>评测</string>
@@ -99,6 +99,18 @@
 	<dict>
 		<key>terms</key>
 		<array>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>155</string>
+				<key>postCount</key>
+				<string>5</string>
+				<key>slug</key>
+				<string>yidong</string>
+				<key>title</key>
+				<string>移动光学头戴</string>
+			</dict>
 			<dict>
 				<key>description</key>
 				<string></string>
@@ -135,18 +147,6 @@
 				<key>title</key>
 				<string>周边设备</string>
 			</dict>
-			<dict>
-				<key>description</key>
-				<string></string>
-				<key>id</key>
-				<string>155</string>
-				<key>postCount</key>
-				<string>5</string>
-				<key>slug</key>
-				<string>yidong</string>
-				<key>title</key>
-				<string>移动光学头戴</string>
-			</dict>
 		</array>
 		<key>title</key>
 		<string>设备</string>
@@ -162,30 +162,6 @@
 				<key>description</key>
 				<string></string>
 				<key>id</key>
-				<string>204</string>
-				<key>postCount</key>
-				<string>8</string>
-				<key>slug</key>
-				<string>3dshipin</string>
-				<key>title</key>
-				<string>3D视频</string>
-			</dict>
-			<dict>
-				<key>description</key>
-				<string></string>
-				<key>id</key>
-				<string>203</string>
-				<key>postCount</key>
-				<string>36</string>
-				<key>slug</key>
-				<string>quanjing</string>
-				<key>title</key>
-				<string>全景视频</string>
-			</dict>
-			<dict>
-				<key>description</key>
-				<string></string>
-				<key>id</key>
 				<string>187</string>
 				<key>postCount</key>
 				<string>29</string>
@@ -193,42 +169,6 @@
 				<string>yuanchuang</string>
 				<key>title</key>
 				<string>原创视频</string>
-			</dict>
-			<dict>
-				<key>description</key>
-				<string></string>
-				<key>id</key>
-				<string>207</string>
-				<key>postCount</key>
-				<string>7</string>
-				<key>slug</key>
-				<string>vrtech</string>
-				<key>title</key>
-				<string>技术教学</string>
-			</dict>
-			<dict>
-				<key>description</key>
-				<string></string>
-				<key>id</key>
-				<string>137</string>
-				<key>postCount</key>
-				<string>34</string>
-				<key>slug</key>
-				<string>vrplay</string>
-				<key>title</key>
-				<string>游戏试玩</string>
-			</dict>
-			<dict>
-				<key>description</key>
-				<string></string>
-				<key>id</key>
-				<string>95</string>
-				<key>postCount</key>
-				<string>69</string>
-				<key>slug</key>
-				<string>vrvideos</string>
-				<key>title</key>
-				<string>视频区</string>
 			</dict>
 			<dict>
 				<key>description</key>
@@ -253,6 +193,54 @@
 				<string>vrnews</string>
 				<key>title</key>
 				<string>预告宣传</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>137</string>
+				<key>postCount</key>
+				<string>34</string>
+				<key>slug</key>
+				<string>vrplay</string>
+				<key>title</key>
+				<string>游戏试玩</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>203</string>
+				<key>postCount</key>
+				<string>36</string>
+				<key>slug</key>
+				<string>quanjing</string>
+				<key>title</key>
+				<string>全景视频</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>204</string>
+				<key>postCount</key>
+				<string>8</string>
+				<key>slug</key>
+				<string>3dshipin</string>
+				<key>title</key>
+				<string>3D视频</string>
+			</dict>
+			<dict>
+				<key>description</key>
+				<string></string>
+				<key>id</key>
+				<string>207</string>
+				<key>postCount</key>
+				<string>7</string>
+				<key>slug</key>
+				<string>vrtech</string>
+				<key>title</key>
+				<string>技术教学</string>
 			</dict>
 		</array>
 		<key>title</key>

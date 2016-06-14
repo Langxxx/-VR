@@ -96,3 +96,27 @@ func networkRequest(urlStr: String,
     
 }
 
+func uploadImage(imageData: NSData, userID: String) -> AsynOperation<JSON> {
+    return AsynOperation { completion in
+        
+        Alamofire.upload(.POST, "http://dmgeek.com/DG_api/users/change_avatar", multipartFormData: { (data) in
+            data.appendBodyPart(data: imageData, name: "simple-local-avatar", fileName: userID, mimeType: "image/png")
+            },
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .Success(let upload, _, _):
+                    upload.responseJSON { response in
+                        dPrint(response)
+                        let value = JSON(response.result.value!)
+                        completion(.Success(value))
+                    }
+                    upload
+                case .Failure(let encodingError):
+                    dPrint(encodingError)
+                    completion(.Failure(Error.NetworkError))
+                }
+            }
+        )
+
+    }
+}

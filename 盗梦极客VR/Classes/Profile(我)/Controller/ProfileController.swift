@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import MBProgressHUD
+import Alamofire
 
 class ProfileController: UIViewController {
 
@@ -83,7 +84,7 @@ extension ProfileController {
             return
         }
         
-        loginButton.enabled = false
+//        loginButton.enabled = false
         
         avatarImageView.sd_setImageWithURL(NSURL(string: user.avatar)!)
         avatarImageView.layer.cornerRadius =  avatarImageView.bounds.width * 0.5
@@ -100,7 +101,7 @@ extension ProfileController {
      点击退出登录后调用
      */
     func clearUserInfo() {
-        loginButton.enabled = true
+//        loginButton.enabled = true
         
         avatarImageView.image = UIImage(named: "user_defaultavatar")
         usernameLabel.text = "点击登录"
@@ -257,12 +258,33 @@ extension ProfileController {
 // MARK: - 监听方法
 extension ProfileController {
     @IBAction func loginButtonClik() {
-        let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("LoginController") as! LoginController
-        vc.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(vc, animated: true)
-        if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
-            interactivePopGestureRecognizer.delegate = nil
+        
+        if UserManager.sharedInstance.user == nil {
+            let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+            if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
+                interactivePopGestureRecognizer.delegate = nil
+            }
+        }else {
+            let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            let camera = UIAlertAction(title: "拍照", style: .Default) { actioin in
+            }
+            let album = UIAlertAction(title: "从相册选择", style: .Default) { [weak self] (actioin) in
+                let imagePicker = UIImagePickerController()
+                imagePicker.allowsEditing = true
+                imagePicker.sourceType = .PhotoLibrary
+                imagePicker.delegate = self
+                self?.presentViewController(imagePicker, animated: true, completion: nil)
+            }
+
+            let cancel = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+            sheet.addAction(camera)
+            sheet.addAction(album)
+            sheet.addAction(cancel)
+            presentViewController(sheet, animated: true, completion: nil)
         }
+        
     }
     
     @IBAction func exitButtonClik() {
@@ -285,8 +307,61 @@ extension ProfileController {
     
 }
 
-extension SDImageCache {
-    static func getCacheSizeMB() -> String {
-        return String(format: "%.2f MB", Float(SDImageCache.sharedImageCache().getSize() / 1024) / 1024)
+extension ProfileController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+//        print(image)
+        var imageData: NSData
+        if let data = UIImagePNGRepresentation(image) {
+            imageData = data
+        }else if let data = UIImageJPEGRepresentation(image, 1) {
+            imageData = data
+        }else {
+            MBProgressHUD.showError("不支持的图片格式")
+            return
+        }
+        
+
+//        Alamofire.upload(.POST, "http://dmgeek.com/DG_api/users/change_avatar", data: imageData)
+//            .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
+//                print("\(bytesWritten)---\(totalBytesWritten)--\(totalBytesExpectedToWrite)")
+//        }
+//        .validate()
+//        .responseJSON { response in
+//            print(response)
+//        }
+
+//        Alamofire.upload(.POST, "http://dmgeek.com/DG_api/users/change_avatar", multipartFormData: { (data) in
+//            /**
+//             *   data: 图片， name: 服务器接收文件的参数名（判断是哪一张图片）, fileName: 服务器获取到图片的名称， mimeType： 文件类型
+//             */
+//            data.appendBodyPart(data: imageData, name: "simple-local-avatar", fileName: "\(UserManager.sharedInstance.user!.id)", mimeType: "image/png")
+////            data.appendBodyPart(data: userID, name: "userid", fileName: "userid", mimeType: "Text")
+//            },
+//             encodingCompletion: { encodingResult in
+//                switch encodingResult {
+//                case .Success(let upload, _, _):
+//                    upload.responseJSON { response in
+//                        dPrint(response)
+//                    }
+//                    upload
+//                case .Failure(let encodingError):
+//                    dPrint(encodingError)
+//                }
+//            }
+//        )
+        MBProgressHUD.showMessage("正在上传头像...")
+        func success(user: User) {
+            MBProgressHUD.showSuccess("上传成功!")
+            avatarImageView.sd_setImageWithURL(NSURL(string: user.avatar)!)
+        }
+        
+        func failure(_: ErrorType) {
+            MBProgressHUD.showError("网络错误，请稍后重试!")
+        }
+        
+        UserManager.sharedInstance.modifyIcon(imageData, success: success, failure: failure)
     }
 }
+
