@@ -10,7 +10,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fQ2-PA-Z1n">
             <objects>
-                <navigationController storyboardIdentifier="NavigationController" id="dRo-98-tgE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" navigationBarHidden="YES" id="dRo-98-tgE" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HdA-bG-b6u">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -39,27 +39,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="dam-0k-0k0" userLabel="LoginHeadView">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="253"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="253"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tsh-FS-Zk6">
                                             <rect key="frame" x="174" y="0.0" width="253" height="253"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_defaultavatar" translatesAutoresizingMaskIntoConstraints="NO" id="gaD-BX-0dh">
-                                                    <rect key="frame" x="97" y="97" width="60" height="60"/>
+                                                    <rect key="frame" x="87" y="87" width="80" height="80"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="QAX-fU-62x"/>
-                                                        <constraint firstAttribute="height" constant="60" id="X6F-cZ-qoD"/>
+                                                        <constraint firstAttribute="width" constant="80" id="QAX-fU-62x"/>
+                                                        <constraint firstAttribute="height" constant="80" id="X6F-cZ-qoD"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KE2-hr-3q2">
-                                                    <rect key="frame" x="0.0" y="167" width="253" height="21"/>
+                                                    <rect key="frame" x="0.0" y="177" width="253" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjw-Nm-d5l">
-                                                    <rect key="frame" x="97" y="97" width="60" height="91"/>
+                                                    <rect key="frame" x="87" y="87" width="80" height="111"/>
                                                     <connections>
                                                         <action selector="loginButtonClik" destination="Bx2-No-Jju" eventType="touchUpInside" id="aDs-l5-9K5"/>
                                                     </connections>
@@ -102,7 +102,7 @@
                                     </variation>
                                 </view>
                                 <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="web-XM-npr">
-                                    <rect key="frame" x="0.0" y="429" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="365" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1m-TI-vLS">
@@ -115,7 +115,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="l1m-TI-vLS" secondAttribute="trailing" constant="10" id="9tY-nB-dti"/>
                                         <constraint firstItem="l1m-TI-vLS" firstAttribute="leading" secondItem="web-XM-npr" secondAttribute="leading" constant="10" id="Ekf-MX-FKt"/>
@@ -125,7 +125,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="test" id="qQq-Dd-S6B">
-                                        <rect key="frame" x="0.0" y="367" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="303" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qQq-Dd-S6B" id="8u3-sS-GNx">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>

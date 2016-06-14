@@ -212,13 +212,16 @@ extension ProfileController {
             MBProgressHUD.showError("网络拥堵,请稍后尝试！")
         }
         
-        alert.addTextFieldWithConfigurationHandler(nil)
-        
+        alert.addTextFieldWithConfigurationHandler { textField in
+            textField.text = UserManager.sharedInstance.user!.displayname
+        }
         let cancel = UIAlertAction(title: "取消", style: .Default, handler: nil)
         let ok = UIAlertAction(title: "确定", style: .Default) { actioin in
             if let nickname = alert.textFields?.first?.text where !nickname.isEmpty {
+                if UserManager.sharedInstance.user!.displayname != nickname {
                     MBProgressHUD.showMessage("正在修改昵称...")
                     UserManager.sharedInstance.modifyNickname(nickname,success: success, failure: failure)
+                }
             }
         }
         alert.addAction(cancel)
