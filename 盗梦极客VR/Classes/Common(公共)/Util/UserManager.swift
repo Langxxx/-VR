@@ -120,7 +120,7 @@ extension UserManager {
 // MARK: - 账号信息修改方法
 extension UserManager {
     func modifyNickname(nickName: String,
-                        success: Bool -> (),
+                        success: User -> (),
                         failure: ErrorType -> ()) {
         
         func getURLString(nonce: String) -> String {
@@ -131,37 +131,36 @@ extension UserManager {
             .map(getURLString)
             .then{ networkRequest($0) }
             .map { $0["status"].boolValue }
-            .complete(success: success, failure: failure)
+            .then(updateUserInfoAfterModify)
+            .complete(success: { user in
+                self.user = user
+                success(user)
+                }, failure: failure)
     }
     
     func modifyIcon(imageData: NSData,
                     success: ((User) -> ()),
                     failure: ((ErrorType) -> ())) {
-        
-        
-        guard let userID = user?.id else {
-            return
-        }
-        
-        func updateUserInfo(result: Bool) -> AsynOperation<User> {
-            
-            if result {
-                return checkLogin("http://dmgeek.com/DG_api/users/get_userinfo/", ["user_id": userID])
-            }else {
-                return AsynOperation { completion in
-                        completion(.Failure(Error.NetworkError))
-                }
-            }
-        }
-        
+
         
         uploadImage(imageData, userID: String(user!.id))
             .map { $0["status"].boolValue }
-            .then(updateUserInfo)
+            .then(updateUserInfoAfterModify)
             .complete(success: { user in
                     self.user = user
                     success(user)
                 }, failure: failure)
+    }
+    
+    
+    func updateUserInfoAfterModify(result: Bool) -> AsynOperation<User> {
+        if result {
+            return checkLogin("http://dmgeek.com/DG_api/users/get_userinfo/", ["user_id": user!.id])
+        }else {
+            return AsynOperation { completion in
+                completion(.Failure(Error.NetworkError))
+            }
+        }
     }
 }
 

@@ -199,45 +199,17 @@ extension ProfileController {
         latestAPPVersion(success, failure: failure)
     }
     
-    func updateUserInfo() {
-        MBProgressHUD.showMessage("正在更新用户数据...", toView: self.view)
-        func success() {
-            MBProgressHUD.hideHUD(view)
-            staticCellProvider.dataList.removeFirst()
-            setupUserInfo()
-        }
-        
-        func failure() {
-            MBProgressHUD.hideHUD(view)
-            let alert = UIAlertController(title: "错误", message: "网络拥堵，是否重试?", preferredStyle: .Alert)
-            let cancel = UIAlertAction(title: "取消",
-                                       style: .Default) { _ in
-            }
-            let reTry = UIAlertAction(title: "重试",
-                                      style: .Default) { _ in
-                                        self.updateUserInfo()
-            }
-            alert.addAction(cancel)
-            alert.addAction(reTry)
-            presentViewController(alert, animated: true, completion: nil)
-        }
-        
-        UserManager.updateUserInfo(success, failure: failure)
-    }
-    
     func modifyNickname() {
         let alert = UIAlertController(title: "修改昵称", message: nil, preferredStyle: .Alert)
         var newName: String = ""
-        func success(result: Bool) {
-            if result {
-                updateUserInfo()
-            }else {
-                MBProgressHUD.showError("网络拥堵,请稍后尝试！", toView: view)
-            }
+        func success(user: User) {
+            staticCellProvider.dataList.removeFirst()
+            setupUserInfo()
+            synchronizeBBSAcount()
         }
         
         func failure(_: ErrorType) {
-            MBProgressHUD.showError("网络拥堵,请稍后尝试！", toView: view)
+            MBProgressHUD.showError("网络拥堵,请稍后尝试！")
         }
         
         alert.addTextFieldWithConfigurationHandler(nil)
@@ -245,7 +217,7 @@ extension ProfileController {
         let cancel = UIAlertAction(title: "取消", style: .Default, handler: nil)
         let ok = UIAlertAction(title: "确定", style: .Default) { actioin in
             if let nickname = alert.textFields?.first?.text where !nickname.isEmpty {
-                    MBProgressHUD.showMessage("正在修改昵称...", toView: self.view)
+                    MBProgressHUD.showMessage("正在修改昵称...")
                     UserManager.sharedInstance.modifyNickname(nickname,success: success, failure: failure)
             }
         }
