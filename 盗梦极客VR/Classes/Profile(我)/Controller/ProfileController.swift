@@ -253,6 +253,45 @@ extension ProfileController {
         alert.addAction(ok)
         presentViewController(alert, animated: true, completion: nil)
     }
+    
+    // TODO: 重构
+    /**
+     同步账号
+     在注册成功后调用
+     */
+    func synchronizeBBSAcount() {
+        MBProgressHUD.showMessage("修改成功!\n 正在同步账号信息...")
+        
+        func reponse(result: Bool) {
+            if result == true {
+                MBProgressHUD.showSuccess("同步成功!")
+            }else {
+                MBProgressHUD.showError("同步失败!稍后尝试")
+            }
+        }
+        
+        func failure(error: ErrorType) {
+            MBProgressHUD.hideHUD()
+            let alert = UIAlertController(title: "失败", message: "与论坛同步失败！\n进入论坛自动同步", preferredStyle: .Alert)
+            let cancel = UIAlertAction(title: "取消",
+                                       style: .Default) { _ in
+                                        MBProgressHUD.showWarning("注册成功！进入论坛可自动同步!")
+            }
+            let reTry = UIAlertAction(title: "重试",
+                                      style: .Default) { _ in
+                                        self.synchronizeBBSAcount()
+            }
+            alert.addAction(cancel)
+            alert.addAction(reTry)
+            presentViewController(alert, animated: true, completion: nil)
+        }
+        let user = UserManager.sharedInstance.user!
+        let userInfo: RegisteReturnInfo = (user.id, user.cookie)
+        UserManager.sharedInstance
+            .synchronizeBBSAcount(userInfo,
+                                  success: reponse,
+                                  failure: failure)
+    }
 }
 
 // MARK: - 监听方法
@@ -268,7 +307,16 @@ extension ProfileController {
             }
         }else {
             let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-            let camera = UIAlertAction(title: "拍照", style: .Default) { actioin in
+            let camera = UIAlertAction(title: "拍照", style: .Default) { [weak self]actioin in
+                if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+                    let imagePicker = UIImagePickerController()
+                    imagePicker.allowsEditing = true
+                    imagePicker.sourceType = .Camera
+                    imagePicker.delegate = self
+                    self?.presentViewController(imagePicker, animated: true, completion: nil)
+                }else {
+                    MBProgressHUD.showError("当前设备不支持照相!")
+                }
             }
             let album = UIAlertAction(title: "从相册选择", style: .Default) { [weak self] (actioin) in
                 let imagePicker = UIImagePickerController()
@@ -309,6 +357,7 @@ extension ProfileController {
 
 extension ProfileController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
         picker.dismissViewControllerAnimated(true, completion: nil)
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
 //        print(image)
@@ -321,40 +370,12 @@ extension ProfileController: UIImagePickerControllerDelegate, UINavigationContro
             MBProgressHUD.showError("不支持的图片格式")
             return
         }
-        
 
-//        Alamofire.upload(.POST, "http://dmgeek.com/DG_api/users/change_avatar", data: imageData)
-//            .progress { bytesWritten, totalBytesWritten, totalBytesExpectedToWrite in
-//                print("\(bytesWritten)---\(totalBytesWritten)--\(totalBytesExpectedToWrite)")
-//        }
-//        .validate()
-//        .responseJSON { response in
-//            print(response)
-//        }
-
-//        Alamofire.upload(.POST, "http://dmgeek.com/DG_api/users/change_avatar", multipartFormData: { (data) in
-//            /**
-//             *   data: 图片， name: 服务器接收文件的参数名（判断是哪一张图片）, fileName: 服务器获取到图片的名称， mimeType： 文件类型
-//             */
-//            data.appendBodyPart(data: imageData, name: "simple-local-avatar", fileName: "\(UserManager.sharedInstance.user!.id)", mimeType: "image/png")
-////            data.appendBodyPart(data: userID, name: "userid", fileName: "userid", mimeType: "Text")
-//            },
-//             encodingCompletion: { encodingResult in
-//                switch encodingResult {
-//                case .Success(let upload, _, _):
-//                    upload.responseJSON { response in
-//                        dPrint(response)
-//                    }
-//                    upload
-//                case .Failure(let encodingError):
-//                    dPrint(encodingError)
-//                }
-//            }
-//        )
         MBProgressHUD.showMessage("正在上传头像...")
         func success(user: User) {
-            MBProgressHUD.showSuccess("上传成功!")
+            synchronizeBBSAcount()
             avatarImageView.sd_setImageWithURL(NSURL(string: user.avatar)!)
+            
         }
         
         func failure(_: ErrorType) {
