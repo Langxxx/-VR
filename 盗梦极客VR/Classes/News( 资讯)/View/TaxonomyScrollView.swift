@@ -37,6 +37,7 @@ extension TaxonomyScrollView {
             return
         }
         
+        scrollsToTop = false
         let windowsW = UIApplication.sharedApplication().keyWindow!.frame.width
         var totalWidth: CGFloat = 0
         

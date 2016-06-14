@@ -16,7 +16,7 @@ struct ShareTool {
     static var customLink: String = ""
         /// 期待分享的平台
     static var shareArray: [String] {
-        return [UMShareToSina, UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline, UMShareToEmail, UMShareToSms, SafariPlatform,  CopyPlatform]
+        return [UMShareToSina, UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline, UMShareToEmail, SafariPlatform,  CopyPlatform]
     }
         /// 分享的默认图标
     static var shareImage: UIImage {

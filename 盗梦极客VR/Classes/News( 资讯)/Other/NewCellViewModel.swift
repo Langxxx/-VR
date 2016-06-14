@@ -28,7 +28,7 @@ struct NewsCellViewModel: NewsCellPresentable {
         URL = model.listThuUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())! + "!spc.png"
         titleText = model.title
         excerptText = model.excerpt.limitStringLenth(70)
-        timeText = isActivity ? "开始时间：" + model.date.componentsSeparatedByString(" ").first! : model.date.componentsSeparatedByString(" ").first!
+        timeText = isActivity ? "开始时间：" + model.eventStartDate.componentsSeparatedByString(" ").first! : model.date.componentsSeparatedByString(" ").first!
         replyCountText = model.customFields.discourseCommentsCount.first ?? "0"
         tagString = model.specialTag
     }

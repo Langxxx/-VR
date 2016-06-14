@@ -42,6 +42,8 @@ class NewsModel : NSObject, NSCoding{
         /// 视频模块特有数据
     var taxonomyVideos : [TaxonomyVideo]!
     
+    var eventStartDate: String!
+    
     var tag: String {
         guard let str = type else {
             return ""
@@ -117,6 +119,7 @@ class NewsModel : NSObject, NSCoding{
             let value = TaxonomyVideo(fromJson: taxonomyVideosJson)
             taxonomyVideos.append(value)
         }
+        eventStartDate = json["event_start_date"].stringValue
 	}
 
 	/**
@@ -186,6 +189,9 @@ class NewsModel : NSObject, NSCoding{
             }
             dictionary["taxonomy_videos"] = dictionaryElements
         }
+        if eventStartDate != nil{
+            dictionary["event_start_date"] = eventStartDate
+        }
 		return dictionary
 	}
 
@@ -210,6 +216,7 @@ class NewsModel : NSObject, NSCoding{
          bbsInfo = aDecoder.decodeObjectForKey("bbs_info") as? BBSInfo
          taxonomyPlatformsDevice = aDecoder.decodeObjectForKey("taxonomy_platforms_device") as? [TaxonomyPlatformsDevice]
          taxonomyVideos = aDecoder.decodeObjectForKey("taxonomy_videos") as? [TaxonomyVideo]
+        eventStartDate = aDecoder.decodeObjectForKey("event_start_date") as? String
 	}
 
     /**
@@ -262,6 +269,9 @@ class NewsModel : NSObject, NSCoding{
         }
         if taxonomyVideos != nil{
             aCoder.encodeObject(taxonomyVideos, forKey: "taxonomy_videos")
+        }
+        if eventStartDate != nil{
+            aCoder.encodeObject(eventStartDate, forKey: "event_start_date")
         }
 	}
 
