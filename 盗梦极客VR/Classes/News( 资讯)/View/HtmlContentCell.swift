@@ -79,7 +79,6 @@ extension HtmlContentCell: DTAttributedTextContentViewDelegate, DTLazyImageViewD
     }
     
     func attributedTextContentView(attributedTextContentView: DTAttributedTextContentView!, viewForAttachment attachment: DTTextAttachment!, frame: CGRect) -> UIView! {
-        print(attachment)
         if let attachment = attachment as? DTImageTextAttachment {
             let size = self.aspectFitSizeForURL(attachment.contentURL)
             let aspectFrame = CGRectMake(frame.origin.x, frame.origin.y, size.width, size.height)

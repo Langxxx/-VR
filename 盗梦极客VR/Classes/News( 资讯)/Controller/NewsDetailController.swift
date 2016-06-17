@@ -2,40 +2,36 @@
 //  NewsDetailController.swift
 //  盗梦极客VR
 //
-//  Created by wl on 4/26/16.
+//  Created by wl on 6/16/16.
 //  Copyright © 2016 wl. All rights reserved.
-//  新闻详情
+//
 
 import UIKit
 import MBProgressHUD
-import MJRefresh
 import DTCoreText
+import MJRefresh
+
 class NewsDetailController: UIViewController, DetailVcJumpable {
-    
-    /// 这里不使用WKWebView是因为Loadhtml方法加载出来的，样式会很奇怪
+
     @IBOutlet weak var tableView: UITableView!
-        /// 底部评论界面
+    /// 底部评论界面
     @IBOutlet weak var replyContainerView: UIView!
-        /// 评论数量的label
+    /// 评论数量的label
     @IBOutlet weak var replyCountLabel: UILabel!
     
-    var webView: UIWebView!
-        /// 当前新闻模型
     var newsModel: NewsModel!
+    var webView: UIWebView!
     
-    let webCellIdentifier = "WebCell"
-    let replyTitleCellIdentifier = "ReplyTitleCell"
-    let deviceCellIdentifier = "DeviceCell"
+    /// 设备新闻的所有相关新闻模型
+    var newsModelArray: [NewsModel] = []
     
-        /// 当前新闻是否是设备新闻
+    /// 当前新闻是否是设备新闻
     var isDeviceList: Bool {
         return newsModel.type == "device"
     }
-        /// 设备新闻的所有相关新闻模型
-    var newsModelArray: [NewsModel] = []
-        /// 设备新闻请求URL
+    /// 设备新闻请求URL
     let deviceURL = "http://dmgeek.com/DG_api/get_device_posts/"
-        /// 设备新闻请求参数
+    /// 设备新闻请求参数
     var parameters: [String: AnyObject] {
         return [
             "page": deviceListPage,
@@ -44,13 +40,13 @@ class NewsDetailController: UIViewController, DetailVcJumpable {
         ]
     }
     var deviceListPage = 1
-    
-        /// 当前界面是否需要评论功能
+
+    /// 当前界面是否需要评论功能
     var canReply: Bool {
         return !(newsModel.type == "device" || newsModel.type == "video")
     }
     
-        /// 所有可能的视频来源
+    /// 所有可能的视频来源
     let videoRequestList = [
         "http://player.youku.com/",
         "http://v.qq.com/",
@@ -58,20 +54,42 @@ class NewsDetailController: UIViewController, DetailVcJumpable {
         "http://www.tudou.com",
         "http://tv.sohu.com",
         "http://www.acfun.tv",
-        "http://www.bilibili.com"
+        "http://www.bilibili.com",
+        "http://music.163.com/"
     ]
+    
+    let webCellIdentifier = "WebCell"
+    let deviceCellIdentifier = "DeviceCell"
+    let replyTitleCellIdentifier = "ReplyTitleCell"
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     var cellCache = NSCache()
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupTableView()
         setupWebView()
-        cellCache.delegate = self
+        
         if isDeviceList {
             tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadDeviceListInfo))
             tableView.mj_footer.beginRefreshing()
         }
+    }
+    
+    deinit {
+        dPrint("Test--deinit")
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        // 若不停止任务，IOS8中会崩溃
+        currentTask?.cancel()
+        MobClick.endLogPageView("新闻详情")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -80,17 +98,6 @@ class NewsDetailController: UIViewController, DetailVcJumpable {
         UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: false)
         
         MobClick.beginLogPageView("新闻详情")
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        // 若不停止任务，IOS8中会崩溃
-        currentTask?.cancel()
-        MobClick.endLogPageView("新闻详情")
-    }
-    
-    deinit {
-        dPrint("NewsDetailController deinit")
     }
 }
 
@@ -102,11 +109,11 @@ extension NewsDetailController {
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 300
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: -44, left: 0, bottom: 44, right: 0)
         tableView.hidden = true
+        tableView.separatorStyle = .None
     }
+    
     /**
      设置WebView
      */
@@ -116,12 +123,11 @@ extension NewsDetailController {
         webView.scrollView.scrollEnabled = false
         loadNewsDetail()
     }
-
 }
-
 
 // MARK: - 功能性方法
 extension NewsDetailController {
+    
     /**
      加载设备列表数据
      */
@@ -154,33 +160,6 @@ extension NewsDetailController {
             .map { jsonToModelArray( $0["posts"], initial: NewsModel.init) }
             .complete(success: success, failure: failure)
         
-    }
-    /**
-     判断请求是否是视频链接
-     
-     - parameter urlStr: 需要判断的请求
-     
-     */
-    func isVideoRequst(urlStr: String) -> Bool {
-        for str in videoRequestList {
-            if urlStr.hasPrefix(str) {
-                return true
-            }
-        }
-        return false
-    }
-    
-    /**
-     外部链接跳转
-     当点击页面内链接后调用
-     
-     - parameter urlStr: <#urlStr description#>
-     */
-    func jumpToOtherLinker(urlStr: String) {
-        // TODO: 内部链接应该跳转到论坛模块
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OtherLinkWebController") as! OtherLinkWebController
-        vc.URLStr = urlStr
-        navigationController?.pushViewController(vc, animated: true)
     }
     
     /**
@@ -229,7 +208,34 @@ extension NewsDetailController {
         return body
     }
     
-    func prepareHtmlCellForIndexPath(tableView: UITableView, indexPath: NSIndexPath) -> HtmlContentCell {
+    /**
+     判断请求是否是视频链接
+     
+     - parameter urlStr: 需要判断的请求
+     
+     */
+    func isVideoRequst(urlStr: String) -> Bool {
+        for str in videoRequestList {
+            if urlStr.hasPrefix(str) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    /**
+     外部链接跳转
+     当点击页面内链接后调用
+     */
+    func jumpToOtherLinker(urlStr: String) {
+        // TODO: 内部链接应该跳转到论坛模块
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("OtherLinkWebController") as! OtherLinkWebController
+        vc.URLStr = urlStr
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    func prepareCellForIndexPath(tableView: UITableView, indexPath: NSIndexPath) -> HtmlContentCell {
         let key = NSString(format: "%ld-%ld", indexPath.section, indexPath.row)
         var cell = cellCache.objectForKey(key) as? HtmlContentCell
         if cell == nil {
@@ -237,13 +243,15 @@ extension NewsDetailController {
             cell?.hasFixedRowHeight = false
             cellCache.setObject(cell!, forKey: key)
             cell?.delegate = self
+            cell?.selectionStyle = .None
         }
-        let postModel = newsModel.bbsInfo.posts[indexPath.row]
-        cell?.setHTMLString(postModel.cooked)
+        
+        let postModel = newsModel.bbsInfo.posts[indexPath.row / 2]
+        cell?.setHTMLString("<style>body{color:gray;}p, li {font-family:\"Avenir Next\";font-size:14px;line-height:15px;}a {color: #f25d3c;text-decoration: none;}</style>" + postModel.cooked)
         cell?.attributedTextContextView.shouldDrawImages = true
         return cell!
     }
-    
+
 }
 // MARK: - 监听方法
 extension NewsDetailController {
@@ -272,14 +280,14 @@ extension NewsDetailController {
         }
         
     }
-
+    
     func loadMoreReplyButtonClik() {
         guard let navVc = tabBarController!.viewControllers?[1] as? UINavigationController else {
             return
         }
         let bbsvc = navVc.topViewController as? BBSController
         bbsvc?.jumpURL = newsModel.customFields.discoursePermalink.first
-
+        
         tabBarController?.selectedViewController = navVc
     }
     
@@ -289,7 +297,6 @@ extension NewsDetailController {
             tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
         }
     }
-    
 }
 
 // MARK: - webView代理
@@ -314,7 +321,6 @@ extension NewsDetailController: UIWebViewDelegate {
         let webViewIndexPath = NSIndexPath(forRow: 0, inSection: 0)
         
         tableView.reloadRowsAtIndexPaths([webViewIndexPath], withRowAnimation: .None)
-        tableView.scrollToRowAtIndexPath(webViewIndexPath, atScrollPosition: .Top, animated: false)
         
         // 延迟0.5S再显示
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
@@ -326,12 +332,9 @@ extension NewsDetailController: UIWebViewDelegate {
             }
         }
     }
-
+    
 }
 
-
-
-// MARK: - tableview代理和数据源
 extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -339,64 +342,72 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !isDeviceList {
-            return section == 0 ? 1 : newsModel.bbsInfo.posts.count
-        }else {
-            return section == 0 ? 1 : newsModelArray.count
+        let tempIndexPath = NSIndexPath(forRow: 0, inSection: section)
+        let type = DetailControllerCellType.analyseCellType(newsModel, indexPath: tempIndexPath)
+        switch type {
+        case .NewsContent:
+            return 1
+        case .DeviceNews:
+            return newsModelArray.count
+        case .Comment(_):
+            return newsModel.bbsInfo.posts.count * 2
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
+        let type = DetailControllerCellType.analyseCellType(newsModel, indexPath: indexPath)
+        
+        switch type {
+        case .NewsContent:
             let cell = tableView.dequeueReusableCellWithIdentifier(webCellIdentifier, forIndexPath: indexPath)
+            cell.selectionStyle = .None
             cell.contentView.addSubview(webView)
             webView.frame = cell.bounds
             return cell
-            
-        }else {
-            if isDeviceList {
-                let cell = tableView.dequeueReusableCellWithIdentifier(deviceCellIdentifier, forIndexPath: indexPath)
-                let newsModel = newsModelArray[indexPath.row]
-                let deviceCellViewModel = DeviceCellViewModel(model: newsModel)
-                (cell as! DeviceCell).configure(deviceCellViewModel)
+        case .DeviceNews:
+            let cell = tableView.dequeueReusableCellWithIdentifier(deviceCellIdentifier, forIndexPath: indexPath) as! DeviceCell
+            let newsModel = newsModelArray[indexPath.row]
+            let deviceCellViewModel = DeviceCellViewModel(model: newsModel)
+            cell.configure(deviceCellViewModel)
+            return cell
+        case .Comment(let replyType):
+            if replyType == .Title {
+                let cell = tableView.dequeueReusableCellWithIdentifier(replyTitleCellIdentifier, forIndexPath: indexPath) as! ReplyTitleCell
+                let postModel = newsModel.bbsInfo.posts[indexPath.row / 2]
+                let viewModel = ReplyTitleCellViewModel(model: postModel)
+                cell.configure(viewModel)
+                cell.selectionStyle = .None
                 return cell
             }else {
-                return prepareHtmlCellForIndexPath(tableView, indexPath: indexPath)
-            
+                return prepareCellForIndexPath(tableView, indexPath: indexPath)
             }
+
         }
         
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 0 {
+        
+        let type = DetailControllerCellType.analyseCellType(newsModel, indexPath: indexPath)
+        
+        switch type {
+        case .NewsContent:
             return webView.frame.height
-        }else {
-            if isDeviceList {
-                return 100
+        case .DeviceNews:
+            return 100
+        case .Comment(let replyType):
+            if replyType == .Title {
+                return 60
             }else {
-                let cell = prepareHtmlCellForIndexPath(tableView, indexPath: indexPath)
+                let cell = prepareCellForIndexPath(tableView, indexPath: indexPath)
                 return cell.requiredRowHeightInTableView(tableView)
+
             }
-
         }
-    }
 
-//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard section != 0 && newsModel.bbsInfo.posts.count != 0 else {
-//            return nil
-//        }
-//        
-//        let attriStr = NSMutableAttributedString(string: "  用户评论")
-//        let redStrAttr = [NSForegroundColorAttributeName : UIColor.redColor()]
-//        attriStr.addAttributes(redStrAttr, range: NSRange(location: 0, length: attriStr.length))
-//        let label = UILabel()
-//        label.attributedText = attriStr
-//        label.backgroundColor = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1.0)
-//        label.font = UIFont.systemFontOfSize(15)
-//        return label
-//    }
+    }
+    
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard section != 0 else {
@@ -433,7 +444,7 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
             make.right.equalTo(view).offset(-10)
             make.left.equalTo(view).offset(10)
         }
-
+        
         button.titleLabel?.font = UIFont.systemFontOfSize(15)
         button.setBackgroundImage(UIImage(named: "account_logout_button"), forState: .Normal)
         button.addTarget(self, action: #selector(loadMoreReplyButtonClik), forControlEvents: .TouchUpInside)
@@ -448,6 +459,7 @@ extension NewsDetailController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - HtmlContentCellDelegate
 extension NewsDetailController: HtmlContentCellDelegate {
     func htmlContentCellSizeDidChange(cell: HtmlContentCell) {
         if let _ = tableView.indexPathForCell(cell) {
@@ -456,11 +468,5 @@ extension NewsDetailController: HtmlContentCellDelegate {
     }
     func htmlContentCell(cell: HtmlContentCell, linkDidPress link: NSURL) {
         jumpToOtherLinker(link.URLString)
-    }
-}
-
-extension NewsDetailController: NSCacheDelegate {
-    func cache(cache: NSCache, willEvictObject obj: AnyObject) {
-        print(obj)
     }
 }

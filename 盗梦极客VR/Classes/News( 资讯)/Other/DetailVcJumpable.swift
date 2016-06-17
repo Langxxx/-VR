@@ -26,21 +26,14 @@ extension DetailVcJumpable where Self: UIViewController {
      - parameter selectedCellModel: 被点击新闻的模型
      */
     func pushDetailVcBySelectedNewsModel(selectedCellModel: NewsModel) {
-//        let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("NewsDetailController") as! NewsDetailController
-//        vc.newsModel = selectedCellModel
-//        vc.hidesBottomBarWhenPushed = true
-//        navigationController?.pushViewController(vc, animated: true)
-//        if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
-//            interactivePopGestureRecognizer.delegate = nil
-//        }
-        
-        let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("TestViewController") as! TestViewController
+        let vc = UIStoryboard(name: "News", bundle: nil).instantiateViewControllerWithIdentifier("NewsDetailController") as! NewsDetailController
         vc.newsModel = selectedCellModel
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
         if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
             interactivePopGestureRecognizer.delegate = nil
         }
+
     }
 
 }
