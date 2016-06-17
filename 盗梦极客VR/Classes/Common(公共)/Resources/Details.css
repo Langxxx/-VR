@@ -42,3 +42,10 @@ a {
     text-align:center;
     margin-bottom:10px;
 }
+
+iframe.ifa_163_mu {
+    height: 86px !important;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

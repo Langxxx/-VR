@@ -55,7 +55,6 @@ extension HtmlContentCell {
     
     private func aspectFitImageSize(size : CGSize) -> CGSize {
         if CGSizeEqualToSize(size, CGSizeZero) {
-            dPrint(size)
             return size
         }
         return CGSizeMake(40, 40)

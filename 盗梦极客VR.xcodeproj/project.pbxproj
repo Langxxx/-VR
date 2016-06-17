@@ -79,6 +79,7 @@
 		77E7CB0D1D0D3DF9006BBBA6 /* WechatInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E7CB0C1D0D3DF9006BBBA6 /* WechatInfoView.swift */; };
 		77E7CB2D1D0D92C6006BBBA6 /* SuggestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E7CB2C1D0D92C6006BBBA6 /* SuggestController.swift */; };
 		77FAB1D81CE9E97E00C5366F /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FAB1D71CE9E97E00C5366F /* RegisterController.swift */; };
+		77FAEB411D13ED6C00D8C5CF /* DetailControllerCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FAEB401D13ED6C00D8C5CF /* DetailControllerCellType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -158,6 +159,7 @@
 		77E7CB0C1D0D3DF9006BBBA6 /* WechatInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WechatInfoView.swift; sourceTree = "<group>"; };
 		77E7CB2C1D0D92C6006BBBA6 /* SuggestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestController.swift; sourceTree = "<group>"; };
 		77FAB1D71CE9E97E00C5366F /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		77FAEB401D13ED6C00D8C5CF /* DetailControllerCellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailControllerCellType.swift; sourceTree = "<group>"; };
 		9DCCE2BE5CA2CAAFB0ED136E /* Pods_____VR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____VR.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A77D67EA230552523C86F5 /* Pods-盗梦极客VR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-盗梦极客VR.release.xcconfig"; path = "Pods/Target Support Files/Pods-盗梦极客VR/Pods-盗梦极客VR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -452,6 +454,7 @@
 				771EF7D11CE2D15B008956C0 /* Post.swift */,
 				7701A6211CF83EE4003213CD /* TaxonomyPlatformsDevice.swift */,
 				7701A6231CF84017003213CD /* TaxonomyVideo.swift */,
+				77FAEB401D13ED6C00D8C5CF /* DetailControllerCellType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				77A6D9B81CD58E16003BFAA5 /* OtherLinkWebController.swift in Sources */,
 				77C75D751CCDEE4000D1A396 /* ContainerViewDataSource.swift in Sources */,
 				771EF7D81CE36356008956C0 /* RegexHelper.swift in Sources */,
+				77FAEB411D13ED6C00D8C5CF /* DetailControllerCellType.swift in Sources */,
 				774F5EBB1CCB12090087413F /* BBSURLConfig.swift in Sources */,
 				77185C0F1CD0FC7300525789 /* MBProgressHUD+Extension.swift in Sources */,
 				77FAB1D81CE9E97E00C5366F /* RegisterController.swift in Sources */,
