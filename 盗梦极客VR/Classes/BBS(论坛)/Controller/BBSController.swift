@@ -47,10 +47,15 @@ class BBSController: UIViewController {
     /// 当前加载(跳转、登陆)提示的URL，若不是前面的操作，则为空
     var MBPMessage: String?
     
+    /// 进入后台的定时器
+    static var lastLeaveTime = NSDate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWebView()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        //监听程序即将进入前台运行、进入后台休眠 事件
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
     }
 
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -155,13 +160,25 @@ extension BBSController {
             return "http://bbs.dmgeek.com"
         }
     }
-    /**
-     重新加载当前页面
-     当用程序从后台进入前台的时候调用
-     */
-    func reEnterForeground() {
-        webView.reload()
+//    /**
+//     重新加载当前页面
+//     当用程序从后台进入前台的时候调用
+//     */
+//    func reEnterForeground() {
+//        webView.reload()
+//    }
+    func applicationWillEnterForeground(){
+        //计算上次离开的时间与当前时间差
+        //如果超过2分钟，则自动刷新本页面。
+        let interval = -1 * BBSController.lastLeaveTime.timeIntervalSinceNow
+        if interval > 120 {
+            webView.reload()
+        }
     }
+    func applicationDidEnterBackground(){
+        BBSController.lastLeaveTime = NSDate()
+    }
+    
     
     /**
      分享当前界面

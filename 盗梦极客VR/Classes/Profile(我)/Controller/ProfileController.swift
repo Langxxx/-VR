@@ -85,10 +85,11 @@ extension ProfileController {
         }
         
 //        loginButton.enabled = false
-        
-        avatarImageView.sd_setImageWithURL(NSURL(string: user.avatar)!)
-        avatarImageView.layer.cornerRadius =  avatarImageView.bounds.width * 0.5
-        avatarImageView.layer.masksToBounds = true
+        if !user.avatar.isEmpty {
+            avatarImageView.sd_setImageWithURL(NSURL(string: user.avatar)!)
+            avatarImageView.layer.cornerRadius =  avatarImageView.bounds.width * 0.5
+            avatarImageView.layer.masksToBounds = true
+        }
         usernameLabel.text = user.displayname
         exitContainerView.hidden = false
         
@@ -133,8 +134,8 @@ extension ProfileController {
             
         }
         
-        let checkVersion = ArrowCellModel(text: "版本更新", icon: nil, seletedCallBack: nil)
-        checkVersion.seletedCallBack = checkAppVersion
+//        let checkVersion = ArrowCellModel(text: "版本更新", icon: nil, seletedCallBack: nil)
+//        checkVersion.seletedCallBack = checkAppVersion
         
         let suggest = ArrowCellModel(text: "建议反馈")
         suggest.seletedCallBack = {
@@ -142,7 +143,7 @@ extension ProfileController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
-        let group = CellGroup(header: "功能",items: [clearCell, checkVersion, suggest])
+        let group = CellGroup(header: "功能",items: [clearCell, suggest])
         staticCellProvider.dataList.append(group)
     }
     
@@ -168,36 +169,6 @@ extension ProfileController {
 }
 
 extension ProfileController {
-    
-    func checkAppVersion() {
-        MBProgressHUD.showMessage("正在检查版本...", toView:  view)
-        let currentVersion = NSBundle.currentVersion
-        func success(version: String) {
-            MBProgressHUD.hideHUD(view)
-            if currentVersion == version {
-                MBProgressHUD.showWarning("已经是最新版本!", toView: view)
-            }else {
-                let alert = UIAlertController(title: "更新", message: "是否进行更新?", preferredStyle: .Alert)
-                let cancel = UIAlertAction(title: "取消",
-                                           style: .Default) { _ in
-                }
-                let reTry = UIAlertAction(title: "更新",
-                                          style: .Default) { _ in
-                    let url = NSURL(string: "itms-apps://itunes.apple.com/cn/app/dao-meng-ji-kevr/id1118642139?mt=8")!
-                    UIApplication.sharedApplication().openURL(url)
-                }
-                alert.addAction(cancel)
-                alert.addAction(reTry)
-                presentViewController(alert, animated: true, completion: nil)
-            }
-        }
-        
-        func failure(_: ErrorType) {
-            MBProgressHUD.showError("网络错误，请稍后尝试", toView: view)
-        }
-        
-        latestAPPVersion(success, failure: failure)
-    }
     
     func modifyNickname() {
         let alert = UIAlertController(title: "修改昵称", message: nil, preferredStyle: .Alert)

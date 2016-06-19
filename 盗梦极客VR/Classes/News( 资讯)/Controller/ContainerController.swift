@@ -31,6 +31,8 @@ class ContainerController: UIViewController {
         setupContainerView()
         tabBarController?.delegate = self
         searchButton.backgroundColor = UIColor.tintColor().colorWithAlphaComponent(0.7)
+
+        checkAppVersion()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -38,7 +40,39 @@ class ContainerController: UIViewController {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
-  }
+}
+
+extension ContainerController {
+    
+    func checkAppVersion() {
+        
+        if arc4random_uniform(5) != 0 { return }
+        
+        let currentVersion = NSBundle.currentVersion
+        func success(version: String) {
+            if currentVersion == version {
+            }else {
+                let alert = UIAlertController(title: "更新", message: "是否进行更新?", preferredStyle: .Alert)
+                let cancel = UIAlertAction(title: "取消",
+                                           style: .Default) { _ in
+                }
+                let reTry = UIAlertAction(title: "更新",
+                                          style: .Default) { _ in
+                                            let url = NSURL(string: "itms-apps://itunes.apple.com/cn/app/dao-meng-ji-kevr/id1118642139?mt=8")!
+                                            UIApplication.sharedApplication().openURL(url)
+                }
+                alert.addAction(cancel)
+                alert.addAction(reTry)
+                presentViewController(alert, animated: true, completion: nil)
+            }
+        }
+        
+        func failure(_: ErrorType) {
+        }
+        
+        latestAPPVersion(success, failure: failure)
+    }
+}
 
 // MARK: - 一些初始化方法
 extension ContainerController {
@@ -88,7 +122,6 @@ extension ContainerController {
         containerView.dataSource = collectionViewCellProvider
         containerView.delegate = self
     }
-
 }
 
 // MARK: - UICollectionViewDelegate 代理
