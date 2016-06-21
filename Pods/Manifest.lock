@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.3.1)
+  - Alamofire (3.4.1)
   - DTCoreText (1.6.17):
     - DTFoundation/Core (~> 1.7.5)
     - DTFoundation/DTAnimatedGIF (~> 1.7.5)
@@ -11,12 +11,12 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.10):
     - DTFoundation/Core
-  - IQKeyboardManager (4.0.2)
+  - IQKeyboardManager (4.0.3)
   - MBProgressHUD (0.9.2)
-  - MJRefresh (3.1.0)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
+  - MJRefresh (3.1.7)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
   - SnapKit (0.17.0)
   - SwiftyJSON (2.3.2)
   - UMengAnalytics-NO-IDFA (4.0.5)
@@ -50,32 +50,32 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 4edf17756fdde9f6d834f1715f234ef1b5022c23
+    :commit: 0f506b1c455e5ce4312d27daeb98c10a608107d3
     :git: https://github.com/Alamofire/Alamofire.git
   IQKeyboardManager:
-    :commit: 375eefd0938bb1bbd29c7851eaee383a45142028
+    :commit: 3268808bf0aa44bfb87a7ea7f5fd007273e460f3
     :git: https://github.com/hackiftekhar/IQKeyboardManager.git
   MBProgressHUD:
-    :commit: 5c3b93fe4ff9542e08e6b3a98d945805131eb55c
+    :commit: 3de6e1398f0ab7e5a4375549f946870c844cdba2
     :git: https://github.com/matej/MBProgressHUD.git
   MJRefresh:
-    :commit: 79d7caf60399fe84a43e6d79f6f90d1d8b0d6013
+    :commit: 76f979ef0dcf44930dedf24df0889e2a7b7f1bab
     :git: https://github.com/CoderMJLee/MJRefresh.git
   SDWebImage:
-    :commit: 0979d5b5f7d072d63300a1223c5ff55c532d6492
+    :commit: c012fc9bb2e5b1775a8a4a847938352187496a05
     :git: https://github.com/rs/SDWebImage.git
   SwiftyJSON:
-    :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
+    :commit: 73670b94292b8d8496c398a973f56ac67789ba9f
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   DTCoreText: 3ea8bba23dd2141ba18adb227a7dd33a822df1c4
   DTFoundation: 3b6b1b817d2a7fb02e7eaf2596c922a68145bd43
-  IQKeyboardManager: 2341089c4ae25fa2fa82ce356a259fcd267dc6b6
+  IQKeyboardManager: be9695ffc5a52077deb4847608f338771022d6d1
   MBProgressHUD: c10206b47acf9e1659bd80a366cc935e35745b9b
-  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  MJRefresh: f67f0750d57a4e4ae433da549359ca53b52cdc7d
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SnapKit: 49fd7b1b3ff58ab4064004036b8afcfddbd3a4bd
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
