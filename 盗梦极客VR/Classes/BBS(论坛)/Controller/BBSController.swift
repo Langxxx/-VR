@@ -56,6 +56,9 @@ class BBSController: UIViewController {
         //监听程序即将进入前台运行、进入后台休眠 事件
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        
+        // 用户登录事件
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(userDidLogin), name: UserDidLoginNotification, object: nil)
     }
 
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -102,6 +105,13 @@ class BBSController: UIViewController {
         MobClick.endLogPageView("论坛")
     }
     
+}
+
+// MARK: - 监听方法
+extension BBSController {
+    func userDidLogin() {
+        webView.loadRequest(request)
+    }
 }
 
 // MARK: - 初始化方法
@@ -251,7 +261,7 @@ extension BBSController: WKNavigationDelegate {
      */
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
 
-//        dPrint(navigationAction.request.URLString)
+        dPrint(navigationAction.request.URLString)
         guard let targetFrame = navigationAction.targetFrame,
             requstURL = navigationAction.request.URL else {
                 decisionHandler(.Cancel)
@@ -261,7 +271,16 @@ extension BBSController: WKNavigationDelegate {
             && !isExpectedURL(requstURL.absoluteString) {
             decisionHandler(.Cancel)
             jumpToOtherLinker(requstURL.absoluteString)
-        }else {
+        } else if requstURL.absoluteString.hasPrefix("http://bbs.dmgeek.com/session/sso?return_path=%2F") {
+            decisionHandler(.Cancel)
+            //点击登录，使用内部登录
+            let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+            if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
+                interactivePopGestureRecognizer.delegate = nil
+            }
+        } else {
             if targetFrame.mainFrame {
                 prepareLoadRequst()
             }

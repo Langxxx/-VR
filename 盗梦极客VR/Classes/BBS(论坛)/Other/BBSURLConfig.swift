@@ -17,14 +17,14 @@ extension BBSController {
         "http://dmgeek.com/discourse/",
         "http://m.dmgeek.com/",
         "http://dmgeek.com/login/",
-        //使用QQ登录链接
-        "https://graph.qq.com/oauth2.0/",
-        "https://xui.ptlogin2.qq.com/cgi-bin/",
-        "https://openmobile.qq.com/oauth2.0/",
-        //微博
-        "https://api.weibo.com/oauth2/",
-        //百度
-        "https://openapi.baidu.com/oauth/"
+//        //使用QQ登录链接
+//        "https://graph.qq.com/oauth2.0/",
+//        "https://xui.ptlogin2.qq.com/cgi-bin/",
+//        "https://openmobile.qq.com/oauth2.0/",
+//        //微博
+//        "https://api.weibo.com/oauth2/",
+//        //百度
+//        "https://openapi.baidu.com/oauth/"
         ]
     }
     /**

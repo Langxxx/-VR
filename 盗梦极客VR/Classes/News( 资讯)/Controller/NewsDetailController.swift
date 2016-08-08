@@ -19,6 +19,7 @@ class NewsDetailController: UIViewController, DetailVcJumpable {
     /// 评论数量的label
     @IBOutlet weak var replyCountLabel: UILabel!
     
+    @IBOutlet weak var activityView: UIActivityIndicatorView?
     var newsModel: NewsModel!
     var webView: UIWebView!
     
@@ -314,6 +315,7 @@ extension NewsDetailController: UIWebViewDelegate {
         return false
     }
     func webViewDidFinishLoad(webView: UIWebView) {
+        
         let str = webView
             .stringByEvaluatingJavaScriptFromString("document.body.offsetHeight")!
         let height = CGFloat((str as NSString).doubleValue)
@@ -325,6 +327,8 @@ extension NewsDetailController: UIWebViewDelegate {
         // 延迟0.5S再显示
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(500 * USEC_PER_SEC)), dispatch_get_main_queue()) { () -> Void in
             self.tableView.hidden = false
+            
+            self.activityView?.hidden = true
             if self.canReply {
                 self.replyContainerView.hidden = false
                 let replyCount = self.newsModel.customFields.discourseCommentsCount.first ?? "0"
