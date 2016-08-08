@@ -29,6 +29,7 @@ class ProfileController: UIViewController {
     
     var staticCellProvider =  TableViewProvider()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +69,7 @@ extension ProfileController {
         tableView.registerClass(StaticCell.self, forCellReuseIdentifier: staticCellProvider.cellID)
         tableView.showsVerticalScrollIndicator = false
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
+        addGroup0()
         addGroup1()
         addLastGroup()
         
@@ -113,11 +115,29 @@ extension ProfileController {
      添加第一组数据显示(用户数据)
      */
     func addGroup0() {
-        let account = RightDetallCellModel(text: "账号", rightDetall: user.username)
-        let nickname = RightDetallWithArrowCellModel(text: "昵称", rightDetall: user.displayname)
-        nickname.seletedCallBack = modifyNickname
-        let email = RightDetallCellModel(text: "邮箱", rightDetall: user.email)
-        let group = CellGroup(header: "基本信息", items: [account, nickname, email], footer: "")
+        
+        var group = CellGroup(header: "基本信息", items: [], footer: "")
+        
+        if user == nil {
+            let account = ArrowCellModel(text: "未登录", icon: nil) {
+                let vc = UIStoryboard(name: "Profile", bundle: nil).instantiateViewControllerWithIdentifier("LoginController") as! LoginController
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+                if let interactivePopGestureRecognizer = self.navigationController?.interactivePopGestureRecognizer {
+                    interactivePopGestureRecognizer.delegate = nil
+                }
+            }
+            group.items = [account]
+        }else {
+            let account = RightDetallCellModel(text: "账号", rightDetall: user.username)
+            let nickname = RightDetallWithArrowCellModel(text: "昵称", rightDetall: user.displayname)
+            nickname.seletedCallBack = modifyNickname
+            let email = RightDetallCellModel(text: "邮箱", rightDetall: user.email)
+            group.items = [account, nickname, email]
+        }
+        if !staticCellProvider.dataList.isEmpty {
+            staticCellProvider.dataList.removeFirst()
+        }
         staticCellProvider.dataList.insert(group, atIndex: 0)
     }
     
@@ -144,7 +164,7 @@ extension ProfileController {
         }
         
         let group = CellGroup(header: "功能",items: [clearCell, suggest])
-        staticCellProvider.dataList.append(group)
+        staticCellProvider.dataList.insert(group, atIndex: 1)
     }
     
     /**
@@ -282,12 +302,12 @@ extension ProfileController {
     }
     
     @IBAction func exitButtonClik() {
-        staticCellProvider.dataList.removeFirst()
-        let firstSection = NSIndexSet(index: 0)
-        tableView.deleteSections(firstSection, withRowAnimation: .None)
-        
         clearUserInfo()
         UserManager.loginout()
+        
+        addGroup0()
+        let firstSection = NSIndexSet(index: 0)
+        tableView.reloadSections(firstSection, withRowAnimation: .None)
     }
     
     func userDidLogin() {
