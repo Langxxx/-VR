@@ -74,6 +74,9 @@ class NewsDetailController: UIViewController, DetailVcJumpable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        networkRequest("http://dmgeek.com/DG_api/users/update_views?post_id=\(newsModel.id)")
+            .complete(success: {_ in }, failure: { _ in })
+        
         setupTableView()
         setupWebView()
         
@@ -249,6 +252,7 @@ extension NewsDetailController {
         
         let postModel = newsModel.bbsInfo.posts[indexPath.row / 2]
         cell?.setHTMLString("<style>body{color:gray;}p, li {font-family:\"Avenir Next\";font-size:14px;line-height:15px;}a {color: #f25d3c;text-decoration: none;}</style>" + postModel.cooked)
+        cell?.attributedTextContextView.edgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         cell?.attributedTextContextView.shouldDrawImages = true
         return cell!
     }

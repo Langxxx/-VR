@@ -62,7 +62,7 @@
 				<key>slug</key>
 				<string>toudai</string>
 				<key>title</key>
-				<string>头戴</string>
+				<string>头戴评测</string>
 			</dict>
 			<dict>
 				<key>description</key>
@@ -74,7 +74,7 @@
 				<key>slug</key>
 				<string>app</string>
 				<key>title</key>
-				<string>应用</string>
+				<string>应用评测</string>
 			</dict>
 			<dict>
 				<key>description</key>
@@ -86,7 +86,7 @@
 				<key>slug</key>
 				<string>waishe</string>
 				<key>title</key>
-				<string>外设</string>
+				<string>外设评测</string>
 			</dict>
 		</array>
 		<key>title</key>

@@ -280,6 +280,10 @@ extension BBSController: WKNavigationDelegate {
             if let interactivePopGestureRecognizer = navigationController?.interactivePopGestureRecognizer {
                 interactivePopGestureRecognizer.delegate = nil
             }
+        } else if requstURL.absoluteString.hasPrefix("http://dmgeek.com/user") {
+            decisionHandler(.Cancel)
+            let rootVc = UIApplication.sharedApplication().keyWindow?.rootViewController as! UITabBarController
+            rootVc.selectedIndex = 2
         } else {
             if targetFrame.mainFrame {
                 prepareLoadRequst()

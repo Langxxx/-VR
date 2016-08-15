@@ -13,6 +13,7 @@ extension BBSController {
     var expectedURLS: [String] {
         return [
         "http://bbs.dmgeek.com/",
+        "http://dmgeek.com/user",
         //登录重定向链接
         "http://dmgeek.com/discourse/",
         "http://m.dmgeek.com/",
