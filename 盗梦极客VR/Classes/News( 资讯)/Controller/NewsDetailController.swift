@@ -84,10 +84,14 @@ class NewsDetailController: UIViewController, DetailVcJumpable {
             tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(loadDeviceListInfo))
             tableView.mj_footer.beginRefreshing()
         }
+        
+        //监听程序即将进入前台运行、进入后台休眠 事件
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
     deinit {
         dPrint("Test--deinit")
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -260,6 +264,14 @@ extension NewsDetailController {
 }
 // MARK: - 监听方法
 extension NewsDetailController {
+    
+    /**
+     
+     */
+    func applicationWillEnterForeground() {
+        tableView.reloadData()
+    }
+    
     @IBAction func backButtonClik() {
         navigationController?.popViewControllerAnimated(true)
         navigationController?.setNavigationBarHidden(false, animated: true)
