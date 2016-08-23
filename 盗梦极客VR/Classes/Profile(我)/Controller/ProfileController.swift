@@ -132,7 +132,8 @@ extension ProfileController {
             let account = RightDetallCellModel(text: "账号", rightDetall: user.username)
             let nickname = RightDetallWithArrowCellModel(text: "昵称", rightDetall: user.displayname)
             nickname.seletedCallBack = modifyNickname
-            let email = RightDetallCellModel(text: "邮箱", rightDetall: user.email)
+            let email = RightDetallWithArrowCellModel(text: "邮箱", rightDetall: user.email)
+            email.seletedCallBack = modifyEmail
             group.items = [account, nickname, email]
         }
         if !staticCellProvider.dataList.isEmpty {
@@ -190,11 +191,48 @@ extension ProfileController {
 
 extension ProfileController {
     
+    func modifyEmail() {
+        
+        let alert = UIAlertController(title: "修改邮箱", message: nil, preferredStyle: .Alert)
+        var newName: String = ""
+        func success(user: User) {
+//            staticCellProvider.dataList.removeFirst()
+            setupUserInfo()
+            synchronizeBBSAcount()
+        }
+        
+        func failure(_: ErrorType) {
+            // TODO: 简单提示为修改失败
+            MBProgressHUD.showError("修改失败,可能已经被使用")
+        }
+        
+        alert.addTextFieldWithConfigurationHandler { textField in
+            textField.text = UserManager.sharedInstance.user!.email
+        }
+        let cancel = UIAlertAction(title: "取消", style: .Default, handler: nil)
+        let ok = UIAlertAction(title: "确定", style: .Default) { actioin in
+            if let email = alert.textFields?.first?.text where !email.isEmpty {
+                
+                if RegexHelper.isEmail(email) {
+                    if UserManager.sharedInstance.user!.email != email {
+                        MBProgressHUD.showMessage("正在修改邮箱...")
+                        UserManager.sharedInstance.modifyEmail(email,success: success, failure: failure)
+                    }
+                }else {
+                    MBProgressHUD.showWarning("邮箱格式不正确!")
+                }
+            }
+        }
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func modifyNickname() {
         let alert = UIAlertController(title: "修改昵称", message: nil, preferredStyle: .Alert)
         var newName: String = ""
         func success(user: User) {
-            staticCellProvider.dataList.removeFirst()
+//            staticCellProvider.dataList.removeFirst()
             setupUserInfo()
             synchronizeBBSAcount()
         }

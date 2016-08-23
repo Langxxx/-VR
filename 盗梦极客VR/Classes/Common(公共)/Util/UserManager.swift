@@ -119,6 +119,26 @@ extension UserManager {
 }
 // MARK: - 账号信息修改方法
 extension UserManager {
+    
+    func modifyEmail(email: String,
+                        success: User -> (),
+                        failure: ErrorType -> ()) {
+        
+        func getURLString(nonce: String) -> String {
+            return "http://dmgeek.com/DG_api/users/change_mail?nonce=\(nonce)&user_id=\(user!.id)&mail=\(email)".encodeURLString()
+        }
+        
+        getNonceValue()
+            .map(getURLString)
+            .then{ networkRequest($0) }
+            .map { $0["status"].boolValue }
+            .then(updateUserInfoAfterModify)
+            .complete(success: { user in
+                self.user = user
+                success(user)
+                }, failure: failure)
+    }
+    
     func modifyNickname(nickName: String,
                         success: User -> (),
                         failure: ErrorType -> ()) {

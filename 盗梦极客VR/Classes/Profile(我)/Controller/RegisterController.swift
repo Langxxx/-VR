@@ -255,10 +255,10 @@ extension RegisterController {
         guard let email = emailTextField.text else {
             return
         }
-        let patten = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
-        let matcher = RegexHelper(patten)
-        
-        setInvalidNotice(matcher.match(email),
+//        let patten = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
+//        let matcher = RegexHelper(patten)
+
+        setInvalidNotice(RegexHelper.isEmail(email),
                          text: email,
                          noticeLabel: emailErrorInfo,
                          iconButton: emailValidLogo,

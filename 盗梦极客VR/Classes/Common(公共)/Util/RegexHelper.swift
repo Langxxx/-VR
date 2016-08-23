@@ -44,4 +44,10 @@ extension RegexHelper {
         
         return regex.stringByReplacingMatchesInString(input, options: [], range: NSMakeRange(0, input.characters.count), withTemplate: "")
     }
+    
+    static func isEmail(str: String) -> Bool {
+        let patten = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
+        let matcher = RegexHelper(patten)
+        return matcher.match(str)
+    }
 }
