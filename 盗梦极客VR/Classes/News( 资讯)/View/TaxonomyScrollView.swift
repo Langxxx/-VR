@@ -23,7 +23,7 @@ class TaxonomyScrollView: UIScrollView {
     weak var taxonomyDelegate: TaxonomyScrollViewDelegate?
     
     /// 标签之间的间距
-    let buttonMargin: CGFloat = 25
+    let buttonMargin: CGFloat = 20
     /// 所有频道标签
     var buttonArray: [UIButton] = []
     

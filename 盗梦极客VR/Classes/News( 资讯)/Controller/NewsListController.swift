@@ -73,7 +73,7 @@ class NewsListController: UIViewController, DetailVcJumpable {
     }
     
         /// 分类视图的高度
-    let taxonomyScrollViewH: CGFloat = 30
+    let taxonomyScrollViewH: CGFloat = 35
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if !reloadLabel.hidden {

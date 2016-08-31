@@ -56,7 +56,8 @@ class NewsDetailController: UIViewController, DetailVcJumpable {
         "http://tv.sohu.com",
         "http://www.acfun.tv",
         "http://www.bilibili.com",
-        "http://music.163.com/"
+        "http://music.163.com/",
+        "http://video.qq.com/"
     ]
     
     let webCellIdentifier = "WebCell"
@@ -205,7 +206,7 @@ extension NewsDetailController {
         body += newsModel.date
         body += "</div>"
         
-        body += newsModel.content.stringByReplacingOccurrencesOfString("\r\n", withString: "<br/>")
+        body += newsModel.content
         
         if let str = newsModel.taxonomyVideos.first?.title where str == "全景视频" {
             body += "<h4 style=\"color:#cc0000\">优酷全景视频暂不支持手机播放，请尝试在PC端观看</h4>"

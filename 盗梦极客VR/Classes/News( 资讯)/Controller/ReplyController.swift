@@ -147,7 +147,7 @@ extension ReplyController {
     
     func textViewDidChange(noti: NSNotification) {
         
-        if textView.text.characters.count > 8 {
+        if textView.text.characters.count > 4 {
             sendButton.enabled = true
         }else {
             sendButton.enabled = false
